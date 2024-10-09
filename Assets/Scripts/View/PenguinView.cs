@@ -8,10 +8,11 @@ public class PenguinView : MonoBehaviour
     [SerializeField] public RectTransform objTransform;
 
     [Header("GameObjects")]
-    [SerializeField] public GameObject go;
+    [SerializeField] [HideInInspector] public GameObject go;
+    [SerializeField] public GameObject _triggerZone;
 
     [Header("Phisics/Collisions")]
-    [SerializeField] public Rigidbody2D objRigidbody;
+    [SerializeField] [HideInInspector] public Rigidbody2D objRigidbody;
     //public BoxCollider2D objBoxCollider;
 
     [Header("Boolian")]
@@ -27,13 +28,15 @@ public class PenguinView : MonoBehaviour
     private void Start()
     {
         StartCoroutine(UpdatePosition());
+        objRigidbody = GetComponent<Rigidbody2D>();
+        go = gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {
-            if (collision.gameObject == PenguinsModel.instance.penguinViews[i].go)
+            if (collision.transform.parent.gameObject == PenguinsModel.instance.penguinViews[i].go)
             {
                 if (level == 15)
                 {
