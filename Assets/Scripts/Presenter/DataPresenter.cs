@@ -8,7 +8,6 @@ public class DataPresenter
         SavePlayerModel();
         SaveBafsModel();
         SavePenguinsModel();
-
     }
 
     public static void GetAllData()
@@ -28,7 +27,6 @@ public class DataPresenter
         // {
         //     GP_Player.Set(nameModel, json);
         // }
-        
     }
 
     public static string GetData(string nameModel)

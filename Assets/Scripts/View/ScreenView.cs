@@ -43,7 +43,8 @@ public class ScreenView : MonoBehaviour
     {
         SetPos();
 
-        if (PenguinsModel.instance.penguinInSpawn == null) return;
+        if (BafsPresenter.GetSelectBaf() == 5) BafsPresenter.SetSelectBaf(0);
+        //if (PenguinsModel.instance.penguinInSpawn == null) return;
 
         PenguinsPresenter.instance.StartPenguin();
     }

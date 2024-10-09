@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class ZonePresenter : MonoBehaviour
 {
     float time = 0;
-    
 
     private void OnTriggerStay2D(Collider2D other)
     {

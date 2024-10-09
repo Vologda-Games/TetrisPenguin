@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class PenguinView : MonoBehaviour
 {
-    public RectTransform objTransform;
-    public GameObject go;
-    public Rigidbody2D objRigidbody;
-    public BoxCollider2D objBoxCollider;
-    public bool triggerUp;
-    public bool triggerMerge;
-    public int level;
+    [Header("Transform")]
+    [SerializeField] public RectTransform objTransform;
+
+    [Header("GameObjects")]
+    [SerializeField] public GameObject go;
+
+    [Header("Phisics/Collisions")]
+    [SerializeField] public Rigidbody2D objRigidbody;
+    //public BoxCollider2D objBoxCollider;
+
+    [Header("Boolian")]
+    [SerializeField] public bool triggerUp;
+    [SerializeField] public bool triggerMerge;
+
+    [Header("Integers")]
+    [SerializeField] public int level;
+    
+    [Header("Floats")]
+    [SerializeField] public float _radiusTriggerZone;
 
     private void Start()
     {
         StartCoroutine(UpdatePosition());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {

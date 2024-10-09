@@ -12,14 +12,12 @@ public class BafsPresenter : MonoBehaviour
             PenguinsModel.instance.penguinInSpawn = null;
         }
         SpawnPenguinsPresenter.SpawnByLevel(15);
-        
     }
 
     public static void Spring()
     {
         SetSelectBaf(2);
         ProjectionView.instance.RedProjection();
-
     }
 
     public static void Bomb()

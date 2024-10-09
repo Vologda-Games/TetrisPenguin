@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1780424354005910820}
   - component: {fileID: 3468294205503257410}
   - component: {fileID: 982430417924701431}
-  - component: {fileID: -1927049423064329857}
   - component: {fileID: 7497051689065598684}
+  - component: {fileID: 2443925010234700819}
   m_Layer: 5
   m_Name: 15
   m_TagString: Untagged
@@ -101,12 +101,31 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &-1927049423064329857
-BoxCollider2D:
+--- !u!114 &7497051689065598684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207354756366419568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a588f445a984db345bf52f05c0a95458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objTransform: {fileID: 435976981082935739}
+  go: {fileID: 207354756366419568}
+  objRigidbody: {fileID: 982430417924701431}
+  triggerUp: 0
+  triggerMerge: 0
+  level: 0
+  _radiusTriggerZone: 55
+--- !u!60 &2443925010234700819
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,7 +133,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 207354756366419568}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7c4b228c06562fd4689653cb144b88d0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -147,25 +166,17 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 100, y: 100}
-  m_EdgeRadius: 0
---- !u!114 &7497051689065598684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207354756366419568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a588f445a984db345bf52f05c0a95458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objTransform: {fileID: 435976981082935739}
-  go: {fileID: 207354756366419568}
-  objRigidbody: {fileID: 982430417924701431}
-  objBoxCollider: {fileID: -1927049423064329857}
-  triggerUp: 0
-  triggerMerge: 0
-  level: 0
+  m_Points:
+    m_Paths:
+    - - {x: -14.707642, y: -44.951935}
+      - {x: 12.059143, y: -46.259827}
+      - {x: 35.00952, y: -33.455627}
+      - {x: 41.647278, y: -17.554688}
+      - {x: 38.759033, y: -1.4205322}
+      - {x: 20.963684, y: 35.52838}
+      - {x: -7.116889, y: 47.66229}
+      - {x: -21.690002, y: 42.843567}
+      - {x: -30.676834, y: 25.087284}
+      - {x: -41.093002, y: -5.001766}
+      - {x: -38.510002, y: -27.313786}
+  m_UseDelaunayMesh: 0

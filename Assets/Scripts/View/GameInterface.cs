@@ -38,6 +38,7 @@ public class GameInterface : MonoBehaviour
         GameObject prefab = GetViewByName(nameView);
         GameObject view = Instantiate(prefab, Vector3.zero, Quaternion.identity, _parent);
         _activeViewTransform = view.transform;
+        if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
         _activeViewTransform.localPosition = Vector3.zero;
         activeView = view;
         isActiveInterface = true;

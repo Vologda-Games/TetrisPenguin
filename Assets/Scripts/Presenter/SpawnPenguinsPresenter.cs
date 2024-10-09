@@ -18,6 +18,7 @@ public class SpawnPenguinsPresenter : MonoBehaviour
         penguinView.triggerUp = true;
         penguinView.objRigidbody.simulated = false;
         PenguinsModel.instance.penguinInSpawn = penguinView;
+        AddTriggerZone(penguin, penguinView);
     }
 
     public static void SpawnByLevel(int level, Vector3 pos)
@@ -26,6 +27,7 @@ public class SpawnPenguinsPresenter : MonoBehaviour
         PenguinView penguinView = penguin.GetComponent<PenguinView>();
         penguinView.level = level;
         PenguinsModel.instance.penguinViews.Add(penguinView);
+        AddTriggerZone(penguin, penguinView);
     }
 
     public static void SpawnStart(int level, float x, float y)
@@ -35,5 +37,12 @@ public class SpawnPenguinsPresenter : MonoBehaviour
         penguinView.level = level;
         penguinView.objTransform.localPosition = new Vector3(x, y, 0);
         PenguinsModel.instance.penguinViews.Add(penguinView);
+    }
+
+    public static void AddTriggerZone(GameObject _object, PenguinView penguinView)
+    {
+        _object.AddComponent<CircleCollider2D>();
+        _object.GetComponent<CircleCollider2D>().radius = penguinView._radiusTriggerZone;
+        _object.GetComponent<CircleCollider2D>().isTrigger = true;
     }
 }
