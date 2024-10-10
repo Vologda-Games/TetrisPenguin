@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PenguinsPresenter : MonoBehaviour
@@ -94,7 +95,19 @@ public class PenguinsPresenter : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (BafsPresenter.GetSelectBaf() == 0)
         {
-            SpawnPenguinsPresenter.SpawnByLevel(0);
+            int _randomChance = Random.Range(1, 101);
+            for(int i = PenguinsModel._levelToChances.Count - 1; i > 0; i--)
+            {
+                if(_randomChance <= PenguinsModel._levelToChances[i].chance)
+                {
+                    SpawnPenguinsPresenter.SpawnByLevel(i);
+                    Debug.Log(_randomChance);
+                    break;
+                }else
+                {
+                    if(PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.SpawnByLevel(0);
+                }
+            }
         }
     }
 }

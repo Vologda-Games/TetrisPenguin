@@ -9,7 +9,6 @@ public class PenguinView : MonoBehaviour
 
     [Header("GameObjects")]
     [SerializeField] [HideInInspector] public GameObject go;
-    [SerializeField] public GameObject _triggerZone;
 
     [Header("Phisics/Collisions")]
     [SerializeField] [HideInInspector] public Rigidbody2D objRigidbody;
@@ -21,9 +20,6 @@ public class PenguinView : MonoBehaviour
 
     [Header("Integers")]
     [SerializeField] public int level;
-    
-    [Header("Floats")]
-    [SerializeField] public float _radiusTriggerZone;
 
     private void Start()
     {
@@ -32,11 +28,11 @@ public class PenguinView : MonoBehaviour
         go = gameObject;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {
-            if (collision.transform.parent.gameObject == PenguinsModel.instance.penguinViews[i].go)
+            if (collision.gameObject == PenguinsModel.instance.penguinViews[i].go)
             {
                 if (level == 15)
                 {
