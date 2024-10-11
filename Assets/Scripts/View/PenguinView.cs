@@ -8,10 +8,10 @@ public class PenguinView : MonoBehaviour
     [SerializeField] public RectTransform objTransform;
 
     [Header("GameObjects")]
-    [SerializeField] [HideInInspector] public GameObject go;
+    [SerializeField, HideInInspector] public GameObject go;
 
     [Header("Phisics/Collisions")]
-    [SerializeField] [HideInInspector] public Rigidbody2D objRigidbody;
+    [SerializeField, HideInInspector] public Rigidbody2D objRigidbody;
     //public BoxCollider2D objBoxCollider;
 
     [Header("Boolian")]
