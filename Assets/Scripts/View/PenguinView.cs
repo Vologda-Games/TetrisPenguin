@@ -90,6 +90,7 @@ public class PenguinView : MonoBehaviour
                     //         return;
                     //     }
                     // }
+                    MusicAndSoundsManager._instance.PlaySound(transform.position, "Bomb", 3f); 
                 }
                 else
                 {

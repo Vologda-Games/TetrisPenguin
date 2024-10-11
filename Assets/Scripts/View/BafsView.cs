@@ -82,6 +82,7 @@ public class BafsView : MonoBehaviour
                         // можно дописать условие if пингвинов > 1
                         BafsPresenter.Tornado();
                         BafsPresenter.ReduceTornadoBafs(1);
+                        MusicAndSoundsManager._instance.PlaySound(transform.position, "Tornado", 4f);
                     }
                 }
                 break;
