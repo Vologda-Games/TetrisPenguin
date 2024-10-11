@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     {
         DataPresenter.DeleteAllData();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private IEnumerator Saving()

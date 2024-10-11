@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameInterface : MonoBehaviour
 {
@@ -38,10 +37,10 @@ public class GameInterface : MonoBehaviour
         GameObject prefab = GetViewByName(nameView);
         GameObject view = Instantiate(prefab, Vector3.zero, Quaternion.identity, _parent);
         _activeViewTransform = view.transform;
-        if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
         _activeViewTransform.localPosition = Vector3.zero;
         activeView = view;
         isActiveInterface = true;
+        if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
     }
 
     public void CloseFirstLayout()
@@ -62,9 +61,26 @@ public class GameInterface : MonoBehaviour
     public void EventOpenShop()
     {
         //Вешать только на Button
-        OpenFirstLayout(Views.SHOP);
+        OpenFirstLayout(Views._shop);
     }
 
+    public void EventOpenWheelOfLuck()
+    {
+        //Вешать только на Button
+        OpenFirstLayout(Views._wheelOfLuck);
+    }
+
+    public void EventOpenRatings()
+    {
+        //Вешать только на Button
+        OpenFirstLayout(Views._ratings);
+    }
+
+    public void EventOpenDailyTasks()
+    {
+        //Вешать только на Button
+        OpenFirstLayout(Views._dailyTasks);
+    }
     public void EventCloseFirstLayoutByBackground()
     {
         //Вешать только на Background
@@ -74,8 +90,25 @@ public class GameInterface : MonoBehaviour
 
     private GameObject GetViewByName(string name)
     {
-        if (name == Views.SHOP) return ViewModel.instance.shop;
-        return null;
+        GameObject _object = null;
+        if (name == Views._shop)
+        {
+            _object = ViewModel.instance._shop;
+        }else if (name == Views._dailyTasks)
+        {
+            _object = ViewModel.instance._dailyTasks;
+        }
+        else if (name == Views._wheelOfLuck)
+        {
+            _object = ViewModel.instance._wheelOfLuck;
+        }
+        else if (name == Views._ratings)
+        {
+            _object = ViewModel.instance._ratings;
+        }
+        else _object = null;
+
+        return _object;
     }
 
     private IEnumerator ScaleShowAnimation(Transform viewTransform)

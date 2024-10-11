@@ -2365,7 +2365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865e281f6d2981d46af477e3ddb130ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shop: {fileID: 5893681746383542467, guid: f62d0d68c9914c3499614d68737d8de4, type: 3}
+  _shop: {fileID: 5893681746383542467, guid: f62d0d68c9914c3499614d68737d8de4, type: 3}
+  _dailyTasks: {fileID: 5893681746383542467, guid: ea0823abef2f7de4ebeed19e1321cce0, type: 3}
+  _wheelOfLuck: {fileID: 5893681746383542467, guid: f37340edb980dc0469c5ba0322cd11bc, type: 3}
+  _ratings: {fileID: 5893681746383542467, guid: 50e9171bc75e29645933df5e53db93b3, type: 3}
 --- !u!1 &686502353
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,7 +5941,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1647801625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451934698}
+        m_TargetAssemblyTypeName: GameInterface, Assembly-CSharp
+        m_MethodName: EventOpenWheelOfLuck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1647801625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6058,7 +6073,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1669278445}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451934698}
+        m_TargetAssemblyTypeName: GameInterface, Assembly-CSharp
+        m_MethodName: EventOpenDailyTasks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1669278445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7714,7 +7741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2036475302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451934698}
+        m_TargetAssemblyTypeName: GameInterface, Assembly-CSharp
+        m_MethodName: EventOpenRatings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2036475302
 MonoBehaviour:
   m_ObjectHideFlags: 0
