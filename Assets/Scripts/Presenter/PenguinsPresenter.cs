@@ -101,7 +101,6 @@ public class PenguinsPresenter : MonoBehaviour
                 if(_randomChance <= PenguinsModel._levelToChances[i].chance)
                 {
                     SpawnPenguinsPresenter.SpawnByLevel(i);
-                    Debug.Log(_randomChance);
                     break;
                 }else
                 {

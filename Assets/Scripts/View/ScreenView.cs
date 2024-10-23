@@ -8,6 +8,8 @@ public class ScreenView : MonoBehaviour
     public bool homeSliderPlay;
     public bool settingsSlider;
     public bool settingsSliderPlay;
+    [SerializeField, HideInInspector] private float _offset;
+    [SerializeField] private Transform _pointEgg;
     [SerializeField] private Camera cam;
     [SerializeField] private Transform _homeSliderTransform;
     [SerializeField] private Transform _settingsSliderTransform;
@@ -18,6 +20,14 @@ public class ScreenView : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start() 
+    {
+        bool _precise = true;
+        if(ScreenModel.instance.GetControl() == "Precise") _precise = true;
+        else if(ScreenModel.instance.GetControl() == "Flexible") _precise = false;
+        ScreenModel.instance._buttonTypeControl.sprite = ViewModel.GetSpriteButton(ScreenModel.instance._trueSpriteButton, ScreenModel.instance._falseSpriteButton, _precise);
     }
 
     private void LateUpdate()
@@ -49,14 +59,36 @@ public class ScreenView : MonoBehaviour
         PenguinsPresenter.instance.StartPenguin();
     }
 
+    public void SetTypeControl()
+    {
+        bool _precise = true;
+        if(ScreenModel.instance.GetControl() == "Precise")
+        {
+            _precise = false;
+            ScreenModel.instance.SetControl("Flexible");
+        }
+        else if(ScreenModel.instance.GetControl() == "Flexible")
+        {
+            _precise = true;
+            ScreenModel.instance.SetControl("Precise");
+        }
+        ScreenModel.instance._buttonTypeControl.sprite = ViewModel.GetSpriteButton(ScreenModel.instance._trueSpriteButton, ScreenModel.instance._falseSpriteButton, _precise);
+    }
+
     private void SetPos()
     {
         if (BafsPresenter.GetSelectBaf() == 5) return;
         if (BafsView.instance.triggerBtn) return;
 
-        float pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
-        if (pos < -2.2f) { pos = -2.2f; }
-        else if (pos > 2.2f) { pos = 2.2f; }
+        float pos = _pointEgg.position.x;
+        if(Input.GetMouseButtonDown(0)) _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
+        else if(Input.GetMouseButton(0))
+        {
+            if(ScreenModel.instance.GetControl() == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+            else if(ScreenModel.instance.GetControl() == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x - _offset;
+            if (pos < -2.2f) { pos = -2.2f; }
+            else if (pos > 2.2f) { pos = 2.2f; }
+        }
         ScreenModel.instance.posTouch = pos;
     }
 
@@ -67,7 +99,9 @@ public class ScreenView : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            float pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+            float pos = 0f;
+            if(ScreenModel.instance.GetControl() == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (_pointEgg.position.x - cam.ScreenToWorldPoint(Input.mousePosition).x);
+            else if(ScreenModel.instance.GetControl() == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (cam.ScreenToWorldPoint(_pointEgg.position).x - cam.ScreenToWorldPoint(Input.mousePosition).x);
             if (pos < -2.2f) { pos = -2.2f; }
             else if (pos > 2.2f) { pos = 2.2f; }
             ScreenModel.instance.posTouch = pos;

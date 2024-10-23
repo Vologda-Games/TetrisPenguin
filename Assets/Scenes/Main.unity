@@ -167,6 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posTouch: 0
+  _trueSpriteButton: {fileID: 21300000, guid: 93cb3f98b770cd749b2e28172747090b, type: 3}
+  _falseSpriteButton: {fileID: 21300000, guid: a07f1de97da8b48b6bd4d976ad1b1fad, type: 3}
+  _buttonTypeControl: {fileID: 1067365026}
 --- !u!1 &51989431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,6 +2192,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 697116101}
+        m_TargetAssemblyTypeName: MusicAndSoundsManager, Assembly-CSharp
+        m_MethodName: SwitchSoundsPlayback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &569391379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2602,6 +2617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parentMusic: {fileID: 85294126}
   _parentSounds: {fileID: 1717337617}
+  _trueSpriteButton: {fileID: 21300000, guid: 93cb3f98b770cd749b2e28172747090b, type: 3}
+  _falseSpriteButton: {fileID: 21300000, guid: a07f1de97da8b48b6bd4d976ad1b1fad, type: 3}
+  _buttonSounds: {fileID: 569391379}
+  _buttonMusic: {fileID: 1487960799}
 --- !u!1 &698515914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4028,6 +4047,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1748715846}
+        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
+        m_MethodName: SetTypeControl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1067365026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5106,7 +5137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435: \u0442\u043E\u0447\u043D\u043E\u0435"
+  m_text: "\u0422\u043E\u0447\u043D\u043E\u0435 \u0443\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5528,6 +5559,18 @@ MonoBehaviour:
       - m_Target: {fileID: 697116101}
         m_TargetAssemblyTypeName: MusicAndSoundsManager, Assembly-CSharp
         m_MethodName: PlaySoundClickOnButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 697116101}
+        m_TargetAssemblyTypeName: MusicAndSoundsManager, Assembly-CSharp
+        m_MethodName: SwitchMusicPlayback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6458,6 +6501,8 @@ MonoBehaviour:
   homeSliderPlay: 0
   settingsSlider: 0
   settingsSliderPlay: 0
+  _offset: 0
+  _pointEgg: {fileID: 489000227}
   cam: {fileID: 519420031}
   _homeSliderTransform: {fileID: 363422418}
   _settingsSliderTransform: {fileID: 165527656}

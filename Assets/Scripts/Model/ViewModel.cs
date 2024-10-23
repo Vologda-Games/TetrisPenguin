@@ -13,4 +13,9 @@ public class ViewModel : MonoBehaviour
     {
         instance = this;
     }
+
+    public static Sprite GetSpriteButton(Sprite _trueSprite, Sprite _falseSprite, bool _conditionButton)
+    {
+        return _conditionButton ? _trueSprite : _falseSprite;
+    }
 }

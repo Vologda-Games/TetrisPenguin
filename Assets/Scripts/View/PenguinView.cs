@@ -81,6 +81,7 @@ public class PenguinView : MonoBehaviour
                             }
                         }
                     }
+                    MusicAndSoundsManager._instance.PlaySound("Bomb", 4f); 
                     // for (int l = 0; l < PenguinsModel.instance.penguinViews.Count; l++)
                     // {
                     //     if (PenguinsModel.instance.penguinViews[l].go == go)
@@ -90,7 +91,6 @@ public class PenguinView : MonoBehaviour
                     //         return;
                     //     }
                     // }
-                    MusicAndSoundsManager._instance.PlaySound(transform.position, "Bomb", 3f); 
                 }
                 else
                 {
