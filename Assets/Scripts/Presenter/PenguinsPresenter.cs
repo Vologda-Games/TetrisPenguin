@@ -71,6 +71,7 @@ public class PenguinsPresenter : MonoBehaviour
             if (BafsPresenter.GetSelectBaf() == 2)
             {
                 penguinView.objRigidbody.AddForce(Vector3.down * 800);
+                if(!penguinView._strongBlow) penguinView._strongBlow = true;
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceSpringBafs(1);
                 ProjectionView.instance.PointProjection();

@@ -17,7 +17,10 @@ public class BafsPresenter : MonoBehaviour
     public static void Spring()
     {
         SetSelectBaf(2);
-        ProjectionView.instance.RedProjection();
+        if (PenguinsModel.instance.penguinInSpawn != null)
+        {
+            ProjectionView.instance.RedProjection();
+        }
     }
 
     public static void Bomb()
@@ -70,6 +73,11 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelSpring()
     {
         SetSelectBaf(0);
+        if(PenguinsModel.instance.penguinInSpawn != null)
+        {
+            PenguinView penguinView = PenguinsModel.instance.penguinInSpawn;
+            if(penguinView._strongBlow) penguinView._strongBlow = false;
+        }
         ProjectionView.instance.PointProjection();
     }
 

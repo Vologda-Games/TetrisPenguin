@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PenguinsModel : MonoBehaviour
 {
+    [Header("Scripts & Methods")]
     public static PenguinsModel instance;
     public List<PenguinObject> penguinObjectsForStart;
     public List<PenguinView> penguinViews;
     [SerializeField] public static List<LevelToChance> _levelToChances;
     [SerializeField] public List<LevelToChance> _levelToChancesInsp = new List<LevelToChance>();
     public PenguinView penguinInSpawn;
+
+    [Header("GameObjects")]
+    [SerializeField] public GameObject _particleFog;
+    
+    [Header("Transforms")]
+    [SerializeField] public Transform _particleParent;
 
     private void Awake()
     {

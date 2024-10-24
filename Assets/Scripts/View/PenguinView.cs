@@ -17,6 +17,7 @@ public class PenguinView : MonoBehaviour
     [Header("Boolian")]
     [SerializeField] public bool triggerUp;
     [SerializeField] public bool triggerMerge;
+    [SerializeField] public bool _strongBlow;
 
     [Header("Integers")]
     [SerializeField] public int level;
@@ -30,6 +31,11 @@ public class PenguinView : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(_strongBlow)
+        {
+            MusicAndSoundsManager._instance.PlaySound("StrongBlow", 1f);
+            _strongBlow = false; 
+        }
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {
             if (collision.gameObject == PenguinsModel.instance.penguinViews[i].go)
@@ -139,6 +145,7 @@ public class PenguinView : MonoBehaviour
         }
         // Где-то тут нужно будет сделать дымок
         SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
+        Instantiate(PenguinsModel.instance._particleFog, pos, Quaternion.identity, PenguinsModel.instance._particleParent);
         Destroy(penguinView_1.go);
         Destroy(penguinView_2.go);
     }
@@ -171,6 +178,7 @@ public class PenguinView : MonoBehaviour
             }
             BafsPresenter.SetSelectBaf(0);
             BafsPresenter.ReduceMagnetBafs(1);
+            MusicAndSoundsManager._instance.PlaySound("Magnet", 2.5f);
         }
     }
 }

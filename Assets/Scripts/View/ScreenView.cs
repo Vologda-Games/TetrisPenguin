@@ -24,10 +24,7 @@ public class ScreenView : MonoBehaviour
 
     private void Start() 
     {
-        bool _precise = true;
-        if(ScreenModel.instance.GetControl() == "Precise") _precise = true;
-        else if(ScreenModel.instance.GetControl() == "Flexible") _precise = false;
-        ScreenModel.instance._buttonTypeControl.sprite = ViewModel.GetSpriteButton(ScreenModel.instance._trueSpriteButton, ScreenModel.instance._falseSpriteButton, _precise);
+        ScreenModel.instance._textTypeControl.text = $"Управление: {ScreenModel.GetNameTypeControl()}";
     }
 
     private void LateUpdate()
@@ -61,18 +58,21 @@ public class ScreenView : MonoBehaviour
 
     public void SetTypeControl()
     {
-        bool _precise = true;
-        if(ScreenModel.instance.GetControl() == "Precise")
+        ChangeTypeControl();
+        ScreenModel.instance._textTypeControl.text = $"Управление: {ScreenModel.GetNameTypeControl()}";
+    }
+    
+    public void ChangeTypeControl()
+    {
+        for(int i = 0; i < ScreenModel._typesControl.Count; i++)
         {
-            _precise = false;
-            ScreenModel.instance.SetControl("Flexible");
+            if(ScreenModel._typesControl[i] == ScreenModel.instance.GetControl())
+            {
+                if(i + 1 < ScreenModel._typesControl.Count) ScreenModel.instance.SetControl(ScreenModel._typesControl[i + 1]);
+                else ScreenModel.instance.SetControl(ScreenModel._typesControl[0]);
+                break;
+            }
         }
-        else if(ScreenModel.instance.GetControl() == "Flexible")
-        {
-            _precise = true;
-            ScreenModel.instance.SetControl("Precise");
-        }
-        ScreenModel.instance._buttonTypeControl.sprite = ViewModel.GetSpriteButton(ScreenModel.instance._trueSpriteButton, ScreenModel.instance._falseSpriteButton, _precise);
     }
 
     private void SetPos()
@@ -81,7 +81,17 @@ public class ScreenView : MonoBehaviour
         if (BafsView.instance.triggerBtn) return;
 
         float pos = _pointEgg.position.x;
-        if(Input.GetMouseButtonDown(0)) _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(ScreenModel.instance.GetControl() == "Flexible") _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
+            else
+            {
+                _offset = 0f;
+                pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+                if (pos < -2.2f) { pos = -2.2f; }
+                else if (pos > 2.2f) { pos = 2.2f; }
+            }
+        } 
         else if(Input.GetMouseButton(0))
         {
             if(ScreenModel.instance.GetControl() == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
