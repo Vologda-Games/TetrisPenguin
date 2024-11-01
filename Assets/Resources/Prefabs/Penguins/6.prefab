@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 270, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1780424354005910820
 CanvasRenderer:
@@ -119,12 +119,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objTransform: {fileID: 435976981082935739}
   go: {fileID: 207354756366419568}
-  _triggerZone: {fileID: 5884381516557407223, guid: 66594c319b7fbbc47b7a66b79e1a5b35, type: 3}
   objRigidbody: {fileID: 982430417924701431}
   triggerUp: 0
   triggerMerge: 0
+  _strongBlow: 0
   level: 0
-  _radiusTriggerZone: 115
 --- !u!60 &8629386156551418391
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -169,15 +168,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -17.341736, y: -96.394165}
-      - {x: -62.187317, y: -93.85599}
-      - {x: -85.27911, y: -43.031464}
-      - {x: -87.23187, y: -11.556091}
-      - {x: -17.472237, y: 62.428707}
-      - {x: -3.8920455, y: 90.38795}
-      - {x: 32.969315, y: 97.65726}
-      - {x: 55.80139, y: 54.498535}
-      - {x: 85.2052, y: 36.71277}
-      - {x: 80.835754, y: -13.165466}
-      - {x: 70.340096, y: -78.99265}
+    - - {x: -23.261658, y: -132.57172}
+      - {x: -81.92053, y: -126.74469}
+      - {x: -114.22119, y: -51.58252}
+      - {x: -118.14728, y: -18.13385}
+      - {x: -20.10334, y: 81.50415}
+      - {x: -5.865373, y: 121.30335}
+      - {x: 44.80922, y: 133.83481}
+      - {x: 72.24573, y: 72.9162}
+      - {x: 115.46277, y: 50.526}
+      - {x: 97.308846, y: -106.61915}
   m_UseDelaunayMesh: 0

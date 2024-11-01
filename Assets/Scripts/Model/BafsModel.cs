@@ -13,11 +13,11 @@ public class BafsModel : MonoBehaviour
 
     private void Awake()
     {
-        multicolorBafs = 10;
-        springBafs = 10;
-        bombBafs = 10;
-        tornadoBafs = 10;
-        magnetBafs = 10;
+        multicolorBafs = 5;
+        springBafs = 5;
+        bombBafs = 5;
+        tornadoBafs = 5;
+        magnetBafs = 5;
         instance = this;
     }
 }

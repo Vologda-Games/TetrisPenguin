@@ -31,14 +31,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1780424354005910820
 CanvasRenderer:
@@ -168,15 +168,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 14.86908, y: 37.34662}
-      - {x: 24.103271, y: 34.20575}
-      - {x: 39.532104, y: -1.1554565}
-      - {x: 42.060425, y: -26.264893}
-      - {x: 19.825378, y: -45.920166}
-      - {x: -14.357056, y: -47.420197}
-      - {x: -39.610603, y: -28.43787}
-      - {x: -41.890762, y: -3.1219444}
-      - {x: -32.137573, y: 23.925415}
-      - {x: -24.524399, y: 42.476505}
-      - {x: -7.9703913, y: 49.211727}
+    - - {x: 15.855713, y: 44.91101}
+      - {x: 27.063293, y: 40.45459}
+      - {x: 45.12317, y: -0.16882324}
+      - {x: 49.624817, y: -26.264893}
+      - {x: 25.7453, y: -51.84012}
+      - {x: -17.645935, y: -53.997925}
+      - {x: -45.530586, y: -32.384495}
+      - {x: -47.810745, y: -2.793026}
+      - {x: -36.08423, y: 29.51648}
+      - {x: -28.471054, y: 47.738712}
+      - {x: -9.285943, y: 56.77618}
   m_UseDelaunayMesh: 0
