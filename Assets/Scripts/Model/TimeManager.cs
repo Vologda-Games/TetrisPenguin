@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    private void Start() 
-    {
-        // if(!PlayerPrefs.HasKey("LastTimeGame")) SetDateTime("LastTimeGame", GamePush.GP_Server.Time());
-    }
 
     public static void SetDateTime(string _key, DateTime _value)
     {

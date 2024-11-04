@@ -15,6 +15,6 @@ public class WindowManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_textTimeDifference != null && PlayerPrefs.GetInt("StartedDailyTasks") == 1) _textTimeDifference.text = $"Обновиться через {DailyTasksModel.TimeDifference()}";
+        if(_textTimeDifference != null && PlayerPrefs.GetInt("StartedDailyTasks") == 1) _textTimeDifference.text = $"Обновится через {DailyTasksModel.TimeDifference()}";
     }
 }

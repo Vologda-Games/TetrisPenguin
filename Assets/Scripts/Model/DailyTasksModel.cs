@@ -5,17 +5,21 @@ using UnityEngine;
 public class DailyTasksModel : MonoBehaviour
 {
     [Header("Structure")]
-    [SerializeField] private List<DailyTasksInfoValue> _allTasks = new List<DailyTasksInfoValue>();
-    public static List<DailyTasksInfoValue> _allTasksStatic;
-    public static List<int> _readyTypesTasks;
+    [SerializeField] public List<DailyTasksInfoValue> _allTasks = new List<DailyTasksInfoValue>();
+    public static DailyTasksModel _instance;
+    public List<int> _allReadyNumbersTasks;
+    [SerializeField] public int _maxQuantityTaskOfDay;
     
     public static Sprite[] _spritesForRewardBaff;
     public static Sprite _spriteForRewardSoftCurrency;
     private void Awake()
     {
-        _allTasksStatic = _allTasks;
         _spritesForRewardBaff = Resources.LoadAll<Sprite>("Sprites/Reward/Bafs");
         _spriteForRewardSoftCurrency = Resources.Load<Sprite>("Sprites/Reward/Currency/SoftCurrency");
+        for(int i = 0; i < _allTasks.Count; i++)
+        {
+            if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
+        }
     }
 
     private void Start()
@@ -28,6 +32,15 @@ public class DailyTasksModel : MonoBehaviour
         TimeSpan _difference = DateTime.MaxValue - GamePush.GP_Server.Time();
         string _differenceTimeString = $"{_difference.Hours}:{_difference.Minutes}:{_difference.Seconds}";
         return _differenceTimeString;
+    }
+
+    public int RandomNumberTask()
+    {
+        int _randomNumber;
+        int _rand = UnityEngine.Random.Range(0, _allReadyNumbersTasks.Count);
+        _randomNumber = _allReadyNumbersTasks[_rand];
+        if(_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
+        return _randomNumber;
     }
 }
 
