@@ -20,6 +20,7 @@ public class DailyTasksModel : MonoBehaviour
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
         }
+        _instance = this;
     }
 
     private void Start()
