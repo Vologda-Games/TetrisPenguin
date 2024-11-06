@@ -14,13 +14,14 @@ public class DailyTasksModel : MonoBehaviour
     public static Sprite _spriteForRewardSoftCurrency;
     private void Awake()
     {
+        _instance = this;
         _spritesForRewardBaff = Resources.LoadAll<Sprite>("Sprites/Reward/Bafs");
         _spriteForRewardSoftCurrency = Resources.Load<Sprite>("Sprites/Reward/Currency/SoftCurrency");
+        //if(PlayerPrefs.HasKey)
         for(int i = 0; i < _allTasks.Count; i++)
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
         }
-        _instance = this;
     }
 
     private void Start()
