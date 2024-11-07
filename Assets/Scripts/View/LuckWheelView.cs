@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LuckWheelView : MonoBehaviour
 {
     public static LuckWheelView instance;
     private bool spinning = false;
-    public Transform arrow;
+    public Image[] sectors;
+    public Image arrowImage;
 
     void Awake()
     {
@@ -35,14 +37,20 @@ public class LuckWheelView : MonoBehaviour
         }
     }
 
+    // Метод для отображения состояния вращения
     public void ShowSpinningStatus(bool isSpinning)
     {
         spinning = isSpinning;
         Debug.Log("Колесо крутится: " + isSpinning);
     }
 
-    public void SetArrowPosition(float angle) 
+
+
+    // Метод для вычисления сектора, на который указывает стрелка
+    public void SetArrowPosition(float angle)
     {
-        Debug.Log("Стрелка указывает на сектор с углом: " + angle);
+        // Проверяем, завершилось ли вращение
+        if (spinning) return;  // Если колесо ещё вращается, стрелка не меняет позицию
     }
+
 }
