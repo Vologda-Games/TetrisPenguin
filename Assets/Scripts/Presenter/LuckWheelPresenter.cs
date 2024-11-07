@@ -1,17 +1,25 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public class LuckWheelPresenter : MonoBehaviour
 {
     public static LuckWheelPresenter instance;
 
-    private bool spinning = false;
-    private float anglePerItem;
+    private bool isSpin = false;
+    private GameObject wheel;
+    private float rotationSpeed; //скорость вращения
+    private float slowDownTime; //время вращения
+    private float accelerationTime;
+    private float rotationTimeMaxSpeed;
+    private int numberOfSpins;
 
-    void Start() 
-    {
-        anglePerItem = LuckWheelModel.instance.GetAnglePerItem();
-    }
+    private float maxAngel = 0f;
+    private float minAngel = 0f;
+
+    private int randomSectors;
+
+    private List<string> prizes;
 
      void Awake()
     {
@@ -26,72 +34,118 @@ public class LuckWheelPresenter : MonoBehaviour
         }
     }
 
-    public void OnSpinButtonPressed() 
+    public void Initialization() 
     {
-        if (!spinning) 
+        // Проверяем наличие экземпляра LuckWheelView перед обращением
+        if (LuckWheelView.instance != null)
         {
-            spinning = true;
-            LuckWheelView.instance.ShowSpinningStatus(true);
-
-            // Случайное время вращения от 2 до 3 секунд
-            float randomTime = UnityEngine.Random.Range(0.1f, 0.2f);
-
-            // Максимальный угол для вращения, рассчитанный на основе времени
-            float maxAngle = 360f * randomTime;
-
-            // Запуск корутины для вращения колеса
-            StartCoroutine(SpinTheWheel(randomTime, maxAngle));
+            if (LuckWheelView.instance.wheel != null) 
+            {
+                wheel = LuckWheelView.instance.wheel;
+            }
+            rotationSpeed = LuckWheelView.instance.rotationSpeed;
+            accelerationTime = LuckWheelView.instance.accelerationTime;
+            rotationTimeMaxSpeed = LuckWheelView.instance.rotationTimeMaxSpeed;
+            prizes = LuckWheelModel.instance.prizes;
+            numberOfSpins = LuckWheelView.instance.numberOfSpins;
+        }
+        else
+        {
+            Debug.LogError("LuckWheelView instance is not set.");
         }
     }
 
-    IEnumerator SpinTheWheel(float time, float maxAngle)
+    public void OnClickButton() 
     {
-        float timer = 0.0f;
-        float startAngle = LuckWheelView.instance.transform.eulerAngles.z;
-        maxAngle = maxAngle - startAngle;
+        StartCoroutine(SpinWheel());
+    }
 
-        float initialSpeed = 720f;  // Начальная скорость вращения
+    IEnumerator SpinWheel() 
+    {
+        setWin();
+        isSpin = true;
+        LuckWheelView.instance.ShowSpinningStatus(isSpin);
+        float elapsedTime = 0f; // отвечает за прошедшее время
+        float rotSpeed; // текущая скорость вращения
 
-        while (timer < time)
+        while (elapsedTime < accelerationTime)
         {
-            float speedFactor = Mathf.Lerp(1f, 0f, timer / time);
-            float currentRotationSpeed = initialSpeed * speedFactor;
-
-            // Обновляем текущий угол вращения
-            startAngle += currentRotationSpeed * Time.deltaTime;
-            startAngle %= 360;  // Ограничиваем угол в пределах 0-360 градусов
-
-            LuckWheelView.instance.transform.eulerAngles = new Vector3(0.0f, 0.0f, startAngle);
-            LuckWheelView.instance.SetArrowPosition(startAngle);
-
-            timer += Time.deltaTime;
+            rotSpeed = Mathf.Lerp(0, rotationSpeed, elapsedTime / accelerationTime);
+            
+            wheel.transform.rotation *= Quaternion.Euler(0, 0, rotSpeed * Time.deltaTime);
+            
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Устанавливаем финальный угол после остановки
-        float finalAngle = startAngle % 360f;
-        LuckWheelView.instance.transform.eulerAngles = new Vector3(0.0f, 0.0f, finalAngle);
-        LuckWheelView.instance.SetArrowPosition(finalAngle);
+        elapsedTime = 0f;
 
-        LuckWheelView.instance.ShowSpinningStatus(false);
-        spinning = false;
-
-        // Находим сектор по финальному углу
-        float anglePerItem = 360f / LuckWheelView.instance.sectors.Length;
-
-        // Вместо корректировки угла, просто делим на угол сектора
-        int winningItem = Mathf.FloorToInt(finalAngle / anglePerItem);
-
-        // Убедимся, что индекс находится в пределах допустимого диапазона
-        if (winningItem >= LuckWheelView.instance.sectors.Length)
+        while (elapsedTime < rotationTimeMaxSpeed)
         {
-            winningItem = 0;
+            wheel.transform.rotation *= Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime);
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        // Получаем приз по найденному сектору
-        string winningPrize = LuckWheelModel.instance.GetPrize(winningItem);
-        Debug.Log("Выпал приз: " + winningPrize);
+        float distance = (numberOfSpins * 360f) + UnityEngine.Random.Range(minAngel+1, maxAngel-1) - LuckWheelView.instance.wheel.transform.rotation.eulerAngles.z;
+        slowDownTime = (2 * distance) / rotationSpeed;
+        float slowDown = rotationSpeed / slowDownTime;
+        rotSpeed = rotationSpeed;
 
+
+        elapsedTime = 0f;
+
+        while (elapsedTime < slowDownTime)
+        {
+            rotSpeed = Mathf.Lerp(rotationSpeed, 0, elapsedTime / slowDownTime);
+            wheel.transform.rotation *= Quaternion.Euler(0, 0, rotSpeed * Time.deltaTime);
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isSpin = false;
+        LuckWheelView.instance.ShowSpinningStatus(isSpin);
+        GetPrize();
+    }
+
+    public void setWin()
+    {
+        int randomSector = UnityEngine.Random.Range(0, prizes.Count);
+        Debug.Log("WIN " + prizes[randomSector] + "/ index = " + randomSector);
+        randomSectors = randomSector;
+        maxAngel = 360f / prizes.Count * (randomSector + 1);
+        minAngel = 360f / prizes.Count * randomSector;
+    }
+
+    public void GetPrize() 
+    {
+        Debug.Log("Поздровляю вам выпал: " + prizes[randomSectors]);
+        switch (randomSectors) 
+        {
+            case 0:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 1:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 2:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 3:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 4:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 5:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            default:
+                Debug.Log("Приз не найден");
+                break;
+        }
     }
 
     public static int GetTokens()

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LuckWheelView : MonoBehaviour
 {
     public static LuckWheelView instance;
     private bool spinning = false;
-    public Image[] sectors;
-    public Image arrowImage;
+    [SerializeField] public GameObject wheel;
+    [SerializeField] public float rotationSpeed;
+    [SerializeField] public float rotationTimeMaxSpeed;
+    [SerializeField] public float accelerationTime; //время ускорения до максимальной скорости
+    [SerializeField] public int numberOfSpins;
 
     void Awake()
     {
@@ -22,13 +24,18 @@ public class LuckWheelView : MonoBehaviour
         }
     }
 
+    void Start() 
+    {
+        LuckWheelPresenter.instance.Initialization();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X) && !spinning)
         {
             if (LuckWheelPresenter.instance != null)
             {
-                LuckWheelPresenter.instance.OnSpinButtonPressed();
+                LuckWheelPresenter.instance.OnClickButton();
             }
             else
             {
@@ -41,16 +48,6 @@ public class LuckWheelView : MonoBehaviour
     public void ShowSpinningStatus(bool isSpinning)
     {
         spinning = isSpinning;
-        Debug.Log("Колесо крутится: " + isSpinning);
-    }
-
-
-
-    // Метод для вычисления сектора, на который указывает стрелка
-    public void SetArrowPosition(float angle)
-    {
-        // Проверяем, завершилось ли вращение
-        if (spinning) return;  // Если колесо ещё вращается, стрелка не меняет позицию
     }
 
 }

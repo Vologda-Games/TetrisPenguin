@@ -5,41 +5,11 @@ public class LuckWheelModel : MonoBehaviour
 {
     public static LuckWheelModel instance;
     public int token;
-    public int prizeCount = 6;
-    public List<string> prizes;
+    [SerializeField] public List<string> prizes;
 
     private void Awake()
     {
         instance = this;
 
-        if (prizes == null || prizes.Count == 0)
-        {
-            prizes = new List<string>
-            {
-                "приз 0",
-                "приз 1",
-                "приз 2",
-                "приз 3",
-                "приз 4",
-                "приз 5"
-            };
-        }
-    }
-
-    public float GetAnglePerItem()
-    {
-        return 360f / prizeCount;
-    }
-
-    public string GetPrize(int index)
-    {
-        if (index >= 0 && index < prizes.Count)
-        {
-            return prizes[index];
-        }
-        else
-        {
-            return "Неизвестный цвет";
-        }
     }
 }
