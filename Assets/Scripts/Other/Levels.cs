@@ -18,6 +18,23 @@ public class Levels : MonoBehaviour
         new Level(12, 12000),
         new Level(13, 13000),
     };
+
+    public static int CurrentLevel
+    {
+        get
+        {
+            int level = PlayerPrefs.GetInt("level");
+            return level;
+        }
+        set
+        {
+            PlayerPrefs.SetInt("level", value);
+        }
+    }
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("level")) PlayerPrefs.SetInt("level", 1);
+    }
 }
 
 public class Level
