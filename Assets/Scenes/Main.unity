@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 196106363}
   - component: {fileID: 196106362}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,6 +2173,7 @@ Transform:
   - {fileID: 98202095}
   - {fileID: 2119671696}
   - {fileID: 2130941038}
+  - {fileID: 1471384133}
   m_Father: {fileID: 706068097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &569391376
@@ -5599,6 +5600,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445319091}
   m_CullTransparentMesh: 1
+--- !u!1 &1471384132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471384133}
+  - component: {fileID: 1471384134}
+  m_Layer: 0
+  m_Name: NewDayEventModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1471384133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471384132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 539063087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1471384134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471384132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7db471f3343a045b94c1aea19e07ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tasksOnToday: []
 --- !u!1 &1487960796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6272,7 +6318,7 @@ GameObject:
   - component: {fileID: 1647801625}
   - component: {fileID: 1647801624}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonLuckWhell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6416,7 +6462,7 @@ GameObject:
   - component: {fileID: 1669278445}
   - component: {fileID: 1669278444}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonDailyTasks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8570,6 +8616,24 @@ MonoBehaviour:
     _numberAddBaff: 1
     _quantityAddBaff: 1
     _quantityAddCurrency: 666
+  - _typeTaskEnum: 1
+    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
+    _numberUseBaff: 3
+    _maximumQuantity: 4
+    _currentQuantity: 2
+    _typeRewardEnum: 1
+    _numberAddBaff: 1
+    _quantityAddBaff: 1
+    _quantityAddCurrency: 876
+  - _typeTaskEnum: 0
+    _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
+    _numberUseBaff: 3
+    _maximumQuantity: 20
+    _currentQuantity: 11
+    _typeRewardEnum: 0
+    _numberAddBaff: 5
+    _quantityAddBaff: 6
+    _quantityAddCurrency: 876
   _allReadyNumbersTasks: 
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037
@@ -8630,7 +8694,7 @@ MonoBehaviour:
   - _buttonForOpen: {fileID: 196106362}
     _level: 6
   - _buttonForOpen: {fileID: 1669278444}
-    _level: 7
+    _level: 1
   - _buttonForOpen: {fileID: 1647801624}
     _level: 8
 --- !u!1 &2144720540

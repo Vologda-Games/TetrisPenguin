@@ -21,6 +21,14 @@ public class DailyTasksModel : MonoBehaviour
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
         }
+        if(!PlayerPrefs.HasKey("LastEnterToGame"))
+        {
+           for(int i = 0; i < _maxQuantityTaskOfDay; i++)
+           {
+               PlayerPrefs.SetString("TodayNumbersTask", $"{RandomNumberTask()}.{PlayerPrefs.GetString("TodayNumbersTask")}");
+           }
+        }
+        
     }
 
     private void Start()

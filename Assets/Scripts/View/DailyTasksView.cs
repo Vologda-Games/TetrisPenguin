@@ -11,7 +11,7 @@ public class DailyTasksView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _taskInformation;
     [SerializeField] private TextMeshProUGUI _quantityCompleted;
 
-    [Header("Scriptsa")]
+    [Header("Scripts")]
     public static DailyTasksView _instance;
 
     private void Awake()
@@ -19,12 +19,12 @@ public class DailyTasksView : MonoBehaviour
         _instance = this;
     }
 
-    public void OutputInformationTask(int _numberTask)
+    public void OutputInformationTask(DailyTasksInfoValue _infoTask)
     {
-        _imageReward.sprite = DailyTasksModel._instance._allTasks[_numberTask].SpriteReward();
-        _quantityBonus.text = $"x{DailyTasksModel._instance._allTasks[_numberTask].QuantittyBonus()}";
-        _taskInformation.text = $"{DailyTasksModel._instance._allTasks[_numberTask].TaskInformation()}";
-        _quantityCompleted.text = $"{DailyTasksModel._instance._allTasks[_numberTask]._currentQuantity}/{DailyTasksModel._instance._allTasks[_numberTask]._maximumQuantity}";
-        _bar.fillAmount = (float) DailyTasksModel._instance._allTasks[_numberTask]._currentQuantity / DailyTasksModel._instance._allTasks[_numberTask]._maximumQuantity;
+        _imageReward.sprite = _infoTask.SpriteReward();
+        _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
+        _taskInformation.text = $"{_infoTask.TaskInformation()}";
+        _quantityCompleted.text = $"{_infoTask._currentQuantity}/{_infoTask._maximumQuantity}";
+        _bar.fillAmount = (float) _infoTask._currentQuantity / _infoTask._maximumQuantity;
     }
 }
