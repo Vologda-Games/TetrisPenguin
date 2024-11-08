@@ -4078,6 +4078,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   token: 0
+  prizes:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
 --- !u!1 &1067365023
 GameObject:
   m_ObjectHideFlags: 0
@@ -8616,6 +8625,7 @@ MonoBehaviour:
     _numberAddBaff: 1
     _quantityAddBaff: 1
     _quantityAddCurrency: 666
+  _allReadyNumbersTasks: 
   - _typeTaskEnum: 1
     _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
     _numberUseBaff: 3

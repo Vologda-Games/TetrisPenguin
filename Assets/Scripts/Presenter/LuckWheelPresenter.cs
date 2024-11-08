@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class LuckWheelPresenter : MonoBehaviour
 {
@@ -62,6 +63,11 @@ public class LuckWheelPresenter : MonoBehaviour
 
     IEnumerator SpinWheel() 
     {
+        if (wheel == null)
+        {
+            yield break; // Завершаем корутину, если объект уже уничтожен
+        }
+
         setWin();
         isSpin = true;
         LuckWheelView.instance.ShowSpinningStatus(isSpin);
@@ -70,6 +76,11 @@ public class LuckWheelPresenter : MonoBehaviour
 
         while (elapsedTime < accelerationTime)
         {
+            if (wheel == null)
+            {
+                yield break; // Завершаем корутину, если объект уничтожен в процессе
+            }
+
             rotSpeed = Mathf.Lerp(0, rotationSpeed, elapsedTime / accelerationTime);
             
             wheel.transform.rotation *= Quaternion.Euler(0, 0, rotSpeed * Time.deltaTime);
@@ -82,22 +93,29 @@ public class LuckWheelPresenter : MonoBehaviour
 
         while (elapsedTime < rotationTimeMaxSpeed)
         {
+            if (wheel == null)
+            {
+                yield break; // Завершаем корутину, если объект уничтожен в процессе
+            }
             wheel.transform.rotation *= Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime);
             
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        float distance = (numberOfSpins * 360f) + UnityEngine.Random.Range(minAngel+1, maxAngel-1) - LuckWheelView.instance.wheel.transform.rotation.eulerAngles.z;
+        float distance = (numberOfSpins * 360f) + UnityEngine.Random.Range(minAngel+5, maxAngel-5) - LuckWheelView.instance.wheel.transform.rotation.eulerAngles.z;
         slowDownTime = (2 * distance) / rotationSpeed;
         float slowDown = rotationSpeed / slowDownTime;
         rotSpeed = rotationSpeed;
-
 
         elapsedTime = 0f;
 
         while (elapsedTime < slowDownTime)
         {
+            if (wheel == null)
+            {
+                yield break; // Завершаем корутину, если объект уничтожен в процессе
+            }
             rotSpeed = Mathf.Lerp(rotationSpeed, 0, elapsedTime / slowDownTime);
             wheel.transform.rotation *= Quaternion.Euler(0, 0, rotSpeed * Time.deltaTime);
             
@@ -117,6 +135,11 @@ public class LuckWheelPresenter : MonoBehaviour
         randomSectors = randomSector;
         maxAngel = 360f / prizes.Count * (randomSector + 1);
         minAngel = 360f / prizes.Count * randomSector;
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines(); // Останавливаем все корутины при уничтожении объекта
     }
 
     public void GetPrize() 
@@ -142,12 +165,18 @@ public class LuckWheelPresenter : MonoBehaviour
             case 5:
                 Debug.Log("Выдан: " + randomSectors);
                 break;
+            case 6:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
+            case 7:
+                Debug.Log("Выдан: " + randomSectors);
+                break;
             default:
                 Debug.Log("Приз не найден");
                 break;
         }
     }
-
+    
     public static int GetTokens()
     {
         return LuckWheelModel.instance.token;

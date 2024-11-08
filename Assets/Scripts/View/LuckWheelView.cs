@@ -8,7 +8,7 @@ public class LuckWheelView : MonoBehaviour
     private bool spinning = false;
     [SerializeField] public GameObject wheel;
     [SerializeField] public float rotationSpeed;
-    [SerializeField] public float rotationTimeMaxSpeed;
+    [SerializeField] public float rotationTimeMaxSpeed; 
     [SerializeField] public float accelerationTime; //время ускорения до максимальной скорости
     [SerializeField] public int numberOfSpins;
 
@@ -29,18 +29,11 @@ public class LuckWheelView : MonoBehaviour
         LuckWheelPresenter.instance.Initialization();
     }
 
-    void Update()
+    public void EventTriggerBtn() 
     {
-        if (Input.GetKeyDown(KeyCode.X) && !spinning)
+        if (!spinning) 
         {
-            if (LuckWheelPresenter.instance != null)
-            {
-                LuckWheelPresenter.instance.OnClickButton();
-            }
-            else
-            {
-                Debug.LogError("LuckWheelPresenter instance is not set.");
-            }
+            LuckWheelPresenter.instance.OnClickButton();
         }
     }
 
