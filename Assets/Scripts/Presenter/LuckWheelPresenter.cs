@@ -147,29 +147,37 @@ public class LuckWheelPresenter : MonoBehaviour
         Debug.Log("Поздровляю вам выпал: " + prizes[randomSectors]);
         switch (randomSectors) 
         {
-            case 0:
+            case 0: // 100 монет
                 Debug.Log("Выдан: " + randomSectors);
+                AddToken(100);
                 break;
-            case 1:
+            case 1: // боксерских перчатки
                 Debug.Log("Выдан: " + randomSectors);
+                AddBoks(2);
+                break; 
+            case 2: // торнадо
+                Debug.Log("Выдан: " + randomSectors);
+                AddTornadoes(2);
                 break;
-            case 2:
+            case 3: // 200 монет
                 Debug.Log("Выдан: " + randomSectors);
+                AddToken(200);
                 break;
-            case 3:
+            case 4: // яйцо
                 Debug.Log("Выдан: " + randomSectors);
+                AddEggs(2);
                 break;
-            case 4:
+            case 5: // магнит
                 Debug.Log("Выдан: " + randomSectors);
+                AddMagnet(2);
                 break;
-            case 5:
+            case 6: // 300 монет
                 Debug.Log("Выдан: " + randomSectors);
+                AddToken(300);
                 break;
-            case 6:
+            case 7: // бомба
                 Debug.Log("Выдан: " + randomSectors);
-                break;
-            case 7:
-                Debug.Log("Выдан: " + randomSectors);
+                AddBombs(2);
                 break;
             default:
                 Debug.Log("Приз не найден");
@@ -182,8 +190,41 @@ public class LuckWheelPresenter : MonoBehaviour
         return LuckWheelModel.instance.token;
     }
 
+    private static void AddBoks(int value)
+    {
+        BafsModel.instance.springBafs += value;
+        BafsView.instance.RenderCountBafs();
+    }
+
+    private static void AddTornadoes(int value) 
+    {
+        BafsModel.instance.tornadoBafs += value;
+        BafsView.instance.RenderCountBafs();
+    }
+
+    private static void AddEggs(int value) 
+    {
+        BafsModel.instance.multicolorBafs += value;
+        BafsView.instance.RenderCountBafs();
+    }
+
+    private static void AddMagnet(int value) 
+    {
+        BafsModel.instance.magnetBafs += value;
+        BafsView.instance.RenderCountBafs();
+    }
+
+    private static void AddBombs(int value)
+    {
+        BafsModel.instance.bombBafs += value;
+        BafsView.instance.RenderCountBafs();
+    }
+
     public static void AddToken(int value)
     {
         LuckWheelModel.instance.token += value;
+        PlayerModel.instance.coins += value;
+        PlayerView.instance.RenderCoin();
+        ShopView.instance.RenderCoins();
     }
 }
