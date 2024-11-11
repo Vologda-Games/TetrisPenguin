@@ -51,33 +51,69 @@ public class DailyTasksModel : MonoBehaviour
         if(_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
         return _randomNumber;
     }
+
+    public void CheckUsedBaffForTask(int _numberBaff)
+    {
+        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
+        for(int i = 0; i < _todayTasks.Count; i++)
+        {
+            if(_todayTasks[i]._typeTaskEnum == TypeTask.UseBaff && _todayTasks[i]._numberUseBaff == _numberBaff)
+            {
+                _todayTasks[i].SaveProgressTask(i, 1);
+            }
+        }
+    }
+
+    public void CheckCreateForTask(int _objectCreateLevel)
+    {
+        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
+        for(int i = 0; i < _todayTasks.Count; i++)
+        {
+            if(_todayTasks[i]._typeTaskEnum == TypeTask.Create && _todayTasks[i]._object.level == _objectCreateLevel)
+            {
+                _todayTasks[i].SaveProgressTask(i, 1);
+            }
+        }
+    }
+
+    public void CheckClickForTask()
+    {
+        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
+        for(int i = 0; i < _todayTasks.Count; i++)
+        {
+            if(_todayTasks[i]._typeTaskEnum == TypeTask.Click)
+            {
+                _todayTasks[i].SaveProgressTask(i, 1);
+            }
+        }
+    }
 }
 
 [Serializable]
 public class DailyTasksInfoValue
 {
     [Header("Type")]
-    [SerializeField] private TypeTask _typeTaskEnum;
+    [SerializeField] public TypeTask _typeTaskEnum;
 
     [Header("For Create")]
-    [SerializeField] private PenguinView _object;
+    [SerializeField] public PenguinView _object;
 
     [Header("Number Baff For Use Baff, MAX - 5")]
-    [SerializeField] private int _numberUseBaff = 1;
+    [SerializeField] public int _numberUseBaff = 1;
 
     [Header("Intagers Or Floats")]
     [SerializeField] public int _maximumQuantity = 1;
-    [SerializeField] public int _currentQuantity;
+    [SerializeField, HideInInspector] public int _currentQuantity;
 
     [Header("Type Reward")]
-    [SerializeField] private TypeReward _typeRewardEnum;
+    [SerializeField] public TypeReward _typeRewardEnum;
 
     [Header("Number Baff For Add Baff , MAX - 5")]
-    [SerializeField] private int _numberAddBaff = 1;
-    [SerializeField] private int _quantityAddBaff = 1;
+    [SerializeField] public int _numberAddBaff = 1;
+    [SerializeField] public int _quantityAddBaff = 1;
 
     [Header("Quantity Currency For Add Currency")]
-    [SerializeField] private int _quantityAddCurrency = 1;
+    [SerializeField] public int _quantityAddCurrency = 1;
 
     public string TaskInformation()
     {
@@ -146,6 +182,18 @@ public class DailyTasksInfoValue
         {
             return _quantityAddCurrency;
         }else return 0;
+    }
+
+    public static int ProgressTask(int _numberTask)
+    {
+        return PlayerPrefs.GetInt($"ProgressTask{_numberTask}");
+    }
+
+    public void SaveProgressTask(int _numberTask, int _supplementToProgress)
+    {
+        PlayerPrefs.SetInt($"ProgressTask{_numberTask}", ProgressTask(_numberTask) + _supplementToProgress);
+        int _progressTask = ProgressTask(_numberTask);
+        _currentQuantity = _progressTask;
     }
 }
 

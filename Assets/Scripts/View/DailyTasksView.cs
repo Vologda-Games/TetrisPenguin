@@ -7,12 +7,16 @@ public class DailyTasksView : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Image _imageReward;
     [SerializeField] private Image _bar;
+    [SerializeField] private Image _barReady;
     [SerializeField] private TextMeshProUGUI _quantityBonus;
     [SerializeField] private TextMeshProUGUI _taskInformation;
     [SerializeField] private TextMeshProUGUI _quantityCompleted;
 
     [Header("Scripts")]
     public static DailyTasksView _instance;
+
+    [Header("Boolians")]
+    [SerializeField] public bool _readyTask;
 
     private void Awake()
     {
@@ -24,7 +28,16 @@ public class DailyTasksView : MonoBehaviour
         _imageReward.sprite = _infoTask.SpriteReward();
         _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
         _taskInformation.text = $"{_infoTask.TaskInformation()}";
-        _quantityCompleted.text = $"{_infoTask._currentQuantity}/{_infoTask._maximumQuantity}";
-        _bar.fillAmount = (float) _infoTask._currentQuantity / _infoTask._maximumQuantity;
+        if(_infoTask._currentQuantity != _infoTask._maximumQuantity)
+        {
+            _bar.fillAmount = (float) _infoTask._currentQuantity / _infoTask._maximumQuantity;
+            _quantityCompleted.text = $"{_infoTask._currentQuantity}/{_infoTask._maximumQuantity}";
+        }
+        else
+        {
+            _quantityCompleted.text = $"Выполнено";;
+            _bar.enabled = false;
+            _barReady.enabled = true;
+        }
     }
 }

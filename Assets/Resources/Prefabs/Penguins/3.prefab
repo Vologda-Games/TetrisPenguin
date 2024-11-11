@@ -123,7 +123,7 @@ MonoBehaviour:
   triggerUp: 0
   triggerMerge: 0
   _strongBlow: 0
-  level: 0
+  level: 3
 --- !u!60 &-7186689734972871008
 PolygonCollider2D:
   m_ObjectHideFlags: 0

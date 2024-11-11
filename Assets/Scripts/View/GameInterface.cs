@@ -33,14 +33,18 @@ public class GameInterface : MonoBehaviour
 
     public void OpenFirstLayout(string nameView)
     {
-        activeViewString = nameView;
-        GameObject prefab = GetViewByName(nameView);
-        GameObject view = Instantiate(prefab, Vector3.zero, Quaternion.identity, _parent);
-        _activeViewTransform = view.transform;
-        _activeViewTransform.localPosition = Vector3.zero;
-        activeView = view;
-        isActiveInterface = true;
-        if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
+        if(_parent.childCount == 0)
+        {
+            activeViewString = nameView;
+            GameObject prefab = GetViewByName(nameView);
+            GameObject view = Instantiate(prefab, Vector3.zero, Quaternion.identity, _parent);
+            _activeViewTransform = view.transform;
+            _activeViewTransform.localPosition = Vector3.zero;
+            activeView = view;
+            isActiveInterface = true;
+            if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
+        }
+        
     }
 
     public void CloseFirstLayout()

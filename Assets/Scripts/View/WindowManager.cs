@@ -1,7 +1,4 @@
-using System;
-using System.Globalization;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WindowManager : MonoBehaviour

@@ -8593,7 +8593,7 @@ MonoBehaviour:
     _object: {fileID: 0}
     _numberUseBaff: 1
     _maximumQuantity: 5
-    _currentQuantity: 3
+    _currentQuantity: 0
     _typeRewardEnum: 0
     _numberAddBaff: 3
     _quantityAddBaff: 2
@@ -8602,7 +8602,7 @@ MonoBehaviour:
     _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
     _numberUseBaff: 1
     _maximumQuantity: 3
-    _currentQuantity: 1
+    _currentQuantity: 0
     _typeRewardEnum: 0
     _numberAddBaff: 1
     _quantityAddBaff: 5
@@ -8611,7 +8611,7 @@ MonoBehaviour:
     _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
     _numberUseBaff: 1
     _maximumQuantity: 155
-    _currentQuantity: 78
+    _currentQuantity: 0
     _typeRewardEnum: 1
     _numberAddBaff: 1
     _quantityAddBaff: 1
@@ -8620,7 +8620,7 @@ MonoBehaviour:
     _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
     _numberUseBaff: 3
     _maximumQuantity: 4
-    _currentQuantity: 2
+    _currentQuantity: 0
     _typeRewardEnum: 1
     _numberAddBaff: 1
     _quantityAddBaff: 1
@@ -8629,11 +8629,20 @@ MonoBehaviour:
     _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
     _numberUseBaff: 3
     _maximumQuantity: 20
-    _currentQuantity: 11
+    _currentQuantity: 0
     _typeRewardEnum: 0
     _numberAddBaff: 5
     _quantityAddBaff: 6
     _quantityAddCurrency: 876
+  - _typeTaskEnum: 0
+    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
+    _numberUseBaff: 3
+    _maximumQuantity: 999
+    _currentQuantity: 2
+    _typeRewardEnum: 1
+    _numberAddBaff: 5
+    _quantityAddBaff: 6
+    _quantityAddCurrency: 99899
   _allReadyNumbersTasks: 
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037
@@ -8684,19 +8693,19 @@ MonoBehaviour:
   - _buttonForOpen: {fileID: 1898556585}
     _level: 1
   - _buttonForOpen: {fileID: 857532056}
-    _level: 2
+    _level: 1
   - _buttonForOpen: {fileID: 1851774913}
-    _level: 3
+    _level: 1
   - _buttonForOpen: {fileID: 1099073304}
-    _level: 4
+    _level: 1
   - _buttonForOpen: {fileID: 1981513593}
-    _level: 5
+    _level: 1
   - _buttonForOpen: {fileID: 196106362}
     _level: 6
   - _buttonForOpen: {fileID: 1669278444}
     _level: 1
   - _buttonForOpen: {fileID: 1647801624}
-    _level: 8
+    _level: 1
 --- !u!1 &2144720540
 GameObject:
   m_ObjectHideFlags: 0
