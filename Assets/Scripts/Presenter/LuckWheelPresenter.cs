@@ -44,11 +44,11 @@ public class LuckWheelPresenter : MonoBehaviour
             {
                 wheel = LuckWheelView.instance.wheel;
             }
-            rotationSpeed = LuckWheelView.instance.rotationSpeed;
-            accelerationTime = LuckWheelView.instance.accelerationTime;
-            rotationTimeMaxSpeed = LuckWheelView.instance.rotationTimeMaxSpeed;
+            rotationSpeed = LuckWheelModel.instance.rotationSpeed;
+            accelerationTime = LuckWheelModel.instance.accelerationTime;
+            rotationTimeMaxSpeed = LuckWheelModel.instance.rotationTimeMaxSpeed;
             prizes = LuckWheelModel.instance.prizes;
-            numberOfSpins = LuckWheelView.instance.numberOfSpins;
+            numberOfSpins = LuckWheelModel.instance.numberOfSpins;
         }
         else
         {
@@ -148,39 +148,30 @@ public class LuckWheelPresenter : MonoBehaviour
         switch (randomSectors) 
         {
             case 0: // 100 монет
-                Debug.Log("Выдан: " + randomSectors);
                 AddToken(100);
                 break;
             case 1: // боксерских перчатки
-                Debug.Log("Выдан: " + randomSectors);
                 AddBoks(2);
                 break; 
             case 2: // торнадо
-                Debug.Log("Выдан: " + randomSectors);
                 AddTornadoes(2);
                 break;
             case 3: // 200 монет
-                Debug.Log("Выдан: " + randomSectors);
                 AddToken(200);
                 break;
             case 4: // яйцо
-                Debug.Log("Выдан: " + randomSectors);
                 AddEggs(2);
                 break;
             case 5: // магнит
-                Debug.Log("Выдан: " + randomSectors);
                 AddMagnet(2);
                 break;
             case 6: // 300 монет
-                Debug.Log("Выдан: " + randomSectors);
                 AddToken(300);
                 break;
             case 7: // бомба
-                Debug.Log("Выдан: " + randomSectors);
                 AddBombs(2);
                 break;
             default:
-                Debug.Log("Приз не найден");
                 break;
         }
     }
