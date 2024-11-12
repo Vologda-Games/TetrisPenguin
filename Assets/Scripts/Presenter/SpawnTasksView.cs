@@ -1,7 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class SpawnTasksView : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] public TMP_Text _textExperience;
+
+        
     [Header("Transform")]
     [SerializeField] private Transform _parentTasks;
 
@@ -10,6 +15,7 @@ public class SpawnTasksView : MonoBehaviour
 
     private void Start()
     {
+        PlayerView.instance._experienceTextInWindow = _textExperience;
         SpawnTask();
     }
 
@@ -19,7 +25,7 @@ public class SpawnTasksView : MonoBehaviour
         {
             GameObject _newTask = Instantiate(_taskObject, _parentTasks.transform.position, Quaternion.identity, _parentTasks);
             DailyTasksView _dailyTasksView = _newTask.GetComponent<DailyTasksView>();
-            if(_dailyTasksView != null) _dailyTasksView.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i]);
+            if(_dailyTasksView != null) _dailyTasksView.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i], i);
         }
     }
 }

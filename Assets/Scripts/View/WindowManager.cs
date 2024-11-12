@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class WindowManager : MonoBehaviour
 {
+
     [Header("UI")]
 
     [SerializeField] private TextMeshProUGUI _textTimeDifference;
-
+    
     public void ClickButton()
     {
         MusicAndSoundsManager._instance.PlaySoundClickOnButton();

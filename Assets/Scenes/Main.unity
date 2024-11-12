@@ -4033,6 +4033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelText: {fileID: 1252329733}
   _experienceText: {fileID: 863628908}
+  _experienceTextInWindow: {fileID: 0}
 --- !u!1 &1028318016
 GameObject:
   m_ObjectHideFlags: 0
@@ -8589,60 +8590,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allTasks:
-  - _typeTaskEnum: 1
-    _object: {fileID: 0}
-    _numberUseBaff: 1
+  - _typeTaskEnum: 0
+    _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
+    _numberUseBaff: 0
     _maximumQuantity: 5
     _currentQuantity: 0
     _typeRewardEnum: 0
     _numberAddBaff: 3
     _quantityAddBaff: 2
-    _quantityAddCurrency: 1
+    _quantityAddCurrency: 0
   - _typeTaskEnum: 0
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 1
-    _maximumQuantity: 3
+    _object: {fileID: 2411725648188548089, guid: 4b62e6cb8de874c01b769b668f549844, type: 3}
+    _numberUseBaff: 0
+    _maximumQuantity: 8
+    _currentQuantity: 0
+    _typeRewardEnum: 1
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 100
+  - _typeTaskEnum: 2
+    _object: {fileID: 0}
+    _numberUseBaff: 0
+    _maximumQuantity: 120
     _currentQuantity: 0
     _typeRewardEnum: 0
     _numberAddBaff: 1
-    _quantityAddBaff: 5
-    _quantityAddCurrency: 1
+    _quantityAddBaff: 3
+    _quantityAddCurrency: 0
   - _typeTaskEnum: 2
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 1
-    _maximumQuantity: 155
+    _object: {fileID: 0}
+    _numberUseBaff: 0
+    _maximumQuantity: 200
     _currentQuantity: 0
     _typeRewardEnum: 1
-    _numberAddBaff: 1
-    _quantityAddBaff: 1
-    _quantityAddCurrency: 666
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 400
   - _typeTaskEnum: 1
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 3
+    _object: {fileID: 0}
+    _numberUseBaff: 2
     _maximumQuantity: 4
     _currentQuantity: 0
     _typeRewardEnum: 1
-    _numberAddBaff: 1
-    _quantityAddBaff: 1
-    _quantityAddCurrency: 876
-  - _typeTaskEnum: 0
-    _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
-    _numberUseBaff: 3
-    _maximumQuantity: 20
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 350
+  - _typeTaskEnum: 1
+    _object: {fileID: 0}
+    _numberUseBaff: 5
+    _maximumQuantity: 2
     _currentQuantity: 0
-    _typeRewardEnum: 0
-    _numberAddBaff: 5
-    _quantityAddBaff: 6
-    _quantityAddCurrency: 876
+    _typeRewardEnum: 1
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 100
+  - _typeTaskEnum: 1
+    _object: {fileID: 0}
+    _numberUseBaff: 4
+    _maximumQuantity: 3
+    _currentQuantity: 0
+    _typeRewardEnum: 1
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 400
+  - _typeTaskEnum: 1
+    _object: {fileID: 0}
+    _numberUseBaff: 1
+    _maximumQuantity: 5
+    _currentQuantity: 0
+    _typeRewardEnum: 1
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 500
+  - _typeTaskEnum: 0
+    _object: {fileID: 4873316361908888526, guid: 69dc005150eb24541b62377299453fb3, type: 3}
+    _numberUseBaff: 0
+    _maximumQuantity: 12
+    _currentQuantity: 0
+    _typeRewardEnum: 1
+    _numberAddBaff: 0
+    _quantityAddBaff: 0
+    _quantityAddCurrency: 700
   - _typeTaskEnum: 0
     _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 3
-    _maximumQuantity: 999
-    _currentQuantity: 2
-    _typeRewardEnum: 1
-    _numberAddBaff: 5
+    _numberUseBaff: 0
+    _maximumQuantity: 15
+    _currentQuantity: 0
+    _typeRewardEnum: 0
+    _numberAddBaff: 2
     _quantityAddBaff: 6
-    _quantityAddCurrency: 99899
+    _quantityAddCurrency: 0
   _allReadyNumbersTasks: 
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037

@@ -165,6 +165,28 @@ public class BafsPresenter : MonoBehaviour
         BafsView.instance.RenderCountBafs();
     }
 
+    public static void AddBaffsByNumber(int _numberBaff, int _value)
+    {
+        switch(_numberBaff)
+        {
+            case 1:
+                AddMulticolorBafs(_value);
+            break;
+            case 2:
+                AddSpringBafs(_value);
+            break;
+            case 3:
+                AddBombBafs(_value);
+            break;
+            case 4:
+                AddTornadoBafs(_value);
+            break;
+            case 5:
+                AddMagnetBafs(_value);
+            break;
+        }
+    }
+
     /// REDUCE
     public static void ReduceMulticolorBafs(int value)
     {

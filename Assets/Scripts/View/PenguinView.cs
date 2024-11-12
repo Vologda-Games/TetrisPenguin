@@ -42,7 +42,7 @@ public class PenguinView : MonoBehaviour
             {
                 if (level == 15)
                 {
-                    DailyTasksModel._instance.CheckCreateForTask(collision.gameObject.GetComponent<PenguinView>().level + 1);
+                    DailyTasksPresenter.CheckCreateForTask(collision.gameObject.GetComponent<PenguinView>().level + 1);
                     if (PenguinsModel.instance.penguinViews[i].level == 0 || PenguinsModel.instance.penguinViews[i].level == 1 || PenguinsModel.instance.penguinViews[i].level == 2)
                     {
                         if (triggerMerge == false)
@@ -105,7 +105,7 @@ public class PenguinView : MonoBehaviour
                     {
                         if (triggerMerge == false)
                         {
-                            DailyTasksModel._instance.CheckCreateForTask(level + 1);
+                            DailyTasksPresenter.CheckCreateForTask(level + 1);
                             triggerMerge = true;
                             PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
                             Vector3 pos = penguinView_1.objTransform.position;
@@ -165,6 +165,7 @@ public class PenguinView : MonoBehaviour
     {
         if (BafsPresenter.GetSelectBaf() == 5 && level != 16)
         {
+            DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             BafsView.instance.StartTriggerBtn();
             BafsPresenter.SetDestroyBaf(PenguinsModel.instance.penguinInSpawn.level);
             Destroy(PenguinsModel.instance.penguinInSpawn.go);

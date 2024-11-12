@@ -40,6 +40,7 @@ public class NewDayEventModel : MonoBehaviour
             while(_tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
                 PlayerPrefs.DeleteKey($"ProgressTask{_tasksOnToday.Count}");
+                PlayerPrefs.DeleteKey($"TodayNumbersTask{_tasksOnToday.Count}");
                 int _randomNumberTask = DailyTasksModel._instance.RandomNumberTask();
                 if(!_tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_randomNumberTask])) _tasksOnToday.Add(DailyTasksModel._instance._allTasks[_randomNumberTask]);
                 _tasksOnToday[_tasksOnToday.Count - 1]._currentQuantity = 0;
