@@ -123,4 +123,11 @@ public class DataPresenter
         Debug.LogWarning("DELETE ALL DATA");
         Time.timeScale = 0f;
     }
+
+    public static void DeleteDataPenguins()
+    {
+        SaveData(Models.PENGUINS_MODEL, "");
+        Debug.LogWarning("DELETE ALL DATA");
+        Time.timeScale = 0f;
+    }
 }

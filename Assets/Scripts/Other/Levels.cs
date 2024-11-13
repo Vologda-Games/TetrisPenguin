@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class Levels : MonoBehaviour
@@ -23,12 +24,16 @@ public class Levels : MonoBehaviour
     {
         get
         {
-            int level = PlayerPrefs.GetInt("level");
-            return level;
+            string json = DataPresenter.GetData(Models.PLAYER_MODEL);
+            if (json == "" || json == null)
+            {
+                return 1;
+            }
+            return JsonConvert.DeserializeObject<SavePlayerModel>(json).level;
         }
         set
         {
-            PlayerPrefs.SetInt("level", value);
+            PlayerModel.instance.level = value;
         }
     }
     private void Start()

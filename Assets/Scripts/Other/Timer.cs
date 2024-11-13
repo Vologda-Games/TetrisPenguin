@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
 
     public void DeleteAllData()
     {
-        DataPresenter.DeleteAllData();
+        DataPresenter.DeleteDataPenguins();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

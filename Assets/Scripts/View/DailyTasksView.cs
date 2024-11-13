@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,12 +18,18 @@ public class DailyTasksView : MonoBehaviour
     public static DailyTasksView _instance;
 
     [Header("TaskInformation")]
-    private int _numberTask;
+    [HideInInspector] public int _numberTask;
+    private RectTransform _rectTransform;
     private string _conditionTask;
+    [HideInInspector] public float _secondsDealayTask;
+    [HideInInspector] public string _typeTask;
 
     private void Awake()
     {
         _instance = this;
+        _rectTransform = GetComponent<RectTransform>();
+        _typeTask = "InDailyTasksWindow";
+        _secondsDealayTask = 3f;
     }
 
     public void OutputInformationTask(DailyTasksInfoValue _infoTask, int _numberInfoTask)
@@ -50,6 +57,7 @@ public class DailyTasksView : MonoBehaviour
             _bar.enabled = false;
             _barReady.enabled = false;
             _barCollected.enabled = true;
+            GetComponent<Button>().interactable = false;
         }
     }
 
@@ -71,6 +79,24 @@ public class DailyTasksView : MonoBehaviour
             _quantityCompleted.text = $"Собрано";
             _barReady.enabled = false;
             _barCollected.enabled = true;
+            GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void ClickButton()
+    {
+        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+    }
+
+    private void Update()
+    {
+        if (_rectTransform.localPosition.x < 0f && _typeTask == "InMenu") _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(0f, _rectTransform.localPosition.y), Time.deltaTime * 300f);
+        else if (_rectTransform.localPosition.x >= 0f) _typeTask = "Stay";
+        if (_secondsDealayTask > 0f && _typeTask == "Stay") _secondsDealayTask -= Time.deltaTime;
+        else if(_secondsDealayTask <= 0f && _typeTask == "Stay")
+        {
+            if (_rectTransform.localPosition.x > -_rectTransform.sizeDelta.x) _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(-_rectTransform.sizeDelta.x, _rectTransform.localPosition.y), Time.deltaTime * 300f);
+            else if (_rectTransform.localPosition.x <= -_rectTransform.sizeDelta.x) Destroy(gameObject);
         }
     }
 }

@@ -25,7 +25,7 @@ public class DailyTasksModel : MonoBehaviour
         {
            for(int i = 0; i < _maxQuantityTaskOfDay; i++)
            {
-               PlayerPrefs.SetString("TodayNumbersTask", $"{RandomNumberTask()}.{PlayerPrefs.GetString("TodayNumbersTask")}");
+                NewDayEventModel.NumbersTasksOnToday = RandomNumberTask().ToString();
            }
         }
         
@@ -158,6 +158,7 @@ public class DailyTasksInfoValue
         PlayerPrefs.SetInt($"ProgressTask{_numberTask}", ProgressTask(_numberTask) + _supplementToProgress);
         int _progressTask = ProgressTask(_numberTask);
         _currentQuantity = _progressTask;
+        SpawnReadyTaskOnMenuPresenter._instance.SpawnReadyTask(_numberTask);
     }
 }
 
