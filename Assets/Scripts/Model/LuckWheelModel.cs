@@ -17,4 +17,6 @@ public class LuckWheelModel : MonoBehaviour
         instance = this;
 
     }
+
+    
 }

@@ -157,7 +157,7 @@ public class LuckWheelPresenter : MonoBehaviour
                 AddTornadoes(2);
                 break;
             case 3: // 200 монет
-                AddToken(200);
+                AddToken(300);
                 break;
             case 4: // яйцо
                 AddEggs(2);
@@ -166,7 +166,7 @@ public class LuckWheelPresenter : MonoBehaviour
                 AddMagnet(2);
                 break;
             case 6: // 300 монет
-                AddToken(300);
+                AddToken(450);
                 break;
             case 7: // бомба
                 AddBombs(2);

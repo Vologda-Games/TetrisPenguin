@@ -14,7 +14,7 @@ public class NewDayEventModel : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
     }
 
     private void Start()
@@ -29,21 +29,21 @@ public class NewDayEventModel : MonoBehaviour
     private void LoadResourcesNewDay()
     {
         DateTime _lastEnterToGame = DateTime.ParseExact(PlayerPrefs.GetString("LastEnterToGame"), "u", CultureInfo.InvariantCulture);
-        List<string> _todayNumbersTaskSTR = new List<string>(PlayerPrefs.GetString("TodayNumbersTask").Split('.'));
-        List<int> _todayNumbersTask = new List<int>();
-        for(int i = 0; i < _todayNumbersTaskSTR.Count - 1; i++)
+        List<string> _todayNumbersTaskSTR = new List<string>(NumbersTasksOnToday.Split('.'));
+        List<int> _todayNumbersTasks = new List<int>();
+        for(int i = 0; i < _todayNumbersTaskSTR.Count; i++)
         {
-            _todayNumbersTask.Add(int.Parse(_todayNumbersTaskSTR[i]));
+            _todayNumbersTasks.Add(int.Parse(_todayNumbersTaskSTR[i]));
         }
         if(GamePush.GP_Server.Time().Date > _lastEnterToGame || !PlayerPrefs.HasKey("LastEnterToGame"))
         {
             while(_tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
-                PlayerPrefs.DeleteKey($"ProgressTask{_tasksOnToday.Count}");
-                int _randomNumberTask = DailyTasksModel._instance.RandomNumberTask();
-                if(!_tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_randomNumberTask])) _tasksOnToday.Add(DailyTasksModel._instance._allTasks[_randomNumberTask]);
+                DeleteInformationTask(_tasksOnToday.Count);
+                int _randomNumberTasks = DailyTasksModel._instance.RandomNumberTask();
+                if(!_tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_randomNumberTasks])) _tasksOnToday.Add(DailyTasksModel._instance._allTasks[_randomNumberTasks]);
                 _tasksOnToday[_tasksOnToday.Count - 1]._currentQuantity = 0;
-                PlayerPrefs.SetString("TodayNumbersTask", $"{_randomNumberTask}.{PlayerPrefs.GetString("TodayNumbersTask")}");
+                NumbersTasksOnToday = _randomNumberTasks.ToString();
             }
             PlayerPrefs.SetString("LastEnterToGame", GamePush.GP_Server.Time().Date.ToString("u", CultureInfo.InvariantCulture));
         }
@@ -51,15 +51,35 @@ public class NewDayEventModel : MonoBehaviour
         {
             while(_tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
-                for(int i = 0; i < _todayNumbersTask.Count; i++)
+                for(int i = 0; i < _todayNumbersTasks.Count; i++)
                 {
-                    if(!_tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_todayNumbersTask[i]]))
+                    if(!_tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_todayNumbersTasks[i]]))
                     {
-                        _tasksOnToday.Add(DailyTasksModel._instance._allTasks[_todayNumbersTask[i]]);
+                        _tasksOnToday.Add(DailyTasksModel._instance._allTasks[_todayNumbersTasks[i]]);
                         _tasksOnToday[_tasksOnToday.Count - 1]._currentQuantity = PlayerPrefs.GetInt($"ProgressTask{i}");
                     } 
                 }
             }
         }
+    }
+
+    public static string NumbersTasksOnToday
+    {
+        get
+        {
+            return PlayerPrefs.GetString("TodayNumbersTasks");
+        }
+        set
+        {
+            if (PlayerPrefs.HasKey("TodayNumbersTasks")) PlayerPrefs.SetString("TodayNumbersTasks", $"{value}.{NumbersTasksOnToday}");
+            else PlayerPrefs.SetString("TodayNumbersTasks", $"{value}");
+        }
+    }
+
+    public void DeleteInformationTask(int _numberTask)
+    {
+        PlayerPrefs.DeleteKey($"ConditionTask{_numberTask}");
+        PlayerPrefs.DeleteKey($"ProgressTask{_numberTask}");
+        PlayerPrefs.DeleteKey($"TodayNumbersTasks");
     }
 }

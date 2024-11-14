@@ -2573,7 +2573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shop: {fileID: 5893681746383542467, guid: f62d0d68c9914c3499614d68737d8de4, type: 3}
   _dailyTasks: {fileID: 5893681746383542467, guid: ea0823abef2f7de4ebeed19e1321cce0, type: 3}
-  _wheelOfLuck: {fileID: 5893681746383542467, guid: f37340edb980dc0469c5ba0322cd11bc, type: 3}
+  _wheelOfLuck: {fileID: 5893681746383542467, guid: 3fd7ffd40b746fa45a48b6aac1f4953e, type: 3}
   _ratings: {fileID: 5893681746383542467, guid: 50e9171bc75e29645933df5e53db93b3, type: 3}
 --- !u!1 &686502353
 GameObject:
@@ -4082,10 +4082,10 @@ MonoBehaviour:
   - "\u043C\u043E\u043D\u0435\u0442\u0430_100"
   - "\u0431\u043E\u043A\u0441\u0435\u0440\u0441\u043A\u0430\u044F_\u043F\u0435\u0440\u0447\u0430\u0442\u043A\u0430"
   - "\u0442\u043E\u0440\u043D\u0430\u0434\u043E"
-  - "\u043C\u043E\u043D\u0435\u0442\u0430_200"
+  - "\u043C\u043E\u043D\u0435\u0442\u0430_300"
   - "\u044F\u0439\u0446\u043E"
   - "\u043C\u0430\u0433\u043D\u0438\u0442"
-  - "\u043C\u043E\u043D\u0435\u0442\u0430_300"
+  - "\u043C\u043E\u043D\u0435\u0442\u0430_450"
   - "\u0431\u043E\u043C\u0431\u0430"
   rotationSpeed: 800
   rotationTimeMaxSpeed: 1
@@ -8629,35 +8629,7 @@ MonoBehaviour:
     _numberAddBaff: 1
     _quantityAddBaff: 1
     _quantityAddCurrency: 666
-  _allReadyNumbersTasks: 
-  - _typeTaskEnum: 1
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 3
-    _maximumQuantity: 4
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 1
-    _quantityAddBaff: 1
-    _quantityAddCurrency: 876
-  - _typeTaskEnum: 0
-    _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
-    _numberUseBaff: 3
-    _maximumQuantity: 20
-    _currentQuantity: 0
-    _typeRewardEnum: 0
-    _numberAddBaff: 5
-    _quantityAddBaff: 6
-    _quantityAddCurrency: 876
-  - _typeTaskEnum: 0
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
-    _numberUseBaff: 3
-    _maximumQuantity: 999
-    _currentQuantity: 2
-    _typeRewardEnum: 1
-    _numberAddBaff: 5
-    _quantityAddBaff: 6
-    _quantityAddCurrency: 99899
-  _allReadyNumbersTasks: 
+  _allReadyNumbersTasks: 000000000000000000000000
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037
 GameObject:
