@@ -158,7 +158,11 @@ public class DailyTasksInfoValue
         PlayerPrefs.SetInt($"ProgressTask{_numberTask}", ProgressTask(_numberTask) + _supplementToProgress);
         int _progressTask = ProgressTask(_numberTask);
         _currentQuantity = _progressTask;
-        SpawnReadyTaskOnMenuPresenter._instance.SpawnReadyTask(_numberTask);
+        DailyTasksInfoValue _taskValue = NewDayEventModel._instance._tasksOnToday[_numberTask];
+        if (
+            _taskValue._typeTaskEnum != TypeTask.Click && _taskValue._currentQuantity <= _taskValue._maximumQuantity ||
+            _taskValue._typeTaskEnum == TypeTask.Click && _taskValue._currentQuantity == _taskValue._maximumQuantity
+        ) SpawnReadyTaskOnMenuPresenter._instance.SpawnReadyTask(_numberTask);
     }
 }
 

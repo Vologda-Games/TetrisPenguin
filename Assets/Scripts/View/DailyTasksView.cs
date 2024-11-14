@@ -14,22 +14,17 @@ public class DailyTasksView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _taskInformation;
     [SerializeField] private TextMeshProUGUI _quantityCompleted;
 
-    [Header("Scripts")]
-    public static DailyTasksView _instance;
-
     [Header("TaskInformation")]
     [HideInInspector] public int _numberTask;
-    private RectTransform _rectTransform;
+    [HideInInspector] public RectTransform _rectTransform;
     private string _conditionTask;
     [HideInInspector] public float _secondsDealayTask;
-    [HideInInspector] public string _typeTask;
+    [HideInInspector] public bool _right;
 
     private void Awake()
     {
-        _instance = this;
         _rectTransform = GetComponent<RectTransform>();
-        _typeTask = "InDailyTasksWindow";
-        _secondsDealayTask = 3f;
+        _secondsDealayTask = 0;
     }
 
     public void OutputInformationTask(DailyTasksInfoValue _infoTask, int _numberInfoTask)
@@ -88,15 +83,20 @@ public class DailyTasksView : MonoBehaviour
         MusicAndSoundsManager._instance.PlaySoundClickOnButton();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (_rectTransform.localPosition.x < 0f && _typeTask == "InMenu") _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(0f, _rectTransform.localPosition.y), Time.deltaTime * 300f);
-        else if (_rectTransform.localPosition.x >= 0f) _typeTask = "Stay";
-        if (_secondsDealayTask > 0f && _typeTask == "Stay") _secondsDealayTask -= Time.deltaTime;
-        else if(_secondsDealayTask <= 0f && _typeTask == "Stay")
+        if(_right)
         {
-            if (_rectTransform.localPosition.x > -_rectTransform.sizeDelta.x) _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(-_rectTransform.sizeDelta.x, _rectTransform.localPosition.y), Time.deltaTime * 300f);
-            else if (_rectTransform.localPosition.x <= -_rectTransform.sizeDelta.x) Destroy(gameObject);
+            _secondsDealayTask = 4f;
+            if (_rectTransform.localPosition.x < 0f) _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(0f, _rectTransform.localPosition.y), Time.fixedDeltaTime * 300f);
+            else if (_rectTransform.localPosition.x >= 0f) _right = false;
+        }else
+        {
+            if (_secondsDealayTask > 0f) _secondsDealayTask -= Time.fixedDeltaTime;
+            if(_secondsDealayTask <= 0f) 
+            {
+                _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(-_rectTransform.sizeDelta.x, _rectTransform.localPosition.y), Time.fixedDeltaTime * 300f);
+            }
         }
     }
 }

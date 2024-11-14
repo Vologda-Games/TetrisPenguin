@@ -6,7 +6,7 @@ public class PlayerView : MonoBehaviour
     public static PlayerView instance;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private TMP_Text _experienceText;
-    [SerializeField] public TMP_Text _experienceTextInWindow;
+    [HideInInspector] public TMP_Text _experienceTextInWindow;
 
     private void Awake()
     {

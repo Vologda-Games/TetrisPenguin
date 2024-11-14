@@ -15,28 +15,53 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
     private void Start()
     {
         _instance = this;
+
+    }
+
+    public void SpawnTodayTask()
+    {
+        for(int i = 0; i < NewDayEventModel._instance._tasksOnToday.Count; i++)
+        {
+            GameObject _taskReady = Instantiate(_prefabRadyTask, _parentObject);
+            DailyTasksView _task = _taskReady.GetComponent<DailyTasksView>();
+            _task.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i], i);
+        }
     }
 
     public void SpawnReadyTask(int _numberReadyTask)
     {
-        bool _readySimulationTask = false;
         for(int i = 0; i < _parentObject.childCount; i++)
         {
-            if (_parentObject.GetChild(i).GetComponent<DailyTasksView>()._numberTask == _numberReadyTask)
+            DailyTasksView _task = _parentObject.GetChild(i).GetComponent<DailyTasksView>();
+            if (_task._numberTask == _numberReadyTask && _task.transform.GetSiblingIndex() == 0)
             {
-                _parentObject.GetChild(i).GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
-                _parentObject.GetChild(i).GetComponent<DailyTasksView>()._secondsDealayTask = 3;
-                _parentObject.GetChild(i).GetComponent<DailyTasksView>()._typeTask = "InMenu";
-                _readySimulationTask = true;
-                break;
+                _task.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
+                if(!_task._right && _task._secondsDealayTask > 0f) _task._secondsDealayTask = 4f;
+                else if(!_task._right && _task._secondsDealayTask <= 0f) _task._right = true;
+            }else if (_task._numberTask == _numberReadyTask)
+            {
+                if(_task._rectTransform.localPosition.x <= -_task._rectTransform.sizeDelta.x)
+                {
+                    for(int j = 0; j < _parentObject.childCount; j++)
+                    {
+                        DailyTasksView _objectTask = _parentObject.GetChild(j).GetComponent<DailyTasksView>();
+                        if(_objectTask._rectTransform.localPosition.x <= -_objectTask._rectTransform.sizeDelta.x)
+                        {
+                            int _infoOne = _objectTask._numberTask;
+                            _parentObject.GetChild(j).GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
+                            if(!_objectTask._right && _objectTask._secondsDealayTask > 0f) _objectTask._secondsDealayTask = 4f;
+                            else if(!_objectTask._right && _objectTask._secondsDealayTask <= 0f) _objectTask._right = true;
+                            _parentObject.GetChild(i).GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_infoOne], _infoOne);
+                            break;
+                        }
+                    }
+                }else
+                {
+                    _task.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
+                    if(!_task._right && _task._secondsDealayTask > 0f) _task._secondsDealayTask = 4f;
+                    else if(!_task._right && _task._secondsDealayTask <= 0f) _task._right = true;
+                }
             }
-        }
-        if(_parentObject.childCount <= 0 || !_readySimulationTask)
-        {
-            GameObject _taskReady = Instantiate(_prefabRadyTask, _parentObject);
-            RectTransform _transformTask = _taskReady.GetComponent<RectTransform>();
-            _taskReady.GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
-            if(_taskReady.GetComponent<DailyTasksView>()._typeTask != "InMenu") _taskReady.GetComponent<DailyTasksView>()._typeTask = "InMenu";
         }
     }
 }

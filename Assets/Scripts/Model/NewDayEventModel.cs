@@ -24,6 +24,7 @@ public class NewDayEventModel : MonoBehaviour
             PlayerPrefs.SetString("LastEnterToGame", GamePush.GP_Server.Time().Date.ToString("u", CultureInfo.InvariantCulture));
         }
         LoadResourcesNewDay();
+        SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
     }
 
     private void LoadResourcesNewDay()
