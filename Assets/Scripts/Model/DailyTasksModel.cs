@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class DailyTasksModel : MonoBehaviour
@@ -9,9 +10,14 @@ public class DailyTasksModel : MonoBehaviour
     public static DailyTasksModel _instance;
     public List<int> _allReadyNumbersTasks;
     [SerializeField] public int _maxQuantityTaskOfDay;
-    
+
+    [Header("Sprites")]
     public static Sprite[] _spritesForRewardBaff;
     public static Sprite _spriteForRewardSoftCurrency;
+
+    [Header("String")]
+    [HideInInspector] public DateTime LastEnterToGame;
+    
     private void Awake()
     {
         _instance = this;
@@ -21,19 +27,17 @@ public class DailyTasksModel : MonoBehaviour
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
         }
-        if(!PlayerPrefs.HasKey("LastEnterToGame"))
+        if(LastEnterToGame == null || LastEnterToGame == DateTime.MinValue.Date)
         {
            for(int i = 0; i < _maxQuantityTaskOfDay; i++)
            {
-                NewDayEventModel.NumbersTasksOnToday = RandomNumberTask().ToString();
+                NewDayEventModel._instance.NumbersTasksOnToday = RandomNumberTask().ToString();
+                print(NewDayEventModel._instance.NumbersTasksOnToday);
            }
+           LastEnterToGame = GamePush.GP_Server.Time().Date;
+           DataPresenter.SaveDailyTasksModel();
+           DataPresenter.SaveNewDayEventModel();
         }
-        
-    }
-
-    private void Start()
-    {
-        if(!PlayerPrefs.HasKey("StartedDailyTasks")) PlayerPrefs.SetInt("StartedDailyTasks", 1);
     }
 
     public static string TimeDifference()
@@ -51,6 +55,11 @@ public class DailyTasksModel : MonoBehaviour
         if(_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
         return _randomNumber;
     }
+}
+
+public class SaveDailyTasksModel
+{
+    public DateTime LastEnterToGame;
 }
 
 [Serializable]
@@ -78,6 +87,8 @@ public class DailyTasksInfoValue
 
     [Header("Quantity Currency For Add Currency")]
     [SerializeField] public int _quantityAddCurrency = 1;
+
+    [HideInInspector] public string ConditionsTasks;
 
     public string TaskInformation()
     {
@@ -148,16 +159,10 @@ public class DailyTasksInfoValue
         }else return 0;
     }
 
-    public static int ProgressTask(int _numberTask)
-    {
-        return PlayerPrefs.GetInt($"ProgressTask{_numberTask}");
-    }
-
     public void SaveProgressTask(int _numberTask, int _supplementToProgress)
     {
-        PlayerPrefs.SetInt($"ProgressTask{_numberTask}", ProgressTask(_numberTask) + _supplementToProgress);
-        int _progressTask = ProgressTask(_numberTask);
-        _currentQuantity = _progressTask;
+        _currentQuantity += _supplementToProgress;
+        DataPresenter.SaveNewDayEventModel();
         DailyTasksInfoValue _taskValue = NewDayEventModel._instance._tasksOnToday[_numberTask];
         if (
             _taskValue._typeTaskEnum != TypeTask.Click && _taskValue._currentQuantity <= _taskValue._maximumQuantity ||

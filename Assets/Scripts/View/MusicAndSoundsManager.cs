@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MusicAndSoundsManager : MonoBehaviour
 {
     [Header("Transform")]
-    [SerializeField] public Transform _parentMusic;
-    [SerializeField] public Transform _parentSounds;
+    [SerializeField] public Transform _parentMusic, _parentSounds;
 
     [Header("Scripts")]
     [SerializeField] public static MusicAndSoundsManager _instance;
@@ -18,17 +18,21 @@ public class MusicAndSoundsManager : MonoBehaviour
     [SerializeField] public Image _buttonSounds;
     [SerializeField] public Image _buttonMusic;
 
+    [Header("Audio")]
+
+    private static List<AudioSource> _audioSourcesMusic = new List<AudioSource>();
+
     private void Start() 
     {
         _instance = this;
         PlaySound("BackgroundMusic");
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.GetPlayOrStopSounds());
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.GetPlayOrStopMusic());
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playSouds);
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playMusic);
     }
 
     public void PlaySound(string _nameSound, float _direction)
     {
-        if(SoundsModel.GetPlayOrStopSounds())
+        if(SoundsModel.instance._playSouds)
         {
             foreach(GameObject i in SoundsModel._sounds)
             {
@@ -48,8 +52,10 @@ public class MusicAndSoundsManager : MonoBehaviour
             if (i.gameObject.name == _nameSound)
             {
                 GameObject _newMusic = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, _parentMusic);
-                if(SoundsModel.GetPlayOrStopMusic())  _newMusic.GetComponent<AudioSource>().Play();
-                else _newMusic.GetComponent<AudioSource>().Pause();
+                AudioSource _newSource = _newMusic.GetComponent<AudioSource>();
+                if(SoundsModel.instance._playMusic) _newSource.Play();
+                else _newSource.Pause();
+                _audioSourcesMusic.Add(_newSource);
             }
         }
     }
@@ -61,26 +67,26 @@ public class MusicAndSoundsManager : MonoBehaviour
 
     public void SwitchSoundsPlayback()
     {
-        SoundsModel.SetPlayOrStopSounds(!SoundsModel.GetPlayOrStopSounds());
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.GetPlayOrStopSounds());
+        SoundsModel.instance._playSouds = !SoundsModel.instance._playSouds;
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playSouds);
     }
 
     public void SwitchMusicPlayback()
     {
-        SoundsModel.SetPlayOrStopMusic(!SoundsModel.GetPlayOrStopMusic());
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.GetPlayOrStopMusic());
-       if(SoundsModel.GetPlayOrStopMusic())
+        SoundsModel.instance._playMusic = !SoundsModel.instance._playMusic;
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playMusic);
+       if(SoundsModel.instance._playMusic)
        {
         for(int i = 0; i < _parentMusic.childCount; i++)
         {
-            _parentMusic.GetChild(i).GetComponent<AudioSource>().Play();
+            _audioSourcesMusic[i].Play();
         }
        } 
        else
        {
         for(int i = 0; i < _parentMusic.childCount; i++)
         {
-            _parentMusic.GetChild(i).GetComponent<AudioSource>().Pause();
+            _audioSourcesMusic[i].Pause();
         }
        }
     }

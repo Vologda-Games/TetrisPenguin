@@ -1,8 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
 {
+    [Header("TasksInMenu")]
+
+    private List<DailyTasksView> _dailyTasksViewMenu = new List<DailyTasksView>();
     [Header("InformationToTaskObject")]
 
     [SerializeField] private GameObject _prefabRadyTask;
@@ -15,7 +19,6 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
     private void Start()
     {
         _instance = this;
-
     }
 
     public void SpawnTodayTask()
@@ -23,17 +26,17 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
         for(int i = 0; i < NewDayEventModel._instance._tasksOnToday.Count; i++)
         {
             GameObject _taskReady = Instantiate(_prefabRadyTask, _parentObject);
-            DailyTasksView _task = _taskReady.GetComponent<DailyTasksView>();
-            _task.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i], i);
+            _dailyTasksViewMenu.Add(_taskReady.GetComponent<DailyTasksView>());
+            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i], i);
         }
     }
 
     public void SpawnReadyTask(int _numberReadyTask)
     {
-        for(int i = 0; i < _parentObject.childCount; i++)
+        for(int i = 0; i < _dailyTasksViewMenu.Count; i++)
         {
-            DailyTasksView _task = _parentObject.GetChild(i).GetComponent<DailyTasksView>();
-            if (_task._numberTask == _numberReadyTask && _task.transform.GetSiblingIndex() == 0)
+            DailyTasksView _task = _dailyTasksViewMenu[i];
+            if (_task._numberTask == _numberReadyTask && i == 0)
             {
                 _task.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
                 if(!_task._right && _task._secondsDealayTask > 0f) _task._secondsDealayTask = 4f;
@@ -42,16 +45,16 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
             {
                 if(_task._rectTransform.localPosition.x <= -_task._rectTransform.sizeDelta.x)
                 {
-                    for(int j = 0; j < _parentObject.childCount; j++)
+                    for(int j = 0; j < _dailyTasksViewMenu.Count; j++)
                     {
-                        DailyTasksView _objectTask = _parentObject.GetChild(j).GetComponent<DailyTasksView>();
+                        DailyTasksView _objectTask = _dailyTasksViewMenu[j];
                         if(_objectTask._rectTransform.localPosition.x <= -_objectTask._rectTransform.sizeDelta.x)
                         {
                             int _infoOne = _objectTask._numberTask;
-                            _parentObject.GetChild(j).GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
+                            _dailyTasksViewMenu[j].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
                             if(!_objectTask._right && _objectTask._secondsDealayTask > 0f) _objectTask._secondsDealayTask = 4f;
                             else if(!_objectTask._right && _objectTask._secondsDealayTask <= 0f) _objectTask._right = true;
-                            _parentObject.GetChild(i).GetComponent<DailyTasksView>().OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_infoOne], _infoOne);
+                            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_infoOne], _infoOne);
                             break;
                         }
                     }
