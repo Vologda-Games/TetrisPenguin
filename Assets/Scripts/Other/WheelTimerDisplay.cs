@@ -14,7 +14,6 @@ public class WheelTimerDisplay : MonoBehaviour
     private void FixedUpdate() 
     {
         UpdateText();
-        CheckNewDay();
     }
 
     private void UpdateText()
@@ -31,15 +30,5 @@ public class WheelTimerDisplay : MonoBehaviour
             }
         }
     }
-    private void CheckNewDay() 
-    {
-        if (TimeSpan.TryParse(DailyTasksModel.TimeDifference(), out timeDiffrence)) 
-        {
-            if (timeDiffrence == TimeSpan.Zero) 
-            {
-                PlayerPrefs.SetInt("WheelSpunToday", 0);
-            Debug.Log("Новый день, флаг сброшен. Колесо дсотупно для вращения");
-            }
-        }
-    }
+    
 }

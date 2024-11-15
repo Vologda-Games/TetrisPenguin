@@ -37,6 +37,7 @@ public class NewDayEventModel : MonoBehaviour
         }
         if(GamePush.GP_Server.Time().Date > _lastEnterToGame || !PlayerPrefs.HasKey("LastEnterToGame"))
         {
+            ResetFlagsForNewDay();
             while(_tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
                 DeleteInformationTask(_tasksOnToday.Count);
@@ -81,5 +82,11 @@ public class NewDayEventModel : MonoBehaviour
         PlayerPrefs.DeleteKey($"ConditionTask{_numberTask}");
         PlayerPrefs.DeleteKey($"ProgressTask{_numberTask}");
         PlayerPrefs.DeleteKey($"TodayNumbersTasks");
+    }
+
+    public void ResetFlagsForNewDay() 
+    {
+        PlayerPrefs.SetInt("WheelSpunToday", 0);
+        PlayerPrefs.SetInt("isUpScale", 0);
     }
 }

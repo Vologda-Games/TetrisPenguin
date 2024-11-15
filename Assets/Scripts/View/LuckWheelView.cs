@@ -1,13 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LuckWheelView : MonoBehaviour
 {
     public static LuckWheelView instance;
     private bool spinning = false;
+    private bool rotation = false;
     [SerializeField] public GameObject wheel;
+    [SerializeField] public GameObject request_For_Money;
+
+    [Header("Transform")]
+
+    [SerializeField] public RectTransform btnForMoney;
 
     void Awake()
     {
@@ -23,27 +30,34 @@ public class LuckWheelView : MonoBehaviour
 
     void Start() 
     {
+        request_For_Money.SetActive(false);
         LuckWheelPresenter.instance.Initialization();
-        // if (PlayerPrefs.HasKey("WheelSpunToday")) 
-        // {
-        //     PlayerPrefs.DeleteKey("WheelSpunToday");
-        // }
+        if (PlayerPrefs.GetInt("WheelSpunToday") == 1) 
+        {
+            request_For_Money.SetActive(true);
+        }
         CanSpinToday();
     }
 
     public void EventTriggerBtn() 
     {
-        if (!spinning && PlayerPrefs.GetInt("WheelSpunToday") == 0 && CanSpinToday()) 
+        if (!spinning && !rotation) 
         {
-            LuckWheelPresenter.instance.OnClickButton();
-            PlayerPrefs.SetInt("WheelSpunToday", 1);
-            PlayerPrefs.SetString("LastSpinDate", System.DateTime.Now.ToString("yyyy-MM-dd"));
+            if (PlayerPrefs.GetInt("WheelSpunToday") == 0 && CanSpinToday()) 
+            {
+                LuckWheelPresenter.instance.OnClickButton();
+            }
+            else 
+            {
+                LuckWheelPresenter.instance.ShowBtnMoney();
+            }
         }
-        else 
-        {
-            string lastSpinDate = PlayerPrefs.GetString("LastSpinDate");
-            Debug.Log($"Сегодня вы уже крутили один раз, последняя попытка: {lastSpinDate}");
-        }
+
+    }
+
+    public void ClickOnButtonForMoneys() 
+    {
+        LuckWheelPresenter.instance.OnClickBtnMoney();
     }
 
     private bool CanSpinToday() 
@@ -72,6 +86,11 @@ public class LuckWheelView : MonoBehaviour
     public void ShowSpinningStatus(bool isSpinning)
     {
         spinning = isSpinning;
+    }
+
+    public void AnimationRotation(bool isRotation) 
+    {
+        rotation = isRotation;
     }
 
 }
