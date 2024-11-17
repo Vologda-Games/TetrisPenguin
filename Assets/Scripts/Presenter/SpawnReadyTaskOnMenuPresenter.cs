@@ -51,7 +51,7 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
                         if(_objectTask._rectTransform.localPosition.x <= -_objectTask._rectTransform.sizeDelta.x)
                         {
                             int _infoOne = _objectTask._numberTask;
-                            _dailyTasksViewMenu[j].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask);
+                            _dailyTasksViewMenu[j].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_numberReadyTask], _numberReadyTask); 
                             if(!_objectTask._right && _objectTask._secondsDealayTask > 0f) _objectTask._secondsDealayTask = 4f;
                             else if(!_objectTask._right && _objectTask._secondsDealayTask <= 0f) _objectTask._right = true;
                             _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel._instance._tasksOnToday[_infoOne], _infoOne);
