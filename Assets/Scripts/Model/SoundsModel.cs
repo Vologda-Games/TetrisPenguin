@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public class SoundsModel : MonoBehaviour
@@ -11,48 +10,22 @@ public class SoundsModel : MonoBehaviour
     [SerializeField] public static GameObject[] _sounds;
 
     [Header("Boolian")]
-    [SerializeField] public static bool _playSouds;
-    [SerializeField] public static bool _playMusic;
+    public bool _playSouds;
+    public bool _playMusic;
+
+    [Header("Scripts")]
+    public static SoundsModel instance;
 
     private void Awake() 
     {
+        instance = this;
         _music = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Music");
         _sounds = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Sounds");
-        if(!PlayerPrefs.HasKey("PlayMusic")) SetPlayOrStopMusic(true);
-        if(!PlayerPrefs.HasKey("PlaySounds")) SetPlayOrStopSounds(true);
     }
+}
 
-    public static void SetPlayOrStopMusic(bool _playBoolMusic)
-    {
-        if(_playBoolMusic) PlayerPrefs.SetString("PlayMusic", "true");
-        else PlayerPrefs.SetString("PlayMusic", "false");
-        _playMusic = _playBoolMusic;
-    }
-
-    public static bool GetPlayOrStopMusic()
-    {
-        if(PlayerPrefs.HasKey("PlayMusic")) return PlayerPrefs.GetString("PlayMusic") == "true" ? true : false;
-        else
-        {
-            SetPlayOrStopMusic(true);
-            return true;
-        }
-    }
-
-    public static void SetPlayOrStopSounds(bool _playBoolSounds)
-    {
-        if(_playBoolSounds) PlayerPrefs.SetString("PlaySounds", "true");
-        else PlayerPrefs.SetString("PlaySounds", "false");
-        _playMusic = _playBoolSounds;
-    }
-
-    public static bool GetPlayOrStopSounds()
-    {
-        if(PlayerPrefs.HasKey("PlaySounds")) return PlayerPrefs.GetString("PlaySounds") == "true" ? true : false;
-        else
-        {
-            SetPlayOrStopMusic(true);
-            return true;
-        }
-    }
+public class SaveSoundsModel
+{
+    public bool _playSouds;
+    public bool _playMusic;
 }

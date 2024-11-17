@@ -24,21 +24,13 @@ public class Levels : MonoBehaviour
     {
         get
         {
-            string json = DataPresenter.GetData(Models.PLAYER_MODEL);
-            if (json == "" || json == null)
-            {
-                return 1;
-            }
-            return JsonConvert.DeserializeObject<SavePlayerModel>(json).level;
+            return PlayerModel.instance.level;
         }
         set
         {
             PlayerModel.instance.level = value;
+            DataPresenter.SavePlayerModel();
         }
-    }
-    private void Start()
-    {
-        if (!PlayerPrefs.HasKey("level")) PlayerPrefs.SetInt("level", 1);
     }
 }
 
