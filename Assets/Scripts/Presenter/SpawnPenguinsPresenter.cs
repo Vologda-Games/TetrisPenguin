@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class SpawnPenguinsPresenter : MonoBehaviour
 {
-    // public static SpawnPenguinsPresenter instance;
-
-    // private void Awake()
-    // {
-    //     instance = this;
-    // }
-
     public static void SpawnByLevel(int level)
     {
         GameObject penguin = Instantiate(PrefabsPresenter.GetPrefabByLevel(level), ParentsView.instance.penguinsParent);
