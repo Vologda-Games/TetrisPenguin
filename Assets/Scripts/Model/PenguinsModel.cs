@@ -14,7 +14,7 @@ public class PenguinsModel : MonoBehaviour
 
     [Header("GameObjects")]
     [SerializeField] public GameObject _particleFog;
-    
+
     [Header("Transforms")]
     [SerializeField] public Transform _particleParent;
 
@@ -44,7 +44,7 @@ public class SavePenguinsModel
 [Serializable]
 public class LevelToChance
 {
-    [SerializeField] [HideInInspector] public string level;
+    [SerializeField][HideInInspector] public string level;
 
     [Range(0, 100)]
     [SerializeField] public int chance;

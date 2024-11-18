@@ -6,8 +6,8 @@ public class SoundsModel : MonoBehaviour
     //Key for boolian playing sounds ---> PlaySounds in the !!!STRING!!!
 
     [Header("MusicAndSounds")]
-    [SerializeField] public static GameObject[] _music;
-    [SerializeField] public static GameObject[] _sounds;
+    [SerializeField] public static GameObject[] music;
+    [SerializeField] public static GameObject[] sounds;
 
     [Header("Boolian")]
     public bool _playSouds;
@@ -16,11 +16,9 @@ public class SoundsModel : MonoBehaviour
     [Header("Scripts")]
     public static SoundsModel instance;
 
-    private void Awake() 
+    private void Awake()
     {
         instance = this;
-        _music = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Music");
-        _sounds = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Sounds");
     }
 }
 

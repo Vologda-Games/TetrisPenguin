@@ -8,7 +8,7 @@ public class ShopView : MonoBehaviour
     public static ShopView instance;
 
     [SerializeField] private TMP_Text _titleText;
-    [SerializeField] private TMP_Text _coinsText;
+    [SerializeField] private TMP_Text _experienceText;
     [SerializeField] private TMP_Text[] _titleProductTexts;
     [SerializeField] private TMP_Text[] _buttonProductTexts;
     [SerializeField] private TMP_Text[] _costProductDonateTexts;
@@ -18,16 +18,16 @@ public class ShopView : MonoBehaviour
     private readonly string[] _titleProducts = new string[] { "Стопка монет", "Кучка монет", "Гора монет", "Монеты", "Восстановление" };
     private readonly string[] _buttonProduct = new string[] { "Бесплатно", "Купить", "Купить", "Купить", "Купить", "Купить", "Купить" };
 
-    private Action<bool> _rewardDonate_1 = (result) => { PlayerPresenter.AddCoin(3000); };
-    private Action<bool> _rewardDonate_2 = (result) => { PlayerPresenter.AddCoin(10000); };
-    private Action<bool> _rewardDonate_3 = (result) => { PlayerPresenter.AddCoin(25000); };
-    private Action<bool> _rewardAds = (result) => { PlayerPresenter.AddCoin(900); };
-    private Action<bool> _rewardCoin_1 = (result) => { PlayerPresenter.ReduceCoin(1899); PlayerPresenter.AddCoin(1800); };
-    private Action<bool> _rewardCoin_2 = (result) => { PlayerPresenter.ReduceCoin(1999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); LuckWheelPresenter.AddToken(1); };
-    private Action<bool> _rewardCoin_3 = (result) => { PlayerPresenter.ReduceCoin(3999); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); LuckWheelPresenter.AddToken(1); };
-    private Action<bool> _rewardCoin_4 = (result) => { PlayerPresenter.ReduceCoin(4999); BafsPresenter.AddBombBafs(3); BafsPresenter.AddMulticolorBafs(3); BafsPresenter.AddSpringBafs(3); LuckWheelPresenter.AddToken(1); };
-    private Action<bool> _rewardCoin_5 = (result) => { PlayerPresenter.ReduceCoin(8999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); BafsPresenter.AddTornadoBafs(3); BafsPresenter.AddMagnetBafs(3); };
-    private Action<bool> _rewardCoin_6 = (result) => { PlayerPresenter.ReduceCoin(9999); BafsPresenter.AddBombBafs(5); BafsPresenter.AddMulticolorBafs(5); BafsPresenter.AddSpringBafs(5); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); PlayerPresenter.AddCoin(1800); };
+    private Action<bool> _rewardDonate_1 = (result) => { PlayerPresenter.instance.AddCoin(3000); };
+    private Action<bool> _rewardDonate_2 = (result) => { PlayerPresenter.instance.AddCoin(10000); };
+    private Action<bool> _rewardDonate_3 = (result) => { PlayerPresenter.instance.AddCoin(25000); };
+    private Action<bool> _rewardAds = (result) => { PlayerPresenter.instance.AddCoin(900); };
+    private Action<bool> _rewardCoin_1 = (result) => { PlayerPresenter.instance.ReduceCoin(1899); PlayerPresenter.instance.AddCoin(1800); };
+    private Action<bool> _rewardCoin_2 = (result) => { PlayerPresenter.instance.ReduceCoin(1999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); LuckWheelPresenter.AddToken(1); };
+    private Action<bool> _rewardCoin_3 = (result) => { PlayerPresenter.instance.ReduceCoin(3999); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); LuckWheelPresenter.AddToken(1); };
+    private Action<bool> _rewardCoin_4 = (result) => { PlayerPresenter.instance.ReduceCoin(4999); BafsPresenter.AddBombBafs(3); BafsPresenter.AddMulticolorBafs(3); BafsPresenter.AddSpringBafs(3); LuckWheelPresenter.AddToken(1); };
+    private Action<bool> _rewardCoin_5 = (result) => { PlayerPresenter.instance.ReduceCoin(8999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); BafsPresenter.AddTornadoBafs(3); BafsPresenter.AddMagnetBafs(3); };
+    private Action<bool> _rewardCoin_6 = (result) => { PlayerPresenter.instance.ReduceCoin(9999); BafsPresenter.AddBombBafs(5); BafsPresenter.AddMulticolorBafs(5); BafsPresenter.AddSpringBafs(5); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); PlayerPresenter.instance.AddCoin(1800); };
 
     private int[] _costCoins = new int[] { 1899, 1999, 3999, 4999, 8999, 9999 };
 
@@ -48,7 +48,7 @@ public class ShopView : MonoBehaviour
 
     public void RenderCoins()
     {
-        _coinsText.text = PlayerModel.instance.coins.ToString();
+        _experienceText.text = PlayerModel.instance.experience.ToString();
     }
 
     public void Localization()

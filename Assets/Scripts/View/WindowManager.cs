@@ -8,7 +8,7 @@ public class WindowManager : MonoBehaviour
     [Header("UI")]
 
     [SerializeField] private TextMeshProUGUI _textTimeDifference;
-    
+
     private void Start()
     {
         StartCoroutine(SaveTimeText());
@@ -21,7 +21,7 @@ public class WindowManager : MonoBehaviour
 
     private IEnumerator SaveTimeText()
     {
-        while(true)
+        while (true)
         {
             _textTimeDifference.text = $"Обновится через {DailyTasksModel.TimeDifference()}";
             yield return new WaitForSeconds(1);

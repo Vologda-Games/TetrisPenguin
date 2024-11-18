@@ -33,7 +33,7 @@ public class GameInterface : MonoBehaviour
 
     public void OpenFirstLayout(string nameView)
     {
-        if(_parent.childCount == 0)
+        if (_parent.childCount == 0)
         {
             activeViewString = nameView;
             GameObject prefab = GetViewByName(nameView);
@@ -44,7 +44,7 @@ public class GameInterface : MonoBehaviour
             isActiveInterface = true;
             if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
         }
-        
+
     }
 
     public void CloseFirstLayout()
@@ -98,7 +98,8 @@ public class GameInterface : MonoBehaviour
         if (name == Views._shop)
         {
             _object = ViewModel.instance._shop;
-        }else if (name == Views._dailyTasks)
+        }
+        else if (name == Views._dailyTasks)
         {
             _object = ViewModel.instance._dailyTasks;
         }

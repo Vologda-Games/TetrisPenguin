@@ -5,8 +5,9 @@ public class PlayerView : MonoBehaviour
 {
     public static PlayerView instance;
     [SerializeField] private TMP_Text _levelText;
-    [SerializeField] private TMP_Text _experienceText;
-    [HideInInspector] public TMP_Text _experienceTextInWindow;
+    [SerializeField] public TMP_Text experienceText;
+    [SerializeField] public TMP_Text _coinsText;
+    [HideInInspector] public TMP_Text _coinsTextInWindow;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class PlayerView : MonoBehaviour
     {
         RenderCoin();
         RenderLevel();
+        RenderExperience();
     }
 
     public void RenderLevel()
@@ -24,15 +26,31 @@ public class PlayerView : MonoBehaviour
         _levelText.text = PlayerModel.instance.level.ToString();
     }
 
-    public void RenderCoin()
+    public void RenderExperience(int experience)
     {
-        _experienceText.text = RenderingCoinText();
-        if(_experienceTextInWindow != null) _experienceTextInWindow.text = RenderingCoinText();
+        experienceText.text = RenderingCurrencyText(experience);
     }
 
-    public static string RenderingCoinText()
+    public void RenderExperience()
     {
-        string formattedNumber = PlayerModel.instance.coins.ToString();
+        experienceText.text = RenderingCurrencyText(PlayerModel.instance.experience);
+    }
+
+    public void RenderCoin(int coins)
+    {
+        _coinsText.text = RenderingCurrencyText(coins);
+        if (_coinsTextInWindow != null) _coinsTextInWindow.text = RenderingCurrencyText(coins);
+    }
+
+    public void RenderCoin()
+    {
+        _coinsText.text = RenderingCurrencyText(PlayerModel.instance.coins);
+        if (_coinsTextInWindow != null) _coinsTextInWindow.text = RenderingCurrencyText(PlayerModel.instance.coins);
+    }
+
+    public static string RenderingCurrencyText(int _currency)
+    {
+        string formattedNumber = _currency.ToString();
 
         if (formattedNumber.Length > 0)
         {

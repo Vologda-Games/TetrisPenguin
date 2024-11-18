@@ -58,6 +58,7 @@ public class DataPresenter
         {
             level = PlayerModel.instance.level,
             coins = PlayerModel.instance.coins,
+            experience = PlayerModel.instance.experience,
         };
         string json = JsonConvert.SerializeObject(playerModel);
         SaveData(Models.PLAYER_MODEL, json);
@@ -138,6 +139,7 @@ public class DataPresenter
         SavePlayerModel saveResourcesModel = JsonConvert.DeserializeObject<SavePlayerModel>(json);
         PlayerModel.instance.level = saveResourcesModel.level;
         PlayerModel.instance.coins = saveResourcesModel.coins;
+        PlayerModel.instance.experience = saveResourcesModel.experience;
     }
 
     public static void GetBafsModel()

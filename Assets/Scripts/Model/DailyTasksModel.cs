@@ -11,21 +11,15 @@ public class DailyTasksModel : MonoBehaviour
     [SerializeField] public int _maxQuantityTaskOfDay;
 
     [Header("Sprites")]
-    public static Sprite[] _spritesForRewardBaff;
-    public static Sprite _spriteForRewardSoftCurrency;
+    public static Sprite[] spritesForRewardBaff;
+    public static Sprite spriteForRewardSoftCurrency;
 
     [Header("String")]
     [HideInInspector] public DateTime LastEnterToGame;
-    
+
     private void Awake()
     {
         _instance = this;
-        _spritesForRewardBaff = Resources.LoadAll<Sprite>("Sprites/Reward/Bafs");
-        _spriteForRewardSoftCurrency = Resources.Load<Sprite>("Sprites/Reward/Currency/SoftCurrency");
-        for(int i = 0; i < _allTasks.Count; i++)
-        {
-            if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
-        }
     }
 
     public static string TimeDifference()
@@ -40,7 +34,7 @@ public class DailyTasksModel : MonoBehaviour
         int _randomNumber;
         int _rand = UnityEngine.Random.Range(0, _allReadyNumbersTasks.Count);
         _randomNumber = _allReadyNumbersTasks[_rand];
-        if(_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
+        if (_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
         return _randomNumber;
     }
 }
@@ -84,20 +78,21 @@ public class DailyTasksInfoValue
         string _nameObject = "Это задание к сожалению скрыто:(";
         string _nameBaff = "Это задание к сожалению скрыто:(";
 
-        if(_typeTaskEnum == TypeTask.Create)
+        if (_typeTaskEnum == TypeTask.Create)
         {
             _typeAction = "Создать";
-            if(_objectLevel != 0)
+            if (_objectLevel != 0)
             {
                 _nameObject = $"пингвина {_objectLevel + 1}-го уровня";
             }
             return $"{_typeAction} {_nameObject}";
-        }else if(_typeTaskEnum == TypeTask.UseBaff)
+        }
+        else if (_typeTaskEnum == TypeTask.UseBaff)
         {
             _typeAction = "Использовать";
-            if(_numberUseBaff > 0)
+            if (_numberUseBaff > 0)
             {
-                switch(_numberUseBaff)
+                switch (_numberUseBaff)
                 {
                     case 1: _nameBaff = $"усилитель \"мульти пингвин\""; break;
                     case 2: _nameBaff = $"усилитель \"супер удар\""; break;
@@ -107,44 +102,47 @@ public class DailyTasksInfoValue
                 }
             }
             return $"{_typeAction} {_nameBaff}";
-        }else if(_typeTaskEnum == TypeTask.Click)
+        }
+        else if (_typeTaskEnum == TypeTask.Click)
         {
             _typeAction = "Кликнуть на экран, при создании пингвинов";
             return $"{_typeAction}";
-        }else  return $"Это задание к сожалению скрыто:(((";
+        }
+        else return $"Это задание к сожалению скрыто:(((";
     }
 
     public Sprite SpriteReward()
     {
         Sprite _spriteReward = null;
-        if(_typeRewardEnum == TypeReward.Baff)
+        if (_typeRewardEnum == TypeReward.Baff)
         {
-            for(int i = 0; i < DailyTasksModel._spritesForRewardBaff.Length; i++)
+            for (int i = 0; i < DailyTasksModel.spritesForRewardBaff.Length; i++)
             {
-                if(DailyTasksModel._spritesForRewardBaff[i].name.Contains($"{_numberAddBaff}"))
+                if (DailyTasksModel.spritesForRewardBaff[i].name.Contains($"{_numberAddBaff}"))
                 {
-                    _spriteReward = DailyTasksModel._spritesForRewardBaff[i];
+                    _spriteReward = DailyTasksModel.spritesForRewardBaff[i];
                     break;
                 }
             }
         }
-        else if(_typeRewardEnum == TypeReward.SoftCurrency)
+        else if (_typeRewardEnum == TypeReward.SoftCurrency)
         {
-            _spriteReward = DailyTasksModel._spriteForRewardSoftCurrency;
+            _spriteReward = DailyTasksModel.spriteForRewardSoftCurrency;
         }
         return _spriteReward;
     }
 
     public int QuantittyBonus()
     {
-        if(_typeRewardEnum == TypeReward.Baff)
+        if (_typeRewardEnum == TypeReward.Baff)
         {
             return _quantityAddBaff;
         }
-        else if(_typeRewardEnum == TypeReward.SoftCurrency)
+        else if (_typeRewardEnum == TypeReward.SoftCurrency)
         {
             return _quantityAddCurrency;
-        }else return 0;
+        }
+        else return 0;
     }
 
     public void SaveProgressTask(int _numberTask, int _supplementToProgress)

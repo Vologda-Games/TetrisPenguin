@@ -73,10 +73,10 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelSpring()
     {
         SetSelectBaf(0);
-        if(PenguinsModel.instance.penguinInSpawn != null)
+        if (PenguinsModel.instance.penguinInSpawn != null)
         {
             PenguinView penguinView = PenguinsModel.instance.penguinInSpawn;
-            if(penguinView._strongBlow) penguinView._strongBlow = false;
+            if (penguinView._strongBlow) penguinView._strongBlow = false;
         }
         ProjectionView.instance.PointProjection();
     }
@@ -167,23 +167,23 @@ public class BafsPresenter : MonoBehaviour
 
     public static void AddBaffsByNumber(int _numberBaff, int _value)
     {
-        switch(_numberBaff)
+        switch (_numberBaff)
         {
             case 1:
                 AddMulticolorBafs(_value);
-            break;
+                break;
             case 2:
                 AddSpringBafs(_value);
-            break;
+                break;
             case 3:
                 AddBombBafs(_value);
-            break;
+                break;
             case 4:
                 AddTornadoBafs(_value);
-            break;
+                break;
             case 5:
                 AddMagnetBafs(_value);
-            break;
+                break;
         }
     }
 
