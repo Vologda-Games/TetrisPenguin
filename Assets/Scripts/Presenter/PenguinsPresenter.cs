@@ -58,10 +58,10 @@ public class PenguinsPresenter : MonoBehaviour
             penguinView.triggerUp = false;
             PenguinsModel.instance.penguinViews.Add(penguinView);
             PenguinsModel.instance.penguinInSpawn = null;
-            DailyTasksModel._instance.CheckClickForTask();
-            if (BafsPresenter.GetSelectBaf() != 0 && BafsPresenter.GetSelectBaf() != 4)
+            DailyTasksPresenter.CheckClickForTask();
+            if (BafsPresenter.GetSelectBaf() != 0 && BafsPresenter.GetSelectBaf() < 4)
             {
-                DailyTasksModel._instance.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
+                DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             }
             if (penguinView.level == 15)
             {

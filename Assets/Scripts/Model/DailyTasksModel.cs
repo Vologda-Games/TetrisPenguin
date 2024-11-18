@@ -9,9 +9,14 @@ public class DailyTasksModel : MonoBehaviour
     public static DailyTasksModel _instance;
     public List<int> _allReadyNumbersTasks;
     [SerializeField] public int _maxQuantityTaskOfDay;
-    
+
+    [Header("Sprites")]
     public static Sprite[] _spritesForRewardBaff;
     public static Sprite _spriteForRewardSoftCurrency;
+
+    [Header("String")]
+    [HideInInspector] public DateTime LastEnterToGame;
+    
     private void Awake()
     {
         _instance = this;
@@ -21,19 +26,6 @@ public class DailyTasksModel : MonoBehaviour
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
         }
-        if(!PlayerPrefs.HasKey("LastEnterToGame"))
-        {
-           for(int i = 0; i < _maxQuantityTaskOfDay; i++)
-           {
-               PlayerPrefs.SetString("TodayNumbersTask", $"{RandomNumberTask()}.{PlayerPrefs.GetString("TodayNumbersTask")}");
-           }
-        }
-        
-    }
-
-    private void Start()
-    {
-        if(!PlayerPrefs.HasKey("StartedDailyTasks")) PlayerPrefs.SetInt("StartedDailyTasks", 1);
     }
 
     public static string TimeDifference()
@@ -51,42 +43,11 @@ public class DailyTasksModel : MonoBehaviour
         if(_allReadyNumbersTasks.Contains(_allReadyNumbersTasks[_rand])) _allReadyNumbersTasks.Remove(_allReadyNumbersTasks[_rand]);
         return _randomNumber;
     }
+}
 
-    public void CheckUsedBaffForTask(int _numberBaff)
-    {
-        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
-        for(int i = 0; i < _todayTasks.Count; i++)
-        {
-            if(_todayTasks[i]._typeTaskEnum == TypeTask.UseBaff && _todayTasks[i]._numberUseBaff == _numberBaff)
-            {
-                _todayTasks[i].SaveProgressTask(i, 1);
-            }
-        }
-    }
-
-    public void CheckCreateForTask(int _objectCreateLevel)
-    {
-        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
-        for(int i = 0; i < _todayTasks.Count; i++)
-        {
-            if(_todayTasks[i]._typeTaskEnum == TypeTask.Create && _todayTasks[i]._object.level == _objectCreateLevel)
-            {
-                _todayTasks[i].SaveProgressTask(i, 1);
-            }
-        }
-    }
-
-    public void CheckClickForTask()
-    {
-        List<DailyTasksInfoValue> _todayTasks = NewDayEventModel._instance._tasksOnToday;
-        for(int i = 0; i < _todayTasks.Count; i++)
-        {
-            if(_todayTasks[i]._typeTaskEnum == TypeTask.Click)
-            {
-                _todayTasks[i].SaveProgressTask(i, 1);
-            }
-        }
-    }
+public class SaveDailyTasksModel
+{
+    public DateTime LastEnterToGame;
 }
 
 [Serializable]
@@ -95,10 +56,10 @@ public class DailyTasksInfoValue
     [Header("Type")]
     [SerializeField] public TypeTask _typeTaskEnum;
 
-    [Header("For Create")]
-    [SerializeField] public PenguinView _object;
+    [Header("For Create, Range(0, 14)")]
+    [SerializeField] public int _objectLevel;
 
-    [Header("Number Baff For Use Baff, MAX - 5")]
+    [Header("Number Baff For Use Baff, Range(1, 5)")]
     [SerializeField] public int _numberUseBaff = 1;
 
     [Header("Intagers Or Floats")]
@@ -108,12 +69,14 @@ public class DailyTasksInfoValue
     [Header("Type Reward")]
     [SerializeField] public TypeReward _typeRewardEnum;
 
-    [Header("Number Baff For Add Baff , MAX - 5")]
+    [Header("Number Baff For Add Baff, Range(1, 5)")]
     [SerializeField] public int _numberAddBaff = 1;
     [SerializeField] public int _quantityAddBaff = 1;
 
     [Header("Quantity Currency For Add Currency")]
     [SerializeField] public int _quantityAddCurrency = 1;
+
+    [HideInInspector] public string ConditionsTasks;
 
     public string TaskInformation()
     {
@@ -124,9 +87,9 @@ public class DailyTasksInfoValue
         if(_typeTaskEnum == TypeTask.Create)
         {
             _typeAction = "Создать";
-            if(_object != null)
+            if(_objectLevel != 0)
             {
-                _nameObject = $"пингвина {_object.level + 1}-го уровня";
+                _nameObject = $"пингвина {_objectLevel + 1}-го уровня";
             }
             return $"{_typeAction} {_nameObject}";
         }else if(_typeTaskEnum == TypeTask.UseBaff)
@@ -184,16 +147,15 @@ public class DailyTasksInfoValue
         }else return 0;
     }
 
-    public static int ProgressTask(int _numberTask)
-    {
-        return PlayerPrefs.GetInt($"ProgressTask{_numberTask}");
-    }
-
     public void SaveProgressTask(int _numberTask, int _supplementToProgress)
     {
-        PlayerPrefs.SetInt($"ProgressTask{_numberTask}", ProgressTask(_numberTask) + _supplementToProgress);
-        int _progressTask = ProgressTask(_numberTask);
-        _currentQuantity = _progressTask;
+        _currentQuantity += _supplementToProgress;
+        DataPresenter.SaveNewDayEventModel();
+        DailyTasksInfoValue _taskValue = NewDayEventModel._instance._tasksOnToday[_numberTask];
+        if (
+            _taskValue._typeTaskEnum != TypeTask.Click && _taskValue._currentQuantity <= _taskValue._maximumQuantity ||
+            _taskValue._typeTaskEnum == TypeTask.Click && _taskValue._currentQuantity == _taskValue._maximumQuantity
+        ) SpawnReadyTaskOnMenuPresenter._instance.SpawnReadyTask(_numberTask);
     }
 }
 

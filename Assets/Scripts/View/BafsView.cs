@@ -82,7 +82,7 @@ public class BafsView : MonoBehaviour
                         // можно дописать условие if пингвинов > 1
                         BafsPresenter.Tornado();
                         BafsPresenter.ReduceTornadoBafs(1);
-                        DailyTasksModel._instance.CheckUsedBaffForTask(4);
+                        DailyTasksPresenter.CheckUsedBaffForTask(4);
                         MusicAndSoundsManager._instance.PlaySound("Tornado", 4f);
                     }
                 }

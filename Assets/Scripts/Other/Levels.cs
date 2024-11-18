@@ -23,17 +23,13 @@ public class Levels : MonoBehaviour
     {
         get
         {
-            int level = PlayerPrefs.GetInt("level");
-            return level;
+            return PlayerModel.instance.level;
         }
         set
         {
-            PlayerPrefs.SetInt("level", value);
+            PlayerModel.instance.level = value;
+            DataPresenter.SavePlayerModel();
         }
-    }
-    private void Start()
-    {
-        if (!PlayerPrefs.HasKey("level")) PlayerPrefs.SetInt("level", 1);
     }
 }
 

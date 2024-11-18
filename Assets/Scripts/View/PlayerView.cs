@@ -6,6 +6,7 @@ public class PlayerView : MonoBehaviour
     public static PlayerView instance;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private TMP_Text _experienceText;
+    [HideInInspector] public TMP_Text _experienceTextInWindow;
 
     private void Awake()
     {
@@ -25,7 +26,14 @@ public class PlayerView : MonoBehaviour
 
     public void RenderCoin()
     {
+        _experienceText.text = RenderingCoinText();
+        if(_experienceTextInWindow != null) _experienceTextInWindow.text = RenderingCoinText();
+    }
+
+    public static string RenderingCoinText()
+    {
         string formattedNumber = PlayerModel.instance.coins.ToString();
+
         if (formattedNumber.Length > 0)
         {
             if (formattedNumber.Length == 4)
@@ -42,6 +50,6 @@ public class PlayerView : MonoBehaviour
             }
         }
 
-        _experienceText.text = formattedNumber;
+        return formattedNumber;
     }
 }

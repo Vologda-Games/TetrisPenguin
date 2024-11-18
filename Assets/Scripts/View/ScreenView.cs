@@ -66,7 +66,7 @@ public class ScreenView : MonoBehaviour
     {
         for(int i = 0; i < ScreenModel._typesControl.Count; i++)
         {
-            if(ScreenModel._typesControl[i] == ScreenModel.instance.GetControl())
+            if(ScreenModel._typesControl[i] == ScreenModel.instance.TypeControl)
             {
                 if(i + 1 < ScreenModel._typesControl.Count) ScreenModel.instance.SetControl(ScreenModel._typesControl[i + 1]);
                 else ScreenModel.instance.SetControl(ScreenModel._typesControl[0]);
@@ -83,7 +83,7 @@ public class ScreenView : MonoBehaviour
         float pos = _pointEgg.position.x;
         if(Input.GetMouseButtonDown(0))
         {
-            if(ScreenModel.instance.GetControl() == "Flexible") _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
+            if(ScreenModel.instance.TypeControl == "Flexible") _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
             else
             {
                 _offset = 0f;
@@ -94,8 +94,8 @@ public class ScreenView : MonoBehaviour
         } 
         else if(Input.GetMouseButton(0))
         {
-            if(ScreenModel.instance.GetControl() == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
-            else if(ScreenModel.instance.GetControl() == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x - _offset;
+            if(ScreenModel.instance.TypeControl == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+            else if(ScreenModel.instance.TypeControl == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x - _offset;
             if (pos < -2.2f) { pos = -2.2f; }
             else if (pos > 2.2f) { pos = 2.2f; }
         }
@@ -110,8 +110,8 @@ public class ScreenView : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             float pos = 0f;
-            if(ScreenModel.instance.GetControl() == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (_pointEgg.position.x - cam.ScreenToWorldPoint(Input.mousePosition).x);
-            else if(ScreenModel.instance.GetControl() == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (cam.ScreenToWorldPoint(_pointEgg.position).x - cam.ScreenToWorldPoint(Input.mousePosition).x);
+            if(ScreenModel.instance.TypeControl == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (_pointEgg.position.x - cam.ScreenToWorldPoint(Input.mousePosition).x);
+            else if(ScreenModel.instance.TypeControl == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x + (cam.ScreenToWorldPoint(_pointEgg.position).x - cam.ScreenToWorldPoint(Input.mousePosition).x);
             if (pos < -2.2f) { pos = -2.2f; }
             else if (pos > 2.2f) { pos = 2.2f; }
             ScreenModel.instance.posTouch = pos;
