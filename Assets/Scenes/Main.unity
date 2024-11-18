@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posTouch: 0
+  TypeControl: 
   _trueSpriteButton: {fileID: 21300000, guid: 93cb3f98b770cd749b2e28172747090b, type: 3}
   _falseSpriteButton: {fileID: 21300000, guid: a07f1de97da8b48b6bd4d976ad1b1fad, type: 3}
   _textTypeControl: {fileID: 1414224962}
@@ -380,6 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10657a92890a4a94bb3763c279d75433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playSouds: 0
+  _playMusic: 0
 --- !u!1 &117058542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,7 +2407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -29.999985}
   m_SizeDelta: {x: -120, y: -560}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &584161232
@@ -8754,7 +8757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allTasks:
   - _typeTaskEnum: 0
-    _object: {fileID: 872497323972190293, guid: 5b6ac15312b4544a9b27d5ee32b70b59, type: 3}
+    _objectLevel: 2
     _numberUseBaff: 0
     _maximumQuantity: 5
     _currentQuantity: 0
@@ -8762,8 +8765,9 @@ MonoBehaviour:
     _numberAddBaff: 3
     _quantityAddBaff: 2
     _quantityAddCurrency: 0
+    ConditionsTasks: 
   - _typeTaskEnum: 0
-    _object: {fileID: 2411725648188548089, guid: 4b62e6cb8de874c01b769b668f549844, type: 3}
+    _objectLevel: 4
     _numberUseBaff: 0
     _maximumQuantity: 8
     _currentQuantity: 0
@@ -8771,8 +8775,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 100
+    ConditionsTasks: 
   - _typeTaskEnum: 2
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 0
     _maximumQuantity: 120
     _currentQuantity: 0
@@ -8780,8 +8785,9 @@ MonoBehaviour:
     _numberAddBaff: 1
     _quantityAddBaff: 3
     _quantityAddCurrency: 0
+    ConditionsTasks: 
   - _typeTaskEnum: 2
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 0
     _maximumQuantity: 200
     _currentQuantity: 0
@@ -8789,8 +8795,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 400
+    ConditionsTasks: 
   - _typeTaskEnum: 1
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 2
     _maximumQuantity: 4
     _currentQuantity: 0
@@ -8798,8 +8805,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 350
+    ConditionsTasks: 
   - _typeTaskEnum: 1
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 5
     _maximumQuantity: 2
     _currentQuantity: 0
@@ -8807,8 +8815,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 100
+    ConditionsTasks: 
   - _typeTaskEnum: 1
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 4
     _maximumQuantity: 3
     _currentQuantity: 0
@@ -8816,8 +8825,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 400
+    ConditionsTasks: 
   - _typeTaskEnum: 1
-    _object: {fileID: 0}
+    _objectLevel: 0
     _numberUseBaff: 1
     _maximumQuantity: 5
     _currentQuantity: 0
@@ -8825,8 +8835,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 500
+    ConditionsTasks: 
   - _typeTaskEnum: 0
-    _object: {fileID: 4873316361908888526, guid: 69dc005150eb24541b62377299453fb3, type: 3}
+    _objectLevel: 7
     _numberUseBaff: 0
     _maximumQuantity: 12
     _currentQuantity: 0
@@ -8834,8 +8845,9 @@ MonoBehaviour:
     _numberAddBaff: 0
     _quantityAddBaff: 0
     _quantityAddCurrency: 700
+    ConditionsTasks: 
   - _typeTaskEnum: 0
-    _object: {fileID: 9020969803913987348, guid: 7928dd86d568647d99c5462f7b71eeda, type: 3}
+    _objectLevel: 12
     _numberUseBaff: 0
     _maximumQuantity: 15
     _currentQuantity: 0
@@ -8843,6 +8855,7 @@ MonoBehaviour:
     _numberAddBaff: 2
     _quantityAddBaff: 6
     _quantityAddCurrency: 0
+    ConditionsTasks: 
   _allReadyNumbersTasks: 
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037

@@ -9,6 +9,7 @@ public class DataPresenter
         SaveBafsModel();
         SavePenguinsModel();
         SaveNewDayEventModel();
+        SaveDailyTasksModel();
         SaveScreenModel();
         SaveSoundsModel();
     }
@@ -19,6 +20,7 @@ public class DataPresenter
         GetBafsModel();
         GetPenguinsModel();
         GetNewDayEventModel();
+        GetDailyTasksModel();
         GetScreenModel();
         GetSoundsModel();
     }
@@ -99,7 +101,6 @@ public class DataPresenter
     {
         SaveNewDayEventModel newDayEventModel = new SaveNewDayEventModel()
         {
-            TodayNumbersTasks = NewDayEventModel._instance.TodayNumbersTasks,
             _tasksOnToday = NewDayEventModel._instance._tasksOnToday,
         };
         string json = JsonConvert.SerializeObject(newDayEventModel);
@@ -184,7 +185,6 @@ public class DataPresenter
             return;
         }
         SaveNewDayEventModel saveResourcesModel = JsonConvert.DeserializeObject<SaveNewDayEventModel>(json);
-        NewDayEventModel._instance.TodayNumbersTasks = saveResourcesModel.TodayNumbersTasks;
         NewDayEventModel._instance._tasksOnToday = saveResourcesModel._tasksOnToday;
     }
 
@@ -204,6 +204,8 @@ public class DataPresenter
         string json = GetData(Models.SOUNDS_MODEL);
         if (json == "" || json == null)
         {
+            SoundsModel.instance._playMusic = true;
+            SoundsModel.instance._playSouds = true;
             return;
         }
         SoundsModel saveResourcesModel = JsonConvert.DeserializeObject<SoundsModel>(json);

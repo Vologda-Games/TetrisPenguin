@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 public class DailyTasksModel : MonoBehaviour
@@ -26,17 +25,6 @@ public class DailyTasksModel : MonoBehaviour
         for(int i = 0; i < _allTasks.Count; i++)
         {
             if(!_allReadyNumbersTasks.Contains(i)) _allReadyNumbersTasks.Add(i);
-        }
-        if(LastEnterToGame == null || LastEnterToGame == DateTime.MinValue.Date)
-        {
-           for(int i = 0; i < _maxQuantityTaskOfDay; i++)
-           {
-                NewDayEventModel._instance.NumbersTasksOnToday = RandomNumberTask().ToString();
-                print(NewDayEventModel._instance.NumbersTasksOnToday);
-           }
-           LastEnterToGame = GamePush.GP_Server.Time().Date;
-           DataPresenter.SaveDailyTasksModel();
-           DataPresenter.SaveNewDayEventModel();
         }
     }
 
@@ -68,10 +56,10 @@ public class DailyTasksInfoValue
     [Header("Type")]
     [SerializeField] public TypeTask _typeTaskEnum;
 
-    [Header("For Create")]
-    [SerializeField] public PenguinView _object;
+    [Header("For Create, Range(0, 14)")]
+    [SerializeField] public int _objectLevel;
 
-    [Header("Number Baff For Use Baff, MAX - 5")]
+    [Header("Number Baff For Use Baff, Range(1, 5)")]
     [SerializeField] public int _numberUseBaff = 1;
 
     [Header("Intagers Or Floats")]
@@ -81,7 +69,7 @@ public class DailyTasksInfoValue
     [Header("Type Reward")]
     [SerializeField] public TypeReward _typeRewardEnum;
 
-    [Header("Number Baff For Add Baff , MAX - 5")]
+    [Header("Number Baff For Add Baff, Range(1, 5)")]
     [SerializeField] public int _numberAddBaff = 1;
     [SerializeField] public int _quantityAddBaff = 1;
 
@@ -99,9 +87,9 @@ public class DailyTasksInfoValue
         if(_typeTaskEnum == TypeTask.Create)
         {
             _typeAction = "Создать";
-            if(_object != null)
+            if(_objectLevel != 0)
             {
-                _nameObject = $"пингвина {_object.level + 1}-го уровня";
+                _nameObject = $"пингвина {_objectLevel + 1}-го уровня";
             }
             return $"{_typeAction} {_nameObject}";
         }else if(_typeTaskEnum == TypeTask.UseBaff)

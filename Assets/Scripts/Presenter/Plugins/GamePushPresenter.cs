@@ -1,5 +1,4 @@
 using UnityEngine;
-using GamePush;
 
 public class GamePushPresenter : MonoBehaviour
 {
@@ -19,5 +18,7 @@ public class GamePushPresenter : MonoBehaviour
     {
         DataPresenter.GetAllData();
         BafsView.instance.RenderCountBafs();
+        NewDayEventModel._instance.LoadResourcesNewDay();
+        SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
     }
 }

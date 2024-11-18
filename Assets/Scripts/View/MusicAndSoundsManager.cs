@@ -20,7 +20,7 @@ public class MusicAndSoundsManager : MonoBehaviour
 
     [Header("Audio")]
 
-    private static List<AudioSource> _audioSourcesMusic = new List<AudioSource>();
+    private List<AudioSource> _audioSourcesMusic = new List<AudioSource>();
 
     private void Start() 
     {
@@ -53,9 +53,10 @@ public class MusicAndSoundsManager : MonoBehaviour
             {
                 GameObject _newMusic = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, _parentMusic);
                 AudioSource _newSource = _newMusic.GetComponent<AudioSource>();
+                _audioSourcesMusic.Add(_newSource);
+                print(_newSource);
                 if(SoundsModel.instance._playMusic) _newSource.Play();
                 else _newSource.Pause();
-                _audioSourcesMusic.Add(_newSource);
             }
         }
     }
@@ -69,25 +70,27 @@ public class MusicAndSoundsManager : MonoBehaviour
     {
         SoundsModel.instance._playSouds = !SoundsModel.instance._playSouds;
         _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playSouds);
+        DataPresenter.SaveSoundsModel();
     }
 
     public void SwitchMusicPlayback()
     {
         SoundsModel.instance._playMusic = !SoundsModel.instance._playMusic;
         _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playMusic);
-       if(SoundsModel.instance._playMusic)
-       {
-        for(int i = 0; i < _parentMusic.childCount; i++)
+        if(SoundsModel.instance._playMusic)
         {
-            _audioSourcesMusic[i].Play();
-        }
-       } 
-       else
-       {
-        for(int i = 0; i < _parentMusic.childCount; i++)
+            for(int i = 0; i < _audioSourcesMusic.Count; i++)
+            {
+                if (_audioSourcesMusic[i] != null) _audioSourcesMusic[i].Play();
+            }
+        } 
+        else
         {
-            _audioSourcesMusic[i].Pause();
+            for(int i = 0; i < _audioSourcesMusic.Count; i++)
+            {
+                if (_audioSourcesMusic[i] != null) _audioSourcesMusic[i].Pause();
+            }
         }
-       }
+        DataPresenter.SaveSoundsModel();
     }
 }

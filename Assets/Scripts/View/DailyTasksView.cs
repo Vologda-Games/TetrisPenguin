@@ -19,6 +19,7 @@ public class DailyTasksView : MonoBehaviour
     [HideInInspector] public RectTransform _rectTransform;
     [HideInInspector] public float _secondsDealayTask;
     [HideInInspector] public bool _right;
+    [HideInInspector] public bool _taskInMenu = false;
 
     private void Awake()
     {
@@ -87,17 +88,20 @@ public class DailyTasksView : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_right)
+        if (_taskInMenu)
         {
-            _secondsDealayTask = 4f;
-            if (_rectTransform.localPosition.x < 0f) _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(0f, _rectTransform.localPosition.y), 25f);
-            else if (_rectTransform.localPosition.x >= 0f) _right = false;
-        }else
-        {
-            if (_secondsDealayTask > 0f) _secondsDealayTask -= Time.fixedDeltaTime;
-            if(_secondsDealayTask <= 0f) 
+            if (_right)
             {
-                _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(-_rectTransform.sizeDelta.x, _rectTransform.localPosition.y), 25f);
+                _secondsDealayTask = 4f;
+                if (_rectTransform.localPosition.x < 0f) _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(0f, _rectTransform.localPosition.y), 25f);
+                else if (_rectTransform.localPosition.x >= 0f) _right = false;
+            }else
+            {
+                if (_secondsDealayTask > 0f) _secondsDealayTask -= Time.fixedDeltaTime;
+                if(_secondsDealayTask <= 0f) 
+                {
+                    _rectTransform.localPosition = Vector2.MoveTowards(_rectTransform.localPosition, new Vector2(-_rectTransform.sizeDelta.x, _rectTransform.localPosition.y), 25f);
+                }
             }
         }
     }
