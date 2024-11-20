@@ -1,12 +1,7 @@
-using TMPro;
 using UnityEngine;
 
-public class SpawnTasksView : MonoBehaviour
+public class SpawnTasksPresenter : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] public TMP_Text _textCoins;
-
-
     [Header("Transform")]
     [SerializeField] private Transform _parentTasks;
 
@@ -15,8 +10,6 @@ public class SpawnTasksView : MonoBehaviour
 
     private void Start()
     {
-        PlayerView.instance._coinsTextInWindow = _textCoins;
-        PlayerView.instance.RenderCoin();
         SpawnTask();
     }
 

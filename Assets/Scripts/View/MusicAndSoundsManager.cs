@@ -54,7 +54,6 @@ public class MusicAndSoundsManager : MonoBehaviour
                 GameObject _newMusic = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, _parentMusic);
                 AudioSource _newSource = _newMusic.GetComponent<AudioSource>();
                 _audioSourcesMusic.Add(_newSource);
-                print(_newSource);
                 if (SoundsModel.instance._playMusic) _newSource.Play();
                 else _newSource.Pause();
             }

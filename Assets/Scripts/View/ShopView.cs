@@ -36,19 +36,9 @@ public class ShopView : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        RenderCoins();
-    }
-
     public void EventCloseShop()
     {
         GameInterface.instance.CloseFirstLayout();
-    }
-
-    public void RenderCoins()
-    {
-        _experienceText.text = PlayerModel.instance.experience.ToString();
     }
 
     public void Localization()
@@ -109,7 +99,7 @@ public class ShopView : MonoBehaviour
                     _rewardCoin_6?.Invoke(true);
                     break;
             }
-            RenderCoins();
+            PlayerView.instance.RenderCoin();
         }
     }
 }

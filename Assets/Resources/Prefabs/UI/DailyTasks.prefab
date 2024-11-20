@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 6738682138076584383}
+  _textCoins: {fileID: 3337840210990534456}
 --- !u!1 &1781173251042390490
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68499b95401352b4ebdcab7321b2dc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textCoins: {fileID: 3337840210990534456}
   _parentTasks: {fileID: 5665952030918295262}
   _taskObject: {fileID: 7406328230392861511, guid: 1123416701c9f4446a57b2ed7c06ef4c, type: 3}
 --- !u!1 &4824858489281229539

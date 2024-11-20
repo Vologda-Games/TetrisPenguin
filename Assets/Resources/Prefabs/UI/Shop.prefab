@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 3226363907683570612}
   - component: {fileID: 7062813273344511869}
   m_Layer: 0
-  m_Name: ButtonManager
+  m_Name: WindowManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db20d8d3479c479428caccfddd0e9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _textTimeDifference: {fileID: 3337840210990534456}
+  _textCoins: {fileID: 3337840210990534456}
 --- !u!1 &3029292795749219010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _titleText: {fileID: 4933465090908500050}
-  _coinsText: {fileID: 3337840210990534456}
+  _experienceText: {fileID: 0}
   _titleProductTexts: []
   _buttonProductTexts: []
   _costProductDonateTexts: []
@@ -1449,7 +1451,7 @@ GameObject:
   - component: {fileID: 7989999808779897335}
   - component: {fileID: 3337840210990534456}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Coins)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

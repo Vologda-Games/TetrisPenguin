@@ -8,9 +8,10 @@ public class AnimationTextAdd : MonoBehaviour
 
     [SerializeField] private TMP_Text _thisText;
 
-    public void MoveDownAndLoad(int _valueExperience)
+    public void MoveDownAndLoad(int _valueCurrency)
     {
-        _thisText.text = $"+{_valueExperience}";
+        if (_valueCurrency > 0) _thisText.text = $"+{_valueCurrency}";
+        else _thisText.text = $"-{_valueCurrency}";
         StartCoroutine(MoveObject());
     }
 
