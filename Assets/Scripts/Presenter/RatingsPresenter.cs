@@ -11,7 +11,7 @@ public class RatingsPresenter : MonoBehaviour
     private void Start()
     {
         instance = this;
-        RatingsModel.instance.usePlayersInformation = true;
+        RatingsModel.instance.usePlayersInformation = false;
         RatingsModel.instance._quantityFalseUsers = 50;
         LoadFalseUsers();
     }
@@ -23,9 +23,9 @@ public class RatingsPresenter : MonoBehaviour
         {
             for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
             {
-                if (RatingsModel.instance.playersInformation[i]._name == RatingsModel.instance._yourName)
+                if (RatingsModel.instance.playersInformation[i].name == RatingsModel.instance._yourName)
                 {
-                    RatingsModel.instance.playersInformation[i]._score = RatingsModel.instance._yourScore;
+                    RatingsModel.instance.playersInformation[i].score = RatingsModel.instance._yourScore;
                     _haveYou = true;
                     break;
                 }
@@ -35,8 +35,8 @@ public class RatingsPresenter : MonoBehaviour
                 RatingsModel.instance.playersInformation.Add(
                 new PlayerInformation()
                 {
-                    _name = RatingsModel.instance._yourName,
-                    _score = RatingsModel.instance._yourScore,
+                    name = RatingsModel.instance._yourName,
+                    score = RatingsModel.instance._yourScore,
                 }
                 );
             }
@@ -45,9 +45,9 @@ public class RatingsPresenter : MonoBehaviour
         {
             for (int i = 0; i < RatingsModel.instance._falseUsersInformation.Count; i++)
             {
-                if (RatingsModel.instance._falseUsersInformation[i]._name == RatingsModel.instance._yourName)
+                if (RatingsModel.instance._falseUsersInformation[i].name == RatingsModel.instance._yourName)
                 {
-                    RatingsModel.instance._falseUsersInformation[i]._score = RatingsModel.instance._yourScore;
+                    RatingsModel.instance._falseUsersInformation[i].score = RatingsModel.instance._yourScore;
                     _haveYou = true;
                     break;
                 }
@@ -57,8 +57,8 @@ public class RatingsPresenter : MonoBehaviour
                 RatingsModel.instance._falseUsersInformation.Add(
                 new PlayerInformation()
                 {
-                    _name = RatingsModel.instance._yourName,
-                    _score = RatingsModel.instance._yourScore,
+                    name = RatingsModel.instance._yourName,
+                    score = RatingsModel.instance._yourScore,
                 }
                 );
             }
@@ -72,8 +72,8 @@ public class RatingsPresenter : MonoBehaviour
         {
             RatingsModel.instance._falseUsersInformation.Add(new PlayerInformation()
             {
-                _name = $"{_words[Random.Range(0, _words.Length)]}",
-                _score = Random.Range(0, 8000),
+                name = $"{_words[Random.Range(0, _words.Length)]}",
+                score = Random.Range(0, 5000),
             });
         }
     }

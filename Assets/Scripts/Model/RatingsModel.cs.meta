@@ -3,7 +3,12 @@ guid: 7f9ab54a37130d64ab8e53e076fba1e0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _defaultIcon: {fileID: 21300000, guid: 6a6d038084c3b41f2986f29ef2206570, type: 3}
+  - _topOne: {fileID: 21300000, guid: b7b7fdd5af728457891f5a6ba281e241, type: 3}
+  - _topTwo: {fileID: 21300000, guid: eac1e7e913fea42aebe338c19262f311, type: 3}
+  - _topThree: {fileID: 21300000, guid: d16ae89559d1d4d759b6665e01a54bd1, type: 3}
+  - _yourIcon: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

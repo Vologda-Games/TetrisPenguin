@@ -10,7 +10,6 @@ public class RatingsModel : MonoBehaviour
     [Header("PlayersInformation")]
 
     public List<PlayerInformation> playersInformation = new List<PlayerInformation>();
-    [HideInInspector] public List<RatingItemView> _raitingItemsView = new List<RatingItemView>();
     public List<PlayerInformation> _falseUsersInformation = new List<PlayerInformation>();
 
     public Sprite _defaultIcon, _topOne, _topTwo, _topThree;
@@ -48,8 +47,9 @@ public class PlayerInformation
 {
     [Header("Information")]
 
-    public Sprite _icon;
-    public string _name;
-    public int _score;
-    [HideInInspector] public int _topPosition;
+    public Sprite icon;
+    public string name;
+    public int score;
+    [HideInInspector] public int topPosition;
+    [HideInInspector] public RatingItemView ratingItemView;
 }

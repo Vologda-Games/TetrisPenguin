@@ -16,10 +16,10 @@ public class RatingItemView : MonoBehaviour
         if(RatingsModel.instance.usePlayersInformation) _playerInformation = RatingsModel.instance.playersInformation[_topPosition];
         else _playerInformation = RatingsModel.instance._falseUsersInformation[_topPosition];
         
-        if(_playerInformation._icon != null) icon.sprite = _playerInformation._icon;
+        if(_playerInformation.icon != null) icon.sprite = _playerInformation.icon;
         else icon.sprite = RatingsModel.instance._defaultIcon;
-        textName.text = _playerInformation._name;
-        textScore.text = _playerInformation._score.ToString();
+        textName.text = _playerInformation.name;
+        textScore.text = _playerInformation.score.ToString();
         textTopPosition.text = (_numberPlayer + 1).ToString();
         _topPositionPlayer = _numberPlayer;
         LoadSpecialIconForPlayer(); 
