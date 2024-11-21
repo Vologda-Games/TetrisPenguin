@@ -14,17 +14,11 @@ public class DailyTasksView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _quantityCompleted;
 
     [Header("TaskInformation")]
-    public static DailyTasksView _instance;
     [HideInInspector] public int _numberTask;
     [HideInInspector] public RectTransform _rectTransform;
     [HideInInspector] public float _secondsDealayTask;
     [HideInInspector] public bool _right;
     [HideInInspector] public bool _taskInMenu = false;
-
-    private void Awake()
-    {
-        _instance = this;
-    }
 
     private void Start()
     {
@@ -34,7 +28,7 @@ public class DailyTasksView : MonoBehaviour
 
     public void OutputInformationTask(DailyTasksInfoValue _infoTask, int _numberInfoTask)
     {
-        string Condition = NewDayEventModel._instance._tasksOnToday[_numberInfoTask].ConditionsTasks;
+        string Condition = NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionsTasks;
         if (Condition == "" || Condition == null) Condition = "NotReady";
         _numberTask = _numberInfoTask;
         _imageReward.sprite = _infoTask.SpriteReward();
@@ -67,8 +61,8 @@ public class DailyTasksView : MonoBehaviour
 
     public void CollectReward()
     {
-        string Condition = NewDayEventModel._instance._tasksOnToday[_numberTask].ConditionsTasks;
-        DailyTasksInfoValue _taskToday = NewDayEventModel._instance._tasksOnToday[_numberTask];
+        string Condition = NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionsTasks;
+        DailyTasksInfoValue _taskToday = NewDayEventModel._instance.tasksOnToday[_numberTask];
         if (_taskToday._currentQuantity >= _taskToday._maximumQuantity && Condition != "Collected")
         {
             switch (_taskToday._typeRewardEnum)
@@ -80,7 +74,7 @@ public class DailyTasksView : MonoBehaviour
                     BafsPresenter.AddBaffsByNumber(_taskToday._numberAddBaff, _taskToday._quantityAddBaff);
                     break;
             }
-            NewDayEventModel._instance._tasksOnToday[_numberTask].ConditionsTasks = "Collected";
+            NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionsTasks = "Collected";
             DataPresenter.SaveNewDayEventModel();
             _quantityCompleted.text = $"Собрано";
             _barReady.enabled = false;

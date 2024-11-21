@@ -8,9 +8,13 @@ public class RatingsPresenter : MonoBehaviour
 
     [SerializeField] private string _wordsNames;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
         RatingsModel.instance.usePlayersInformation = false;
         RatingsModel.instance._quantityFalseUsers = 50;
         LoadFalseUsers();
@@ -19,6 +23,7 @@ public class RatingsPresenter : MonoBehaviour
     public void LoadYourInformationInRatings()
     {
         bool _haveYou = false;
+        RatingsModel.instance.GetYourInformation();
         if (RatingsModel.instance.usePlayersInformation)
         {
             for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)

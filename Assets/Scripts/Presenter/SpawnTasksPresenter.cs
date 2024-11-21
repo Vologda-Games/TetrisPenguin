@@ -15,11 +15,11 @@ public class SpawnTasksPresenter : MonoBehaviour
 
     public void SpawnTask()
     {
-        for (int i = 0; i < NewDayEventModel._instance._tasksOnToday.Count; i++)
+        for (int i = 0; i < NewDayEventModel._instance.tasksOnToday.Count; i++)
         {
-            GameObject _newTask = Instantiate(_taskObject, _parentTasks.transform.position, Quaternion.identity, _parentTasks);
+            GameObject _newTask = Instantiate(_taskObject, _parentTasks);
             DailyTasksView _dailyTasksView = _newTask.GetComponent<DailyTasksView>();
-            if (_dailyTasksView != null) _dailyTasksView.OutputInformationTask(NewDayEventModel._instance._tasksOnToday[i], i);
+            if (_dailyTasksView != null) _dailyTasksView.OutputInformationTask(NewDayEventModel._instance.tasksOnToday[i], i);
         }
     }
 }

@@ -613,7 +613,6 @@ GameObject:
   - component: {fileID: 2323213381256088790}
   - component: {fileID: 7095799867078010862}
   - component: {fileID: 518133055242975688}
-  - component: {fileID: 6206642670447684141}
   m_Layer: 5
   m_Name: WheelOfLuck
   m_TagString: Untagged
@@ -683,24 +682,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6206642670447684141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893681746383542467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a801a959176874fbfce5a876ccc06f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _titleText: {fileID: 4933465090908500050}
-  _experienceText: {fileID: 0}
-  _titleProductTexts: []
-  _buttonProductTexts: []
-  _costProductDonateTexts: []
-  _currencyProductDonateTexts: []
 --- !u!1 &7545732686370247817
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,9 +802,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6206642670447684141}
-        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
-        m_MethodName: EventCloseShop
+      - m_Target: {fileID: 3484988339829837406}
+        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
+        m_MethodName: EventCloseWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

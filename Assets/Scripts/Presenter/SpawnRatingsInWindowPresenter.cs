@@ -14,7 +14,6 @@ public class SpawnRatingsInWindowPresenter : MonoBehaviour
 
     private void Start()
     {
-        RatingsModel.instance.GetYourInformation();
         RatingsPresenter.instance.LoadYourInformationInRatings();
 
         SpawnRatingItems();

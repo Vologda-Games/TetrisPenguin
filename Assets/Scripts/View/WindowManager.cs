@@ -25,6 +25,11 @@ public class WindowManager : MonoBehaviour
         MusicAndSoundsManager._instance.PlaySoundClickOnButton();
     }
 
+    public void EventCloseWindow()
+    {
+        GameInterface.instance.CloseFirstLayout();
+    }
+
     private IEnumerator SaveTimeText()
     {
         while (true)

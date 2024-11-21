@@ -48,27 +48,26 @@ public class SaveDailyTasksModel
 public class DailyTasksInfoValue
 {
     [Header("Type")]
-    [SerializeField] public TypeTask _typeTaskEnum;
+    public TypeTask _typeTaskEnum;
 
     [Header("For Create, Range(0, 14)")]
-    [SerializeField] public int _objectLevel;
-
-    [Header("Number Baff For Use Baff, Range(1, 5)")]
-    [SerializeField] public int _numberUseBaff = 1;
+    public int _objectLevel;
+    [Header("Number aff For Use Baff, Range(1, 5)")]
+    public int _numberUseBaff = 1;
 
     [Header("Intagers Or Floats")]
-    [SerializeField] public int _maximumQuantity = 1;
-    [SerializeField, HideInInspector] public int _currentQuantity;
+    public int _maximumQuantity = 1;
+    [HideInInspector] public int _currentQuantity;
 
     [Header("Type Reward")]
-    [SerializeField] public TypeReward _typeRewardEnum;
+    public TypeReward _typeRewardEnum;
 
     [Header("Number Baff For Add Baff, Range(1, 5)")]
-    [SerializeField] public int _numberAddBaff = 1;
-    [SerializeField] public int _quantityAddBaff = 1;
+    public int _numberAddBaff = 1;
+    public int _quantityAddBaff = 1;
 
     [Header("Quantity Currency For Add Currency")]
-    [SerializeField] public int _quantityAddCurrency = 1;
+    public int _quantityAddCurrency = 1;
 
     [HideInInspector] public string ConditionsTasks;
 
@@ -149,7 +148,7 @@ public class DailyTasksInfoValue
     {
         _currentQuantity += _supplementToProgress;
         DataPresenter.SaveNewDayEventModel();
-        DailyTasksInfoValue _taskValue = NewDayEventModel._instance._tasksOnToday[_numberTask];
+        DailyTasksInfoValue _taskValue = NewDayEventModel._instance.tasksOnToday[_numberTask];
         if (
             _taskValue._typeTaskEnum != TypeTask.Click && _taskValue._currentQuantity <= _taskValue._maximumQuantity ||
             _taskValue._typeTaskEnum == TypeTask.Click && _taskValue._currentQuantity == _taskValue._maximumQuantity

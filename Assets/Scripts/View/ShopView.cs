@@ -36,11 +36,6 @@ public class ShopView : MonoBehaviour
         instance = this;
     }
 
-    public void EventCloseShop()
-    {
-        GameInterface.instance.CloseFirstLayout();
-    }
-
     public void Localization()
     {
         _titleText.text = "Магазин";

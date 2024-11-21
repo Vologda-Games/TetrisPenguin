@@ -34,7 +34,7 @@ public class RatingsModel : MonoBehaviour
         _yourScore = 0;
         for (int i = 0; i <= PlayerModel.instance.level; i++)
         {
-            if (PlayerModel.instance.level < Levels.levels[i].level) _yourScore += Levels.levels[i].experience;
+            if (PlayerModel.instance.level > Levels.levels[i].level) _yourScore += Levels.levels[i].experience;
             else if (PlayerModel.instance.level == Levels.levels[i].level) _yourScore += PlayerModel.instance.experience;
         }
         if (_yourName == null || _yourName == "") _yourName = "Вы";
