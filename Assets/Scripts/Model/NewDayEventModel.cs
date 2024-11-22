@@ -32,6 +32,8 @@ public class NewDayEventModel : MonoBehaviour
         if(GamePush.GP_Server.Time().Date > _lastEnterToGame || _lastEnterToGame == null)
         {
             ResetFlagsForNewDay();
+            GameInterface.instance.EventOpenDailyRewards();
+            DailyRewardsPresenter.instance.NewDay();
             _tasksOnToday = new List<DailyTasksInfoValue>();
             while(_tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
