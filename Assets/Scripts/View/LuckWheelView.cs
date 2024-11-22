@@ -62,6 +62,7 @@ public class LuckWheelView : MonoBehaviour
 
     private bool CanSpinToday() 
     {
+        Debug.Log("Нажатие");
         string lastSpinDate = PlayerPrefs.GetString("LastSpinDate", "");
 
         if (string.IsNullOrEmpty(lastSpinDate)) 
@@ -78,7 +79,7 @@ public class LuckWheelView : MonoBehaviour
                 return true;
             }
         }
-
+        Debug.Log(PlayerPrefs.GetInt("WheelSpunToday"));
         return PlayerPrefs.GetInt("WheelSpinToday") == 0;
     }
 

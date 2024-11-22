@@ -5,7 +5,6 @@ using UnityEngine;
 public class DailyRewardsModel : MonoBehaviour
 {
     public static DailyRewardsModel instance;
-    [Header("В List rewards писать только int значения")]
     public List<int> rewards = new List<int>();
     public List<bool> claimRewadsBool;
     [SerializeField] public int maxDay = 7;
@@ -45,6 +44,7 @@ public class DailyRewardsModel : MonoBehaviour
         }
         else
         {
+            Debug.Log("return");
             return new List<bool>();
         }
     }

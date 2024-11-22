@@ -1111,8 +1111,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 20:16:20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c5ee151f9307453bad78be36b51a077, type: 2}
+  m_sharedMaterial: {fileID: 2517202264660172603, guid: 5c5ee151f9307453bad78be36b51a077, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2847,11 +2847,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 6151136985265268949}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7918359095188355617}
         m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
         m_MethodName: EventCloseWindow
         m_Mode: 1
@@ -3497,6 +3497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2930814471038948604}
   - component: {fileID: 8120836579296320722}
+  - component: {fileID: 7918359095188355617}
   m_Layer: 0
   m_Name: WindowManager
   m_TagString: Untagged
@@ -3532,6 +3533,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textTimeUntilNextSpin: {fileID: 1257077056353906284}
+--- !u!114 &7918359095188355617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8618352067733986596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20d8d3479c479428caccfddd0e9762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTimeDifference: {fileID: 0}
+  _textCoins: {fileID: 0}
 --- !u!1 &9191975415217110661
 GameObject:
   m_ObjectHideFlags: 0
