@@ -114,10 +114,10 @@ public class DailyRewardsPresenter : MonoBehaviour
             DailyRewardsModel.instance.currentDay = 1;
         }
         
-        if (DailyRewardsModel.instance.claimRewadsBool[DailyRewardsModel.instance.currentDay - 1] == true) 
+        /*if (DailyRewardsModel.instance.claimRewadsBool[DailyRewardsModel.instance.currentDay - 1] == true) 
         {
             DailyRewardsModel.instance.currentDay++;
-        }
+        }*/
 
         if (DailyRewardsModel.instance.currentDay > 7) 
         {
