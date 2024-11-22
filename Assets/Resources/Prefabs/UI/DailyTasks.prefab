@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 6738682138076584383}
+  _textCoins: {fileID: 3337840210990534456}
 --- !u!1 &1781173251042390490
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +486,7 @@ GameObject:
   - component: {fileID: 5661572210967643013}
   - component: {fileID: 2782643021671444539}
   m_Layer: 0
-  m_Name: SpawTasksView
+  m_Name: SpawTasksPresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,7 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68499b95401352b4ebdcab7321b2dc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textExperience: {fileID: 3337840210990534456}
   _parentTasks: {fileID: 5665952030918295262}
   _taskObject: {fileID: 7406328230392861511, guid: 1123416701c9f4446a57b2ed7c06ef4c, type: 3}
 --- !u!1 &4824858489281229539
@@ -579,7 +579,6 @@ GameObject:
   - component: {fileID: 2323213381256088790}
   - component: {fileID: 7095799867078010862}
   - component: {fileID: 518133055242975688}
-  - component: {fileID: 6206642670447684141}
   m_Layer: 5
   m_Name: DailyTasks
   m_TagString: Untagged
@@ -649,24 +648,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6206642670447684141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893681746383542467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a801a959176874fbfce5a876ccc06f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _titleText: {fileID: 4933465090908500050}
-  _coinsText: {fileID: 3337840210990534456}
-  _titleProductTexts: []
-  _buttonProductTexts: []
-  _costProductDonateTexts: []
-  _currencyProductDonateTexts: []
 --- !u!1 &7422303726702867517
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,9 +819,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6206642670447684141}
-        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
-        m_MethodName: EventCloseShop
+      - m_Target: {fileID: 908839834957355414}
+        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
+        m_MethodName: EventCloseWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1047,8 +1028,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 20:16:20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
+  m_sharedMaterial: {fileID: 3074828514974314926, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1140,7 +1121,7 @@ GameObject:
   - component: {fileID: 7989999808779897335}
   - component: {fileID: 3337840210990534456}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Coins)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,8 +1176,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
+  m_sharedMaterial: {fileID: 3074828514974314926, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

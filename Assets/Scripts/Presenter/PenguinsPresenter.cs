@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PenguinsPresenter : MonoBehaviour
@@ -45,13 +44,13 @@ public class PenguinsPresenter : MonoBehaviour
         else if (level == 12) { experience = 8192; }
         else if (level == 13) { experience = 16384; }
         else if (level == 14) { experience = 32768; }
-        PlayerPresenter.AddCoin(experience);
+        PlayerPresenter.instance.AddExperience(experience);
     }
 
     public void StartPenguin()
     {
         PenguinView penguinView = null;
-        if(PenguinsModel.instance.penguinInSpawn != null)
+        if (PenguinsModel.instance.penguinInSpawn != null)
         {
             penguinView = PenguinsModel.instance.penguinInSpawn;
             penguinView.objRigidbody.simulated = true;
@@ -76,7 +75,7 @@ public class PenguinsPresenter : MonoBehaviour
             if (BafsPresenter.GetSelectBaf() == 2)
             {
                 penguinView.objRigidbody.AddForce(Vector3.down * 800);
-                if(!penguinView._strongBlow) penguinView._strongBlow = true;
+                if (!penguinView._strongBlow) penguinView._strongBlow = true;
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceSpringBafs(1);
                 ProjectionView.instance.PointProjection();
@@ -102,15 +101,16 @@ public class PenguinsPresenter : MonoBehaviour
         if (BafsPresenter.GetSelectBaf() == 0)
         {
             int _randomChance = Random.Range(1, 101);
-            for(int i = PenguinsModel._levelToChances.Count - 1; i > 0; i--)
+            for (int i = PenguinsModel._levelToChances.Count - 1; i > 0; i--)
             {
-                if(_randomChance <= PenguinsModel._levelToChances[i].chance)
+                if (_randomChance <= PenguinsModel._levelToChances[i].chance)
                 {
                     SpawnPenguinsPresenter.SpawnByLevel(i);
                     break;
-                }else
+                }
+                else
                 {
-                    if(PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.SpawnByLevel(0);
+                    if (PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.SpawnByLevel(0);
                 }
             }
         }

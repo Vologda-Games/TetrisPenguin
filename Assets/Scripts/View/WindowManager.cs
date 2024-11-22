@@ -7,11 +7,17 @@ public class WindowManager : MonoBehaviour
 
     [Header("UI")]
 
-    [SerializeField] private TextMeshProUGUI _textTimeDifference;
-    
+    [SerializeField] private TMP_Text _textTimeDifference;
+    [SerializeField] public TMP_Text _textCoins;
+
     private void Start()
     {
-        StartCoroutine(SaveTimeText());
+        if(_textCoins != null)
+        {
+            PlayerView.instance._coinsTextInWindow = _textCoins;
+            PlayerView.instance.RenderCoin();
+        }
+        if(_textTimeDifference != null) StartCoroutine(SaveTimeText());
     }
 
     public void ClickButton()
@@ -19,9 +25,14 @@ public class WindowManager : MonoBehaviour
         MusicAndSoundsManager._instance.PlaySoundClickOnButton();
     }
 
+    public void EventCloseWindow()
+    {
+        GameInterface.instance.CloseFirstLayout();
+    }
+
     private IEnumerator SaveTimeText()
     {
-        while(true)
+        while (true)
         {
             _textTimeDifference.text = $"Обновится через {DailyTasksModel.TimeDifference()}";
             yield return new WaitForSeconds(1);

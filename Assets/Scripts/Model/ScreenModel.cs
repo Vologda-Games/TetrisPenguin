@@ -13,7 +13,7 @@ public class ScreenModel : MonoBehaviour
 
 
     [Header("String")]
-    [SerializeField] public static List<string> _typesControl = new List<string>() {"Precise", "Flexible"};
+    [SerializeField] public static List<string> _typesControl = new List<string>() { "Precise", "Flexible" };
     [HideInInspector] public string TypeControl;
 
 
@@ -27,21 +27,21 @@ public class ScreenModel : MonoBehaviour
 
     private void Awake()
     {
-        if(TypeControl == "" || TypeControl != null) TypeControl = _typesControl[0];
+        if (TypeControl == "" || TypeControl != null) TypeControl = _typesControl[0];
         posTouch = 0;
         instance = this;
     }
 
     public void SetControl(string _typeControl)
     {
-       TypeControl = _typeControl;
-       DataPresenter.SaveScreenModel();
+        TypeControl = _typeControl;
+        DataPresenter.SaveScreenModel();
     }
 
     public static string GetNameTypeControl()
     {
         string _nameTypeControl = "";
-        switch(instance.TypeControl)
+        switch (instance.TypeControl)
         {
             case "Precise":
                 _nameTypeControl = "точное";

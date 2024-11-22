@@ -58,6 +58,7 @@ public class DataPresenter
         {
             level = PlayerModel.instance.level,
             coins = PlayerModel.instance.coins,
+            experience = PlayerModel.instance.experience,
         };
         string json = JsonConvert.SerializeObject(playerModel);
         SaveData(Models.PLAYER_MODEL, json);
@@ -101,7 +102,7 @@ public class DataPresenter
     {
         SaveNewDayEventModel newDayEventModel = new SaveNewDayEventModel()
         {
-            _tasksOnToday = NewDayEventModel._instance._tasksOnToday,
+            tasksOnToday = NewDayEventModel._instance.tasksOnToday,
         };
         string json = JsonConvert.SerializeObject(newDayEventModel);
         SaveData(Models.NEW_DAY_EVENT_MODEL, json);
@@ -138,6 +139,7 @@ public class DataPresenter
         SavePlayerModel saveResourcesModel = JsonConvert.DeserializeObject<SavePlayerModel>(json);
         PlayerModel.instance.level = saveResourcesModel.level;
         PlayerModel.instance.coins = saveResourcesModel.coins;
+        PlayerModel.instance.experience = saveResourcesModel.experience;
     }
 
     public static void GetBafsModel()
@@ -185,7 +187,7 @@ public class DataPresenter
             return;
         }
         SaveNewDayEventModel saveResourcesModel = JsonConvert.DeserializeObject<SaveNewDayEventModel>(json);
-        NewDayEventModel._instance._tasksOnToday = saveResourcesModel._tasksOnToday;
+        NewDayEventModel._instance.tasksOnToday = saveResourcesModel.tasksOnToday;
     }
 
     public static void GetScreenModel()

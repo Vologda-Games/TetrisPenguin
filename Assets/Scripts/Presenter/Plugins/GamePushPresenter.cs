@@ -20,5 +20,6 @@ public class GamePushPresenter : MonoBehaviour
         BafsView.instance.RenderCountBafs();
         NewDayEventModel._instance.LoadResourcesNewDay();
         SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
+        RatingsPresenter.instance.LoadYourInformationInRatings();
     }
 }
