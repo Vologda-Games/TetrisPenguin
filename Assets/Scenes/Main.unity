@@ -7051,8 +7051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textAddExperience: {fileID: 8649337511527931020, guid: 8154936daa46f9b418f1695d9cfbbca6, type: 3}
-  FutureExperience: 0
-  FutureCoins: 0
 --- !u!1 &1717337616
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,16 +9145,40 @@ MonoBehaviour:
     score: 125
     topPosition: 0
     ratingItemView: {fileID: 0}
-  _falseUsersInformation: []
-  _defaultIcon: {fileID: 21300000, guid: 6a6d038084c3b41f2986f29ef2206570, type: 3}
-  _topOne: {fileID: 21300000, guid: b7b7fdd5af728457891f5a6ba281e241, type: 3}
-  _topTwo: {fileID: 21300000, guid: eac1e7e913fea42aebe338c19262f311, type: 3}
-  _topThree: {fileID: 21300000, guid: d16ae89559d1d4d759b6665e01a54bd1, type: 3}
-  _yourScore: 0
-  _yourName: 
-  _yourIcon: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 9221a33849c62451f8c1384e7f22c9ba, type: 3}
+    name: "\u041C\u0430\u043D\u044F"
+    score: 999
+    topPosition: 0
+    ratingItemView: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 96ff8090ed400444ca45e8ef17e76f0c, type: 3}
+    name: "\u0415\u0433\u043E\u0440"
+    score: 789
+    topPosition: 0
+    ratingItemView: {fileID: 0}
+  - icon: {fileID: 21300000, guid: d6e84deb03dd24e2da5dd58908ee11b2, type: 3}
+    name: "\u0421\u043B\u0430\u0432\u0430"
+    score: 545
+    topPosition: 0
+    ratingItemView: {fileID: 0}
+  - icon: {fileID: 21300000, guid: b6975c3de651f42babaed097a5f3312b, type: 3}
+    name: "\u0414\u0430\u043D\u044F"
+    score: 6666
+    topPosition: 0
+    ratingItemView: {fileID: 0}
+  - icon: {fileID: 21300000, guid: b6975c3de651f42babaed097a5f3312b, type: 3}
+    name: "\u0412\u0430\u043B\u0435\u0440\u0438\u0439"
+    score: 379
+    topPosition: 0
+    ratingItemView: {fileID: 0}
+  defaultIcon: {fileID: 21300000, guid: 6a6d038084c3b41f2986f29ef2206570, type: 3}
+  topOne: {fileID: 21300000, guid: b7b7fdd5af728457891f5a6ba281e241, type: 3}
+  topTwo: {fileID: 21300000, guid: eac1e7e913fea42aebe338c19262f311, type: 3}
+  topThree: {fileID: 21300000, guid: d16ae89559d1d4d759b6665e01a54bd1, type: 3}
+  yourScore: 0
+  yourName: 
+  yourIcon: {fileID: 0}
   usePlayersInformation: 0
-  _quantityFalseUsers: 50
+  quantityFalseUsers: 50
 --- !u!1 &2101400852
 GameObject:
   m_ObjectHideFlags: 0
@@ -9277,107 +9299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d18663c5e1b32949bed763255022e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allTasks:
-  - _typeTaskEnum: 0
-    _objectLevel: 2
-    _numberUseBaff: 0
-    _maximumQuantity: 5
-    _currentQuantity: 0
-    _typeRewardEnum: 0
-    _numberAddBaff: 3
-    _quantityAddBaff: 2
-    _quantityAddCurrency: 0
-    ConditionsTasks: 
-  - _typeTaskEnum: 0
-    _objectLevel: 4
-    _numberUseBaff: 0
-    _maximumQuantity: 8
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 100
-    ConditionsTasks: 
-  - _typeTaskEnum: 2
-    _objectLevel: 0
-    _numberUseBaff: 0
-    _maximumQuantity: 120
-    _currentQuantity: 0
-    _typeRewardEnum: 0
-    _numberAddBaff: 1
-    _quantityAddBaff: 3
-    _quantityAddCurrency: 0
-    ConditionsTasks: 
-  - _typeTaskEnum: 2
-    _objectLevel: 0
-    _numberUseBaff: 0
-    _maximumQuantity: 200
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 400
-    ConditionsTasks: 
-  - _typeTaskEnum: 1
-    _objectLevel: 0
-    _numberUseBaff: 2
-    _maximumQuantity: 4
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 350
-    ConditionsTasks: 
-  - _typeTaskEnum: 1
-    _objectLevel: 0
-    _numberUseBaff: 5
-    _maximumQuantity: 2
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 100
-    ConditionsTasks: 
-  - _typeTaskEnum: 1
-    _objectLevel: 0
-    _numberUseBaff: 4
-    _maximumQuantity: 3
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 400
-    ConditionsTasks: 
-  - _typeTaskEnum: 1
-    _objectLevel: 0
-    _numberUseBaff: 1
-    _maximumQuantity: 5
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 500
-    ConditionsTasks: 
-  - _typeTaskEnum: 0
-    _objectLevel: 7
-    _numberUseBaff: 0
-    _maximumQuantity: 12
-    _currentQuantity: 0
-    _typeRewardEnum: 1
-    _numberAddBaff: 0
-    _quantityAddBaff: 0
-    _quantityAddCurrency: 700
-    ConditionsTasks: 
-  - _typeTaskEnum: 0
-    _objectLevel: 12
-    _numberUseBaff: 0
-    _maximumQuantity: 15
-    _currentQuantity: 0
-    _typeRewardEnum: 0
-    _numberAddBaff: 2
-    _quantityAddBaff: 6
-    _quantityAddCurrency: 0
-    ConditionsTasks: 
   _allReadyNumbersTasks: 
   _maxQuantityTaskOfDay: 3
 --- !u!1 &2130941037

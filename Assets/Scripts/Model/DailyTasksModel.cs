@@ -5,7 +5,117 @@ using UnityEngine;
 public class DailyTasksModel : MonoBehaviour
 {
     [Header("Structure")]
-    [SerializeField] public List<DailyTasksInfoValue> _allTasks = new List<DailyTasksInfoValue>();
+    public static List<DailyTasksInfoValue> allTasks = new List<DailyTasksInfoValue>()
+    {
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 2,
+            _numberUseBaff = 0,
+            _maximumQuantity = 3,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 200,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 5,
+            _numberUseBaff = 0,
+            _maximumQuantity = 2,
+            _typeRewardEnum = TypeReward.Baff,
+            _numberAddBaff = 4,
+            _quantityAddBaff = 5,
+            _quantityAddCurrency = 0,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 7,
+            _numberUseBaff = 0,
+            _maximumQuantity = 4,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 400,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 2,
+            _maximumQuantity = 3,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 250,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 5,
+            _maximumQuantity = 2,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 100,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 3,
+            _maximumQuantity = 5,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 800,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Click,
+            _objectLevel = 0,
+            _numberUseBaff = 0,
+            _maximumQuantity = 150,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 180,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Click,
+            _objectLevel = 0,
+            _numberUseBaff = 0,
+            _maximumQuantity = 380,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 300,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Click,
+            _objectLevel = 0,
+            _numberUseBaff = 0,
+            _maximumQuantity = 500,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 999,
+            ConditionTask = ""
+        }
+    };
     public static DailyTasksModel _instance;
     public List<int> _allReadyNumbersTasks;
     [SerializeField] public int _maxQuantityTaskOfDay;
@@ -69,7 +179,7 @@ public class DailyTasksInfoValue
     [Header("Quantity Currency For Add Currency")]
     public int _quantityAddCurrency = 1;
 
-    [HideInInspector] public string ConditionsTasks;
+    [HideInInspector] public string ConditionTask;
 
     public string TaskInformation()
     {

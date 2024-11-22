@@ -10,18 +10,17 @@ public class RatingsModel : MonoBehaviour
     [Header("PlayersInformation")]
 
     public List<PlayerInformation> playersInformation = new List<PlayerInformation>();
-    public List<PlayerInformation> _falseUsersInformation = new List<PlayerInformation>();
 
-    public Sprite _defaultIcon, _topOne, _topTwo, _topThree;
+    public Sprite defaultIcon, topOne, topTwo, topThree;
 
     [Header("YourInformation")]
-    [HideInInspector] public int _yourScore;
-    [HideInInspector] public string _yourName;
-    [HideInInspector] public Sprite _yourIcon;
+    [HideInInspector] public int yourScore;
+    [HideInInspector] public string yourName;
+    [HideInInspector] public Sprite yourIcon;
 
     [Header("InformationFalseUsers")]
     [SerializeField] public bool usePlayersInformation;
-    [SerializeField] public int _quantityFalseUsers;
+    [SerializeField] public int quantityFalseUsers;
 
 
     private void Awake()
@@ -31,14 +30,14 @@ public class RatingsModel : MonoBehaviour
 
     public void GetYourInformation()
     {
-        _yourScore = 0;
+        yourScore = 0;
         for (int i = 0; i <= PlayerModel.instance.level; i++)
         {
-            if (PlayerModel.instance.level > Levels.levels[i].level) _yourScore += Levels.levels[i].experience;
-            else if (PlayerModel.instance.level == Levels.levels[i].level) _yourScore += PlayerModel.instance.experience;
+            if (PlayerModel.instance.level > Levels.levels[i].level) yourScore += Levels.levels[i].experience;
+            else if (PlayerModel.instance.level == Levels.levels[i].level) yourScore += PlayerModel.instance.experience;
         }
-        if (_yourName == null || _yourName == "") _yourName = "Вы";
-        if (_yourIcon == null) _yourIcon = _defaultIcon;
+        if (yourName == null || yourName == "") yourName = "Вы";
+        if (yourIcon == null) yourIcon = defaultIcon;
     }
 }
 

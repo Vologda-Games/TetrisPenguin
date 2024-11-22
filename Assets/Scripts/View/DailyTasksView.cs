@@ -12,6 +12,7 @@ public class DailyTasksView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _quantityBonus;
     [SerializeField] private TextMeshProUGUI _taskInformation;
     [SerializeField] private TextMeshProUGUI _quantityCompleted;
+    [SerializeField] private Button _thisButton;
 
     [Header("TaskInformation")]
     [HideInInspector] public int _numberTask;
@@ -28,20 +29,20 @@ public class DailyTasksView : MonoBehaviour
 
     public void OutputInformationTask(DailyTasksInfoValue _infoTask, int _numberInfoTask)
     {
-        string Condition = NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionsTasks;
-        if (Condition == "" || Condition == null) Condition = "NotReady";
+        string Condition = NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask;
+        if (Condition == "" || Condition == null) NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask = "NotReady";
         _numberTask = _numberInfoTask;
         _imageReward.sprite = _infoTask.SpriteReward();
         _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
         _taskInformation.text = $"{_infoTask.TaskInformation()}";
+        _bar.enabled = true;
+        _barCollected.enabled = false;
+        _barReady.enabled = false;
+        _thisButton.interactable = true;
         if (_infoTask._currentQuantity < _infoTask._maximumQuantity)
         {
             _bar.fillAmount = (float)_infoTask._currentQuantity / _infoTask._maximumQuantity;
             _quantityCompleted.text = $"{_infoTask._currentQuantity}/{_infoTask._maximumQuantity}";
-            _bar.enabled = true;
-            _barReady.enabled = false;
-            _barCollected.enabled = false;
-            GetComponent<Button>().interactable = true;
         }
         else if (_infoTask._currentQuantity >= _infoTask._maximumQuantity && Condition != "Collected")
         {
@@ -53,15 +54,14 @@ public class DailyTasksView : MonoBehaviour
         {
             _quantityCompleted.text = $"Собрано";
             _bar.enabled = false;
-            _barReady.enabled = false;
             _barCollected.enabled = true;
-            GetComponent<Button>().interactable = false;
+            _thisButton.interactable = false;
         }
     }
 
     public void CollectReward()
     {
-        string Condition = NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionsTasks;
+        string Condition = NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask;
         DailyTasksInfoValue _taskToday = NewDayEventModel._instance.tasksOnToday[_numberTask];
         if (_taskToday._currentQuantity >= _taskToday._maximumQuantity && Condition != "Collected")
         {
@@ -74,7 +74,7 @@ public class DailyTasksView : MonoBehaviour
                     BafsPresenter.AddBaffsByNumber(_taskToday._numberAddBaff, _taskToday._quantityAddBaff);
                     break;
             }
-            NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionsTasks = "Collected";
+            NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask = "Collected";
             DataPresenter.SaveNewDayEventModel();
             _quantityCompleted.text = $"Собрано";
             _barReady.enabled = false;

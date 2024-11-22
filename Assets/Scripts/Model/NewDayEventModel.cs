@@ -18,7 +18,7 @@ public class NewDayEventModel : MonoBehaviour
 
     public void LoadResourcesNewDay()
     {
-        for (int i = 0; i < DailyTasksModel._instance._allTasks.Count; i++)
+        for (int i = 0; i < DailyTasksModel.allTasks.Count; i++)
         {
             if (!DailyTasksModel._instance._allReadyNumbersTasks.Contains(i)) DailyTasksModel._instance._allReadyNumbersTasks.Add(i);
         }
@@ -35,7 +35,7 @@ public class NewDayEventModel : MonoBehaviour
             while (tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
                 int _randomNumberTasks = DailyTasksModel._instance.RandomNumberTask();
-                if (!tasksOnToday.Contains(DailyTasksModel._instance._allTasks[_randomNumberTasks])) tasksOnToday.Add(DailyTasksModel._instance._allTasks[_randomNumberTasks]);
+                if (!tasksOnToday.Contains(DailyTasksModel.allTasks[_randomNumberTasks])) tasksOnToday.Add(DailyTasksModel.allTasks[_randomNumberTasks]);
                 tasksOnToday[tasksOnToday.Count - 1]._currentQuantity = 0;
             }
             DailyTasksModel._instance.LastEnterToGame = GamePush.GP_Server.Time().Date;

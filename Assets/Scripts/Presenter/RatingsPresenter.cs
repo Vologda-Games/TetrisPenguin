@@ -1,9 +1,8 @@
-
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RatingsPresenter : MonoBehaviour
 {
-    [Header("Scripts")]
     public static RatingsPresenter instance;
 
     [SerializeField] private string _wordsNames;
@@ -15,8 +14,8 @@ public class RatingsPresenter : MonoBehaviour
 
     private void Start()
     {
-        RatingsModel.instance.usePlayersInformation = false;
-        RatingsModel.instance._quantityFalseUsers = 50;
+        RatingsModel.instance.usePlayersInformation = true;
+        RatingsModel.instance.quantityFalseUsers = 99;
         LoadFalseUsers();
     }
 
@@ -24,62 +23,42 @@ public class RatingsPresenter : MonoBehaviour
     {
         bool _haveYou = false;
         RatingsModel.instance.GetYourInformation();
-        if (RatingsModel.instance.usePlayersInformation)
+
+        for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
         {
-            for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
+            if (RatingsModel.instance.playersInformation[i].name == RatingsModel.instance.yourName)
             {
-                if (RatingsModel.instance.playersInformation[i].name == RatingsModel.instance._yourName)
-                {
-                    RatingsModel.instance.playersInformation[i].score = RatingsModel.instance._yourScore;
-                    _haveYou = true;
-                    break;
-                }
-            }
-            if (!_haveYou)
-            {
-                RatingsModel.instance.playersInformation.Add(
-                new PlayerInformation()
-                {
-                    name = RatingsModel.instance._yourName,
-                    score = RatingsModel.instance._yourScore,
-                }
-                );
+                RatingsModel.instance.playersInformation[i].score = RatingsModel.instance.yourScore;
+                _haveYou = true;
+                break;
             }
         }
-        else
+        if (!_haveYou)
         {
-            for (int i = 0; i < RatingsModel.instance._falseUsersInformation.Count; i++)
+            RatingsModel.instance.playersInformation.Add(
+            new PlayerInformation()
             {
-                if (RatingsModel.instance._falseUsersInformation[i].name == RatingsModel.instance._yourName)
-                {
-                    RatingsModel.instance._falseUsersInformation[i].score = RatingsModel.instance._yourScore;
-                    _haveYou = true;
-                    break;
-                }
+                name = RatingsModel.instance.yourName,
+                score = RatingsModel.instance.yourScore,
             }
-            if (!_haveYou)
-            {
-                RatingsModel.instance._falseUsersInformation.Add(
-                new PlayerInformation()
-                {
-                    name = RatingsModel.instance._yourName,
-                    score = RatingsModel.instance._yourScore,
-                }
-                );
-            }
+            );
         }
     }
 
     public void LoadFalseUsers()
     {
-        string[] _words = _wordsNames.Split(", ");
-        for (int i = 0; i < RatingsModel.instance._quantityFalseUsers; i++)
+        if (!RatingsModel.instance.usePlayersInformation)
         {
-            RatingsModel.instance._falseUsersInformation.Add(new PlayerInformation()
+            string[] _words = _wordsNames.Split(", ");
+            RatingsModel.instance.playersInformation = new List<PlayerInformation>();
+            for (int i = 0; i < RatingsModel.instance.quantityFalseUsers; i++)
             {
-                name = $"{_words[Random.Range(0, _words.Length)]}",
-                score = Random.Range(0, 5000),
-            });
+                RatingsModel.instance.playersInformation.Add(new PlayerInformation()
+                {
+                    name = $"{_words[Random.Range(0, _words.Length)]}",
+                    score = Random.Range(0, 10000),
+                });
+            }
         }
     }
 }
