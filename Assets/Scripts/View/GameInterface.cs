@@ -31,6 +31,29 @@ public class GameInterface : MonoBehaviour
     //     }
     // }
 
+    // void Start() 
+    // {
+    //     Invoke("EventOpenDailyRewards", 0.3f);
+    // }
+    void Start() 
+    {
+        Debug.Log(DailyRewardsPresenter.instance.isReward());
+        if (DailyRewardsPresenter.instance.isReward()) 
+        {
+            EventOpenDailyRewards();
+        }
+        //DailyRewardsPresenter.instance.NewDay();
+    }
+
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.X)) 
+    //     {
+    //         EventOpenDailyRewards();
+    //         DailyRewardsPresenter.instance.NewDay();
+    //     }
+    // }
+
     public void OpenFirstLayout(string nameView)
     {
         if (_parent.childCount == 0)
@@ -60,6 +83,12 @@ public class GameInterface : MonoBehaviour
         {
             isActiveInterface = false;
         }
+    }
+
+    public void EventOpenDailyRewards() 
+    {
+        //Вешать только на button
+        OpenFirstLayout(Views._dailyRewards);
     }
 
     public void EventOpenShop()
@@ -110,6 +139,10 @@ public class GameInterface : MonoBehaviour
         else if (name == Views._ratings)
         {
             _object = ViewModel.instance._ratings;
+        }
+        else if (name == Views._dailyRewards) 
+        {
+            _object = ViewModel.instance._dailyRewards;
         }
         else _object = null;
 

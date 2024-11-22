@@ -8,6 +8,7 @@ public class ViewModel : MonoBehaviour
     [SerializeField] public GameObject _dailyTasks;
     [SerializeField] public GameObject _wheelOfLuck;
     [SerializeField] public GameObject _ratings;
+    [SerializeField] public GameObject _dailyRewards;
 
     private void Awake()
     {
