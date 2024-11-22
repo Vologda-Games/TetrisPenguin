@@ -217,7 +217,6 @@ public class LuckWheelPresenter : MonoBehaviour
         LuckWheelModel.instance.token -= value;
             PlayerModel.instance.coins -= value;
             PlayerView.instance.RenderCoin();
-            ShopView.instance.RenderCoins();
             PlayerPrefs.SetInt("WheelSpunToday", 0);
             if (PlayerPrefs.GetInt("WheelSpunToday") == 0) 
             {
@@ -230,7 +229,6 @@ public class LuckWheelPresenter : MonoBehaviour
         LuckWheelModel.instance.token += value;
         PlayerModel.instance.coins += value;
         PlayerView.instance.RenderCoin();
-        ShopView.instance.RenderCoins();
     }
 
     public void OnClickBtnMoney() 

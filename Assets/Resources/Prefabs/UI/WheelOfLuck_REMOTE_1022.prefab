@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _titleText: {fileID: 4933465090908500050}
-  _coinsText: {fileID: 3337840210990534456}
+  _experienceText: {fileID: 0}
   _titleProductTexts: []
   _buttonProductTexts: []
   _costProductDonateTexts: []
@@ -2742,7 +2742,7 @@ GameObject:
   - component: {fileID: 3759660778008767418}
   - component: {fileID: 815357255160329637}
   - component: {fileID: 6151136985265268949}
-  - component: {fileID: 8432432660877419660}
+  - component: {fileID: 2859419603523601679}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -2807,7 +2807,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8432432660877419660
+--- !u!114 &2859419603523601679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2847,13 +2847,13 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6151136985265268949}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6206642670447684141}
-        m_TargetAssemblyTypeName: ShopView, Assembly-CSharp
-        m_MethodName: EventCloseShop
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
+        m_MethodName: EventCloseWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

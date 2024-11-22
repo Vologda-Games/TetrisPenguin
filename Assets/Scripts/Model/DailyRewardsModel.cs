@@ -16,11 +16,11 @@ public class DailyRewardsModel : MonoBehaviour
         instance = this;
         maxDay = 7;
         claimRewadsBool = LoadBoolList();
-        for (int i = 0; i < claimRewadsBool.Count; i++) 
+        for (int i = 0; i < claimRewadsBool.Count; i++)
         {
             Debug.Log(claimRewadsBool[i]);
         }
-        currentDay =  PlayerPrefs.GetInt("currentDay");
+        currentDay = PlayerPrefs.GetInt("currentDay");
     }
 
     public void SaveBoolList(List<bool> claimRewadsBool)  // сохранение списка
@@ -33,13 +33,19 @@ public class DailyRewardsModel : MonoBehaviour
     {
         string boolString = PlayerPrefs.GetString("claimRewadsBool");
 
-        //Десериализация
-        string[] boolArray = boolString.Split(",");
-        List<bool> claimRewadsBool = new List<bool>();
-        foreach (string boolValue in boolArray) 
-        {
-            claimRewadsBool.Add(bool.Parse(boolValue));
+        if (boolString != "")
+        {//Десериализация
+            string[] boolArray = boolString.Split(",");
+            List<bool> claimRewadsBool = new List<bool>();
+            foreach (string boolValue in boolArray)
+            {
+                claimRewadsBool.Add(bool.Parse(boolValue));
+            }
+            return claimRewadsBool;
         }
-        return claimRewadsBool;
+        else
+        {
+            return new List<bool>();
+        }
     }
 }

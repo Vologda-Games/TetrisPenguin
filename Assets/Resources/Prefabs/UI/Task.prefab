@@ -672,7 +672,12 @@ MonoBehaviour:
   _quantityBonus: {fileID: 2288599415672595271}
   _taskInformation: {fileID: 5735398104305522371}
   _quantityCompleted: {fileID: 1049990797804824959}
+  _thisButton: {fileID: 1582235118924581890}
   _numberTask: 0
+  _rectTransform: {fileID: 0}
+  _secondsDealayTask: 0
+  _right: 0
+  _taskInMenu: 0
 --- !u!114 &1582235118924581890
 MonoBehaviour:
   m_ObjectHideFlags: 0
