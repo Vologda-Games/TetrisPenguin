@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4624096235762825436}
   - component: {fileID: -5161848298531373771}
   m_Layer: 5
-  m_Name: Text (PlusValue)
+  m_Name: Text (AddOrReduceValue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283690540
-  m_fontColor: {r: 0.17181383, g: 0.9339623, b: 0.32424358, a: 1}
+    rgba: 4281196544
+  m_fontColor: {r: 0, g: 0.8773585, b: 0.17637622, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisText: {fileID: 8616171071937893897}
+  _colorAddCoins: {r: 0, g: 0.8301887, b: 0.16689363, a: 1}
+  _colorReduceCoins: {r: 0.7735849, g: 0, b: 0, a: 1}
 --- !u!114 &-5161848298531373771
 MonoBehaviour:
   m_ObjectHideFlags: 0

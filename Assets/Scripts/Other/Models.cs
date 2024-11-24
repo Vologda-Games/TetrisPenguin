@@ -8,4 +8,5 @@ public static class Models
     public static string NEW_DAY_EVENT_MODEL = "newdayeventmodel";
     public static string SCREEN_MODEL = "screenmodel";
     public static string SOUNDS_MODEL = "soundsmodel";
+    public static string RATINGS_MODEL = "ratingsmodel";
 }

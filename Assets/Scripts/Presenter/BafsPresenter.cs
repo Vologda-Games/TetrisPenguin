@@ -90,7 +90,6 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelMagnet()
     {
         SetSelectBaf(0);
-
     }
 
     /// SET

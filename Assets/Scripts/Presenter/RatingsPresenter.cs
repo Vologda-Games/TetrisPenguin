@@ -14,10 +14,10 @@ public class RatingsPresenter : MonoBehaviour
 
     private void Start()
     {
-        RatingsModel.instance.usePlayersInformation = true;
-        RatingsModel.instance.quantityFalseUsers = 99;
-        LoadFalseUsers();
+        RatingsModel.instance.usePlayersInformation = false;
+        RatingsModel.instance.quantityFalseUsers = 50;
     }
+
 
     public void LoadYourInformationInRatings()
     {
@@ -45,9 +45,18 @@ public class RatingsPresenter : MonoBehaviour
         }
     }
 
+    public void AddRandomExperienceYoureOpponent()
+    {
+        for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
+        {
+            RatingsModel.instance.playersInformation[i].score += Random.Range(500 * Levels.CurrentLevel, 1000 * Levels.CurrentLevel);
+        }
+        DataPresenter.SaveRatingsModel();
+    }
+
     public void LoadFalseUsers()
     {
-        if (!RatingsModel.instance.usePlayersInformation)
+        if (!RatingsModel.instance.usePlayersInformation && RatingsModel.instance.playersInformation == null)
         {
             string[] _words = _wordsNames.Split(", ");
             RatingsModel.instance.playersInformation = new List<PlayerInformation>();

@@ -12,6 +12,7 @@ public class DataPresenter
         SaveDailyTasksModel();
         SaveScreenModel();
         SaveSoundsModel();
+        SaveRatingsModel();
     }
 
     public static void GetAllData()
@@ -23,6 +24,7 @@ public class DataPresenter
         GetDailyTasksModel();
         GetScreenModel();
         GetSoundsModel();
+        GetRatingsModel();
     }
 
     private static void SaveData(string nameModel, string json)
@@ -129,6 +131,16 @@ public class DataPresenter
         SaveData(Models.SOUNDS_MODEL, json);
     }
 
+    public static void SaveRatingsModel()
+    {
+        SaveRatingsModel ratingsModel = new SaveRatingsModel()
+        {
+            playersInformation = RatingsModel.instance.playersInformation
+        };
+        string json = JsonConvert.SerializeObject(ratingsModel);
+        SaveData(Models.RATINGS_MODEL, json);
+    }
+
     public static void GetPlayerModel()
     {
         string json = GetData(Models.PLAYER_MODEL);
@@ -213,6 +225,18 @@ public class DataPresenter
         SoundsModel saveResourcesModel = JsonConvert.DeserializeObject<SoundsModel>(json);
         SoundsModel.instance._playMusic = saveResourcesModel._playMusic;
         SoundsModel.instance._playSouds = saveResourcesModel._playSouds;
+    }
+
+    public static void GetRatingsModel()
+    {
+        string json = GetData(Models.RATINGS_MODEL);
+        if (json == "" || json == null)
+        {
+            RatingsPresenter.instance.LoadFalseUsers();
+            return;
+        }
+        RatingsModel saveResourcesModel = JsonConvert.DeserializeObject<RatingsModel>(json);
+        RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
     }
 
     public static void DeleteAllData()

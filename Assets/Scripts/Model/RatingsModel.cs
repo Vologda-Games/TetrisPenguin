@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,10 +46,14 @@ public class RatingsModel : MonoBehaviour
 public class PlayerInformation
 {
     [Header("Information")]
-
-    public Sprite icon;
+    [JsonIgnore] public Sprite icon;
     public string name;
     public int score;
     [HideInInspector] public int topPosition;
-    [HideInInspector] public RatingItemView ratingItemView;
+    [HideInInspector, JsonIgnore] public RatingItemView ratingItemView;
+}
+
+public class SaveRatingsModel
+{
+    public List<PlayerInformation> playersInformation;
 }

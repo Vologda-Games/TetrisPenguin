@@ -21,5 +21,6 @@ public class GamePushPresenter : MonoBehaviour
         NewDayEventModel._instance.LoadResourcesNewDay();
         SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
         RatingsPresenter.instance.LoadYourInformationInRatings();
+        RatingsPresenter.instance.LoadFalseUsers();
     }
 }

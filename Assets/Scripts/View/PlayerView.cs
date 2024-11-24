@@ -19,11 +19,17 @@ public class PlayerView : MonoBehaviour
         RenderCoin();
         RenderLevel();
         RenderExperience();
+        PlayerPresenter.instance.AddValueExperienceBar(PlayerModel.instance.experience);
     }
 
     public void RenderLevel()
     {
         _levelText.text = PlayerModel.instance.level.ToString();
+    }
+
+    public void RenderLevel(int reduceLevel)
+    {
+        _levelText.text = (PlayerModel.instance.level - reduceLevel).ToString();
     }
 
     public void RenderExperience(int experience)

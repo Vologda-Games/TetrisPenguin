@@ -7,11 +7,21 @@ public class AnimationTextAdd : MonoBehaviour
     [Header("UI")]
 
     [SerializeField] private TMP_Text _thisText;
+    [SerializeField] private Color _colorAddCoins;
+    [SerializeField] private Color _colorReduceCoins;
 
     public void MoveDownAndLoad(int _valueCurrency)
     {
-        if (_valueCurrency > 0) _thisText.text = $"+{_valueCurrency}";
-        else _thisText.text = $"-{_valueCurrency}";
+        if (_valueCurrency > 0)
+        {
+            _thisText.color = _colorAddCoins;
+            _thisText.text = $"+{_valueCurrency}";
+        }
+        else
+        {
+            _thisText.color = _colorReduceCoins;
+            _thisText.text = $"{_valueCurrency}";
+        }
         StartCoroutine(MoveObject());
     }
 
