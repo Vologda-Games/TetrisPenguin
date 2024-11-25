@@ -106,6 +106,12 @@ public class PenguinView : MonoBehaviour
                         if (triggerMerge == false)
                         {
                             DailyTasksPresenter.CheckCreateForTask(level + 1);
+                            if(!PenguinsModel.instance.penguinsCardsInformations[level + 1].ready)
+                            {
+                                PenguinsModel.instance.penguinsCardsInformations[level + 1].ready = true;
+                                DataPresenter.SavePenguinsModel();
+                                Debug.Log(PenguinsModel.instance.penguinsCardsInformations.Count + "UUUUUUU");
+                            }
                             triggerMerge = true;
                             PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
                             Vector3 pos = penguinView_1.objTransform.position;

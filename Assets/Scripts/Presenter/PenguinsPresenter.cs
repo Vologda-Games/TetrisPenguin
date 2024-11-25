@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PenguinsPresenter : MonoBehaviour
@@ -24,6 +25,57 @@ public class PenguinsPresenter : MonoBehaviour
         {
             StartCoroutine(SpawnPenguin());
         }
+    }
+
+    public void LoadSpritesPenguins()
+    {
+        PenguinsModel.spritesAllSoftPenguins = Resources.LoadAll<Sprite>("Sprites/Penguins/SoftPenguins");
+        PenguinsModel.spritesAllUnknownPenguins = Resources.LoadAll<Sprite>("Sprites/Penguins/UnknownPenguins");
+        if (PenguinsModel.instance.penguinsCardsInformations == null) PenguinsModel.instance.penguinsCardsInformations = new List<PenguinCardInformation>();
+        if (PenguinsModel.instance.penguinsCardsInformations.Count < PenguinsModel.spritesAllSoftPenguins.Length)
+        {
+            for (int i = 0; i < PenguinsModel.spritesAllSoftPenguins.Length; i++)
+            {
+                for (int j = 0; j < PenguinsModel.spritesAllSoftPenguins.Length; j++)
+                {
+                    if (PenguinsModel.spritesAllSoftPenguins[j].name == $"penguin_{i}")
+                    {
+                        PenguinsModel.instance.penguinsCardsInformations.Add(new PenguinCardInformation()
+                        {
+                            levelPenguin = i,
+                            softSprite = PenguinsModel.spritesAllSoftPenguins[j],
+                            unknownSprite = PenguinsModel.spritesAllUnknownPenguins[j],
+                            ready = false
+                        });
+                        if (i == 0)
+                        {
+                            PenguinsModel.instance.penguinsCardsInformations[i].ready = true;
+                        }
+                        else
+                        {
+                            PenguinsModel.instance.penguinsCardsInformations[i].ready = false;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < PenguinsModel.spritesAllSoftPenguins.Length; i++)
+            {
+                for (int j = 0; j < PenguinsModel.spritesAllSoftPenguins.Length; j++)
+                {
+                    if (PenguinsModel.spritesAllSoftPenguins[j].name == $"penguin_{i}")
+                    {
+                        PenguinsModel.instance.penguinsCardsInformations[i].softSprite = PenguinsModel.spritesAllSoftPenguins[j];
+                        PenguinsModel.instance.penguinsCardsInformations[i].unknownSprite = PenguinsModel.spritesAllUnknownPenguins[j];
+                        break;
+                    }
+                }
+            }
+        }
+        DataPresenter.SavePenguinsModel();
     }
 
     public static void MergePenguins(int level)

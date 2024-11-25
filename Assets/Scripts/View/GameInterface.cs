@@ -35,10 +35,10 @@ public class GameInterface : MonoBehaviour
     // {
     //     Invoke("EventOpenDailyRewards", 0.3f);
     // }
-    void Start() 
+    void Start()
     {
         Debug.Log(DailyRewardsPresenter.instance.isReward());
-        if (DailyRewardsPresenter.instance.isReward()) 
+        if (DailyRewardsPresenter.instance.isReward())
         {
             EventOpenDailyRewards();
         }
@@ -85,7 +85,7 @@ public class GameInterface : MonoBehaviour
         }
     }
 
-    public void EventOpenDailyRewards() 
+    public void EventOpenDailyRewards()
     {
         //Вешать только на button
         OpenFirstLayout(Views._dailyRewards);
@@ -114,6 +114,13 @@ public class GameInterface : MonoBehaviour
         //Вешать только на Button
         OpenFirstLayout(Views._dailyTasks);
     }
+
+    public void EventOpenTablePenguins()
+    {
+        //Вешать только на Button
+        OpenFirstLayout(Views._tablePenguins);
+    }
+
     public void EventCloseFirstLayoutByBackground()
     {
         //Вешать только на Background
@@ -140,9 +147,13 @@ public class GameInterface : MonoBehaviour
         {
             _object = ViewModel.instance._ratings;
         }
-        else if (name == Views._dailyRewards) 
+        else if (name == Views._dailyRewards)
         {
             _object = ViewModel.instance._dailyRewards;
+        }
+        else if (name == Views._tablePenguins)
+        {
+            _object = ViewModel.instance._tablePenguins;
         }
         else _object = null;
 

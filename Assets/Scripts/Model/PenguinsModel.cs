@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class PenguinsModel : MonoBehaviour
@@ -11,6 +12,7 @@ public class PenguinsModel : MonoBehaviour
     [SerializeField] public static List<LevelToChance> _levelToChances;
     [SerializeField] public List<LevelToChance> _levelToChancesInsp = new List<LevelToChance>();
     public PenguinView penguinInSpawn;
+    public List<PenguinCardInformation> penguinsCardsInformations;
 
     [Header("GameObjects")]
     [SerializeField] public GameObject _particleFog;
@@ -18,10 +20,18 @@ public class PenguinsModel : MonoBehaviour
     [Header("Transforms")]
     [SerializeField] public Transform _particleParent;
 
+    [Header("Sprites")]
+    public static Sprite[] spritesAllSoftPenguins;
+    public static Sprite[] spritesAllUnknownPenguins;
+
     private void Awake()
     {
-        penguinObjectsForStart = new List<PenguinObject>();
         instance = this;
+    }
+
+    private void Start()
+    {
+        penguinObjectsForStart = new List<PenguinObject>();
         _levelToChances = _levelToChancesInsp;
     }
 
@@ -39,13 +49,22 @@ public class PenguinsModel : MonoBehaviour
 public class SavePenguinsModel
 {
     public List<PenguinObject> penguinObjects;
+    public List<PenguinCardInformation> penguinsCardsInformations;
 }
 
 [Serializable]
 public class LevelToChance
 {
-    [SerializeField][HideInInspector] public string level;
+    [SerializeField, HideInInspector] public string level;
 
     [Range(0, 100)]
     [SerializeField] public int chance;
+}
+
+public class PenguinCardInformation
+{
+    [JsonIgnore] public Sprite softSprite;
+    [JsonIgnore] public Sprite unknownSprite;
+    public int levelPenguin;
+    public bool ready;
 }

@@ -95,7 +95,7 @@ public class DailyRewardsPresenter : MonoBehaviour
 
         CurrentSaveBoolList();
         Debug.Log($"награда за день {day} получена: {DailyRewardsModel.instance.rewards[index]}");
-        AddToken(DailyRewardsModel.instance.rewards[index]);
+        PlayerPresenter.instance.AddCoin(DailyRewardsModel.instance.rewards[index]);
     }
 
     private int GetCurrentDay() //Написать метод какой день сейчас. Если день пропущен, то все заново с 1 дня. Через скрипт NewDayEventModel
@@ -142,12 +142,6 @@ public class DailyRewardsPresenter : MonoBehaviour
     private void CurrentSaveBoolList() 
     {
         DailyRewardsModel.instance.SaveBoolList(DailyRewardsModel.instance.claimRewadsBool);
-    }
-
-    public void AddToken(int value)
-    {
-        PlayerModel.instance.coins += value;
-        PlayerView.instance.RenderCoin();
     }
 
     public void EventCloseDailyRewards()

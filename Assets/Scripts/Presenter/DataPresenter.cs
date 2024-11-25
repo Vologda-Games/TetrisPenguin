@@ -85,6 +85,7 @@ public class DataPresenter
         SavePenguinsModel penguinsModel = new SavePenguinsModel()
         {
             penguinObjects = PenguinsModel.instance.GetPenguins(),
+            penguinsCardsInformations = PenguinsModel.instance.penguinsCardsInformations
         };
         string json = JsonConvert.SerializeObject(penguinsModel);
         SaveData(Models.PENGUINS_MODEL, json);
@@ -178,6 +179,7 @@ public class DataPresenter
         }
         SavePenguinsModel savePenguinsModel = JsonConvert.DeserializeObject<SavePenguinsModel>(json);
         PenguinsModel.instance.penguinObjectsForStart = savePenguinsModel.penguinObjects;
+        PenguinsModel.instance.penguinsCardsInformations = savePenguinsModel.penguinsCardsInformations;
     }
 
     public static void GetDailyTasksModel()

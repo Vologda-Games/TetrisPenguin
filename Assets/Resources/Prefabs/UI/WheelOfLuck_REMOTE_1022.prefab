@@ -1954,7 +1954,6 @@ GameObject:
   - component: {fileID: 2323213381256088790}
   - component: {fileID: 7095799867078010862}
   - component: {fileID: 518133055242975688}
-  - component: {fileID: 6206642670447684141}
   m_Layer: 5
   m_Name: WheelOfLuck_REMOTE_1022
   m_TagString: Untagged
@@ -2025,24 +2024,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6206642670447684141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5893681746383542467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a801a959176874fbfce5a876ccc06f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _titleText: {fileID: 4933465090908500050}
-  _experienceText: {fileID: 0}
-  _titleProductTexts: []
-  _buttonProductTexts: []
-  _costProductDonateTexts: []
-  _currencyProductDonateTexts: []
 --- !u!1 &6008760761379753825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3477,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2930814471038948604}
-  - component: {fileID: 8120836579296320722}
   - component: {fileID: 7918359095188355617}
   m_Layer: 0
   m_Name: WindowManager
@@ -3520,19 +3500,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2323213381256088790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8120836579296320722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618352067733986596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a90a8a643fb544bbb00121c4b11fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textTimeUntilNextSpin: {fileID: 1257077056353906284}
 --- !u!114 &7918359095188355617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3545,8 +3512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db20d8d3479c479428caccfddd0e9762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textTimeDifference: {fileID: 0}
-  _textCoins: {fileID: 0}
+  _textTimeDifference: {fileID: 1257077056353906284}
+  _textCoins: {fileID: 3337840210990534456}
 --- !u!1 &9191975415217110661
 GameObject:
   m_ObjectHideFlags: 0
