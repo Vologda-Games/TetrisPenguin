@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class DailyRewardsView : MonoBehaviour
@@ -15,6 +16,9 @@ public class DailyRewardsView : MonoBehaviour
     [SerializeField] public List<TextMeshProUGUI> textDay = new List<TextMeshProUGUI>();
     [SerializeField] public List<Image> icons = new List<Image>();
     [SerializeField] public List<Sprite> BlueAndYellow = new List<Sprite>();
+    [SerializeField] public RectTransform rectTranformClaimButton;
+    [SerializeField] public TextMeshProUGUI textInButton;
+    [SerializeField] public TMP_FontAsset  newFont;
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class DailyRewardsView : MonoBehaviour
     {
         DailyRewardsPresenter.instance.Initialization();
         BlackBackground.SetActive(false);
+        DailyRewardsPresenter.instance.IsWindowDailtRewards(true);
     }
     
     public void CloseWindow() 

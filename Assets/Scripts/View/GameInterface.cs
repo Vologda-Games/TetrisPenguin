@@ -37,7 +37,6 @@ public class GameInterface : MonoBehaviour
     // }
     void Start()
     {
-        Debug.Log(DailyRewardsPresenter.instance.isReward());
         if (DailyRewardsPresenter.instance.isReward())
         {
             EventOpenDailyRewards();
@@ -49,10 +48,20 @@ public class GameInterface : MonoBehaviour
     // {
     //     if (Input.GetKeyDown(KeyCode.X)) 
     //     {
-    //         EventOpenDailyRewards();
-    //         DailyRewardsPresenter.instance.NewDay();
+    //         if (DailyRewardsPresenter.instance.GetIsWindowDailtRewardsBool()) 
+    //         {
+    //             DailyRewardsView.instance.CloseWindow();
+    //         }
+    //         StartCoroutine(openDailyRewardss());
     //     }
     // }
+
+    IEnumerator openDailyRewardss() 
+    {
+        yield return new WaitForSeconds(0.3f);
+        EventOpenDailyRewards();
+        DailyRewardsPresenter.instance.NewDay();
+    }
 
     public void OpenFirstLayout(string nameView)
     {
