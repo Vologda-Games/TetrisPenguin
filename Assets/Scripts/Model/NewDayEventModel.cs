@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,8 +33,11 @@ public class NewDayEventModel : MonoBehaviour
         if (GamePush.GP_Server.Time().Date > _lastEnterToGame || _lastEnterToGame == null)
         {
             ResetFlagsForNewDay();
-            GameInterface.instance.EventOpenDailyRewards();
-            DailyRewardsPresenter.instance.NewDay();
+            if (DailyRewardsPresenter.instance.GetIsWindowDailtRewardsBool()) 
+            {
+                DailyRewardsView.instance.CloseWindow();
+            }
+            StartCoroutine(openDailyRewards());
             tasksOnToday = new List<DailyTasksInfoValue>();
             while (tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
             {
@@ -45,6 +49,13 @@ public class NewDayEventModel : MonoBehaviour
             DataPresenter.SaveDailyTasksModel();
             DataPresenter.SaveNewDayEventModel();
         }
+    }
+
+    IEnumerator openDailyRewards() 
+    {
+        yield return new WaitForSeconds(0.3f);
+        GameInterface.instance.EventOpenDailyRewards();
+        DailyRewardsPresenter.instance.NewDay();
     }
 
     public void ResetFlagsForNewDay()
