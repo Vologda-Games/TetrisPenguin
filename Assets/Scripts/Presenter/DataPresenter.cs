@@ -14,6 +14,8 @@ public class DataPresenter
         SaveScreenModel();
         SaveSoundsModel();
         SaveRatingsModel();
+        SaveLuckWheelModel();
+        SaveDailyRewadsModel();
         SaveLanguageModel();
     }
 
@@ -27,7 +29,6 @@ public class DataPresenter
         GetScreenModel();
         GetSoundsModel();
         GetRatingsModel();
-        GetLanguageModel();
     }
 
     private static void SaveData(string nameModel, string json)
@@ -145,16 +146,6 @@ public class DataPresenter
         SaveData(Models.RATINGS_MODEL, json);
     }
 
-    public static void SaveLanguageModel()
-    {
-        SaveLanguageModel languageModel = new SaveLanguageModel()
-        {
-            currentLanguage = LanguageModel.currentLanguage
-        };
-        string json = JsonConvert.SerializeObject(languageModel);
-        SaveData(Models.LANGUAGE_MODEL, json);
-    }
-
     public static void GetPlayerModel()
     {
         string json = GetData(Models.PLAYER_MODEL);
@@ -252,19 +243,6 @@ public class DataPresenter
         }
         SaveRatingsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveRatingsModel>(json);
         RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
-    }
-
-    public static void GetLanguageModel()
-    {
-        string json = GetData(Models.LANGUAGE_MODEL);
-        if (json == "" || json == null)
-        {
-            LanguagePresenter.InitLanguage(GP_Language.Current().ToString());
-            Debug.Log(GP_Language.Current());
-            return;
-        }
-        SaveLanguageModel saveLanguageModel = JsonConvert.DeserializeObject<SaveLanguageModel>(json);
-        LanguageModel.currentLanguage = saveLanguageModel.currentLanguage;
     }
 
     public static void DeleteAllData()

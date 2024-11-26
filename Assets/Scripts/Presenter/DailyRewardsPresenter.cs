@@ -27,12 +27,12 @@ public class DailyRewardsPresenter : MonoBehaviour
     {
     if (DailyRewardsView.instance.slider != null) 
             {
-                PlayerPrefs.GetInt("currentDay");
+                //PlayerPrefs.GetInt("currentDay");
                 Invoke("IsBackground", 0.2f);
-                if (!PlayerPrefs.HasKey("claimRewadsBool")) 
-                {
-                    DailyRewardsModel.instance.claimRewadsBool = new List<bool>(new bool[DailyRewardsModel.instance.rewards.Count]);
-                }
+                // if (!PlayerPrefs.HasKey("claimRewadsBool")) 
+                // {
+                //     DailyRewardsModel.instance.claimRewadsBool = new List<bool>(new bool[DailyRewardsModel.instance.rewards.Count]);
+                // }
 
                 DailyRewardsView.instance.slider.minValue = 1;
                 DailyRewardsView.instance.slider.maxValue = DailyRewardsModel.instance.rewards.Count;
@@ -110,7 +110,7 @@ public class DailyRewardsPresenter : MonoBehaviour
         DailyRewardsView.instance.textInButton.text = $"Получено";
         DailyRewardsView.instance.claimButton.interactable = false;
 
-        CurrentSaveBoolList();
+        //CurrentSaveBoolList();
         PlayerPresenter.instance.AddCoin(DailyRewardsModel.instance.rewards[index]);
     }
 
@@ -151,9 +151,10 @@ public class DailyRewardsPresenter : MonoBehaviour
 
     public void NewDay() 
     {
-        if (PlayerPrefs.HasKey("currentDay")) 
+        //if (PlayerPrefs.HasKey("currentDay")) 
+        if (DailyRewardsModel.instance.currentDay != 0 && DailyRewardsModel.instance.currentDay < 8)
         {
-            DailyRewardsModel.instance.currentDay = PlayerPrefs.GetInt("currentDay");
+            //DailyRewardsModel.instance.currentDay = PlayerPrefs.GetInt("currentDay");
         }
         else 
         {
@@ -173,22 +174,22 @@ public class DailyRewardsPresenter : MonoBehaviour
             {
                 DailyRewardsModel.instance.claimRewadsBool[i] = false;
             }
-            CurrentSaveBoolList();
+            //CurrentSaveBoolList();
         }
 
         GetCurrentDay();
-        SaveDayDailyRewards(DailyRewardsModel.instance.currentDay);
+        //SaveDayDailyRewards(DailyRewardsModel.instance.currentDay);
     }
 
-    private void SaveDayDailyRewards(int value) 
-    {
-        PlayerPrefs.SetInt("currentDay", value);
-    }
+    // private void SaveDayDailyRewards(int value) 
+    // {
+    //     PlayerPrefs.SetInt("currentDay", value);
+    // }
 
-    private void CurrentSaveBoolList() 
-    {
-        DailyRewardsModel.instance.SaveBoolList(DailyRewardsModel.instance.claimRewadsBool);
-    }
+    // private void CurrentSaveBoolList() 
+    // {
+    //     DailyRewardsModel.instance.SaveBoolList(DailyRewardsModel.instance.claimRewadsBool);
+    // }
 
     public void EventCloseDailyRewards()
     {

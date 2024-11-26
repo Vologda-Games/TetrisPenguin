@@ -9,5 +9,7 @@ public static class Models
     public static string SCREEN_MODEL = "screenmodel";
     public static string SOUNDS_MODEL = "soundsmodel";
     public static string RATINGS_MODEL = "ratingsmodel";
+    public static string LUCK_WHEEL_MODEL = "luckwheelmodel";
+    public static string DAILY_REWARDS_MODEL = "dailyrewardsmodel";
     public static string LANGUAGE_MODEL = "languagemodel";
 }

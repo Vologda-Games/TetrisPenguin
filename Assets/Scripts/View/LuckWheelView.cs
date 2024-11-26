@@ -15,6 +15,7 @@ public class LuckWheelView : MonoBehaviour
     [Header("Transform")]
 
     [SerializeField] public RectTransform btnForMoney;
+    [SerializeField] public RectTransform spinButton;
 
     void Awake()
     {
@@ -32,7 +33,8 @@ public class LuckWheelView : MonoBehaviour
     {
         request_For_Money.SetActive(false);
         LuckWheelPresenter.instance.Initialization();
-        if (PlayerPrefs.GetInt("WheelSpunToday") == 1) 
+        //if (PlayerPrefs.GetInt("WheelSpunToday") == 1)
+        if (LuckWheelModel.instance.wheelSpunToday == 1)
         {
             request_For_Money.SetActive(true);
         }
@@ -43,7 +45,8 @@ public class LuckWheelView : MonoBehaviour
     {
         if (!spinning && !rotation) 
         {
-            if (PlayerPrefs.GetInt("WheelSpunToday") == 0 && CanSpinToday()) 
+            //if (PlayerPrefs.GetInt("WheelSpunToday") == 0 && CanSpinToday())
+            if (LuckWheelModel.instance.wheelSpunToday == 0 && CanSpinToday()) 
             {
                 LuckWheelPresenter.instance.OnClickButton();
             }
@@ -63,9 +66,10 @@ public class LuckWheelView : MonoBehaviour
     private bool CanSpinToday() 
     {
         Debug.Log("Нажатие");
-        string lastSpinDate = PlayerPrefs.GetString("LastSpinDate", "");
+        //string lastSpinDate = PlayerPrefs.GetString("LastSpinDate", "");
+        string lastSpinDate = LuckWheelModel.instance.lastSpinDate;
 
-        if (string.IsNullOrEmpty(lastSpinDate)) 
+        if (string.IsNullOrEmpty(lastSpinDate))
         {
             return true;
         }
@@ -75,12 +79,14 @@ public class LuckWheelView : MonoBehaviour
         {
             if (lastSpin.Date < DateTime.Today) 
             {
-                PlayerPrefs.SetInt("WheelSpunToday", 0);
+                //PlayerPrefs.SetInt("WheelSpunToday", 0);
+                LuckWheelModel.instance.wheelSpunToday = 0;
                 return true;
             }
         }
-        Debug.Log(PlayerPrefs.GetInt("WheelSpunToday"));
-        return PlayerPrefs.GetInt("WheelSpinToday") == 0;
+        //Debug.Log(PlayerPrefs.GetInt("WheelSpunToday"));
+        //return PlayerPrefs.GetInt("WheelSpinToday") == 0;
+        return LuckWheelModel.instance.wheelSpunToday == 0;
     }
 
     // Метод для отображения состояния вращения

@@ -58,10 +58,15 @@ public class NewDayEventModel : MonoBehaviour
         DailyRewardsPresenter.instance.NewDay();
     }
 
+    // public void ResetFlagsForNewDay()
+    // {
+    //     PlayerPrefs.SetInt("WheelSpunToday", 0);
+    //     PlayerPrefs.SetInt("isUpScale", 0);
+    // }
     public void ResetFlagsForNewDay()
     {
-        PlayerPrefs.SetInt("WheelSpunToday", 0);
-        PlayerPrefs.SetInt("isUpScale", 0);
+        LuckWheelModel.instance.wheelSpunToday = 0;
+        LuckWheelModel.instance.isUpScale = 0;
     }
 }
 public class SaveNewDayEventModel

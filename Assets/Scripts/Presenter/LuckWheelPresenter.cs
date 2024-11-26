@@ -20,7 +20,7 @@ public class LuckWheelPresenter : MonoBehaviour
 
     private int randomSectors;
 
-    private List<string> prizes;
+    private List<int> prizes;
 
      void Awake()
     {
@@ -59,6 +59,7 @@ public class LuckWheelPresenter : MonoBehaviour
     public void OnClickButton() 
     {
         StartCoroutine(SpinWheel());
+        StartCoroutine(ScaleButton());
     }
 
     IEnumerator SpinWheel() 
@@ -126,8 +127,10 @@ public class LuckWheelPresenter : MonoBehaviour
         isSpin = false;
         LuckWheelView.instance.ShowSpinningStatus(isSpin);
         GetPrize();
-        PlayerPrefs.SetInt("isUpScale", 0);
-        PlayerPrefs.SetInt("WheelSpunToday", 1);
+        // PlayerPrefs.SetInt("isUpScale", 0);
+        // PlayerPrefs.SetInt("WheelSpunToday", 1);
+        LuckWheelModel.instance.isUpScale = 0;
+        LuckWheelModel.instance.wheelSpunToday = 1;
         ShowBtnMoney();
     }
 
@@ -149,7 +152,8 @@ public class LuckWheelPresenter : MonoBehaviour
         switch (randomSectors) 
         {
             case 0: // 100 монет
-                AddToken(300);
+                //AddToken(300);
+                PlayerPresenter.instance.AddCoin(300);
                 break;
             case 1: // боксерских перчатки
                 AddBoks(2);
@@ -158,7 +162,8 @@ public class LuckWheelPresenter : MonoBehaviour
                 AddTornadoes(2);
                 break;
             case 3: // 200 монет
-                AddToken(550);
+                //AddToken(550);
+                PlayerPresenter.instance.AddCoin(550);
                 break;
             case 4: // яйцо
                 AddEggs(2);
@@ -167,7 +172,8 @@ public class LuckWheelPresenter : MonoBehaviour
                 AddMagnet(2);
                 break;
             case 6: // 300 монет
-                AddToken(900);
+                //AddToken(900);
+                PlayerPresenter.instance.AddCoin(900);
                 break;
             case 7: // бомба
                 AddBombs(2);
@@ -177,10 +183,6 @@ public class LuckWheelPresenter : MonoBehaviour
         }
     }
     
-    public static int GetTokens()
-    {
-        return LuckWheelModel.instance.token;
-    }
 
     private static void AddBoks(int value)
     {
@@ -214,19 +216,19 @@ public class LuckWheelPresenter : MonoBehaviour
 
     public static void ClickOnButtonForMoney(int value) 
     {
-        LuckWheelModel.instance.token -= value;
-            PlayerModel.instance.coins -= value;
-            PlayerView.instance.RenderCoin();
-            PlayerPrefs.SetInt("WheelSpunToday", 0);
-            if (PlayerPrefs.GetInt("WheelSpunToday") == 0) 
+            PlayerPresenter.instance.ReduceCoin(value);
+            //PlayerPrefs.SetInt("WheelSpunToday", 0);
+            LuckWheelModel.instance.wheelSpunToday = 0;
+            //if (PlayerPrefs.GetInt("WheelSpunToday") == 0) 
+            if (LuckWheelModel.instance.wheelSpunToday == 0)
             {
                 Debug.Log("WheelSpunToday= "+ 0);
             }
     }
 
+
     public static void AddToken(int value)
     {
-        LuckWheelModel.instance.token += value;
         PlayerModel.instance.coins += value;
         PlayerView.instance.RenderCoin();
     }
@@ -260,7 +262,8 @@ public class LuckWheelPresenter : MonoBehaviour
     public void ShowBtnMoney() 
     {
         LuckWheelView.instance.request_For_Money.SetActive(true);
-        if (PlayerPrefs.GetInt("isUpScale") == 1) 
+        //if (PlayerPrefs.GetInt("isUpScale") == 1) 
+        if (LuckWheelModel.instance.isUpScale == 1)
         {
             StartCoroutine(UpAndDownRotation());
         }
@@ -268,7 +271,8 @@ public class LuckWheelPresenter : MonoBehaviour
         {
             StartCoroutine(UpScale());
         }
-        PlayerPrefs.SetInt("isUpScale", 1);
+        //PlayerPrefs.SetInt("isUpScale", 1);
+        LuckWheelModel.instance.isUpScale = 1;
     }
 
     IEnumerator UpScale() 
@@ -368,5 +372,35 @@ public class LuckWheelPresenter : MonoBehaviour
             yield return null;
         }
         LuckWheelView.instance.AnimationRotation(false);
+    }
+
+    IEnumerator ScaleButton() 
+    {
+        float time = 0;
+        float duration = 0.2f;
+
+        Vector3 currentScale = LuckWheelView.instance.spinButton.localScale;
+        Vector3 futureScale = new Vector3(0.8f,0.8f,0.8f);
+
+        while(time < duration) 
+        {
+            time += Time.deltaTime;
+            float progress = time/duration;
+            LuckWheelView.instance.spinButton.localScale = Vector3.Lerp(currentScale, futureScale, progress);
+            yield return null;
+
+        }
+        LuckWheelView.instance.spinButton.localScale = futureScale;
+
+        time = 0;
+        
+        while(time < duration) 
+        {
+            time += Time.deltaTime;
+            float progress = time/duration;
+            LuckWheelView.instance.spinButton.localScale = Vector3.Lerp(futureScale, currentScale, progress);
+            yield return null;
+        }
+        LuckWheelView.instance.spinButton.localScale = currentScale;
     }
 }
