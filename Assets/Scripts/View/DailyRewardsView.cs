@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class DailyRewardsView : MonoBehaviour
@@ -31,10 +30,4 @@ public class DailyRewardsView : MonoBehaviour
         BlackBackground.SetActive(false);
         DailyRewardsPresenter.instance.IsWindowDailtRewards(true);
     }
-    
-    public void CloseWindow() 
-    {
-        DailyRewardsPresenter.instance.EventCloseDailyRewards();
-    }
-    
 }

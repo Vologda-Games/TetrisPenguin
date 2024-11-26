@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 4519351465981002203}
   - component: {fileID: 4933465090908500050}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (WhellOfLuck)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3556,7 +3556,7 @@ GameObject:
   - component: {fileID: 7989999808779897335}
   - component: {fileID: 3337840210990534456}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Coins)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3724,6 +3724,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 1257077056353906284}
   _textCoins: {fileID: 3337840210990534456}
+  _textRatings: {fileID: 0}
+  _textShop: {fileID: 0}
+  _textDailyTasks: {fileID: 0}
+  _textDailyRewards: {fileID: 0}
+  _textWheelOfLuck: {fileID: 4933465090908500050}
 --- !u!1 &9191975415217110661
 GameObject:
   m_ObjectHideFlags: 0

@@ -264,6 +264,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 6738682138076584383}
   _textCoins: {fileID: 3337840210990534456}
+  _textRatings: {fileID: 0}
+  _textShop: {fileID: 0}
+  _textDailyTasks: {fileID: 4933465090908500050}
+  _textDailyRewards: {fileID: 0}
+  _textWheelOfLuck: {fileID: 0}
+  _textTablePenguin: {fileID: 0}
 --- !u!1 &1781173251042390490
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +282,7 @@ GameObject:
   - component: {fileID: 4519351465981002203}
   - component: {fileID: 4933465090908500050}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (DailyTasks)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

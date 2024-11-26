@@ -35,7 +35,7 @@ public class NewDayEventModel : MonoBehaviour
             ResetFlagsForNewDay();
             if (DailyRewardsPresenter.instance.GetIsWindowDailtRewardsBool()) 
             {
-                DailyRewardsView.instance.CloseWindow();
+                WindowManager.instance.EventCloseWindow();
             }
             StartCoroutine(openDailyRewards());
             tasksOnToday = new List<DailyTasksInfoValue>();

@@ -22,5 +22,7 @@ public class GamePushPresenter : MonoBehaviour
         SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
         RatingsPresenter.instance.LoadYourInformationInRatings();
         RatingsPresenter.instance.LoadFalseUsers();
+        PenguinsPresenter.instance.LoadSpritesPenguins();
+        LanguageModel.LoadSpritesLanguage();
     }
 }

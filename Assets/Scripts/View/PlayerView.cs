@@ -1,13 +1,29 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerView : MonoBehaviour
 {
+    [Header("Scripts")]
     public static PlayerView instance;
+
+    [Header("UI")]
+    [SerializeField] private Image _buttonLanguage;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] public TMP_Text experienceText;
     [SerializeField] public TMP_Text _coinsText;
     [HideInInspector] public TMP_Text _coinsTextInWindow;
+    [SerializeField] private TMP_Text _textRatings;
+    [SerializeField] private TMP_Text _textShop;
+    [SerializeField] private TMP_Text _textDailyTasks;
+    [SerializeField] private TMP_Text _textDailyRewards;
+    [SerializeField] private TMP_Text _textWheelOfLuck;
+    [SerializeField] private TMP_Text _textTablePenguin;
+    [SerializeField] private TMP_Text _textMusic;
+    [SerializeField] private TMP_Text _textSounds;
+    [SerializeField] private TMP_Text _textControl;
+    [SerializeField] private TMP_Text _textReplay;
+    [SerializeField] private TMP_Text _textLanguage;
 
     private void Awake()
     {
@@ -16,9 +32,15 @@ public class PlayerView : MonoBehaviour
 
     private void Start()
     {
+        LanguagePresenter.changeLanguageEvent += RenderTypeControl;
+        LanguagePresenter.changeLanguageEvent += RenderTextMenu;
+        LanguagePresenter.changeLanguageEvent += RenderIconLanguage;
         RenderCoin();
         RenderLevel();
         RenderExperience();
+        RenderTypeControl();
+        RenderTextMenu();
+        RenderIconLanguage();
         PlayerPresenter.instance.AddValueExperienceBar(PlayerModel.instance.experience);
     }
 
@@ -52,6 +74,37 @@ public class PlayerView : MonoBehaviour
     {
         _coinsText.text = RenderingCurrencyText(PlayerModel.instance.coins);
         if (_coinsTextInWindow != null) _coinsTextInWindow.text = RenderingCurrencyText(PlayerModel.instance.coins);
+    }
+
+    public void RenderTypeControl()
+    {
+        _textControl.text = ScreenModel.GetNameTypeControl();
+    }
+
+    public void RenderTextMenu()
+    {
+        if (_textRatings != null) _textRatings.text = LibraryWords.reatings.GetText();
+        if (_textShop != null) _textShop.text = LibraryWords.shop.GetText();
+        if (_textDailyTasks != null) _textDailyTasks.text = LibraryWords.dailyTasks.GetText();
+        if (_textDailyRewards != null) _textDailyRewards.text = LibraryWords.dailyRewards.GetText();
+        if (_textWheelOfLuck != null) _textWheelOfLuck.text = LibraryWords.wheelOfLuck.GetText();
+        if (_textTablePenguin != null) _textTablePenguin.text = LibraryWords.penguinTable.GetText();
+        if (_textMusic != null) _textMusic.text = LibraryWords.music.GetText();
+        if (_textSounds != null) _textSounds.text = LibraryWords.sounds.GetText();
+        if (_textReplay != null) _textReplay.text = LibraryWords.startOver.GetText();
+        if (_textLanguage != null) _textLanguage.text = LanguageModel.currentLanguage;
+    }
+
+    public void RenderIconLanguage()
+    {
+        for (int j = 0; j < LanguageModel._langegesSprites.Length; j++)
+        {
+            if (LanguageModel._langegesSprites[j].name.Contains(LanguageModel.currentLanguage))
+            {
+                _buttonLanguage.sprite = LanguageModel._langegesSprites[j];
+                break;
+            }
+        }
     }
 
     public static string RenderingCurrencyText(int _currency)

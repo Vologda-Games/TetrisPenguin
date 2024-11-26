@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 3937562664744970074}
   - component: {fileID: 7298952507643439158}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Ratings)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1093,3 +1093,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 0}
   _textCoins: {fileID: 7376731022166539551}
+  _textRatings: {fileID: 7298952507643439158}
+  _textShop: {fileID: 0}
+  _textDailyTasks: {fileID: 0}
+  _textDailyRewards: {fileID: 0}
+  _textWheelOfLuck: {fileID: 0}
+  _textTablePenguin: {fileID: 0}

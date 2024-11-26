@@ -20,6 +20,8 @@ public class PlayerPresenter : MonoBehaviour
     private int _currentExperience = 0;
     int _quantityLoadSecondLevel = 0;
 
+    int differenceForCoins = 0;
+
     private int _forChit = 0;
 
     public void Awake()
@@ -58,6 +60,8 @@ public class PlayerPresenter : MonoBehaviour
         _newText.GetComponent<AnimationTextAdd>().MoveDownAndLoad(value);
         if (_futureCoins == 0) _futureCoins = PlayerModel.instance.coins;
         PlayerModel.instance.coins += value;
+        differenceForCoins = (PlayerModel.instance.coins - _futureCoins) / 3;
+        Debug.Log(differenceForCoins);
         Debug.Log("После добавки должно быть " + PlayerModel.instance.coins);
         if (!_multiplierMoney) _multiplierMoney = true;
         if (!_addedCoins) StartCoroutine(AddCoins());
@@ -133,13 +137,15 @@ public class PlayerPresenter : MonoBehaviour
     private IEnumerator AddCoins()
     {
         _addedCoins = true;
-        float speed = 1f;
+        int divisorNumber = 3;
+        int quantityAdded = 0;
         while (_futureCoins < PlayerModel.instance.coins)
         {
-            _futureCoins++;
+            _futureCoins += differenceForCoins;
+
             PlayerView.instance.RenderCoin(_futureCoins);
-            speed -= 0.01f;
-            yield return new WaitForSeconds(0.03f * speed);
+            quantityAdded++;
+            yield return new WaitForSeconds(1);
         }
         _addedCoins = false;
     }
@@ -150,7 +156,7 @@ public class PlayerPresenter : MonoBehaviour
         float speed = 1f;
         while (_futureCoins > PlayerModel.instance.coins)
         {
-            _futureCoins--;
+            _futureCoins++;
             PlayerView.instance.RenderCoin(_futureCoins);
             speed -= 0.01f;
             yield return new WaitForSeconds(0.03f * speed);

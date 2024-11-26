@@ -1,5 +1,6 @@
 using UnityEngine;
 using Newtonsoft.Json;
+using GamePush;
 
 public class DataPresenter
 {
@@ -13,6 +14,7 @@ public class DataPresenter
         SaveScreenModel();
         SaveSoundsModel();
         SaveRatingsModel();
+        SaveLanguageModel();
     }
 
     public static void GetAllData()
@@ -25,6 +27,7 @@ public class DataPresenter
         GetScreenModel();
         GetSoundsModel();
         GetRatingsModel();
+        GetLanguageModel();
     }
 
     private static void SaveData(string nameModel, string json)
@@ -142,6 +145,16 @@ public class DataPresenter
         SaveData(Models.RATINGS_MODEL, json);
     }
 
+    public static void SaveLanguageModel()
+    {
+        SaveLanguageModel languageModel = new SaveLanguageModel()
+        {
+            currentLanguage = LanguageModel.currentLanguage
+        };
+        string json = JsonConvert.SerializeObject(languageModel);
+        SaveData(Models.LANGUAGE_MODEL, json);
+    }
+
     public static void GetPlayerModel()
     {
         string json = GetData(Models.PLAYER_MODEL);
@@ -224,7 +237,7 @@ public class DataPresenter
             SoundsModel.instance._playSouds = true;
             return;
         }
-        SoundsModel saveResourcesModel = JsonConvert.DeserializeObject<SoundsModel>(json);
+        SaveSoundsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveSoundsModel>(json);
         SoundsModel.instance._playMusic = saveResourcesModel._playMusic;
         SoundsModel.instance._playSouds = saveResourcesModel._playSouds;
     }
@@ -237,8 +250,21 @@ public class DataPresenter
             RatingsPresenter.instance.LoadFalseUsers();
             return;
         }
-        RatingsModel saveResourcesModel = JsonConvert.DeserializeObject<RatingsModel>(json);
+        SaveRatingsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveRatingsModel>(json);
         RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
+    }
+
+    public static void GetLanguageModel()
+    {
+        string json = GetData(Models.LANGUAGE_MODEL);
+        if (json == "" || json == null)
+        {
+            LanguagePresenter.InitLanguage(GP_Language.Current().ToString());
+            Debug.Log(GP_Language.Current());
+            return;
+        }
+        SaveLanguageModel saveLanguageModel = JsonConvert.DeserializeObject<SaveLanguageModel>(json);
+        LanguageModel.currentLanguage = saveLanguageModel.currentLanguage;
     }
 
     public static void DeleteAllData()

@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4519351465981002203}
   - component: {fileID: 4933465090908500050}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Shop)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +453,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textTimeDifference: {fileID: 0}
   _textCoins: {fileID: 3337840210990534456}
+  _textRatings: {fileID: 0}
+  _textShop: {fileID: 4933465090908500050}
+  _textDailyTasks: {fileID: 0}
+  _textDailyRewards: {fileID: 0}
+  _textWheelOfLuck: {fileID: 0}
+  _textTablePenguin: {fileID: 0}
 --- !u!1 &3029292795749219010
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,11 +790,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6042261505760905397}
   - {fileID: 3226363907683570612}
   - {fileID: 3759660778008767418}
   - {fileID: 391080081160144166}
   - {fileID: 2617277172763973317}
+  - {fileID: 6042261505760905397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

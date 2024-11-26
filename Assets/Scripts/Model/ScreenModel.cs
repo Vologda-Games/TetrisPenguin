@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GamePush;
 using TMPro;
 using UnityEngine;
 
@@ -21,10 +22,6 @@ public class ScreenModel : MonoBehaviour
     [SerializeField] public Sprite _trueSpriteButton;
     [SerializeField] public Sprite _falseSpriteButton;
 
-
-    [Header("UI")]
-    [SerializeField] public TextMeshProUGUI _textTypeControl;
-
     private void Awake()
     {
         if (TypeControl == "" || TypeControl != null) TypeControl = _typesControl[0];
@@ -44,10 +41,10 @@ public class ScreenModel : MonoBehaviour
         switch (instance.TypeControl)
         {
             case "Precise":
-                _nameTypeControl = "точное";
+                _nameTypeControl = LibraryWords.preciseControl.GetText();
                 break;
             case "Flexible":
-                _nameTypeControl = "гибкое";
+                _nameTypeControl = LibraryWords.flexibleManagement.GetText();
                 break;
         }
         return _nameTypeControl;

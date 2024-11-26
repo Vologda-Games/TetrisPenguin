@@ -22,18 +22,13 @@ public class ScreenView : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        ScreenModel.instance._textTypeControl.text = $"Управление: {ScreenModel.GetNameTypeControl()}";
-    }
-
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         //Перемещение камеры с помощью клавиатуры
         MovingCameraKeyboard();
         //Перемещение камеры с помощью Touch
         // MovingCameraTouch();
-    }
+    }*/
 
     public void Down()
     {
@@ -59,7 +54,7 @@ public class ScreenView : MonoBehaviour
     public void SetTypeControl()
     {
         ChangeTypeControl();
-        ScreenModel.instance._textTypeControl.text = $"Управление: {ScreenModel.GetNameTypeControl()}";
+        PlayerView.instance.RenderTypeControl();
     }
 
     public void ChangeTypeControl()

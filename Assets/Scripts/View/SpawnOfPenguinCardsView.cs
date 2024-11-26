@@ -10,7 +10,6 @@ public class SpawnOfPenguinCardsView : MonoBehaviour
 
     private void Start()
     {
-        PenguinsPresenter.instance.LoadSpritesPenguins();
         SpawnOfPenguinCards();
     }
 
