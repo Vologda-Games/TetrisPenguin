@@ -14,12 +14,10 @@ public class PenguinCardView : MonoBehaviour
         if(PenguinsModel.instance.penguinsCardsInformations[levelPenguin].ready)
         {
             _imageSoftPenguin.sprite = PenguinsModel.instance.penguinsCardsInformations[levelPenguin].softSprite;
-            Debug.Log(PenguinsModel.instance.penguinsCardsInformations[levelPenguin].softSprite.name);
         }
         else
         {
             _imageSoftPenguin.sprite = PenguinsModel.instance.penguinsCardsInformations[levelPenguin].unknownSprite;
-            Debug.Log(PenguinsModel.instance.penguinsCardsInformations[levelPenguin].unknownSprite.name);
         }
     }
 }

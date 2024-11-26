@@ -14,9 +14,9 @@ public class DataPresenter
         SaveScreenModel();
         SaveSoundsModel();
         SaveRatingsModel();
+        SaveLanguageModel();
         SaveLuckWheelModel();
         SaveDailyRewadsModel();
-        SaveLanguageModel();
     }
 
     public static void GetAllData()
@@ -29,6 +29,9 @@ public class DataPresenter
         GetScreenModel();
         GetSoundsModel();
         GetRatingsModel();
+        GetLanguageModel();
+        GetLuckWheelModel();
+        GetDailyRewadsModel();
     }
 
     private static void SaveData(string nameModel, string json)
@@ -146,6 +149,46 @@ public class DataPresenter
         SaveData(Models.RATINGS_MODEL, json);
     }
 
+    public static void SaveLanguageModel()
+    {
+        SaveLanguageModel ratingsModel = new SaveLanguageModel()
+        {
+            currentLanguage = LanguageModel.currentLanguage
+        };
+        string json = JsonConvert.SerializeObject(ratingsModel);
+        SaveData(Models.LANGUAGE_MODEL, json);
+    }
+
+    public static void SaveLuckWheelModel()
+    {
+        SaveLuckWheelModel ratingsModel = new SaveLuckWheelModel()
+        {
+            rotationSpeed = LuckWheelModel.instance.rotationSpeed,
+            rotationTimeMaxSpeed = LuckWheelModel.instance.rotationTimeMaxSpeed,
+            accelerationTime = LuckWheelModel.instance.accelerationTime,
+            numberOfSpins = LuckWheelModel.instance.numberOfSpins,
+            isUpScale = LuckWheelModel.instance.isUpScale,
+            wheelSpunToday = LuckWheelModel.instance.wheelSpunToday,
+            prizes = LuckWheelModel.instance.prizes,
+            lastSpinDate = LuckWheelModel.instance.lastSpinDate
+        };
+        string json = JsonConvert.SerializeObject(ratingsModel);
+        SaveData(Models.LUCK_WHEEL_MODEL, json);
+    }
+
+    public static void SaveDailyRewadsModel()
+    {
+        SaveDailyRewardsModel ratingsModel = new SaveDailyRewardsModel()
+        {
+            rewards = DailyRewardsModel.instance.rewards,
+            claimRewadsBool = DailyRewardsModel.instance.claimRewadsBool,
+            maxDay = DailyRewardsModel.instance.maxDay,
+            currentDay = DailyRewardsModel.instance.currentDay
+        };
+        string json = JsonConvert.SerializeObject(ratingsModel);
+        SaveData(Models.DAILY_REWARDS_MODEL, json);
+    }
+
     public static void GetPlayerModel()
     {
         string json = GetData(Models.PLAYER_MODEL);
@@ -243,6 +286,49 @@ public class DataPresenter
         }
         SaveRatingsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveRatingsModel>(json);
         RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
+    }
+
+    public static void GetLanguageModel()
+    {
+        string json = GetData(Models.LANGUAGE_MODEL);
+        if (json == "" || json == null)
+        {
+            return;
+        }
+        SaveLanguageModel saveLanguageModel = JsonConvert.DeserializeObject<SaveLanguageModel>(json);
+        LanguageModel.currentLanguage = saveLanguageModel.currentLanguage;
+    }
+
+    public static void GetLuckWheelModel()
+    {
+        string json = GetData(Models.LUCK_WHEEL_MODEL);
+        if (json == "" || json == null)
+        {
+            return;
+        }
+        SaveLuckWheelModel saveLuckWheelModel = JsonConvert.DeserializeObject<SaveLuckWheelModel>(json);
+        LuckWheelModel.instance.rotationSpeed = saveLuckWheelModel.rotationSpeed;
+        LuckWheelModel.instance.rotationTimeMaxSpeed = saveLuckWheelModel.rotationTimeMaxSpeed;
+        LuckWheelModel.instance.accelerationTime = saveLuckWheelModel.accelerationTime;
+        LuckWheelModel.instance.numberOfSpins = saveLuckWheelModel.numberOfSpins;
+        LuckWheelModel.instance.isUpScale = saveLuckWheelModel.isUpScale;
+        LuckWheelModel.instance.wheelSpunToday = saveLuckWheelModel.wheelSpunToday;
+        LuckWheelModel.instance.prizes = saveLuckWheelModel.prizes;
+        LuckWheelModel.instance.lastSpinDate = saveLuckWheelModel.lastSpinDate;
+    }
+
+    public static void GetDailyRewadsModel()
+    {
+        string json = GetData(Models.DAILY_REWARDS_MODEL);
+        if (json == "" || json == null)
+        {
+            return;
+        }
+        SaveDailyRewardsModel saveDailyRewadsModel = JsonConvert.DeserializeObject<SaveDailyRewardsModel>(json);
+        DailyRewardsModel.instance.rewards = saveDailyRewadsModel.rewards;
+        DailyRewardsModel.instance.claimRewadsBool = saveDailyRewadsModel.claimRewadsBool;
+        DailyRewardsModel.instance.maxDay = saveDailyRewadsModel.maxDay;
+        DailyRewardsModel.instance.currentDay = saveDailyRewadsModel.currentDay;
     }
 
     public static void DeleteAllData()

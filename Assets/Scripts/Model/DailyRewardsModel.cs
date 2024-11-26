@@ -61,7 +61,7 @@ public class DailyRewardsModel : MonoBehaviour
     //     }
     // }
 }
-public class SaveDailyRewadsModel
+public class SaveDailyRewardsModel
 {
     public List<int> rewards;
     public List<bool> claimRewadsBool;

@@ -101,7 +101,7 @@ public class PlayerView : MonoBehaviour
         {
             if (LanguageModel._langegesSprites[j].name.Contains(LanguageModel.currentLanguage))
             {
-                _buttonLanguage.sprite = LanguageModel._langegesSprites[j];
+                if (_buttonLanguage != null) _buttonLanguage.sprite = LanguageModel._langegesSprites[j];
                 break;
             }
         }
