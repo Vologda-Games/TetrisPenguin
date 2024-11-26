@@ -1037,6 +1037,7 @@ MonoBehaviour:
   wheel: {fileID: 3925368531435521292}
   request_For_Money: {fileID: 8414326747722941800}
   btnForMoney: {fileID: 3898028802166525246}
+  spinButton: {fileID: 7387056414108100377}
 --- !u!1 &3932974516899025020
 GameObject:
   m_ObjectHideFlags: 0

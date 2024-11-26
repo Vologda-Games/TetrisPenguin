@@ -12,40 +12,59 @@ public class DailyRewardsModel : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
         maxDay = 7;
-        claimRewadsBool = LoadBoolList();
-        for (int i = 0; i < claimRewadsBool.Count; i++)
+        claimRewadsBool = new List<bool>()
         {
-            Debug.Log(claimRewadsBool[i]);
-        }
-        currentDay = PlayerPrefs.GetInt("currentDay");
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+        };
+        //claimRewadsBool = LoadBoolList();
+        // for (int i = 0; i < claimRewadsBool.Count; i++)
+        // {
+        //     Debug.Log(claimRewadsBool[i]);
+        // }
+        //currentDay = PlayerPrefs.GetInt("currentDay");
+        instance = this;
+
     }
 
-    public void SaveBoolList(List<bool> claimRewadsBool)  // сохранение списка
-    {
-        string boolString = string.Join(",", claimRewadsBool);
-        PlayerPrefs.SetString("claimRewadsBool", boolString);
-    }
+    // public void SaveBoolList(List<bool> claimRewadsBool)  // сохранение списка
+    // {
+    //     string boolString = string.Join(",", claimRewadsBool);
+    //     PlayerPrefs.SetString("claimRewadsBool", boolString);
+    // }
 
-    public List<bool> LoadBoolList() // загрузка сохраненного списка 
-    {
-        string boolString = PlayerPrefs.GetString("claimRewadsBool");
+    // public List<bool> LoadBoolList() // загрузка сохраненного списка 
+    // {
+    //     //string boolString = PlayerPrefs.GetString("claimRewadsBool");
+    //     string boolString = claimRewadsBool;
 
-        if (boolString != "")
-        {//Десериализация
-            string[] boolArray = boolString.Split(",");
-            List<bool> claimRewadsBool = new List<bool>();
-            foreach (string boolValue in boolArray)
-            {
-                claimRewadsBool.Add(bool.Parse(boolValue));
-            }
-            return claimRewadsBool;
-        }
-        else
-        {
-            Debug.Log("return");
-            return new List<bool>();
-        }
-    }
+    //     if (boolString != "")
+    //     {//Десериализация
+    //         string[] boolArray = boolString.Split(",");
+    //         List<bool> claimRewadsBool = new List<bool>();
+    //         foreach (string boolValue in boolArray)
+    //         {
+    //             claimRewadsBool.Add(bool.Parse(boolValue));
+    //         }
+    //         return claimRewadsBool;
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("return");
+    //         return new List<bool>();
+    //     }
+    // }
+}
+public class SaveDailyRewadsModel
+{
+    public List<int> rewards;
+    public List<bool> claimRewadsBool;
+    public int maxDay;
+    public int currentDay;
 }

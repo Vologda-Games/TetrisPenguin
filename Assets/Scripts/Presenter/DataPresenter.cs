@@ -13,6 +13,8 @@ public class DataPresenter
         SaveScreenModel();
         SaveSoundsModel();
         SaveRatingsModel();
+        SaveLuckWheelModel();
+        SaveDailyRewadsModel();
     }
 
     public static void GetAllData()
@@ -25,6 +27,8 @@ public class DataPresenter
         GetScreenModel();
         GetSoundsModel();
         GetRatingsModel();
+        GetLuckWheelModel();
+        GetDailyRewardsModel();
     }
 
     private static void SaveData(string nameModel, string json)
@@ -142,6 +146,35 @@ public class DataPresenter
         SaveData(Models.RATINGS_MODEL, json);
     }
 
+    public static void SaveLuckWheelModel() 
+    {
+        SaveLuckWheelModel luckWheelModel = new SaveLuckWheelModel()
+        {
+            rotationSpeed = LuckWheelModel.instance.rotationSpeed,
+            rotationTimeMaxSpeed = LuckWheelModel.instance.rotationTimeMaxSpeed,
+            accelerationTime = LuckWheelModel.instance.accelerationTime,
+            numberOfSpins = LuckWheelModel.instance.numberOfSpins,
+            isUpScale = LuckWheelModel.instance.isUpScale,
+            wheelSpunToday = LuckWheelModel.instance.wheelSpunToday,
+            prizes = LuckWheelModel.instance.prizes,
+        };
+        string json = JsonConvert.SerializeObject(luckWheelModel);
+        SaveData(Models.LUCK_WHEEL_MODEL, json);
+    }
+
+    public static void SaveDailyRewadsModel() 
+    {
+        SaveDailyRewadsModel dailyRewardsModel = new SaveDailyRewadsModel()
+        {
+            rewards = DailyRewardsModel.instance.rewards,
+            claimRewadsBool = DailyRewardsModel.instance.claimRewadsBool,
+            maxDay = DailyRewardsModel.instance.maxDay,
+            currentDay = DailyRewardsModel.instance.currentDay,
+        };
+        string json = JsonConvert.SerializeObject(dailyRewardsModel);
+        SaveData(Models.DAILY_REWARDS_MODEL, json);
+    }
+
     public static void GetPlayerModel()
     {
         string json = GetData(Models.PLAYER_MODEL);
@@ -239,6 +272,37 @@ public class DataPresenter
         }
         RatingsModel saveResourcesModel = JsonConvert.DeserializeObject<RatingsModel>(json);
         RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
+    }
+
+    public static void GetLuckWheelModel() 
+    {
+        string json = GetData(Models.LUCK_WHEEL_MODEL);
+        if (json == "" || json == null) 
+        {
+            return;
+        }
+        SaveLuckWheelModel saveLuckWheel = JsonConvert.DeserializeObject<SaveLuckWheelModel>(json);
+        LuckWheelModel.instance.rotationSpeed = saveLuckWheel.rotationSpeed;
+        LuckWheelModel.instance.rotationTimeMaxSpeed = saveLuckWheel.rotationTimeMaxSpeed;
+        LuckWheelModel.instance.accelerationTime = saveLuckWheel.accelerationTime;
+        LuckWheelModel.instance.numberOfSpins = saveLuckWheel.numberOfSpins;
+        LuckWheelModel.instance.isUpScale = saveLuckWheel.isUpScale;
+        LuckWheelModel.instance.wheelSpunToday = saveLuckWheel.wheelSpunToday;
+        LuckWheelModel.instance.prizes = saveLuckWheel.prizes;
+    }
+
+    public static void GetDailyRewardsModel() 
+    {
+        string json = GetData(Models.DAILY_REWARDS_MODEL);
+        if (json == "" || json == null)
+        {
+            return;
+        }
+        SaveDailyRewadsModel saveDailyRewads = JsonConvert.DeserializeObject<SaveDailyRewadsModel>(json);
+        DailyRewardsModel.instance.rewards = saveDailyRewads.rewards;
+        DailyRewardsModel.instance.claimRewadsBool = saveDailyRewads.claimRewadsBool;
+        DailyRewardsModel.instance.maxDay = saveDailyRewads.maxDay;
+        DailyRewardsModel.instance.currentDay = saveDailyRewads.currentDay;
     }
 
     public static void DeleteAllData()
