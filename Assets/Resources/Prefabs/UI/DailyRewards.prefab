@@ -2248,10 +2248,10 @@ RectTransform:
   - {fileID: 2617277172763973317}
   m_Father: {fileID: 2323213381256088790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0.04284668, y: 141}
-  m_SizeDelta: {x: -106.085686, y: -690.1143}
+  m_SizeDelta: {x: 973.9143, y: -690.1143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4839325683160072424
 CanvasRenderer:
@@ -2545,9 +2545,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6145872654074512462}
-        m_TargetAssemblyTypeName: WindowManager, Assembly-CSharp
-        m_MethodName: EventCloseWindow
+      - m_Target: {fileID: 3244327423859703295}
+        m_TargetAssemblyTypeName: DailyRewardsView, Assembly-CSharp
+        m_MethodName: CloseWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

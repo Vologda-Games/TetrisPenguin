@@ -28,7 +28,7 @@ public class DailyRewardsPresenter : MonoBehaviour
     if (DailyRewardsView.instance.slider != null) 
             {
                 //PlayerPrefs.GetInt("currentDay");
-                Invoke("IsBackground", 0.2f);
+                Invoke("IsBackground", 0.3f);
                 // if (!PlayerPrefs.HasKey("claimRewadsBool")) 
                 // {
                 //     DailyRewardsModel.instance.claimRewadsBool = new List<bool>(new bool[DailyRewardsModel.instance.rewards.Count]);
@@ -64,6 +64,7 @@ public class DailyRewardsPresenter : MonoBehaviour
         {
             DailyRewardsView.instance.BlackBackground.SetActive(isBlackBackground);
         }
+        Debug.Log($"isBlackBackground: {isBlackBackground}");
     }
 
     public void OnSliderValueChanged(float value) 
@@ -194,8 +195,9 @@ public class DailyRewardsPresenter : MonoBehaviour
     public void EventCloseDailyRewards()
     {
         IsBackground();
+        Debug.Log("CLOSE");
         IsWindowDailtRewards(false);
-        GameInterface.instance.CloseFirstLayout();
+        WindowManager.instance.EventCloseWindow();
     }
 
     private void DayTextAnimation() 

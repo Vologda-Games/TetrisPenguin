@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 public class LuckWheelPresenter : MonoBehaviour
 {
     public static LuckWheelPresenter instance;
@@ -21,6 +22,7 @@ public class LuckWheelPresenter : MonoBehaviour
     private int randomSectors;
 
     private List<int> prizes;
+    private bool animdont750money;
 
      void Awake()
     {
@@ -216,7 +218,8 @@ public class LuckWheelPresenter : MonoBehaviour
 
     public static void ClickOnButtonForMoney(int value) 
     {
-            PlayerPresenter.instance.ReduceCoin(value);
+            PlayerPresenter.instance.ReduceCoin(value); //бесконечно прибавляются монеты
+            //PlayerPresenter.instance.AddCoin(value); //работает нормально
             //PlayerPrefs.SetInt("WheelSpunToday", 0);
             LuckWheelModel.instance.wheelSpunToday = 0;
             //if (PlayerPrefs.GetInt("WheelSpunToday") == 0) 
@@ -228,9 +231,15 @@ public class LuckWheelPresenter : MonoBehaviour
 
     public void OnClickBtnMoney() 
     {
-        if (PlayerModel.instance.coins >= 750) 
+        if (PlayerModel.instance.coins >= 750 && !animdont750money) 
         {
+            ClickOnButtonForMoney(750);
+            Debug.Log("КУПЛЕНО ЗА 750");
             StartCoroutine(DownScale());
+        }
+        if (PlayerModel.instance.coins < 750 && !animdont750money)
+        {
+            //StartCoroutine(NoMoney750Button());
         }
     }
 
@@ -249,7 +258,6 @@ public class LuckWheelPresenter : MonoBehaviour
             yield return null;
         }
         LuckWheelView.instance.request_For_Money.SetActive(false);
-        ClickOnButtonForMoney(750);
     }
 
     public void ShowBtnMoney() 
@@ -369,6 +377,7 @@ public class LuckWheelPresenter : MonoBehaviour
 
     IEnumerator ScaleButton() 
     {
+        
         float time = 0;
         float duration = 0.2f;
 
@@ -396,4 +405,56 @@ public class LuckWheelPresenter : MonoBehaviour
         }
         LuckWheelView.instance.spinButton.localScale = currentScale;
     }
+
+    IEnumerator NoMoney750Button()
+{
+    if (wheel == null)
+    {
+        yield break; // Завершаем корутину, если объект уже уничтожен
+    }
+
+    animdont750money = true;
+
+    // Настройки
+    float shakeAmplitude = 0.2f; // Сила "отталкивания"
+    float shakeSpeed = 10f;      // Скорость "дрожания"
+    int shakeCount = 3;          // Количество "рывков"
+
+    Vector3 originalPosition = LuckWheelView.instance.btnForMoney.position;
+
+    // Основная анимация "противодействия"
+    for (int i = 0; i < shakeCount; i++)
+    {
+        if (wheel == null)
+        {
+            yield break;
+        }
+
+        // Смещение вправо
+        float time = 0;
+        while (time < 0.1f) // Длительность каждого рывка
+        {
+            time += Time.deltaTime * shakeSpeed;
+            LuckWheelView.instance.btnForMoney.position = originalPosition + Vector3.right * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
+            yield return null;
+        }
+
+        // Смещение влево
+        time = 0;
+        while (time < 0.1f)
+        {
+            time += Time.deltaTime * shakeSpeed;
+            LuckWheelView.instance.btnForMoney.position = originalPosition + Vector3.left * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
+            yield return null;
+        }
+
+        // Уменьшаем амплитуду на каждом шаге
+        shakeAmplitude *= 0.7f; // Постепенно ослабляем силу рывков
+    }
+
+    // Возврат кнопки в исходное положение
+    LuckWheelView.instance.btnForMoney.position = originalPosition;
+
+    animdont750money = false;
+}
 }
