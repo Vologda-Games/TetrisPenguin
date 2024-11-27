@@ -23,9 +23,9 @@ public class ShopView : MonoBehaviour
     private Action<bool> _rewardDonate_3 = (result) => { PlayerPresenter.instance.AddCoin(25000); };
     private Action<bool> _rewardAds = (result) => { PlayerPresenter.instance.AddCoin(900); };
     private Action<bool> _rewardCoin_1 = (result) => { PlayerPresenter.instance.ReduceCoin(1899); PlayerPresenter.instance.AddCoin(1800); };
-    private Action<bool> _rewardCoin_2 = (result) => { PlayerPresenter.instance.ReduceCoin(1999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); LuckWheelPresenter.AddToken(1); };
-    private Action<bool> _rewardCoin_3 = (result) => { PlayerPresenter.instance.ReduceCoin(3999); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); LuckWheelPresenter.AddToken(1); };
-    private Action<bool> _rewardCoin_4 = (result) => { PlayerPresenter.instance.ReduceCoin(4999); BafsPresenter.AddBombBafs(3); BafsPresenter.AddMulticolorBafs(3); BafsPresenter.AddSpringBafs(3); LuckWheelPresenter.AddToken(1); };
+    private Action<bool> _rewardCoin_2 = (result) => { PlayerPresenter.instance.ReduceCoin(1999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1);};
+    private Action<bool> _rewardCoin_3 = (result) => { PlayerPresenter.instance.ReduceCoin(3999); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1);};
+    private Action<bool> _rewardCoin_4 = (result) => { PlayerPresenter.instance.ReduceCoin(4999); BafsPresenter.AddBombBafs(3); BafsPresenter.AddMulticolorBafs(3); BafsPresenter.AddSpringBafs(3);};
     private Action<bool> _rewardCoin_5 = (result) => { PlayerPresenter.instance.ReduceCoin(8999); BafsPresenter.AddBombBafs(1); BafsPresenter.AddMulticolorBafs(1); BafsPresenter.AddSpringBafs(1); BafsPresenter.AddTornadoBafs(3); BafsPresenter.AddMagnetBafs(3); };
     private Action<bool> _rewardCoin_6 = (result) => { PlayerPresenter.instance.ReduceCoin(9999); BafsPresenter.AddBombBafs(5); BafsPresenter.AddMulticolorBafs(5); BafsPresenter.AddSpringBafs(5); BafsPresenter.AddTornadoBafs(1); BafsPresenter.AddMagnetBafs(1); PlayerPresenter.instance.AddCoin(1800); };
 

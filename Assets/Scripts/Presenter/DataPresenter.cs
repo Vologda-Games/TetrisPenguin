@@ -102,7 +102,7 @@ public class DataPresenter
     {
         SaveDailyTasksModel dailyTasksModel = new SaveDailyTasksModel()
         {
-            LastEnterToGame = DailyTasksModel._instance.LastEnterToGame,
+            LastEnterToGame = DailyTasksModel.instance.LastEnterToGame,
         };
         string json = JsonConvert.SerializeObject(dailyTasksModel);
         SaveData(Models.DAILY_TASKS_MODEL, json);
@@ -237,7 +237,7 @@ public class DataPresenter
             return;
         }
         SaveDailyTasksModel saveResourcesModel = JsonConvert.DeserializeObject<SaveDailyTasksModel>(json);
-        DailyTasksModel._instance.LastEnterToGame = saveResourcesModel.LastEnterToGame;
+        DailyTasksModel.instance.LastEnterToGame = saveResourcesModel.LastEnterToGame;
     }
 
     public static void GetNewDayEventModel()

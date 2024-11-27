@@ -13,6 +13,11 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private TMP_Text _textDailyTasks;
     [SerializeField] private TMP_Text _textDailyRewards;
     [SerializeField] private TMP_Text _textWheelOfLuck;
+    [SerializeField] private TMP_Text _textSpin;
+    [SerializeField] private TMP_Text _textAttempt;
+    [SerializeField] private TMP_Text _textGet;
+    [SerializeField] private TMP_Text _textLoginToGame;
+    [SerializeField] private TMP_Text _priceAttemptText;
 
     private void Awake()
     {
@@ -41,6 +46,11 @@ public class WindowManager : MonoBehaviour
         if (_textDailyTasks != null) _textDailyTasks.text = LibraryWords.dailyTasks.GetText();
         if (_textDailyRewards != null) _textDailyRewards.text = LibraryWords.dailyRewards.GetText();
         if (_textWheelOfLuck != null) _textWheelOfLuck.text = LibraryWords.wheelOfLuck.GetText();
+        if (_textAttempt != null) _textAttempt.text = LibraryWords.buyAttempt.GetText();
+        if (_textSpin != null) _textSpin.text = LibraryWords.spin.GetText();
+        if (_textGet != null) _textGet.text = LibraryWords.get.GetText();
+        if (_textLoginToGame != null) _textLoginToGame.text = LibraryWords.loginToGame.GetText();
+        if (_priceAttemptText != null) _priceAttemptText.text = $"{LuckWheelView.instance._priceAttempt}";
 
         if (_textCoins != null)
         {

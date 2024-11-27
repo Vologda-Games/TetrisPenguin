@@ -24,7 +24,7 @@ public class SpawnRatingsInWindowPresenter : MonoBehaviour
     {
         for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
         {
-            if (RatingsModel.instance.playersInformation[i].name == RatingsModel.instance.yourName)
+            if (RatingsModel.instance.playersInformation[i].name == LibraryWords.you.GetText())
             {
                 _parentRatingItems.anchoredPosition = new Vector2(0f, (RatingsModel.instance.playersInformation[i].topPosition * 200) + (RatingsModel.instance.playersInformation[i].topPosition - 1) * 50);
                 break;

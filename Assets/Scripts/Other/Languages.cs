@@ -14,7 +14,6 @@ public static class Languages
     //public const string NORWEGIAN = "Norwegian";
     //public const string HINDI = "Hindi";
     public const string JAPANESE = "Japanese";
-    public const string DUTCH = "Dutch";
     public const string POLISH = "Polish";
     //public const string LATVIAN = "Latvian";
     public const string ARABIAN = "Arabian";
@@ -36,7 +35,6 @@ public static class Languages
         //NORWEGIAN,
         //HINDI,
         JAPANESE,
-        DUTCH,
         POLISH,
         //LATVIAN,
         ARABIAN,

@@ -26,7 +26,7 @@ public class RatingsPresenter : MonoBehaviour
 
         for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
         {
-            if (RatingsModel.instance.playersInformation[i].name == RatingsModel.instance.yourName)
+            if (RatingsModel.instance.playersInformation[i].name == LibraryWords.you.GetText())
             {
                 RatingsModel.instance.playersInformation[i].score = RatingsModel.instance.yourScore;
                 _haveYou = true;
@@ -38,7 +38,7 @@ public class RatingsPresenter : MonoBehaviour
             RatingsModel.instance.playersInformation.Add(
             new PlayerInformation()
             {
-                name = RatingsModel.instance.yourName,
+                name = LibraryWords.you.GetText(),
                 score = RatingsModel.instance.yourScore,
             }
             );

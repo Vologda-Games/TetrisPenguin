@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private TMP_Text _textControl;
     [SerializeField] private TMP_Text _textReplay;
     [SerializeField] private TMP_Text _textLanguage;
+    private bool scaleBool;
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class PlayerView : MonoBehaviour
     public void RenderExperience()
     {
         experienceText.text = RenderingCurrencyText(PlayerModel.instance.experience);
+        if (!scaleBool) StartCoroutine(UpScaleTextEXP(experienceText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
     }
 
     public void RenderCoin(int coins)
@@ -92,7 +95,7 @@ public class PlayerView : MonoBehaviour
         if (_textMusic != null) _textMusic.text = LibraryWords.music.GetText();
         if (_textSounds != null) _textSounds.text = LibraryWords.sounds.GetText();
         if (_textReplay != null) _textReplay.text = LibraryWords.startOver.GetText();
-        if (_textLanguage != null) _textLanguage.text = LanguageModel.currentLanguage;
+        if (_textLanguage != null) _textLanguage.text = LibraryWords.language.GetText();
     }
 
     public void RenderIconLanguage()
@@ -128,5 +131,22 @@ public class PlayerView : MonoBehaviour
         }
 
         return formattedNumber;
+    }
+
+    private IEnumerator UpScaleTextEXP(GameObject go, Vector2 maxScale, Vector2 normalScale)
+    {
+        scaleBool = true;
+        while (go.transform.localScale.x < maxScale.x && go.transform.localScale.y < maxScale.y)
+        {
+            go.transform.localScale = new Vector2(go.transform.localScale.x + 0.05f, go.transform.localScale.y + 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (go.transform.localScale.x > normalScale.x && go.transform.localScale.y > normalScale.y)
+        {
+            go.transform.localScale = new Vector2(go.transform.localScale.x - 0.05f, go.transform.localScale.y - 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        go.transform.localScale = normalScale;
+        scaleBool = false;
     }
 }

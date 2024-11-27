@@ -5,7 +5,7 @@ using UnityEngine;
 public class DailyTasksModel : MonoBehaviour
 {
     [Header("Structure")]
-    public static List<DailyTasksInfoValue> allTasks = new List<DailyTasksInfoValue>()
+    public List<DailyTasksInfoValue> allTasks = new List<DailyTasksInfoValue>()
     {
         new DailyTasksInfoValue()
         {
@@ -116,7 +116,7 @@ public class DailyTasksModel : MonoBehaviour
             ConditionTask = ""
         }
     };
-    public static DailyTasksModel _instance;
+    public static DailyTasksModel instance;
     public List<int> _allReadyNumbersTasks;
     [SerializeField] public int _maxQuantityTaskOfDay;
 
@@ -129,13 +129,14 @@ public class DailyTasksModel : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        instance = this;
     }
 
     public static string TimeDifference()
     {
         TimeSpan _difference = DateTime.MaxValue - GamePush.GP_Server.Time();
-        string _differenceTimeString = $"{_difference.Hours}:{_difference.Minutes}:{_difference.Seconds}";
+        DateTime _result = new DateTime();
+        string _differenceTimeString = $"{(_result + _difference).ToString("HH")}:{(_result + _difference).ToString("mm")}:{(_result + _difference).ToString("ss")}";
         return _differenceTimeString;
     }
 
@@ -179,7 +180,7 @@ public class DailyTasksInfoValue
     [Header("Quantity Currency For Add Currency")]
     public int _quantityAddCurrency = 1;
 
-    [HideInInspector] public string ConditionTask;
+    [HideInInspector] public string ConditionTask = "";
 
     public string TaskInformation()
     {

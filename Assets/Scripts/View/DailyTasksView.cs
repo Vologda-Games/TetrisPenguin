@@ -16,6 +16,7 @@ public class DailyTasksView : MonoBehaviour
 
     [Header("TaskInformation")]
     [HideInInspector] public int _numberTask;
+    private DailyTasksInfoValue _infoTaskMenu;
     [HideInInspector] public RectTransform _rectTransform;
     [HideInInspector] public float _secondsDealayTask;
     [HideInInspector] public bool _right;
@@ -23,6 +24,7 @@ public class DailyTasksView : MonoBehaviour
 
     private void Start()
     {
+        LanguagePresenter.changeLanguageEvent += OutputInformationInMenu;
         _rectTransform = GetComponent<RectTransform>();
         _secondsDealayTask = 0;
     }
@@ -32,6 +34,7 @@ public class DailyTasksView : MonoBehaviour
         string Condition = NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask;
         if (Condition == "" || Condition == null) NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask = "NotReady";
         _numberTask = _numberInfoTask;
+        _infoTaskMenu = _infoTask;
         _imageReward.sprite = _infoTask.SpriteReward();
         _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
         _taskInformation.text = $"{_infoTask.TaskInformation()}";
@@ -46,17 +49,23 @@ public class DailyTasksView : MonoBehaviour
         }
         else if (_infoTask._currentQuantity >= _infoTask._maximumQuantity && Condition != "Collected")
         {
-            _quantityCompleted.text = $"Собрать";
+            _quantityCompleted.text = LibraryWords.collect.GetText();
             _bar.enabled = false;
             _barReady.enabled = true;
         }
         else if (Condition == "Collected")
         {
-            _quantityCompleted.text = $"Собрано";
+            _quantityCompleted.text = LibraryWords.collected.GetText();
             _bar.enabled = false;
             _barCollected.enabled = true;
             _thisButton.interactable = false;
+            Debug.Log("COLLECTED");
         }
+    }
+
+    private void OutputInformationInMenu()
+    {
+        _taskInformation.text = $"{_infoTaskMenu.TaskInformation()}";
     }
 
     public void CollectReward()
@@ -76,7 +85,7 @@ public class DailyTasksView : MonoBehaviour
             }
             NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask = "Collected";
             DataPresenter.SaveNewDayEventModel();
-            _quantityCompleted.text = $"Собрано";
+            _quantityCompleted.text = LibraryWords.collected.GetText();
             _barReady.enabled = false;
             _barCollected.enabled = true;
             GetComponent<Button>().interactable = false;

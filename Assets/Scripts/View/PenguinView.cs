@@ -110,7 +110,6 @@ public class PenguinView : MonoBehaviour
                             {
                                 PenguinsModel.instance.penguinsCardsInformations[level + 1].ready = true;
                                 DataPresenter.SavePenguinsModel();
-                                Debug.Log(PenguinsModel.instance.penguinsCardsInformations.Count + "UUUUUUU");
                             }
                             triggerMerge = true;
                             PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];

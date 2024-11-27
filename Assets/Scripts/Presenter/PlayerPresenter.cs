@@ -12,15 +12,10 @@ public class PlayerPresenter : MonoBehaviour
 
     [SerializeField] public static PlayerPresenter instance;
     private bool _addedExperience = false;
-    private bool _addedCoins = false;
-    private bool _reducedCoins = false;
-    private bool _multiplierMoney = true;
     private int _futureExperience = 0;
     private int _futureCoins = 0;
     private int _currentExperience = 0;
     int _quantityLoadSecondLevel = 0;
-
-    int differenceForCoins = 0;
 
     private int _forChit = 0;
 
@@ -32,10 +27,10 @@ public class PlayerPresenter : MonoBehaviour
     // Читы
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha9))
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             _forChit++;
-            if(_forChit == 3)
+            if (_forChit == 3)
             {
                 AddExperience(999);
                 _forChit = 0;
@@ -47,11 +42,11 @@ public class PlayerPresenter : MonoBehaviour
             if (_forChit == 3)
             {
                 AddCoin(999);
-                _forChit = 0; 
+                _forChit = 0;
             }
         };
     }
-    
+
     public void AddCoin(int value)
     {
         GameObject _newText;
@@ -60,11 +55,8 @@ public class PlayerPresenter : MonoBehaviour
         _newText.GetComponent<AnimationTextAdd>().MoveDownAndLoad(value);
         if (_futureCoins == 0) _futureCoins = PlayerModel.instance.coins;
         PlayerModel.instance.coins += value;
-        differenceForCoins = (PlayerModel.instance.coins - _futureCoins) / 3;
-        Debug.Log(differenceForCoins);
         Debug.Log("После добавки должно быть " + PlayerModel.instance.coins);
-        if (!_multiplierMoney) _multiplierMoney = true;
-        if (!_addedCoins) StartCoroutine(AddCoins());
+        PlayerView.instance.RenderCoin();
     }
 
     public void AddLevel()
@@ -82,8 +74,7 @@ public class PlayerPresenter : MonoBehaviour
         if (_futureCoins == 0) _futureCoins = PlayerModel.instance.coins;
         PlayerModel.instance.coins -= value;
         Debug.Log("После убавки должно быть " + PlayerModel.instance.coins);
-        if (_multiplierMoney) _multiplierMoney = false;
-        if (!_reducedCoins) StartCoroutine(ReduceCoins());
+        PlayerView.instance.RenderCoin();
     }
     public void AddExperience(int value)
     {
@@ -91,9 +82,10 @@ public class PlayerPresenter : MonoBehaviour
         _newText.GetComponent<AnimationTextAdd>().MoveDownAndLoad(value);
         if (_futureExperience == 0) _futureExperience = PlayerModel.instance.experience;
         PlayerModel.instance.experience += value;
-        if(_currentExperience < PlayerModel.instance.experience) _currentExperience = PlayerModel.instance.experience;
+        if (_currentExperience < PlayerModel.instance.experience) _currentExperience = PlayerModel.instance.experience;
         CheckLevel();
         if (!_addedExperience) StartCoroutine(AddEXP());
+        PlayerView.instance.RenderExperience();
     }
 
     public static void CheckLevel()
@@ -108,60 +100,26 @@ public class PlayerPresenter : MonoBehaviour
         {
             instance._quantityLoadSecondLevel--;
             instance._futureExperience = 0;
-            if(instance._quantityLoadSecondLevel == 0) instance._currentExperience = PlayerModel.instance.experience;
+            if (instance._quantityLoadSecondLevel == 0) instance._currentExperience = PlayerModel.instance.experience;
             PlayerView.instance.RenderLevel(instance._quantityLoadSecondLevel);
         }
     }
 
     public void AddValueExperienceBar(int value)
     {
-        _experienceBar.value = (float) value / Levels.levels[Levels.CurrentLevel - _quantityLoadSecondLevel].experience;
+        _experienceBar.value = (float)value / Levels.levels[Levels.CurrentLevel - _quantityLoadSecondLevel].experience;
     }
 
     private IEnumerator AddEXP()
     {
         _addedExperience = true;
-        float speed = 1f;
         while (_futureExperience < _currentExperience)
         {
             _futureExperience++;
             CheckLevel();
             AddValueExperienceBar(_futureExperience);
-            PlayerView.instance.RenderExperience(_futureExperience);
-            speed -= 0.005f;
-            yield return new WaitForSeconds(0.08f * speed);
+            yield return new WaitForSeconds(0.00001f);
         }
         _addedExperience = false;
-    }
-
-    private IEnumerator AddCoins()
-    {
-        _addedCoins = true;
-        int divisorNumber = 3;
-        int quantityAdded = 0;
-        while (_futureCoins < PlayerModel.instance.coins)
-        {
-            _futureCoins += differenceForCoins;
-
-            PlayerView.instance.RenderCoin(_futureCoins);
-            quantityAdded++;
-            yield return new WaitForSeconds(1);
-        }
-        _addedCoins = false;
-    }
-
-    private IEnumerator ReduceCoins()
-    {
-        _reducedCoins = true;
-        float speed = 1f;
-        while (_futureCoins > PlayerModel.instance.coins)
-        {
-            _futureCoins++;
-            PlayerView.instance.RenderCoin(_futureCoins);
-            speed -= 0.01f;
-            yield return new WaitForSeconds(0.03f * speed);
-        }
-
-        _reducedCoins = false;
     }
 }

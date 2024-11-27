@@ -8,15 +8,16 @@ public class ShopItemView : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private TMP_Text _cost;
+    [SerializeField] private TMP_Text _buy;
 
     [Header("InformationItemShop")]
     [SerializeField] private GameObject[] _linesBaffs;
     [SerializeField] private List<ItemBaff> _itemBaffToOneLine = new List<ItemBaff>();
     [SerializeField] private List<ItemBaff> _itemBaffToSecondLine = new List<ItemBaff>();
     private ShopItemInformation _thisShopItemInformation;
-
     public void OutputInformationItemShop(ShopItemInformation _infoItem)
     {
+        _buy.text = LibraryWords.buy.GetText();
         _cost.text = $"{_infoItem.costPurchase}";
         _linesBaffs[0].SetActive(true);
         _linesBaffs[1].SetActive(true);

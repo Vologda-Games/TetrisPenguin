@@ -16,7 +16,6 @@ public class RatingsModel : MonoBehaviour
 
     [Header("YourInformation")]
     [HideInInspector] public int yourScore;
-    [HideInInspector] public string yourName;
     [HideInInspector] public Sprite yourIcon;
 
     [Header("InformationFalseUsers")]
@@ -37,7 +36,6 @@ public class RatingsModel : MonoBehaviour
             if (PlayerModel.instance.level > Levels.levels[i].level) yourScore += Levels.levels[i].experience;
             else if (PlayerModel.instance.level == Levels.levels[i].level) yourScore += PlayerModel.instance.experience;
         }
-        if (yourName == null || yourName == "") yourName = "Вы";
         if (yourIcon == null) yourIcon = defaultIcon;
     }
 }

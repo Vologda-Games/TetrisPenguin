@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LuckWheelView : MonoBehaviour
@@ -17,6 +14,8 @@ public class LuckWheelView : MonoBehaviour
     [SerializeField] public RectTransform btnForMoney;
     [SerializeField] public RectTransform spinButton;
 
+
+    [HideInInspector] public int _priceAttempt = 750;
     void Awake()
     {
         if (instance == null)

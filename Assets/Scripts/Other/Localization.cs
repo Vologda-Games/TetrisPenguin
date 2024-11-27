@@ -14,9 +14,8 @@ public class Localization
     public string textAR; //Арабский
     public string textHI; //Хинди
     public string textID; //Индонезийский
-    public string textDU; //Голландский
     public string textPO; //Польский
-    public string textSW; //Швецкий
+    public string textSW; //Шведский
 
     public string GetText()
     {
@@ -33,7 +32,6 @@ public class Localization
         else if (LanguageModel.currentLanguage == Languages.JAPANESE) return textJA;
         else if (LanguageModel.currentLanguage == Languages.ARABIAN) return textAR;
         else if (LanguageModel.currentLanguage == Languages.INDONESIAN) return textID;
-        else if (LanguageModel.currentLanguage == Languages.DUTCH) return textDU;
         else if (LanguageModel.currentLanguage == Languages.POLISH) return textPO;
         else if (LanguageModel.currentLanguage == Languages.SWEDISH) return textSW;
         return "null";
@@ -54,7 +52,6 @@ public class Localization
         string textAR,
         string textHI,
         string textID,
-        string textDU,
         string textPO,
         string textSW
     )
@@ -73,7 +70,6 @@ public class Localization
         this.textAR = textAR;
         this.textHI = textHI;
         this.textID = textID;
-        this.textDU = textDU;
         this.textPO = textPO;
         this.textSW = textSW;
     }

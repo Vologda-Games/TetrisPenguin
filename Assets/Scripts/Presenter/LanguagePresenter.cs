@@ -62,10 +62,6 @@ public class LanguagePresenter : MonoBehaviour
                 // Японский
                 LanguageModel.currentLanguage = Languages.JAPANESE;
                 break;
-            case Languages.DUTCH:
-                // Нидерландский
-                LanguageModel.currentLanguage = Languages.DUTCH;
-                break;
             case Languages.POLISH:
                 //Польский
                 LanguageModel.currentLanguage = Languages.POLISH;

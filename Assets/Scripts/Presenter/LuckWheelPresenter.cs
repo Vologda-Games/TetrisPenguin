@@ -226,13 +226,6 @@ public class LuckWheelPresenter : MonoBehaviour
             }
     }
 
-
-    public static void AddToken(int value)
-    {
-        PlayerModel.instance.coins += value;
-        PlayerView.instance.RenderCoin();
-    }
-
     public void OnClickBtnMoney() 
     {
         if (PlayerModel.instance.coins >= 750) 

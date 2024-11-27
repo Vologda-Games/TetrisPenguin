@@ -19,9 +19,9 @@ public class NewDayEventModel : MonoBehaviour
 
     public void LoadResourcesNewDay()
     {
-        for (int i = 0; i < DailyTasksModel.allTasks.Count; i++)
+        for (int i = 0; i < DailyTasksModel.instance.allTasks.Count; i++)
         {
-            if (!DailyTasksModel._instance._allReadyNumbersTasks.Contains(i)) DailyTasksModel._instance._allReadyNumbersTasks.Add(i);
+            if (!DailyTasksModel.instance._allReadyNumbersTasks.Contains(i)) DailyTasksModel.instance._allReadyNumbersTasks.Add(i);
         }
 
         DailyTasksModel.spritesForRewardBaff = Resources.LoadAll<Sprite>("Sprites/Reward/Bafs");
@@ -29,7 +29,7 @@ public class NewDayEventModel : MonoBehaviour
         SoundsModel.music = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Music");
         SoundsModel.sounds = Resources.LoadAll<GameObject>("Prefabs/SoundsAndMusic/Sounds");
 
-        DateTime _lastEnterToGame = DailyTasksModel._instance.LastEnterToGame;
+        DateTime _lastEnterToGame = DailyTasksModel.instance.LastEnterToGame;
         if (GamePush.GP_Server.Time().Date > _lastEnterToGame || _lastEnterToGame == null)
         {
             ResetFlagsForNewDay();
@@ -39,13 +39,13 @@ public class NewDayEventModel : MonoBehaviour
             }
             StartCoroutine(openDailyRewards());
             tasksOnToday = new List<DailyTasksInfoValue>();
-            while (tasksOnToday.Count < DailyTasksModel._instance._maxQuantityTaskOfDay)
+            while (tasksOnToday.Count < DailyTasksModel.instance._maxQuantityTaskOfDay)
             {
-                int _randomNumberTasks = DailyTasksModel._instance.RandomNumberTask();
-                if (!tasksOnToday.Contains(DailyTasksModel.allTasks[_randomNumberTasks])) tasksOnToday.Add(DailyTasksModel.allTasks[_randomNumberTasks]);
+                int _randomNumberTasks = DailyTasksModel.instance.RandomNumberTask();
+                if (!tasksOnToday.Contains(DailyTasksModel.instance.allTasks[_randomNumberTasks])) tasksOnToday.Add(DailyTasksModel.instance.allTasks[_randomNumberTasks]);
                 tasksOnToday[tasksOnToday.Count - 1]._currentQuantity = 0;
             }
-            DailyTasksModel._instance.LastEnterToGame = GamePush.GP_Server.Time().Date;
+            DailyTasksModel.instance.LastEnterToGame = GamePush.GP_Server.Time().Date;
             DataPresenter.SaveDailyTasksModel();
             DataPresenter.SaveNewDayEventModel();
         }
