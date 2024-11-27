@@ -10,7 +10,7 @@ public class PenguinCardView : MonoBehaviour
 
     public void OutputInformationPenguinCard(int levelPenguin)
     {
-        _textLevel.text = $"{PenguinsModel.instance.penguinsCardsInformations[levelPenguin].levelPenguin + 1} уровень";
+        _textLevel.text = $"{PenguinsModel.instance.penguinsCardsInformations[levelPenguin].levelPenguin + 1} {LibraryWords.level.GetText()}";
         if(PenguinsModel.instance.penguinsCardsInformations[levelPenguin].ready)
         {
             _imageSoftPenguin.sprite = PenguinsModel.instance.penguinsCardsInformations[levelPenguin].softSprite;
