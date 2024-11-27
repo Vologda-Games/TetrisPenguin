@@ -183,41 +183,21 @@ public class DailyTasksInfoValue
 
     public string TaskInformation()
     {
-        string _typeAction;
-        string _nameObject = "Это задание к сожалению скрыто:(";
-        string _nameBaff = "Это задание к сожалению скрыто:(";
+        string returnValue = "This task is gone!";
 
         if (_typeTaskEnum == TypeTask.Create)
         {
-            _typeAction = "Создать";
-            if (_objectLevel != 0)
-            {
-                _nameObject = $"пингвина {_objectLevel + 1}-го уровня";
-            }
-            return $"{_typeAction} {_nameObject}";
+            if (_objectLevel != 0) returnValue = $"{LibraryWords.createPenguinTask[_objectLevel].GetText()}";
         }
         else if (_typeTaskEnum == TypeTask.UseBaff)
         {
-            _typeAction = "Использовать";
-            if (_numberUseBaff > 0)
-            {
-                switch (_numberUseBaff)
-                {
-                    case 1: _nameBaff = $"усилитель \"мульти пингвин\""; break;
-                    case 2: _nameBaff = $"усилитель \"супер удар\""; break;
-                    case 3: _nameBaff = $"усилитель \"бомба\""; break;
-                    case 4: _nameBaff = $"усилитель \"ураган\""; break;
-                    case 5: _nameBaff = $"усилитель \"магнит\""; break;
-                }
-            }
-            return $"{_typeAction} {_nameBaff}";
+            if (_numberUseBaff > 0) returnValue = $"{LibraryWords.useBaffTask[_numberUseBaff - 1].GetText()}";
         }
         else if (_typeTaskEnum == TypeTask.Click)
         {
-            _typeAction = "Кликнуть на экран, при создании пингвинов";
-            return $"{_typeAction}";
+            returnValue = $"{LibraryWords.clickTask.GetText()}";
         }
-        else return $"Это задание к сожалению скрыто:(((";
+        return $"{returnValue}";
     }
 
     public Sprite SpriteReward()

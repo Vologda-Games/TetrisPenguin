@@ -293,6 +293,7 @@ public class DataPresenter
         string json = GetData(Models.LANGUAGE_MODEL);
         if (json == "" || json == null)
         {
+            LanguagePresenter.InitLanguage(GP_Language.Current().ToString());
             return;
         }
         SaveLanguageModel saveLanguageModel = JsonConvert.DeserializeObject<SaveLanguageModel>(json);
