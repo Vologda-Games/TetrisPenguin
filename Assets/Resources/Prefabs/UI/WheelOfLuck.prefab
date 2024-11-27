@@ -2167,7 +2167,7 @@ GameObject:
   - component: {fileID: 7095799867078010862}
   - component: {fileID: 518133055242975688}
   m_Layer: 5
-  m_Name: WheelOfLuck_REMOTE_1022
+  m_Name: WheelOfLuck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

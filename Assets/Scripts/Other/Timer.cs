@@ -23,6 +23,13 @@ public class Timer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void DeleteDataPenguins()
+    {
+        DataPresenter.DeleteDataPenguins();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private IEnumerator Saving()
     {
         while (true)

@@ -30,4 +30,9 @@ public class DailyRewardsView : MonoBehaviour
         BlackBackground.SetActive(false);
         DailyRewardsPresenter.instance.IsWindowDailtRewards(true);
     }
+
+    public void CloseWindow() 
+    {
+        DailyRewardsPresenter.instance.EventCloseDailyRewards();
+    }
 }

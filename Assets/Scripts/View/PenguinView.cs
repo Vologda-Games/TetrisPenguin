@@ -169,7 +169,7 @@ public class PenguinView : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (BafsPresenter.GetSelectBaf() == 5 && level != 16)
+        if (BafsPresenter.GetSelectBaf() == 5 && level != 16 && level != 15)
         {
             DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             BafsView.instance.StartTriggerBtn();
