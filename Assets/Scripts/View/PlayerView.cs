@@ -25,7 +25,8 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private TMP_Text _textControl;
     [SerializeField] private TMP_Text _textReplay;
     [SerializeField] private TMP_Text _textLanguage;
-    private bool scaleBool;
+    private bool scaleBoolEXP;
+    private bool scaleBoolCoins;
 
     private void Awake()
     {
@@ -59,24 +60,35 @@ public class PlayerView : MonoBehaviour
     public void RenderExperience(int experience)
     {
         experienceText.text = RenderingCurrencyText(experience);
+        if (!scaleBoolEXP) StartCoroutine(UpScaleTextEXP(experienceText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
     }
 
     public void RenderExperience()
     {
         experienceText.text = RenderingCurrencyText(PlayerModel.instance.experience);
-        if (!scaleBool) StartCoroutine(UpScaleTextEXP(experienceText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
+        if (!scaleBoolEXP) StartCoroutine(UpScaleTextEXP(experienceText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
     }
 
     public void RenderCoin(int coins)
     {
         _coinsText.text = RenderingCurrencyText(coins);
-        if (_coinsTextInWindow != null) _coinsTextInWindow.text = RenderingCurrencyText(coins);
+        if (_coinsTextInWindow != null)
+        {
+            _coinsTextInWindow.text = RenderingCurrencyText(PlayerModel.instance.coins);
+            if (!scaleBoolCoins) StartCoroutine(UpScaleTextCoins(_coinsTextInWindow.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
+        }
+        if (!scaleBoolCoins) StartCoroutine(UpScaleTextCoins(_coinsText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
     }
 
     public void RenderCoin()
     {
         _coinsText.text = RenderingCurrencyText(PlayerModel.instance.coins);
-        if (_coinsTextInWindow != null) _coinsTextInWindow.text = RenderingCurrencyText(PlayerModel.instance.coins);
+        if (_coinsTextInWindow != null)
+        {
+            _coinsTextInWindow.text = RenderingCurrencyText(PlayerModel.instance.coins);
+            if (!scaleBoolCoins) StartCoroutine(UpScaleTextCoins(_coinsTextInWindow.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
+        }
+        if (!scaleBoolCoins) StartCoroutine(UpScaleTextCoins(_coinsText.gameObject, new Vector2(1.2f, 1.2f), experienceText.transform.localScale));
     }
 
     public void RenderTypeControl()
@@ -135,7 +147,7 @@ public class PlayerView : MonoBehaviour
 
     private IEnumerator UpScaleTextEXP(GameObject go, Vector2 maxScale, Vector2 normalScale)
     {
-        scaleBool = true;
+        scaleBoolEXP = true;
         while (go.transform.localScale.x < maxScale.x && go.transform.localScale.y < maxScale.y)
         {
             go.transform.localScale = new Vector2(go.transform.localScale.x + 0.05f, go.transform.localScale.y + 0.05f);
@@ -147,6 +159,23 @@ public class PlayerView : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         go.transform.localScale = normalScale;
-        scaleBool = false;
+        scaleBoolEXP = false;
+    }
+    
+    private IEnumerator UpScaleTextCoins(GameObject go, Vector2 maxScale, Vector2 normalScale)
+    {
+        scaleBoolCoins = true;
+        while (go.transform.localScale.x < maxScale.x && go.transform.localScale.y < maxScale.y)
+        {
+            go.transform.localScale = new Vector2(go.transform.localScale.x + 0.05f, go.transform.localScale.y + 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (go.transform.localScale.x > normalScale.x && go.transform.localScale.y > normalScale.y)
+        {
+            go.transform.localScale = new Vector2(go.transform.localScale.x - 0.05f, go.transform.localScale.y - 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        go.transform.localScale = normalScale;
+        scaleBoolCoins = false;
     }
 }

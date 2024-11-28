@@ -11,8 +11,11 @@ public class MusicAndSoundsManager : MonoBehaviour
     [SerializeField] public static MusicAndSoundsManager _instance;
 
     [Header("Sprites")]
-    [SerializeField] public Sprite _trueSpriteButton;
-    [SerializeField] public Sprite _falseSpriteButton;
+    [SerializeField] public Sprite _trueSpriteButtonMusic;
+    [SerializeField] public Sprite _falseSpriteButtonMusic;
+
+    [SerializeField] public Sprite _trueSpriteButtonSounds;
+    [SerializeField] public Sprite _falseSpriteButtonSounds;
 
     [Header("UI")]
     [SerializeField] public Image _buttonSounds;
@@ -26,8 +29,8 @@ public class MusicAndSoundsManager : MonoBehaviour
     {
         _instance = this;
         PlaySound("BackgroundMusic");
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playSouds);
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playMusic);
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance._playSouds);
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance._playMusic);
     }
 
     public void PlaySound(string _nameSound, float _direction)
@@ -68,14 +71,14 @@ public class MusicAndSoundsManager : MonoBehaviour
     public void SwitchSoundsPlayback()
     {
         SoundsModel.instance._playSouds = !SoundsModel.instance._playSouds;
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playSouds);
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance._playSouds);
         DataPresenter.SaveSoundsModel();
     }
 
     public void SwitchMusicPlayback()
     {
         SoundsModel.instance._playMusic = !SoundsModel.instance._playMusic;
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButton, _falseSpriteButton, SoundsModel.instance._playMusic);
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance._playMusic);
         if (SoundsModel.instance._playMusic)
         {
             for (int i = 0; i < _audioSourcesMusic.Count; i++)
