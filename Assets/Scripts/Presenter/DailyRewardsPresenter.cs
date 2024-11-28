@@ -8,6 +8,7 @@ public class DailyRewardsPresenter : MonoBehaviour
     public static DailyRewardsPresenter instance;
     private bool isBlackBackground;
     private bool isDailyRewardsWindow;
+
     void Awake() 
     {
         instance = this;
@@ -82,24 +83,27 @@ public class DailyRewardsPresenter : MonoBehaviour
     private void UpdateUI(int day) 
     {
         int index = day - 1;
-        //DailyRewardsView.instance.rewardPrice.text = $"день {day}: {DailyRewardsModel.instance.rewards[index]}";
-        DailyRewardsView.instance.rewardPrice.text = $"Заберите награду за {day} день";
-        DailyRewardsView.instance.textInButton.text = $"Получить";
+        Localization rewardtext = new Localization($"Заберите награду за {day} день", $"Claim your reward in {day} day", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день", $"Заберите награду за {day} день");
+        Localization getrewardtext = new Localization($"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!", $"You got {DailyRewardsModel.instance.rewards[index]} coins in {day} day!", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего");
+
+        DailyRewardsView.instance.rewardPrice.text = rewardtext.GetText();                    //$"Заберите награду за {day} день";
+        DailyRewardsView.instance.textInButton.text = LibraryWords.get.GetText();
         DailyRewardsView.instance.claimButton.interactable = !DailyRewardsModel.instance.claimRewadsBool[index]; // если true = забрана, то отключает кнопку
         if (DailyRewardsModel.instance.claimRewadsBool[index]) 
         {
             //DailyRewardsView.instance.rewardPrice.text = $"день {day}: награда получена!";
-            DailyRewardsView.instance.rewardPrice.text = $"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
-            DailyRewardsView.instance.textInButton.text = $"Получено";
+            DailyRewardsView.instance.rewardPrice.text = getrewardtext.GetText();                           //$"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
+            DailyRewardsView.instance.textInButton.text = LibraryWords.received.GetText(); //$"Получено";
         }
     }
 
     public void ClaimRewardButton() 
     {
+        
         StartCoroutine(ScaleButton());
         int day = (int)DailyRewardsView.instance.slider.value;
         int index = day - 1;
-
+        Localization getrewardtext = new Localization($"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!", $"You got {DailyRewardsModel.instance.rewards[index]} coins in {day} day!", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего", "ничего");
         if (DailyRewardsModel.instance.claimRewadsBool[index]) 
         {
             return;
@@ -107,8 +111,8 @@ public class DailyRewardsPresenter : MonoBehaviour
 
         DailyRewardsModel.instance.claimRewadsBool[index] = true;
 
-        DailyRewardsView.instance.rewardPrice.text = $"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
-        DailyRewardsView.instance.textInButton.text = $"Получено";
+        DailyRewardsView.instance.rewardPrice.text =   getrewardtext.GetText();                                        //$"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
+        DailyRewardsView.instance.textInButton.text = LibraryWords.received.GetText();         // $"Получено";
         DailyRewardsView.instance.claimButton.interactable = false;
 
         //CurrentSaveBoolList();
@@ -133,7 +137,7 @@ public class DailyRewardsPresenter : MonoBehaviour
         }
         DailyRewardsView.instance.rectTranformClaimButton.localScale = futureScale;
 
-        DailyRewardsView.instance.textInButton.text = $"Получено";
+        DailyRewardsView.instance.textInButton.text = LibraryWords.received.GetText();   //$"Получено";
         time = 0;
         
         while(time < duration) 

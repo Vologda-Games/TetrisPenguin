@@ -54,6 +54,10 @@ public class GameInterface : MonoBehaviour
     //         }
     //         StartCoroutine(openDailyRewardss());
     //     }
+    //     if (Input.GetKeyDown(KeyCode.C)) 
+    //     {
+    //         Timer.instance.DeleteAllData();
+    //     }
     // }
 
     IEnumerator openDailyRewardss() 

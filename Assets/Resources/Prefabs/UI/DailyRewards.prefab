@@ -550,7 +550,7 @@ MonoBehaviour:
   _textWheelOfLuck: {fileID: 0}
   _textSpin: {fileID: 0}
   _textAttempt: {fileID: 0}
-  _textGet: {fileID: 5119457924307645107}
+  _textGet: {fileID: 0}
   _textLoginToGame: {fileID: 3613545971447475397}
   _priceAttemptText: {fileID: 0}
 --- !u!1 &1145652244713466490
