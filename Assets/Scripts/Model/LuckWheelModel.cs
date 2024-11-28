@@ -42,12 +42,7 @@ public class LuckWheelModel : MonoBehaviour
 }
 public class SaveLuckWheelModel 
 {
-    public float rotationSpeed;
-    public float rotationTimeMaxSpeed; 
-    public float accelerationTime;
-    public int numberOfSpins;
     public int isUpScale;
     public int wheelSpunToday;
-    public List<int> prizes;
     public string lastSpinDate;
 }

@@ -234,12 +234,11 @@ public class LuckWheelPresenter : MonoBehaviour
         if (PlayerModel.instance.coins >= 750 && !animdont750money) 
         {
             ClickOnButtonForMoney(750);
-            Debug.Log("КУПЛЕНО ЗА 750");
             StartCoroutine(DownScale());
         }
         if (PlayerModel.instance.coins < 750 && !animdont750money)
         {
-            //StartCoroutine(NoMoney750Button());
+            StartCoroutine(NoMoney750Button());
         }
     }
 

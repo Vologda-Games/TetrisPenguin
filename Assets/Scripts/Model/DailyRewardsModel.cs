@@ -63,8 +63,6 @@ public class DailyRewardsModel : MonoBehaviour
 }
 public class SaveDailyRewardsModel
 {
-    public List<int> rewards;
     public List<bool> claimRewadsBool;
-    public int maxDay;
     public int currentDay;
 }

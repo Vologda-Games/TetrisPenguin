@@ -26,6 +26,8 @@ public class Timer : MonoBehaviour
     public void DeleteDataPenguins()
     {
         DataPresenter.DeleteDataPenguins();
+        PlayerModel.instance.experience = 0;
+        
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

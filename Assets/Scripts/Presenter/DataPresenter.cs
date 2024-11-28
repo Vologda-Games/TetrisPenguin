@@ -163,13 +163,8 @@ public class DataPresenter
     {
         SaveLuckWheelModel ratingsModel = new SaveLuckWheelModel()
         {
-            rotationSpeed = LuckWheelModel.instance.rotationSpeed,
-            rotationTimeMaxSpeed = LuckWheelModel.instance.rotationTimeMaxSpeed,
-            accelerationTime = LuckWheelModel.instance.accelerationTime,
-            numberOfSpins = LuckWheelModel.instance.numberOfSpins,
             isUpScale = LuckWheelModel.instance.isUpScale,
             wheelSpunToday = LuckWheelModel.instance.wheelSpunToday,
-            prizes = LuckWheelModel.instance.prizes,
             lastSpinDate = LuckWheelModel.instance.lastSpinDate
         };
         string json = JsonConvert.SerializeObject(ratingsModel);
@@ -180,9 +175,7 @@ public class DataPresenter
     {
         SaveDailyRewardsModel ratingsModel = new SaveDailyRewardsModel()
         {
-            rewards = DailyRewardsModel.instance.rewards,
             claimRewadsBool = DailyRewardsModel.instance.claimRewadsBool,
-            maxDay = DailyRewardsModel.instance.maxDay,
             currentDay = DailyRewardsModel.instance.currentDay
         };
         string json = JsonConvert.SerializeObject(ratingsModel);
@@ -308,13 +301,8 @@ public class DataPresenter
             return;
         }
         SaveLuckWheelModel saveLuckWheelModel = JsonConvert.DeserializeObject<SaveLuckWheelModel>(json);
-        LuckWheelModel.instance.rotationSpeed = saveLuckWheelModel.rotationSpeed;
-        LuckWheelModel.instance.rotationTimeMaxSpeed = saveLuckWheelModel.rotationTimeMaxSpeed;
-        LuckWheelModel.instance.accelerationTime = saveLuckWheelModel.accelerationTime;
-        LuckWheelModel.instance.numberOfSpins = saveLuckWheelModel.numberOfSpins;
         LuckWheelModel.instance.isUpScale = saveLuckWheelModel.isUpScale;
         LuckWheelModel.instance.wheelSpunToday = saveLuckWheelModel.wheelSpunToday;
-        LuckWheelModel.instance.prizes = saveLuckWheelModel.prizes;
         LuckWheelModel.instance.lastSpinDate = saveLuckWheelModel.lastSpinDate;
     }
 
@@ -326,9 +314,7 @@ public class DataPresenter
             return;
         }
         SaveDailyRewardsModel saveDailyRewadsModel = JsonConvert.DeserializeObject<SaveDailyRewardsModel>(json);
-        DailyRewardsModel.instance.rewards = saveDailyRewadsModel.rewards;
         DailyRewardsModel.instance.claimRewadsBool = saveDailyRewadsModel.claimRewadsBool;
-        DailyRewardsModel.instance.maxDay = saveDailyRewadsModel.maxDay;
         DailyRewardsModel.instance.currentDay = saveDailyRewadsModel.currentDay;
     }
 
@@ -342,7 +328,9 @@ public class DataPresenter
     public static void DeleteDataPenguins()
     {
         SaveData(Models.PENGUINS_MODEL, "");
-        Debug.LogWarning("DELETE ALL DATA");
+        PlayerModel.instance.experience = 0;
+        SavePlayerModel();
+        Debug.LogWarning("DELETE experience, PENGUINS_MODEL");
         Time.timeScale = 0f;
     }
 }
