@@ -23,6 +23,7 @@ public class LuckWheelPresenter : MonoBehaviour
 
     private List<int> prizes;
     private bool animdont750money;
+    private bool scaleButtonSpin;
 
      void Awake()
     {
@@ -234,10 +235,14 @@ public class LuckWheelPresenter : MonoBehaviour
         if (PlayerModel.instance.coins >= 750 && !animdont750money) 
         {
             ClickOnButtonForMoney(750);
+            StartCoroutine(ScaleButton());
             StartCoroutine(DownScale());
+            // LuckWheelView.instance.TextSpin.SetActive(true);
+            // LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(false);
         }
-        if (PlayerModel.instance.coins < 750 && !animdont750money)
+        else if (PlayerModel.instance.coins < 750 && !animdont750money)
         {
+            Debug.Log("NoMoney");
             StartCoroutine(NoMoney750Button());
         }
     }
@@ -246,37 +251,42 @@ public class LuckWheelPresenter : MonoBehaviour
     {
         float time = 0f;
         float duration = 0.2f;
-        Vector3 currentScale = LuckWheelView.instance.btnForMoney.localScale;
+        Vector3 currentScale = LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale;
         Vector3 targetScale = Vector3.zero;
         
         while(time < duration) 
         {
             time += Time.deltaTime;
             float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.localScale = Vector3.Lerp(currentScale, targetScale, progress);
+            LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale = Vector3.Lerp(currentScale, targetScale, progress);
             yield return null;
         }
-        LuckWheelView.instance.request_For_Money.SetActive(false);
+        LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(false);
+        LuckWheelView.instance.TextSpin.SetActive(true);
     }
 
     public void ShowBtnMoney() 
     {
-        LuckWheelView.instance.request_For_Money.SetActive(true);
+        StartCoroutine(UpScale());
+        // LuckWheelView.instance.TextSpin.SetActive(false);
+        // LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(true);
         //if (PlayerPrefs.GetInt("isUpScale") == 1) 
-        if (LuckWheelModel.instance.isUpScale == 1)
-        {
-            StartCoroutine(UpAndDownRotation());
-        }
-        else 
-        {
-            StartCoroutine(UpScale());
-        }
+        // if (LuckWheelModel.instance.isUpScale == 1)
+        // {
+        //     StartCoroutine(UpAndDownRotation());
+        // }
+        // else 
+        // {
+        //     StartCoroutine(UpScale());
+        // }
         //PlayerPrefs.SetInt("isUpScale", 1);
         LuckWheelModel.instance.isUpScale = 1;
     }
 
     IEnumerator UpScale() 
     {
+        LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(true);
+        LuckWheelView.instance.TextSpin.SetActive(false);
         if (wheel == null)
             {
                 yield break; // Завершаем корутину, если объект уже уничтожен
@@ -294,89 +304,90 @@ public class LuckWheelPresenter : MonoBehaviour
             }
             time += Time.deltaTime;
             float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.localScale = Vector3.Lerp(initialScale, targetScale, progress);
+            LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale = Vector3.Lerp(initialScale, targetScale, progress);
             yield return null;
         }
-        LuckWheelView.instance.btnForMoney.localScale = targetScale;
+        LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale = targetScale;
     }
 
-    IEnumerator UpAndDownRotation() 
-    {
-        if (wheel == null)
-        {
-            yield break; // Завершаем корутину, если объект уже уничтожен
-        }
+    // IEnumerator UpAndDownRotation() 
+    // {
+    //     if (wheel == null)
+    //     {
+    //         yield break; // Завершаем корутину, если объект уже уничтожен
+    //     }
 
-        LuckWheelView.instance.AnimationRotation(true); // возращает true к view
-        float time = 0f;
-        float duration = 0.2f;
-        Vector3 initialScale = Vector3.zero;
-        Vector3 targetScale = new Vector3(0f, 0f, 4f);
+    //     LuckWheelView.instance.AnimationRotation(true); // возращает true к view
+    //     float time = 0f;
+    //     float duration = 0.2f;
+    //     Vector3 initialScale = Vector3.zero;
+    //     Vector3 targetScale = new Vector3(0f, 0f, 4f);
         
-        while(time < duration) 
-        {
-            if (wheel == null)
-            {
-                yield break; // Завершаем корутину, если объект уже уничтожен
-            }
+    //     while(time < duration) 
+    //     {
+    //         if (wheel == null)
+    //         {
+    //             yield break; // Завершаем корутину, если объект уже уничтожен
+    //         }
 
-            time += Time.deltaTime;
-            float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
-            yield return null;
-        }
-        initialScale = targetScale;
-        targetScale = new Vector3(0f, 0f, -4f);
-        duration = 0.4f;
-        time = 0f;
-        while(time < duration) 
-        {
-            if (wheel == null)
-            {
-                yield break; // Завершаем корутину, если объект уже уничтожен
-            }
-            time += Time.deltaTime;
-            float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
-            yield return null;
-        }
-        initialScale = targetScale;
-        targetScale = new Vector3(0f, 0f, 3f);
-        duration = 0.4f;
-        time = 0f;
+    //         time += Time.deltaTime;
+    //         float progress = time/duration;
+    //         LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
+    //         yield return null;
+    //     }
+    //     initialScale = targetScale;
+    //     targetScale = new Vector3(0f, 0f, -4f);
+    //     duration = 0.4f;
+    //     time = 0f;
+    //     while(time < duration) 
+    //     {
+    //         if (wheel == null)
+    //         {
+    //             yield break; // Завершаем корутину, если объект уже уничтожен
+    //         }
+    //         time += Time.deltaTime;
+    //         float progress = time/duration;
+    //         LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
+    //         yield return null;
+    //     }
+    //     initialScale = targetScale;
+    //     targetScale = new Vector3(0f, 0f, 3f);
+    //     duration = 0.4f;
+    //     time = 0f;
         
-        while(time < duration) 
-        {
-            if (wheel == null)
-            {
-                yield break; // Завершаем корутину, если объект уже уничтожен
-            }
-            time += Time.deltaTime;
-            float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
-            yield return null;
-        }
-        initialScale = targetScale;
-        targetScale = new Vector3(0f, 0f, 0f);
-        duration = 0.2f;
-        time = 0f;
-        while(time < duration) 
-        {
-            if (wheel == null)
-            {
-                yield break; // Завершаем корутину, если объект уже уничтожен
-            }
-            time += Time.deltaTime;
-            float progress = time/duration;
-            LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
-            yield return null;
-        }
-        LuckWheelView.instance.AnimationRotation(false);
-    }
+    //     while(time < duration) 
+    //     {
+    //         if (wheel == null)
+    //         {
+    //             yield break; // Завершаем корутину, если объект уже уничтожен
+    //         }
+    //         time += Time.deltaTime;
+    //         float progress = time/duration;
+    //         LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
+    //         yield return null;
+    //     }
+    //     initialScale = targetScale;
+    //     targetScale = new Vector3(0f, 0f, 0f);
+    //     duration = 0.2f;
+    //     time = 0f;
+    //     while(time < duration) 
+    //     {
+    //         if (wheel == null)
+    //         {
+    //             yield break; // Завершаем корутину, если объект уже уничтожен
+    //         }
+    //         time += Time.deltaTime;
+    //         float progress = time/duration;
+    //         LuckWheelView.instance.btnForMoney.eulerAngles = Vector3.Lerp(initialScale, targetScale, progress);
+    //         yield return null;
+    //     }
+    //     LuckWheelView.instance.AnimationRotation(false);
+    // }
 
     IEnumerator ScaleButton() 
     {
-        
+        scaleButtonSpin = true;
+        LuckWheelView.instance.AnimScaleButtonSpin(scaleButtonSpin);
         float time = 0;
         float duration = 0.2f;
 
@@ -403,6 +414,8 @@ public class LuckWheelPresenter : MonoBehaviour
             yield return null;
         }
         LuckWheelView.instance.spinButton.localScale = currentScale;
+        scaleButtonSpin = false;
+        LuckWheelView.instance.AnimScaleButtonSpin(scaleButtonSpin);
     }
 
     IEnumerator NoMoney750Button()
@@ -419,7 +432,7 @@ public class LuckWheelPresenter : MonoBehaviour
     float shakeSpeed = 10f;      // Скорость "дрожания"
     int shakeCount = 3;          // Количество "рывков"
 
-    Vector3 originalPosition = LuckWheelView.instance.btnForMoney.position;
+    Vector3 originalPosition = LuckWheelView.instance.spinButton.position;
 
     // Основная анимация "противодействия"
     for (int i = 0; i < shakeCount; i++)
@@ -434,7 +447,7 @@ public class LuckWheelPresenter : MonoBehaviour
         while (time < 0.1f) // Длительность каждого рывка
         {
             time += Time.deltaTime * shakeSpeed;
-            LuckWheelView.instance.btnForMoney.position = originalPosition + Vector3.right * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
+            LuckWheelView.instance.spinButton.position = originalPosition + Vector3.right * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
             yield return null;
         }
 
@@ -443,7 +456,7 @@ public class LuckWheelPresenter : MonoBehaviour
         while (time < 0.1f)
         {
             time += Time.deltaTime * shakeSpeed;
-            LuckWheelView.instance.btnForMoney.position = originalPosition + Vector3.left * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
+            LuckWheelView.instance.spinButton.position = originalPosition + Vector3.left * Mathf.Sin(time * Mathf.PI) * shakeAmplitude;
             yield return null;
         }
 
@@ -452,7 +465,7 @@ public class LuckWheelPresenter : MonoBehaviour
     }
 
     // Возврат кнопки в исходное положение
-    LuckWheelView.instance.btnForMoney.position = originalPosition;
+    LuckWheelView.instance.spinButton.position = originalPosition;
 
     animdont750money = false;
 }

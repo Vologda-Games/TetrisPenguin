@@ -6,13 +6,17 @@ public class LuckWheelView : MonoBehaviour
     public static LuckWheelView instance;
     private bool spinning = false;
     private bool rotation = false;
+    private bool isScale = false;
     [SerializeField] public GameObject wheel;
-    [SerializeField] public GameObject request_For_Money;
+    [SerializeField] public GameObject TextSpin;
+    [SerializeField] public GameObject ImageCoinAndTextPrice;
 
     [Header("Transform")]
 
-    [SerializeField] public RectTransform btnForMoney;
     [SerializeField] public RectTransform spinButton;
+    [SerializeField] public RectTransform ImageCoinAndTextPriceRectTransform;
+    [SerializeField] public RectTransform TextSpinRectTranform;
+
 
 
     [HideInInspector] public int _priceAttempt = 750;
@@ -30,19 +34,21 @@ public class LuckWheelView : MonoBehaviour
 
     void Start() 
     {
-        request_For_Money.SetActive(false);
+        ImageCoinAndTextPrice.SetActive(false);
+        TextSpin.SetActive(true);
         LuckWheelPresenter.instance.Initialization();
         //if (PlayerPrefs.GetInt("WheelSpunToday") == 1)
         if (LuckWheelModel.instance.wheelSpunToday == 1)
         {
-            request_For_Money.SetActive(true);
+            ImageCoinAndTextPrice.SetActive(true);
+            TextSpin.SetActive(false);
         }
         CanSpinToday();
     }
 
     public void EventTriggerBtn() 
     {
-        if (!spinning && !rotation) 
+        if (!spinning && !rotation && !isScale) 
         {
             //if (PlayerPrefs.GetInt("WheelSpunToday") == 0 && CanSpinToday())
             if (LuckWheelModel.instance.wheelSpunToday == 0 && CanSpinToday()) 
@@ -51,15 +57,10 @@ public class LuckWheelView : MonoBehaviour
             }
             else 
             {
-                LuckWheelPresenter.instance.ShowBtnMoney();
+                LuckWheelPresenter.instance.OnClickBtnMoney();
             }
         }
 
-    }
-
-    public void ClickOnButtonForMoneys() 
-    {
-        LuckWheelPresenter.instance.OnClickBtnMoney();
     }
 
     private bool CanSpinToday() 
@@ -97,6 +98,11 @@ public class LuckWheelView : MonoBehaviour
     public void AnimationRotation(bool isRotation) 
     {
         rotation = isRotation;
+    }
+
+    public void AnimScaleButtonSpin(bool isScale) 
+    {
+        this.isScale = isScale;
     }
 
 }

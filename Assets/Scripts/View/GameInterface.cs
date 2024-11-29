@@ -44,21 +44,21 @@ public class GameInterface : MonoBehaviour
         //DailyRewardsPresenter.instance.NewDay();
     }
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.X)) 
-    //     {
-    //         if (DailyRewardsPresenter.instance.GetIsWindowDailtRewardsBool()) 
-    //         {
-    //             DailyRewardsView.instance.CloseWindow();
-    //         }
-    //         StartCoroutine(openDailyRewardss());
-    //     }
-    //     if (Input.GetKeyDown(KeyCode.C)) 
-    //     {
-    //         Timer.instance.DeleteAllData();
-    //     }
-    // }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X)) 
+        {
+            if (DailyRewardsPresenter.instance.GetIsWindowDailtRewardsBool()) 
+            {
+                DailyRewardsView.instance.CloseWindow();
+            }
+            StartCoroutine(openDailyRewardss());
+        }
+        if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            Timer.instance.DeleteAllData();
+        }
+    }
 
     IEnumerator openDailyRewardss() 
     {

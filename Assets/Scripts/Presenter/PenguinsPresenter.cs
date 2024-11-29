@@ -13,6 +13,14 @@ public class PenguinsPresenter : MonoBehaviour
 
     private void Start()
     {
+        if (PenguinsModel.instance.penguinInSpawn == null)
+        {
+            StartCoroutine(SpawnPenguin());
+        }
+    }
+
+    public void SpawnPenguinOnStart()
+    {
         if (PenguinsModel.instance.penguinObjectsForStart.Count > 0)
         {
             for (int i = 0; i < PenguinsModel.instance.penguinObjectsForStart.Count; i++)
@@ -20,10 +28,6 @@ public class PenguinsPresenter : MonoBehaviour
                 PenguinObject penguinObject = PenguinsModel.instance.penguinObjectsForStart[i];
                 SpawnPenguinsPresenter.SpawnStart(penguinObject.levelPenguin, penguinObject.posXPenguin, penguinObject.posYPenguin);
             }
-        }
-        if (PenguinsModel.instance.penguinInSpawn == null)
-        {
-            StartCoroutine(SpawnPenguin());
         }
     }
 

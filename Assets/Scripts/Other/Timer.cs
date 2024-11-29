@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void DeleteDataPenguins()
+    public void DeleteDataPenguins() // повешено на кнопку рестарт в меню
     {
         DataPresenter.DeleteDataPenguins();
         PlayerModel.instance.experience = 0;
