@@ -94,6 +94,7 @@ public class DataPresenter
             penguinObjects = PenguinsModel.instance.GetPenguins(),
             penguinsCardsInformations = PenguinsModel.instance.penguinsCardsInformations
         };
+        Debug.Log("Параша сохранилась");
         string json = JsonConvert.SerializeObject(penguinsModel);
         SaveData(Models.PENGUINS_MODEL, json);
     }

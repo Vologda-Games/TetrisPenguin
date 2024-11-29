@@ -23,6 +23,7 @@ public class GamePushPresenter : MonoBehaviour
         RatingsPresenter.instance.LoadYourInformationInRatings();
         RatingsPresenter.instance.LoadFalseUsers();
         PenguinsPresenter.instance.LoadSpritesPenguins();
+        PenguinsPresenter.instance.SpawnPenguinOnStart();
         LanguageModel.LoadSpritesLanguage();
     }
 }
