@@ -143,7 +143,7 @@ public class ScreenView : MonoBehaviour
         homeSlider = true;
         homeSliderPlay = true;
         float stage = 0.5f;
-        _homeSliderTransform.localPosition = new Vector3(-465, -82.5f, 0);
+        _homeSliderTransform.localPosition = new Vector3(-445, -82.5f, 0);
         _homeSliderTransform.localScale = Vector3.zero;
         _homeSliderCanvasGroup.alpha = 0;
         _homeSliderTransform.gameObject.SetActive(true);
@@ -152,13 +152,13 @@ public class ScreenView : MonoBehaviour
             stage += Time.fixedDeltaTime * 4;
             if (stage < 1)
             {
-                _homeSliderTransform.localPosition = new Vector3(-465, Mathf.Lerp(0, -82.5f, stage), 0);
+                _homeSliderTransform.localPosition = new Vector3(-445, Mathf.Lerp(0, -82.5f, stage), 0);
                 _homeSliderTransform.localScale = new Vector3(stage, stage, 1);
                 _homeSliderCanvasGroup.alpha = stage;
             }
             else
             {
-                _homeSliderTransform.localPosition = new Vector3(-465, -82.5f, 0);
+                _homeSliderTransform.localPosition = new Vector3(-445, -82.5f, 0);
                 _homeSliderTransform.localScale = new Vector3(1, 1, 1);
                 _homeSliderCanvasGroup.alpha = 1;
             }
@@ -172,7 +172,7 @@ public class ScreenView : MonoBehaviour
         settingsSliderPlay = true;
         settingsSlider = true;
         float stage = 0.5f;
-        _settingsSliderTransform.localPosition = new Vector3(465, -75, 0);
+        _settingsSliderTransform.localPosition = new Vector3(445, -75, 0);
         _settingsSliderTransform.localScale = Vector3.zero;
         _settingsSliderCanvasGroup.alpha = 0;
         _settingsSliderTransform.gameObject.SetActive(true);
@@ -181,13 +181,13 @@ public class ScreenView : MonoBehaviour
             if (stage < 1)
             {
                 stage += Time.fixedDeltaTime * 4;
-                _settingsSliderTransform.localPosition = new Vector3(465, Mathf.Lerp(0, -82.5f, stage), 0);
+                _settingsSliderTransform.localPosition = new Vector3(445, Mathf.Lerp(0, -82.5f, stage), 0);
                 _settingsSliderTransform.localScale = new Vector3(stage, stage, 1);
                 _settingsSliderCanvasGroup.alpha = stage;
             }
             else
             {
-                _settingsSliderTransform.localPosition = new Vector3(465, -82.5f, 0);
+                _settingsSliderTransform.localPosition = new Vector3(445, -82.5f, 0);
                 _settingsSliderTransform.localScale = new Vector3(1, 1, 1);
                 _settingsSliderCanvasGroup.alpha = 1;
             }

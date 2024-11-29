@@ -6,7 +6,7 @@ public class DailyTasksView : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private Image _imageReward;
-    [SerializeField] private Image _bar;
+    [SerializeField] private Slider _bar;
     [SerializeField] private Image _barReady;
     [SerializeField] private Image _barCollected;
     [SerializeField] private TextMeshProUGUI _quantityBonus;
@@ -38,25 +38,25 @@ public class DailyTasksView : MonoBehaviour
         _imageReward.sprite = _infoTask.SpriteReward();
         _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
         _taskInformation.text = $"{_infoTask.TaskInformation()}";
-        _bar.enabled = true;
+        _bar.gameObject.SetActive(true);
         _barCollected.enabled = false;
         _barReady.enabled = false;
         _thisButton.interactable = true;
         if (_infoTask._currentQuantity < _infoTask._maximumQuantity)
         {
-            _bar.fillAmount = (float)_infoTask._currentQuantity / _infoTask._maximumQuantity;
+            _bar.value = (float)_infoTask._currentQuantity / _infoTask._maximumQuantity;
             _quantityCompleted.text = $"{_infoTask._currentQuantity}/{_infoTask._maximumQuantity}";
         }
         else if (_infoTask._currentQuantity >= _infoTask._maximumQuantity && Condition != "Collected")
         {
             _quantityCompleted.text = LibraryWords.collect.GetText();
-            _bar.enabled = false;
+            _bar.gameObject.SetActive(false);
             _barReady.enabled = true;
         }
         else if (Condition == "Collected")
         {
             _quantityCompleted.text = LibraryWords.collected.GetText();
-            _bar.enabled = false;
+            _bar.gameObject.SetActive(false);
             _barCollected.enabled = true;
             _thisButton.interactable = false;
             Debug.Log("COLLECTED");
