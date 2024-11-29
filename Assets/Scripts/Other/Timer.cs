@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             DataPresenter.SaveAllData();
         }
     }
