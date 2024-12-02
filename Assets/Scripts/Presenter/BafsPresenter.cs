@@ -33,6 +33,7 @@ public class BafsPresenter : MonoBehaviour
             PenguinsModel.instance.penguinInSpawn = null;
         }
         SpawnPenguinsPresenter.SpawnByLevel(16);
+        Debug.Log("Бомба");
     }
 
     public static void Tornado()
@@ -251,5 +252,16 @@ public class BafsPresenter : MonoBehaviour
     public static int GetSelectBaf()
     {
         return BafsModel.instance.selectBaf;
+    }
+
+    public static void SetActiveBlackbackgroundBtn() 
+    {
+        if (BafsView.instance.isBlackBackground == true) 
+        {
+            for (int i = 0; i < BafsView.instance._blackBackgroundButtons.Length; i++) 
+            {
+                BafsView.instance._blackBackgroundButtons[i].SetActive(false);
+            }
+        }
     }
 }

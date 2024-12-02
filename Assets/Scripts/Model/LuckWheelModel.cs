@@ -17,10 +17,10 @@ public class LuckWheelModel : MonoBehaviour
     public string lastSpinDate;
     private void Awake()
     {
-        rotationSpeed = 800;
-        rotationTimeMaxSpeed = 1;
-        accelerationTime = 0.8f;
-        numberOfSpins = 4;
+        rotationSpeed = 700;
+        rotationTimeMaxSpeed = 0.6f;
+        accelerationTime = 0.4f;
+        numberOfSpins = 3;
         isUpScale = 0;
         wheelSpunToday = 1;
         prizes = new List<int>()

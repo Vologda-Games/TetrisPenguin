@@ -7,7 +7,8 @@ public class BafsView : MonoBehaviour
     public static BafsView instance;
     [SerializeField] private TMP_Text[] _countTexts;
     public bool triggerBtn;
-
+    [SerializeField] public GameObject[] _blackBackgroundButtons;
+    public bool isBlackBackground;
     private void Awake()
     {
         instance = this;
@@ -41,11 +42,14 @@ public class BafsView : MonoBehaviour
                     if (BafsPresenter.GetMulticolorBafs() > 0)
                     {
                         BafsPresenter.Multicolor();
+                        _blackBackgroundButtons[0].SetActive(true);
+                        isBlackBackground = true;
                     }
                 }
                 else if (BafsPresenter.GetSelectBaf() == 1)
                 {
                     BafsPresenter.CancelMulticolor();
+                    BafsPresenter.SetActiveBlackbackgroundBtn();
                 }
                 break;
             case 1:
@@ -54,11 +58,14 @@ public class BafsView : MonoBehaviour
                     if (BafsPresenter.GetSpringBafs() > 0)
                     {
                         BafsPresenter.Spring();
+                        _blackBackgroundButtons[1].SetActive(true);
+                        isBlackBackground = true;
                     }
                 }
                 else if (BafsPresenter.GetSelectBaf() == 2)
                 {
                     BafsPresenter.CancelSpring();
+                    BafsPresenter.SetActiveBlackbackgroundBtn();
                 }
                 break;
             case 2:
@@ -67,11 +74,14 @@ public class BafsView : MonoBehaviour
                     if (BafsPresenter.GetBombBafs() > 0)
                     {
                         BafsPresenter.Bomb();
+                        _blackBackgroundButtons[2].SetActive(true);
+                        isBlackBackground = true;
                     }
                 }
                 else if (BafsPresenter.GetSelectBaf() == 3)
                 {
                     BafsPresenter.CancelBomb();
+                    BafsPresenter.SetActiveBlackbackgroundBtn();
                 }
                 break;
             case 3:
@@ -81,9 +91,12 @@ public class BafsView : MonoBehaviour
                     {
                         // можно дописать условие if пингвинов > 1
                         BafsPresenter.Tornado();
+                        _blackBackgroundButtons[3].SetActive(true);
+                        isBlackBackground = true;
                         BafsPresenter.ReduceTornadoBafs(1);
                         DailyTasksPresenter.CheckUsedBaffForTask(4);
                         MusicAndSoundsManager._instance.PlaySound("Tornado", 4f);
+                        BafsPresenter.SetActiveBlackbackgroundBtn();
                     }
                 }
                 break;
@@ -93,11 +106,14 @@ public class BafsView : MonoBehaviour
                     if (BafsPresenter.GetMagnetBafs() > 0)
                     {
                         BafsPresenter.Magnet();
+                        _blackBackgroundButtons[4].SetActive(true);
+                        isBlackBackground = true;
                     }
                 }
                 else if (BafsPresenter.GetSelectBaf() == 5)
                 {
                     BafsPresenter.CancelMagnet();
+                    BafsPresenter.SetActiveBlackbackgroundBtn();
                 }
                 break;
         }
