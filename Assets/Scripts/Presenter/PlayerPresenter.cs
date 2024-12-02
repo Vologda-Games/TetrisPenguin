@@ -86,6 +86,8 @@ public class PlayerPresenter : MonoBehaviour
         CheckLevel();
         if (!_addedExperience) StartCoroutine(AddEXP());
         PlayerView.instance.RenderExperience();
+
+        LevelPresenter.UpdateEXP();
     }
 
     public static void CheckLevel()

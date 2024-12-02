@@ -169,7 +169,7 @@ public class PenguinsPresenter : MonoBehaviour
                     if (PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.SpawnByLevel(0);
                 }
             }
-            if (BafsPresenter.GetSelectBaf() == 2) 
+            if (BafsPresenter.GetSelectBaf() == 2)
             {
                 ProjectionView.instance.RedProjection();
             }

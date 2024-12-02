@@ -295,5 +295,10 @@ public class ScreenView : MonoBehaviour
             BafsView.instance.StartTriggerBtn();
             StartCoroutine(CloseSettingsSlider());
         }
+        if (LeveManagerView.instance._statusOfIncrease)
+        {
+            LeveManagerView.instance._statusOfIncrease = false;
+            if (!LeveManagerView.instance._openedWindow) StartCoroutine(LeveManagerView.instance.OpenWindow(LeveManagerView.instance._currentWindowLevel.transform, new Vector3(1.3f, 1.3f, 1.3f)));
+        }
     }
 }

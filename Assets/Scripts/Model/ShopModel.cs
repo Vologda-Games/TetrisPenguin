@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ShopModel : MonoBehaviour
 {
+
+    //private const int PRICE_MULTIPINGUIN = 469;
+    //private const int PRICE_SUPERCICK = 280;
+    //private const int PRICE_BOMB = 250;
+    //private const int PRICE_HURRICANE = 1300;
+    //private const int PRICE_MAGNET = 1699;
+
     [Header("ShopItems")]
     public static List<ShopItemInformation> shopItems = new List<ShopItemInformation>()
     {
@@ -15,27 +22,17 @@ public class ShopModel : MonoBehaviour
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 1,
-                        quantityAddBaff = 3,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 2,
-                        quantityAddBaff = 2,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 3,
-                        quantityAddBaff = 5,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 4,
                         quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
-                        numberAddBaff = 5,
-                        quantityAddBaff = 4,
+                        numberAddBaff = 2,
+                        quantityAddBaff = 1,
+                    },
+                    new BaffBuyInformation()
+                    {
+                        numberAddBaff = 3,
+                        quantityAddBaff = 1,
                     }
                 },
                 costPurchase = 999
@@ -47,62 +44,39 @@ public class ShopModel : MonoBehaviour
                 {
                     new BaffBuyInformation()
                     {
-                        numberAddBaff = 3,
-                        quantityAddBaff = 2,
+                        numberAddBaff = 4,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 5,
                         quantityAddBaff = 1,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 1,
-                        quantityAddBaff = 2,
                     }
                 },
-                costPurchase = 1099
+                costPurchase = 2999
             },
             new ShopItemInformation()
             {
                 typeRewardToBuyEnum = TypeReward.Baff,
                 informationForBuyBaffs = new List<BaffBuyInformation>()
                 {
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 2,
-                        quantityAddBaff = 2,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 5,
-                        quantityAddBaff = 2,
-                    }
-                },
-                costPurchase = 1199
-            },
-            new ShopItemInformation()
-            {
-                typeRewardToBuyEnum = TypeReward.Baff,
-                informationForBuyBaffs = new List<BaffBuyInformation>()
-                {
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 3,
-                        quantityAddBaff = 2,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 2,
-                        quantityAddBaff = 2,
-                    },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 1,
                         quantityAddBaff = 3,
+                    },
+                    new BaffBuyInformation()
+                    {
+                        numberAddBaff = 2,
+                        quantityAddBaff = 3,
+                    },
+                    new BaffBuyInformation()
+                    {
+                        numberAddBaff = 3,
+                        quantityAddBaff = 3,
                     }
                 },
-                costPurchase = 1249
+                costPurchase = 3999
             },
             new ShopItemInformation()
             {
@@ -112,12 +86,12 @@ public class ShopModel : MonoBehaviour
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 1,
-                        quantityAddBaff = 2,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 2,
-                        quantityAddBaff = 6,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
@@ -127,15 +101,15 @@ public class ShopModel : MonoBehaviour
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 4,
-                        quantityAddBaff = 1,
+                        quantityAddBaff = 3,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 5,
-                        quantityAddBaff = 2,
+                        quantityAddBaff = 3,
                     }
                 },
-                costPurchase = 1299
+                costPurchase = 4999
             },
             new ShopItemInformation()
             {
@@ -144,21 +118,16 @@ public class ShopModel : MonoBehaviour
                 {
                     new BaffBuyInformation()
                     {
-                        numberAddBaff = 2,
-                        quantityAddBaff = 4,
+                        numberAddBaff = 4,
+                        quantityAddBaff = 3,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 5,
-                        quantityAddBaff = 1,
-                    },
-                    new BaffBuyInformation()
-                    {
-                        numberAddBaff = 3,
                         quantityAddBaff = 3,
                     }
                 },
-                costPurchase = 1999
+                costPurchase = 7999
             },
             new ShopItemInformation()
             {
@@ -183,7 +152,12 @@ public class ShopModel : MonoBehaviour
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 4,
-                        quantityAddBaff = 5,
+                        quantityAddBaff = 1,
+                    },
+                    new BaffBuyInformation()
+                    {
+                        numberAddBaff = 5,
+                        quantityAddBaff = 1,
                     }
                 },
                 costPurchase = 9999
@@ -196,17 +170,17 @@ public class ShopModel : MonoBehaviour
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 1,
-                        quantityAddBaff = 5,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 2,
-                        quantityAddBaff = 5,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
                         numberAddBaff = 3,
-                        quantityAddBaff = 5,
+                        quantityAddBaff = 1,
                     },
                     new BaffBuyInformation()
                     {
@@ -219,7 +193,7 @@ public class ShopModel : MonoBehaviour
                         quantityAddBaff = 5,
                     }
                 },
-                costPurchase = 10999
+                costPurchase = 13999
             }
         };
 }
