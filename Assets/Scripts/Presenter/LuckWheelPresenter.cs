@@ -74,6 +74,7 @@ public class LuckWheelPresenter : MonoBehaviour
 
         setWin();
         isSpin = true;
+        MusicAndSoundsManager._instance.PlaySound("WheelOfLuckSound", 4f);
         LuckWheelView.instance.ShowSpinningStatus(isSpin);
         float elapsedTime = 0f; // отвечает за прошедшее время
         float rotSpeed; // текущая скорость вращения
@@ -217,17 +218,13 @@ public class LuckWheelPresenter : MonoBehaviour
         BafsView.instance.RenderCountBafs();
     }
 
-    public static void ClickOnButtonForMoney(int value) 
+    public void ClickOnButtonForMoney(int value) 
     {
-            PlayerPresenter.instance.ReduceCoin(value); //бесконечно прибавляются монеты
-            //PlayerPresenter.instance.AddCoin(value); //работает нормально
+            PlayerPresenter.instance.ReduceCoin(value);
+            OnClickButton();
             //PlayerPrefs.SetInt("WheelSpunToday", 0);
-            LuckWheelModel.instance.wheelSpunToday = 0;
+            //LuckWheelModel.instance.wheelSpunToday = 0;
             //if (PlayerPrefs.GetInt("WheelSpunToday") == 0) 
-            if (LuckWheelModel.instance.wheelSpunToday == 0)
-            {
-                Debug.Log("WheelSpunToday= "+ 0);
-            }
     }
 
     public void OnClickBtnMoney() 
@@ -236,13 +233,14 @@ public class LuckWheelPresenter : MonoBehaviour
         {
             ClickOnButtonForMoney(750);
             StartCoroutine(ScaleButton());
-            StartCoroutine(DownScale());
+            //StartCoroutine(DownScale());
             // LuckWheelView.instance.TextSpin.SetActive(true);
             // LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(false);
         }
         else if (PlayerModel.instance.coins < 750 && !animdont750money)
         {
             Debug.Log("NoMoney");
+            MusicAndSoundsManager._instance.PlaySound("Error", 1f);
             StartCoroutine(NoMoney750Button());
         }
     }

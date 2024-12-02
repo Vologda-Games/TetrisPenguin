@@ -96,7 +96,7 @@ public class DailyRewardsPresenter : MonoBehaviour
 
     public void ClaimRewardButton() 
     {
-        
+        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
         StartCoroutine(ScaleButton());
         int day = (int)DailyRewardsView.instance.slider.value;
         int index = day - 1;
