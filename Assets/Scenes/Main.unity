@@ -5291,6 +5291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowWithLevelEXPInformation: {fileID: 770651685398951945, guid: c564cff84140e5e4e93aa4f06c41575d, type: 3}
   _parentWondowLevel: {fileID: 1445319092}
+  _currentWindowLevel: {fileID: 0}
+  _openedWindow: 0
+  _statusOfIncrease: 0
 --- !u!1 &1016299785
 GameObject:
   m_ObjectHideFlags: 0

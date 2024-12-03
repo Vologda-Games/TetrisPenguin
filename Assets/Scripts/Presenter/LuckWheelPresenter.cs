@@ -135,6 +135,7 @@ public class LuckWheelPresenter : MonoBehaviour
         // PlayerPrefs.SetInt("WheelSpunToday", 1);
         LuckWheelModel.instance.isUpScale = 0;
         LuckWheelModel.instance.wheelSpunToday = 1;
+        MusicAndSoundsManager._instance.PlaySound("TheLossOfTheReward", 2f);
         ShowBtnMoney();
     }
 
