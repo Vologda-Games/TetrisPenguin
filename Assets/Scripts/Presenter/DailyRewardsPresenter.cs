@@ -114,6 +114,8 @@ public class DailyRewardsPresenter : MonoBehaviour
 
         //CurrentSaveBoolList();
         PlayerPresenter.instance.AddCoin(DailyRewardsModel.instance.rewards[index]);
+
+        RewardPresenter.instance.SpawnRewardView("money", money);
     }
 
     IEnumerator ScaleButton() 
