@@ -47,6 +47,7 @@ public class PenguinView : MonoBehaviour
                     {
                         if (triggerMerge == false)
                         {
+                            MusicAndSoundsManager._instance.PlaySound("Multicolor", 1f);
                             triggerMerge = true;
                             Vector3 pos = PenguinsModel.instance.penguinViews[i].objTransform.position;
                             int levelI = PenguinsModel.instance.penguinViews[i].level;
@@ -109,6 +110,7 @@ public class PenguinView : MonoBehaviour
                             PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
                             Vector3 pos = penguinView_1.objTransform.position;
                             penguinView_1.triggerMerge = true;
+                            MusicAndSoundsManager._instance.PlaySound("Merge", 1f);
                             DailyTasksPresenter.CheckCreateForTask(level + 1);
                             if (!PenguinsModel.instance.penguinsCardsInformations[level + 1].ready)
                             {
@@ -157,6 +159,8 @@ public class PenguinView : MonoBehaviour
         }
         // Где-то тут нужно будет сделать дымок
         SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
+        Debug.Log($"pos: {pos}");
+
         Instantiate(PenguinsModel.instance._particleFog, pos, Quaternion.identity, PenguinsModel.instance._particleParent);
         Destroy(penguinView_1.go);
         Destroy(penguinView_2.go);

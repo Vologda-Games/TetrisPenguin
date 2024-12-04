@@ -135,6 +135,7 @@ public class LuckWheelPresenter : MonoBehaviour
         // PlayerPrefs.SetInt("WheelSpunToday", 1);
         LuckWheelModel.instance.isUpScale = 0;
         LuckWheelModel.instance.wheelSpunToday = 1;
+        MusicAndSoundsManager._instance.PlaySound("TheLossOfTheReward", 2f);
         ShowBtnMoney();
     }
 
@@ -158,29 +159,37 @@ public class LuckWheelPresenter : MonoBehaviour
             case 0: // 100 монет
                 //AddToken(300);
                 PlayerPresenter.instance.AddCoin(300);
+                RewardPresenter.instance.SpawnRewardView("money", 300);
                 break;
             case 1: // боксерских перчатки
                 AddBoks(2);
+                RewardPresenter.instance.SpawnRewardView("spring", 2);
                 break; 
             case 2: // торнадо
                 AddTornadoes(2);
+                RewardPresenter.instance.SpawnRewardView("tornado", 2);
                 break;
             case 3: // 200 монет
                 //AddToken(550);
                 PlayerPresenter.instance.AddCoin(550);
+                RewardPresenter.instance.SpawnRewardView("money", 550);
                 break;
             case 4: // яйцо
                 AddEggs(2);
+                RewardPresenter.instance.SpawnRewardView("multicolor", 2);
                 break;
             case 5: // магнит
                 AddMagnet(2);
+                RewardPresenter.instance.SpawnRewardView("magnet", 2);
                 break;
             case 6: // 300 монет
                 //AddToken(900);
                 PlayerPresenter.instance.AddCoin(900);
+                RewardPresenter.instance.SpawnRewardView("money", 900);
                 break;
             case 7: // бомба
                 AddBombs(2);
+                RewardPresenter.instance.SpawnRewardView("bomb", 2);
                 break;
             default:
                 break;

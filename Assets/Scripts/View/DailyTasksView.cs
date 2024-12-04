@@ -78,9 +78,18 @@ public class DailyTasksView : MonoBehaviour
             {
                 case TypeReward.SoftCurrency:
                     PlayerPresenter.instance.AddCoin(_taskToday._quantityAddCurrency);
+                    RewardPresenter.instance.SpawnRewardView("money", _taskToday._quantityAddCurrency);
                     break;
                 case TypeReward.Baff:
                     BafsPresenter.AddBaffsByNumber(_taskToday._numberAddBaff, _taskToday._quantityAddBaff);
+                    switch (_taskToday._numberAddBaff)
+                    {
+                        case 1: RewardPresenter.instance.SpawnRewardView("multicolor", _taskToday._quantityAddBaff); break;
+                        case 2: RewardPresenter.instance.SpawnRewardView("spring", _taskToday._quantityAddBaff); break;
+                        case 3: RewardPresenter.instance.SpawnRewardView("bomb", _taskToday._quantityAddBaff); break;
+                        case 4: RewardPresenter.instance.SpawnRewardView("tornado", _taskToday._quantityAddBaff); break;
+                        case 5: RewardPresenter.instance.SpawnRewardView("magnet", _taskToday._quantityAddBaff); break;
+                    }
                     break;
             }
             NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask = "Collected";

@@ -85,7 +85,16 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelBomb()
     {
         SetSelectBaf(0);
-
+        if (PenguinsModel.instance.penguinInSpawn != null) 
+        {
+            if (PenguinsModel.instance.penguinInSpawn.level == 16) 
+            {
+                Destroy(PenguinsModel.instance.penguinInSpawn.go);
+                PenguinsModel.instance.penguinInSpawn = null;
+                SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
+                SetDestroyBaf(0);
+            }
+        }
     }
 
     public static void CancelMagnet()
