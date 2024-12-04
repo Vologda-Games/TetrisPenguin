@@ -91,6 +91,13 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelMagnet()
     {
         SetSelectBaf(0);
+        if (PenguinsModel.instance.penguinInSpawn.level != GetDestroyBaf())
+        {
+            Destroy(PenguinsModel.instance.penguinInSpawn.go);
+            PenguinsModel.instance.penguinInSpawn = null;
+            SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
+            SetDestroyBaf(0);
+        }
     }
 
     /// SET
@@ -127,6 +134,7 @@ public class BafsPresenter : MonoBehaviour
     public static void SetDestroyBaf(int value)
     {
         BafsModel.instance.destroyBaf = value;
+        Debug.Log(value);
     }
 
     public static void SetSelectBaf(int value)
@@ -254,11 +262,11 @@ public class BafsPresenter : MonoBehaviour
         return BafsModel.instance.selectBaf;
     }
 
-    public static void SetActiveBlackbackgroundBtn() 
+    public static void SetActiveBlackbackgroundBtn()
     {
-        if (BafsView.instance.isBlackBackground == true) 
+        if (BafsView.instance.isBlackBackground == true)
         {
-            for (int i = 0; i < BafsView.instance._blackBackgroundButtons.Length; i++) 
+            for (int i = 0; i < BafsView.instance._blackBackgroundButtons.Length; i++)
             {
                 BafsView.instance._blackBackgroundButtons[i].SetActive(false);
             }

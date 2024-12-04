@@ -31,10 +31,10 @@ public class PenguinView : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(_strongBlow)
+        if (_strongBlow)
         {
             MusicAndSoundsManager._instance.PlaySound("StrongBlow", 1f);
-            _strongBlow = false; 
+            _strongBlow = false;
         }
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {
@@ -88,7 +88,7 @@ public class PenguinView : MonoBehaviour
                             }
                         }
                     }
-                    MusicAndSoundsManager._instance.PlaySound("Bomb", 4f); 
+                    MusicAndSoundsManager._instance.PlaySound("Bomb", 4f);
                     // for (int l = 0; l < PenguinsModel.instance.penguinViews.Count; l++)
                     // {
                     //     if (PenguinsModel.instance.penguinViews[l].go == go)
@@ -105,29 +105,34 @@ public class PenguinView : MonoBehaviour
                     {
                         if (triggerMerge == false)
                         {
+                            triggerMerge = true;
+                            PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
+                            Vector3 pos = penguinView_1.objTransform.position;
+                            penguinView_1.triggerMerge = true;
                             DailyTasksPresenter.CheckCreateForTask(level + 1);
-                            if(!PenguinsModel.instance.penguinsCardsInformations[level + 1].ready)
+                            if (!PenguinsModel.instance.penguinsCardsInformations[level + 1].ready)
                             {
                                 PenguinsModel.instance.penguinsCardsInformations[level + 1].ready = true;
                                 DataPresenter.SavePenguinsModel();
                             }
-                            triggerMerge = true;
-                            PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
-                            Vector3 pos = penguinView_1.objTransform.position;
+
                             // Destroy(penguinView_1.objBoxCollider);
                             penguinView_1.objRigidbody.simulated = false;
                             PenguinsModel.instance.penguinViews.RemoveAt(i);
+                            Debug.Log($"Минус первый");
                             for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
                             {
                                 if (PenguinsModel.instance.penguinViews[j].go == go)
                                 {
                                     PenguinView penguinView_2 = PenguinsModel.instance.penguinViews[j];
+                                    penguinView_2.objRigidbody.simulated = false;
                                     StartCoroutine(AnimationMerge(penguinView_1, penguinView_2, level, pos));
                                     // Destroy(penguinView_2.objBoxCollider);
-                                    penguinView_2.objRigidbody.simulated = false;
-                                    PenguinsModel.instance.penguinViews.RemoveAt(j);
+                                    Debug.Log($"Минус второй");
                                     // SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
                                     PenguinsPresenter.MergePenguins(level);
+                                    Debug.Log($"Замена подъехала");
+                                    PenguinsModel.instance.penguinViews.RemoveAt(j);
                                     return;
                                 }
                             }
@@ -168,8 +173,9 @@ public class PenguinView : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (BafsPresenter.GetSelectBaf() == 5 && level != 16 && level != 15)
+        if (BafsPresenter.GetSelectBaf() == 5 && level != 16 && level != 15 && PenguinsModel.instance.penguinInSpawn != null)
         {
+            ScreenView.instance.useMagnet = true;
             DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             BafsView.instance.StartTriggerBtn();
             BafsPresenter.SetDestroyBaf(PenguinsModel.instance.penguinInSpawn.level);

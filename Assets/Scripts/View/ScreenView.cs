@@ -8,6 +8,7 @@ public class ScreenView : MonoBehaviour
     public bool homeSliderPlay;
     public bool settingsSlider;
     public bool settingsSliderPlay;
+    public bool useMagnet = false;
     [SerializeField, HideInInspector] private float _offset;
     [SerializeField] private Transform _pointEgg;
     [SerializeField] private Camera cam;
@@ -45,10 +46,10 @@ public class ScreenView : MonoBehaviour
     {
         SetPos();
 
-        if (BafsPresenter.GetSelectBaf() == 5) BafsPresenter.SetSelectBaf(0);
         //if (PenguinsModel.instance.penguinInSpawn == null) return;
+        if (!useMagnet) PenguinsPresenter.instance.StartPenguin();
 
-        PenguinsPresenter.instance.StartPenguin();
+        if (useMagnet) useMagnet = false;
     }
 
     public void SetTypeControl()
@@ -74,27 +75,29 @@ public class ScreenView : MonoBehaviour
     {
         if (BafsPresenter.GetSelectBaf() == 5) return;
         if (BafsView.instance.triggerBtn) return;
-
-        float pos = _pointEgg.position.x;
-        if (Input.GetMouseButtonDown(0))
+        if (!useMagnet)
         {
-            if (ScreenModel.instance.TypeControl == "Flexible") _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
-            else
+            float pos = _pointEgg.position.x;
+            if (Input.GetMouseButtonDown(0))
             {
-                _offset = 0f;
-                pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+                if (ScreenModel.instance.TypeControl == "Flexible") _offset = cam.ScreenToWorldPoint(Input.mousePosition).x - _pointEgg.position.x;
+                else
+                {
+                    _offset = 0f;
+                    pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+                    if (pos < -2.2f) { pos = -2.2f; }
+                    else if (pos > 2.2f) { pos = 2.2f; }
+                }
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                if (ScreenModel.instance.TypeControl == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
+                else if (ScreenModel.instance.TypeControl == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x - _offset;
                 if (pos < -2.2f) { pos = -2.2f; }
                 else if (pos > 2.2f) { pos = 2.2f; }
             }
+            ScreenModel.instance.posTouch = pos;
         }
-        else if (Input.GetMouseButton(0))
-        {
-            if (ScreenModel.instance.TypeControl == "Precise") pos = cam.ScreenToWorldPoint(Input.mousePosition).x;
-            else if (ScreenModel.instance.TypeControl == "Flexible") pos = cam.ScreenToWorldPoint(Input.mousePosition).x - _offset;
-            if (pos < -2.2f) { pos = -2.2f; }
-            else if (pos > 2.2f) { pos = 2.2f; }
-        }
-        ScreenModel.instance.posTouch = pos;
     }
 
     private void MovingCameraTouch()

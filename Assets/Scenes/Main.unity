@@ -5291,6 +5291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowWithLevelEXPInformation: {fileID: 770651685398951945, guid: c564cff84140e5e4e93aa4f06c41575d, type: 3}
   _parentWondowLevel: {fileID: 1445319092}
+  _currentWindowLevel: {fileID: 0}
+  _openedWindow: 0
+  _statusOfIncrease: 0
 --- !u!1 &1016299785
 GameObject:
   m_ObjectHideFlags: 0
@@ -6224,7 +6227,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1100029672}
         m_TargetAssemblyTypeName: Timer, Assembly-CSharp
-        m_MethodName: DeleteDataPenguins
+        m_MethodName: DeleteAllData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8665,6 +8668,7 @@ GameObject:
   - component: {fileID: 1643330741}
   - component: {fileID: 1643330742}
   - component: {fileID: 1643330739}
+  - component: {fileID: 1643330743}
   m_Layer: 5
   m_Name: Button (Level)
   m_TagString: Untagged
@@ -8785,6 +8789,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1643330743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643330737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7265c736d2d281d48b0d0afe3e850b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getEn: 0
 --- !u!1 &1647801622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9198,6 +9215,7 @@ MonoBehaviour:
   homeSliderPlay: 0
   settingsSlider: 0
   settingsSliderPlay: 0
+  useMagnet: 0
   _offset: 0
   _pointEgg: {fileID: 489000227}
   cam: {fileID: 519420031}
