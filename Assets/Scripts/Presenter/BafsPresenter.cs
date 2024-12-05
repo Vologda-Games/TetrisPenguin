@@ -33,7 +33,6 @@ public class BafsPresenter : MonoBehaviour
             PenguinsModel.instance.penguinInSpawn = null;
         }
         SpawnPenguinsPresenter.SpawnByLevel(16);
-        Debug.Log("Бомба");
     }
 
     public static void Tornado()
@@ -67,6 +66,10 @@ public class BafsPresenter : MonoBehaviour
                 PenguinsModel.instance.penguinInSpawn = null;
                 SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
                 SetDestroyBaf(0);
+                if (BafsView.instance.isSpring == true) 
+                {
+                    SetSelectBaf(2);
+                }
             }
         }
     }
@@ -78,6 +81,14 @@ public class BafsPresenter : MonoBehaviour
         {
             PenguinView penguinView = PenguinsModel.instance.penguinInSpawn;
             if (penguinView._strongBlow) penguinView._strongBlow = false;
+            if (BafsView.instance.isBomb == true) 
+            {
+                SetSelectBaf(3);
+            }
+            else if (BafsView.instance.isMulticolor == true) 
+            {
+                SetSelectBaf(1);
+            }
         }
         ProjectionView.instance.PointProjection();
     }
@@ -93,6 +104,10 @@ public class BafsPresenter : MonoBehaviour
                 PenguinsModel.instance.penguinInSpawn = null;
                 SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
                 SetDestroyBaf(0);
+                if (BafsView.instance.isSpring == true) 
+                {
+                    SetSelectBaf(2);
+                }
             }
         }
     }
@@ -143,7 +158,7 @@ public class BafsPresenter : MonoBehaviour
     public static void SetDestroyBaf(int value)
     {
         BafsModel.instance.destroyBaf = value;
-        Debug.Log(value);
+        //Debug.Log(value);
     }
 
     public static void SetSelectBaf(int value)
@@ -273,6 +288,7 @@ public class BafsPresenter : MonoBehaviour
 
     public static void SetActiveBlackbackgroundBtn()
     {
+        Debug.Log("ВЫЗОВ УДАЛЕНИЯ ВСЕХ ЧЕРНЫХ ФОНОВ");
         if (BafsView.instance.isBlackBackground == true)
         {
             for (int i = 0; i < BafsView.instance._blackBackgroundButtons.Length; i++)

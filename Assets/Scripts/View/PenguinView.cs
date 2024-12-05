@@ -197,6 +197,7 @@ public class PenguinView : MonoBehaviour
             BafsPresenter.SetSelectBaf(0);
             BafsPresenter.ReduceMagnetBafs(1);
             MusicAndSoundsManager._instance.PlaySound("Magnet", 2.5f);
+            BafsPresenter.SetActiveBlackbackgroundBtn();
         }
     }
 }

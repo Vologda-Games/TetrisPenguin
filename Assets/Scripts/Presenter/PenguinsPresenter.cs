@@ -118,23 +118,38 @@ public class PenguinsPresenter : MonoBehaviour
             {
                 DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             }
-            if (penguinView.level == 15)
+            if (penguinView.level == 15 && BafsPresenter.GetSelectBaf() != 2)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceMulticolorBafs(1);
+                BafsPresenter.SetActiveBlackbackgroundBtn();
             }
-            else if (penguinView.level == 16)
+            else if (penguinView.level == 16 && BafsPresenter.GetSelectBaf() != 2)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceBombBafs(1);
+                BafsPresenter.SetActiveBlackbackgroundBtn();
             }
-            if (BafsPresenter.GetSelectBaf() == 2)
+            if (BafsPresenter.GetSelectBaf() == 2 || BafsPresenter.GetSelectBaf() == 1 || BafsPresenter.GetSelectBaf() == 3 && ((BafsView.instance.isSpring == true && BafsView.instance.isBomb == true) || (BafsView.instance.isSpring == true && BafsView.instance.isMulticolor == true)))
             {
+                Debug.Log("BUM");
                 penguinView.objRigidbody.AddForce(Vector3.down * 800);
                 if (!penguinView._strongBlow) penguinView._strongBlow = true;
                 BafsPresenter.SetSelectBaf(0);
+                if (BafsPresenter.GetSelectBaf() == 0) 
+                {
+                    Debug.Log("СТАЛ 0");
+                }
+                else 
+                {
+                    Debug.Log("НЕ 0");
+                }
                 BafsPresenter.ReduceSpringBafs(1);
                 ProjectionView.instance.PointProjection();
+                BafsPresenter.SetActiveBlackbackgroundBtn();
+                BafsView.instance.isSpring = false;
+                BafsView.instance.isBomb = false;
+                BafsView.instance.isMulticolor = false;
             }
             if (BafsPresenter.GetSelectBaf() == 0)
             {

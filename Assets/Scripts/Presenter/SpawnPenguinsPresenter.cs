@@ -12,7 +12,7 @@ public class SpawnPenguinsPresenter : MonoBehaviour
         penguinView.triggerUp = true;
         penguinView.objRigidbody.simulated = false;
         PenguinsModel.instance.penguinInSpawn = penguinView;
-        BafsPresenter.SetActiveBlackbackgroundBtn();
+        //BafsPresenter.SetActiveBlackbackgroundBtn();
     }
 
     public static void SpawnByLevel(int level, Vector3 pos)
