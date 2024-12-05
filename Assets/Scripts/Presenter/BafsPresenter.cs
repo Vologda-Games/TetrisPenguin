@@ -85,7 +85,7 @@ public class BafsPresenter : MonoBehaviour
             {
                 SetSelectBaf(3);
             }
-            else if (BafsView.instance.isMulticolor == true) 
+            if (BafsView.instance.isMulticolor == true) 
             {
                 SetSelectBaf(1);
             }

@@ -118,13 +118,13 @@ public class PenguinsPresenter : MonoBehaviour
             {
                 DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             }
-            if (penguinView.level == 15 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == true)
+            if (penguinView.level == 15 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == false)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceMulticolorBafs(1);
                 BafsPresenter.SetActiveBlackbackgroundBtn();
             }
-            else if (penguinView.level == 16 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == true)
+            else if (penguinView.level == 16 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == false)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceBombBafs(1);
