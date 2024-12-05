@@ -108,53 +108,56 @@ public class PenguinsPresenter : MonoBehaviour
         PenguinView penguinView = null;
         if (PenguinsModel.instance.penguinInSpawn != null)
         {
-            penguinView = PenguinsModel.instance.penguinInSpawn;
-            penguinView.objRigidbody.simulated = true;
-            penguinView.triggerUp = false;
-            PenguinsModel.instance.penguinViews.Add(penguinView);
-            PenguinsModel.instance.penguinInSpawn = null;
-            DailyTasksPresenter.CheckClickForTask();
-            if (BafsPresenter.GetSelectBaf() != 0 && BafsPresenter.GetSelectBaf() < 4)
+            if (!ScreenView.useMagnet)
             {
-                DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
-            }
-            if (penguinView.level == 15)
-            {
-                BafsPresenter.SetSelectBaf(0);
-                BafsPresenter.ReduceMulticolorBafs(1);
-            }
-            else if (penguinView.level == 16)
-            {
-                BafsPresenter.SetSelectBaf(0);
-                BafsPresenter.ReduceBombBafs(1);
-            }
-            if (BafsPresenter.GetSelectBaf() == 2)
-            {
-                penguinView.objRigidbody.AddForce(Vector3.down * 800);
-                if (!penguinView._strongBlow) penguinView._strongBlow = true;
-                BafsPresenter.SetSelectBaf(0);
-                BafsPresenter.ReduceSpringBafs(1);
-                ProjectionView.instance.PointProjection();
-            }
-            if (BafsPresenter.GetSelectBaf() == 0)
-            {
-                if (PenguinsModel.instance.penguinInSpawn == null)
+                penguinView = PenguinsModel.instance.penguinInSpawn;
+                penguinView.objRigidbody.simulated = true;
+                penguinView.triggerUp = false;
+                PenguinsModel.instance.penguinViews.Add(penguinView);
+                PenguinsModel.instance.penguinInSpawn = null;
+                DailyTasksPresenter.CheckClickForTask();
+                if (BafsPresenter.GetSelectBaf() != 0 && BafsPresenter.GetSelectBaf() < 4)
                 {
-                    StartCoroutine(SpawnPenguin());
+                    DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
                 }
-                else
+                if (penguinView.level == 15)
                 {
-                    SpawnPenguinsPresenter.SpawnByLevel(BafsPresenter.GetDestroyBaf());
-                    BafsPresenter.SetDestroyBaf(0);
+                    BafsPresenter.SetSelectBaf(0);
+                    BafsPresenter.ReduceMulticolorBafs(1);
                 }
-            }
+                else if (penguinView.level == 16)
+                {
+                    BafsPresenter.SetSelectBaf(0);
+                    BafsPresenter.ReduceBombBafs(1);
+                }
+                if (BafsPresenter.GetSelectBaf() == 2)
+                {
+                    penguinView.objRigidbody.AddForce(Vector3.down * 800);
+                    if (!penguinView._strongBlow) penguinView._strongBlow = true;
+                    BafsPresenter.SetSelectBaf(0);
+                    BafsPresenter.ReduceSpringBafs(1);
+                    ProjectionView.instance.PointProjection();
+                }
+                if (BafsPresenter.GetSelectBaf() == 0)
+                {
+                    if (PenguinsModel.instance.penguinInSpawn == null)
+                    {
+                        StartCoroutine(SpawnPenguin());
+                    }
+                    else
+                    {
+                        SpawnPenguinsPresenter.SpawnByLevel(BafsPresenter.GetDestroyBaf());
+                        BafsPresenter.SetDestroyBaf(0);
+                    }
+                }
+            }else ScreenView.useMagnet = false;
         }
     }
 
     public IEnumerator SpawnPenguin()
     {
         yield return new WaitForSeconds(0.5f);
-        if (BafsPresenter.GetSelectBaf() == 0 || BafsPresenter.GetSelectBaf() == 2)
+        if ((BafsPresenter.GetSelectBaf() == 0 || BafsPresenter.GetSelectBaf() == 2) && PenguinsModel.instance.penguinInSpawnMagnet == null)
         {
             int _randomChance = Random.Range(1, 101);
             for (int i = PenguinsModel._levelToChances.Count - 1; i > 0; i--)
@@ -174,6 +177,11 @@ public class PenguinsPresenter : MonoBehaviour
                 ProjectionView.instance.RedProjection();
             }
         }
-        Debug.Log("spawn");
+        else if (PenguinsModel.instance.penguinInSpawnMagnet != null)
+        {
+            SpawnPenguinsPresenter.SpawnByLevel(BafsPresenter.GetDestroyBaf());
+            BafsPresenter.SetDestroyBaf(0);
+            PenguinsModel.instance.penguinInSpawnMagnet = null;
+        }
     }
 }

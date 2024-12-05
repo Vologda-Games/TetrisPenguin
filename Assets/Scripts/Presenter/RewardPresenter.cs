@@ -18,18 +18,18 @@ public class RewardPresenter : MonoBehaviour
     {
         instance = this;
     }
-    public void Initialization() 
+    public void Initialization()
     {
-        RewardView.instance.continueButton.onClick.AddListener(ClickContinue);
+        RewardView.instance.continueButton.onClick.AddListener(RewardView.instance.ClickContinue);
         RewardView.instance.doubleItButton.interactable = false;
-        RewardView.instance.obj_ViewRewardexceptBlackBackground.localScale = new Vector3(0f,0f,0f);
+        RewardView.instance.obj_ViewRewardexceptBlackBackground.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(UpScale());
     }
 
-    public void SpawnRewardView(string itemImage, int kol) 
+    public void SpawnRewardView(string itemImage, int kol)
     {
         GameObject _newReward = Instantiate(_rewardView, _parentItem);
-        switch (itemImage) 
+        switch (itemImage)
         {
             case "multicolor":
                 RewardView.instance.rewardImage.sprite = RewardView.instance.spriteBafs[0];
@@ -53,37 +53,25 @@ public class RewardPresenter : MonoBehaviour
         RewardView.instance.textReward.text = kol.ToString();
     }
 
-    public void ClickContinue() 
+    IEnumerator UpScale()
     {
-        Debug.Log("click");
-        GameObject currentprefab = _parentItem.GetChild(0).gameObject;
-        Destroy(currentprefab);
-    }
-
-    public void ClickDoubleIt() 
-    {
-        
-    }
-
-    IEnumerator UpScale() 
-    {
-        if ( RewardView.instance.obj_ViewRewardexceptBlackBackground == null)
-            {
-                yield break; // Завершаем корутину, если объект уже уничтожен
-            }
+        if (RewardView.instance.obj_ViewRewardexceptBlackBackground == null)
+        {
+            yield break; // Завершаем корутину, если объект уже уничтожен
+        }
         float time = 0f;
         float duration = 0.2f;
         Vector3 initialScale = Vector3.zero;
-        Vector3 targetScale = new Vector3(1f,1f,1f);
-        
-        while(time < duration) 
+        Vector3 targetScale = new Vector3(1f, 1f, 1f);
+
+        while (time < duration)
         {
             if (RewardView.instance.obj_ViewRewardexceptBlackBackground == null)
             {
                 yield break; // Завершаем корутину, если объект уже уничтожен
             }
             time += Time.deltaTime;
-            float progress = time/duration;
+            float progress = time / duration;
             RewardView.instance.obj_ViewRewardexceptBlackBackground.localScale = Vector3.Lerp(initialScale, targetScale, progress);
             yield return null;
         }

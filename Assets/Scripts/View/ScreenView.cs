@@ -8,7 +8,7 @@ public class ScreenView : MonoBehaviour
     public bool homeSliderPlay;
     public bool settingsSlider;
     public bool settingsSliderPlay;
-    public bool useMagnet = false;
+    public static bool useMagnet = false;
     [SerializeField, HideInInspector] private float _offset;
     [SerializeField] private Transform _pointEgg;
     [SerializeField] private Camera cam;
@@ -21,6 +21,11 @@ public class ScreenView : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        useMagnet = false;
     }
 
     /*private void LateUpdate()
@@ -47,9 +52,14 @@ public class ScreenView : MonoBehaviour
         SetPos();
 
         //if (PenguinsModel.instance.penguinInSpawn == null) return;
-        if (!useMagnet) PenguinsPresenter.instance.StartPenguin();
 
-        if (useMagnet) useMagnet = false;
+        if (BafsPresenter.GetSelectBaf() == 5)
+        {
+            useMagnet = true;
+            BafsPresenter.SetSelectBaf(0);
+        }
+
+        PenguinsPresenter.instance.StartPenguin();
     }
 
     public void SetTypeControl()
@@ -75,7 +85,7 @@ public class ScreenView : MonoBehaviour
     {
         if (BafsPresenter.GetSelectBaf() == 5) return;
         if (BafsView.instance.triggerBtn) return;
-        if (!useMagnet)
+        if (BafsPresenter.GetSelectBaf() != 5)
         {
             float pos = _pointEgg.position.x;
             if (Input.GetMouseButtonDown(0))

@@ -12,6 +12,7 @@ public class PenguinsModel : MonoBehaviour
     [SerializeField] public static List<LevelToChance> _levelToChances;
     [SerializeField] public List<LevelToChance> _levelToChancesInsp = new List<LevelToChance>();
     public PenguinView penguinInSpawn;
+    public PenguinView penguinInSpawnMagnet;
     public List<PenguinCardInformation> penguinsCardsInformations;
 
     [Header("GameObjects")]

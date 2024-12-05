@@ -30,12 +30,23 @@ public class RewardView : MonoBehaviour
         instance = this;
     }
 
-    void Start() 
+    void Start()
     {
         RewardPresenter.instance.Initialization();
         textAll[0].text = LibraryWords.reward.GetText();
         textAll[1].text = LibraryWords.continueText.GetText();
         textAll[2].text = LibraryWords.doubleIt.GetText();
     }
-    
+
+    public void ClickContinue()
+    {
+        Debug.Log("click");
+        GameObject currentprefab = gameObject;
+        Destroy(currentprefab);
+    }
+
+    public void ClickDoubleIt()
+    {
+
+    }
 }

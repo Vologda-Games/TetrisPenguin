@@ -2354,6 +2354,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748715846}
         m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
+        m_MethodName: CloseSliders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1748715846}
+        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
         m_MethodName: EventHomeSlider
         m_Mode: 1
         m_Arguments:
@@ -3362,29 +3374,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 752.89105, y: 855.4261}
-      - {x: -794.42316, y: 843.2379}
-      - {x: -777.97235, y: -853.122}
-      - {x: 303.58908, y: -857.4872}
+    - - {x: 975.68445, y: 1200.7556}
+      - {x: -967.08795, y: 1182.9978}
+      - {x: -961.7768, y: -1098.1948}
+      - {x: 337.8401, y: -1125.0598}
       - {x: 307.933, y: -666.4103}
       - {x: -277.75204, y: -668.20667}
-      - {x: -353.6945, y: -654.7635}
-      - {x: -416.6362, y: -610.98474}
-      - {x: -456.27136, y: -548.7281}
-      - {x: -467.20792, y: -491.1326}
+      - {x: -413.34482, y: -625.70306}
+      - {x: -473.22754, y: -503.9201}
       - {x: -468.2496, y: 646.7174}
       - {x: -459.50397, y: 660.8618}
       - {x: -445.27652, y: 667.7442}
       - {x: 444.52814, y: 668.275}
       - {x: 458.56042, y: 661.82874}
       - {x: 467.49738, y: 648.2215}
-      - {x: 467.804, y: -487.18457}
-      - {x: 452.68887, y: -557.884}
-      - {x: 406.2835, y: -621.4664}
-      - {x: 358.3815, y: -651.96027}
+      - {x: 472.779, y: -525.91364}
+      - {x: 413.72144, y: -626.7916}
       - {x: 308, y: -666}
-      - {x: 303.71255, y: -852.39716}
-      - {x: 715.7486, y: -859.1653}
+      - {x: 337.86295, y: -1125.0266}
+      - {x: 959.41315, y: -1117.2134}
   m_UseDelaunayMesh: 0
 --- !u!50 &584161235
 Rigidbody2D:
@@ -3394,14 +3402,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584161229}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 87.23772
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 7c4b228c06562fd4689653cb144b88d0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -3411,8 +3419,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!1 &606140881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4821,6 +4829,7 @@ MonoBehaviour:
   - level: 
     chance: 5
   penguinInSpawn: {fileID: 0}
+  penguinInSpawnMagnet: {fileID: 0}
   _particleFog: {fileID: 6585396801516514891, guid: 31cea42f4a915fe4bbccebed09e3c37b, type: 3}
   _particleParent: {fileID: 295342340}
 --- !u!1 &931180027
@@ -6083,6 +6092,7 @@ Transform:
   - {fileID: 119408809}
   - {fileID: 735620823}
   - {fileID: 10588766}
+  - {fileID: 2131733538}
   m_Father: {fileID: 706068097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182104618
@@ -8050,6 +8060,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1748715846}
         m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
+        m_MethodName: CloseSliders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1748715846}
+        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
         m_MethodName: EventSettingsSlider
         m_Mode: 1
         m_Arguments:
@@ -8668,7 +8690,6 @@ GameObject:
   - component: {fileID: 1643330741}
   - component: {fileID: 1643330742}
   - component: {fileID: 1643330739}
-  - component: {fileID: 1643330743}
   m_Layer: 5
   m_Name: Button (Level)
   m_TagString: Untagged
@@ -8739,6 +8760,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1748715846}
+        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
+        m_MethodName: CloseSliders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 998455001}
         m_TargetAssemblyTypeName: LeveManagerView, Assembly-CSharp
         m_MethodName: SpawnWindowWithLevelEXPInformation
@@ -8789,19 +8822,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1643330743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643330737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7265c736d2d281d48b0d0afe3e850b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  getEn: 0
 --- !u!1 &1647801622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9215,7 +9235,6 @@ MonoBehaviour:
   homeSliderPlay: 0
   settingsSlider: 0
   settingsSliderPlay: 0
-  useMagnet: 0
   _offset: 0
   _pointEgg: {fileID: 489000227}
   cam: {fileID: 519420031}
@@ -11897,6 +11916,52 @@ MonoBehaviour:
     _level: 1
   - _buttonForOpen: {fileID: 1647801624}
     _level: 1
+--- !u!1 &2131733537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131733538}
+  - component: {fileID: 2131733539}
+  m_Layer: 0
+  m_Name: WindowRewardPresenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2131733538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131733537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1142256964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131733539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131733537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c19e7a851822c744b1b348e6ccb90a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentItem: {fileID: 117058546}
+  _rewardView: {fileID: 5459285393037051046, guid: aff6a21971c49bd4cae894f1582e4e0b, type: 3}
 --- !u!1 &2144720540
 GameObject:
   m_ObjectHideFlags: 0

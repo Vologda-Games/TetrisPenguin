@@ -254,7 +254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7953845349227551006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4782971221768178645}
+        m_TargetAssemblyTypeName: RewardView, Assembly-CSharp
+        m_MethodName: ClickDoubleIt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1262661017912423519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1060,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8706255865183830121}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4782971221768178645}
+        m_TargetAssemblyTypeName: RewardView, Assembly-CSharp
+        m_MethodName: ClickContinue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8774355521340250319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,15 +1156,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalScale.x
-      value: 189.39015
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalScale.y
-      value: 189.39015
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalScale.z
-      value: 189.39018
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1156,19 +1180,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98078537
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.19509032
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1190,9 +1214,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996601436389446392, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4393026628065434239, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_Name
       value: Fx_Sparkle_Star02_ClearYellow (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774736178438014859, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774736178438014859, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774736178438014859, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6885512298121962032, guid: 97486c4c18666c747b90e7bd71473a03, type: 3}
       propertyPath: m_SortingLayer

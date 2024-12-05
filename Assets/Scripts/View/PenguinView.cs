@@ -151,10 +151,11 @@ public class PenguinView : MonoBehaviour
     private IEnumerator AnimationMerge(PenguinView penguinView_1, PenguinView penguinView_2, int level, Vector3 pos)
     {
         float stage = 0;
+        Vector3 addPos = (penguinView_1.objTransform.position - penguinView_2.objTransform.position) * 0.1f;
         while (stage < 1)
         {
             stage += 0.1f;
-            penguinView_2.objTransform.Translate((penguinView_1.objTransform.position - penguinView_2.objTransform.position) * 0.1f);
+            penguinView_2.transform.position += addPos;
             yield return new WaitForFixedUpdate();
         }
         // Где-то тут нужно будет сделать дымок
@@ -179,13 +180,13 @@ public class PenguinView : MonoBehaviour
     {
         if (BafsPresenter.GetSelectBaf() == 5 && level != 16 && level != 15 && PenguinsModel.instance.penguinInSpawn != null)
         {
-            ScreenView.instance.useMagnet = true;
             DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             BafsView.instance.StartTriggerBtn();
             BafsPresenter.SetDestroyBaf(PenguinsModel.instance.penguinInSpawn.level);
             Destroy(PenguinsModel.instance.penguinInSpawn.go);
             PenguinsModel.instance.penguinInSpawn = null;
             SpawnPenguinsPresenter.SpawnByLevel(level);
+            PenguinsModel.instance.penguinInSpawnMagnet = PrefabsPresenter.GetPrefabByLevel(level).GetComponent<PenguinView>();
             Destroy(go);
             for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
             {
@@ -194,7 +195,6 @@ public class PenguinView : MonoBehaviour
                     PenguinsModel.instance.penguinViews.RemoveAt(i);
                 }
             }
-            BafsPresenter.SetSelectBaf(0);
             BafsPresenter.ReduceMagnetBafs(1);
             MusicAndSoundsManager._instance.PlaySound("Magnet", 2.5f);
         }
