@@ -8822,6 +8822,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1643330743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643330737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7265c736d2d281d48b0d0afe3e850b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getEn: 0
 --- !u!1 &1647801622
 GameObject:
   m_ObjectHideFlags: 0
@@ -11474,6 +11487,9 @@ MonoBehaviour:
   - {fileID: 143010917}
   - {fileID: 1125035730}
   isBlackBackground: 0
+  isMulticolor: 0
+  isSpring: 0
+  isBomb: 0
 --- !u!1 &2061717575
 GameObject:
   m_ObjectHideFlags: 0

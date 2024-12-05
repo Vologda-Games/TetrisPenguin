@@ -147,10 +147,10 @@ public class LuckWheelPresenter : MonoBehaviour
         minAngel = 360f / prizes.Count * randomSector;
     }
 
-    void OnDestroy()
-    {
-        StopAllCoroutines(); // Останавливаем все корутины при уничтожении объекта
-    }
+    // void OnDestroy()
+    // {
+    //     StopAllCoroutines(); // Останавливаем все корутины при уничтожении объекта
+    // }
 
     public void GetPrize() 
     {
@@ -254,23 +254,23 @@ public class LuckWheelPresenter : MonoBehaviour
         }
     }
 
-    IEnumerator DownScale() 
-    {
-        float time = 0f;
-        float duration = 0.2f;
-        Vector3 currentScale = LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale;
-        Vector3 targetScale = Vector3.zero;
+    // IEnumerator DownScale() 
+    // {
+    //     float time = 0f;
+    //     float duration = 0.2f;
+    //     Vector3 currentScale = LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale;
+    //     Vector3 targetScale = Vector3.zero;
         
-        while(time < duration) 
-        {
-            time += Time.deltaTime;
-            float progress = time/duration;
-            LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale = Vector3.Lerp(currentScale, targetScale, progress);
-            yield return null;
-        }
-        LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(false);
-        LuckWheelView.instance.TextSpin.SetActive(true);
-    }
+    //     while(time < duration) 
+    //     {
+    //         time += Time.deltaTime;
+    //         float progress = time/duration;
+    //         LuckWheelView.instance.ImageCoinAndTextPriceRectTransform.localScale = Vector3.Lerp(currentScale, targetScale, progress);
+    //         yield return null;
+    //     }
+    //     LuckWheelView.instance.ImageCoinAndTextPrice.SetActive(false);
+    //     LuckWheelView.instance.TextSpin.SetActive(true);
+    // }
 
     public void ShowBtnMoney() 
     {
