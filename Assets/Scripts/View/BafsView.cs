@@ -154,7 +154,8 @@ public class BafsView : MonoBehaviour
                 {
                     if (BafsPresenter.GetBombBafs() > 0)
                     {
-                        isSpring = true;
+                        Debug.Log("Бомба: появление");
+                        isBomb = true;
                         BafsPresenter.Bomb();
                         _blackBackgroundButtons[2].SetActive(true);
                         isBlackBackground = true;
@@ -162,6 +163,7 @@ public class BafsView : MonoBehaviour
                 }
                 else if (BafsPresenter.GetSelectBaf() == 3)
                 {
+                    Debug.Log("Бомба: уничтожение");
                     BafsPresenter.CancelBomb();
                     _blackBackgroundButtons[2].SetActive(false);
                     //BafsPresenter.SetActiveBlackbackgroundBtn();
@@ -176,6 +178,7 @@ public class BafsView : MonoBehaviour
                 }
                 else if (BafsPresenter.GetSelectBaf() == 2) 
                 {
+                    Debug.Log("Бомба: добавление бомбы и перчатки");
                     isSpring = true;
                     isBomb = true;
                     BafsPresenter.Bomb();

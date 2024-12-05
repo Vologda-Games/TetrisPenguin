@@ -118,13 +118,13 @@ public class PenguinsPresenter : MonoBehaviour
             {
                 DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             }
-            if (penguinView.level == 15 && BafsPresenter.GetSelectBaf() != 2)
+            if (penguinView.level == 15 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == true)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceMulticolorBafs(1);
                 BafsPresenter.SetActiveBlackbackgroundBtn();
             }
-            else if (penguinView.level == 16 && BafsPresenter.GetSelectBaf() != 2)
+            else if (penguinView.level == 16 && BafsPresenter.GetSelectBaf() != 2 && BafsView.instance.isSpring == true)
             {
                 BafsPresenter.SetSelectBaf(0);
                 BafsPresenter.ReduceBombBafs(1);
@@ -145,6 +145,14 @@ public class PenguinsPresenter : MonoBehaviour
                     Debug.Log("НЕ 0");
                 }
                 BafsPresenter.ReduceSpringBafs(1);
+                if (BafsView.instance.isSpring == true && BafsView.instance.isBomb == true) 
+                {
+                    BafsPresenter.ReduceBombBafs(1);
+                }
+                else if (BafsView.instance.isSpring == true && BafsView.instance.isMulticolor == true) 
+                {
+                    BafsPresenter.ReduceMulticolorBafs(1);
+                }
                 ProjectionView.instance.PointProjection();
                 BafsPresenter.SetActiveBlackbackgroundBtn();
                 BafsView.instance.isSpring = false;
