@@ -38,6 +38,9 @@ public class DailyTasksView : MonoBehaviour
         _imageReward.sprite = _infoTask.SpriteReward();
         _quantityBonus.text = $"x{_infoTask.QuantittyBonus()}";
         _taskInformation.text = $"{_infoTask.TaskInformation()}";
+        _quantityBonus.font = FontsModel.GetFont();
+        _taskInformation.font = FontsModel.GetFont();
+        _quantityCompleted.font = FontsModel.GetFont();
         _bar.gameObject.SetActive(true);
         _barCollected.enabled = false;
         _barReady.enabled = false;

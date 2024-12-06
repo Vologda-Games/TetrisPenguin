@@ -143,7 +143,8 @@ public class DataPresenter
     {
         SaveRatingsModel ratingsModel = new SaveRatingsModel()
         {
-            playersInformation = RatingsModel.instance.playersInformation
+            playersInformation = RatingsModel.instance.playersInformation,
+            yourId = RatingsModel.instance.yourId
         };
         string json = JsonConvert.SerializeObject(ratingsModel);
         SaveData(Models.RATINGS_MODEL, json);
@@ -279,6 +280,7 @@ public class DataPresenter
         }
         SaveRatingsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveRatingsModel>(json);
         RatingsModel.instance.playersInformation = saveResourcesModel.playersInformation;
+        RatingsModel.instance.yourId = saveResourcesModel.yourId;
     }
 
     public static void GetLanguageModel()

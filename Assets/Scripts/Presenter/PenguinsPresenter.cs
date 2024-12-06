@@ -21,12 +21,15 @@ public class PenguinsPresenter : MonoBehaviour
 
     public void SpawnPenguinOnStart()
     {
-        if (PenguinsModel.instance.penguinObjectsForStart.Count > 0)
+        if (PenguinsModel.instance.penguinObjectsForStart != null)
         {
-            for (int i = 0; i < PenguinsModel.instance.penguinObjectsForStart.Count; i++)
+            if (PenguinsModel.instance.penguinObjectsForStart.Count > 0)
             {
-                PenguinObject penguinObject = PenguinsModel.instance.penguinObjectsForStart[i];
-                SpawnPenguinsPresenter.SpawnStart(penguinObject.levelPenguin, penguinObject.posXPenguin, penguinObject.posYPenguin);
+                for (int i = 0; i < PenguinsModel.instance.penguinObjectsForStart.Count; i++)
+                {
+                    PenguinObject penguinObject = PenguinsModel.instance.penguinObjectsForStart[i];
+                    SpawnPenguinsPresenter.SpawnStart(penguinObject.levelPenguin, penguinObject.posXPenguin, penguinObject.posYPenguin);
+                }
             }
         }
     }

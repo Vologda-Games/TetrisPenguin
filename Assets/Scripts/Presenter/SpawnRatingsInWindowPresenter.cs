@@ -52,6 +52,7 @@ public class SpawnRatingsInWindowPresenter : MonoBehaviour
             RatingItemView _ratingItemView = _newItem.GetComponent<RatingItemView>();
             _ratingItemView.OutputInformationRatingItem(i, _numberPlayer);
             RatingsModel.instance.playersInformation[_numberPlayer].topPosition = i;
+            if (RatingsModel.instance.playersInformation[_numberPlayer].id <= 0) RatingsModel.instance.playersInformation[_numberPlayer].id = i + 1;
             RatingsModel.instance.playersInformation[_numberPlayer].ratingItemView = _ratingItemView;
         }
     }

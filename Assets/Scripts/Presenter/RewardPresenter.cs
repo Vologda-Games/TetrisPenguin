@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,10 +14,12 @@ public class RewardPresenter : MonoBehaviour
 
     [Header("GameObject")]
     [SerializeField] private GameObject _rewardView;
+    private int kol = 0;
 
     void Awake()
     {
         instance = this;
+        LanguagePresenter.changeLanguageEvent += RenderReward;
     }
     public void Initialization()
     {
@@ -50,7 +53,17 @@ public class RewardPresenter : MonoBehaviour
                 RewardView.instance.rewardImage.sprite = RewardView.instance.SpriteCoin;
                 break;
         }
-        RewardView.instance.textReward.text = kol.ToString();
+        this.kol = kol;
+        RenderReward();
+    }
+
+    private void RenderReward()
+    {
+        if (RewardView.instance != null)
+        {
+            RewardView.instance.textReward.text = kol.ToString();
+            RewardView.instance.textReward.font = FontsModel.GetFont();
+        }
     }
 
     IEnumerator UpScale()

@@ -18,6 +18,7 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private TMP_Text _textGet;
     [SerializeField] private TMP_Text _textLoginToGame;
     [SerializeField] private TMP_Text _priceAttemptText;
+    [SerializeField] private TMP_Text[] _numbersText;
 
     private void Awake()
     {
@@ -41,23 +42,74 @@ public class WindowManager : MonoBehaviour
 
     public void RenderTextWindow()
     {
-        if (_textRatings != null) _textRatings.text = LibraryWords.reatings.GetText();
-        if (_textShop != null) _textShop.text = LibraryWords.shop.GetText();
-        if (_textDailyTasks != null) _textDailyTasks.text = LibraryWords.dailyTasks.GetText();
-        if (_textDailyRewards != null) _textDailyRewards.text = LibraryWords.dailyRewards.GetText();
-        if (_textWheelOfLuck != null) _textWheelOfLuck.text = LibraryWords.wheelOfLuck.GetText();
-        if (_textAttempt != null) _textAttempt.text = LibraryWords.buyAttempt.GetText();
-        if (_textSpin != null) _textSpin.text = LibraryWords.spin.GetText();
-        if (_textGet != null) _textGet.text = LibraryWords.get.GetText();
-        if (_textLoginToGame != null) _textLoginToGame.text = LibraryWords.loginToGame.GetText();
-        if (_priceAttemptText != null) _priceAttemptText.text = $"{LuckWheelView.instance._priceAttempt}";
+        if (_textRatings != null)
+        {
+            _textRatings.text = LibraryWords.reatings.GetText();
+            _textRatings.font = FontsModel.GetFont();
+        }
+        if (_textShop != null)
+        {
+            _textShop.text = LibraryWords.shop.GetText();
+            _textShop.font = FontsModel.GetFont();
+        }
+        if (_textDailyTasks != null)
+        {
+            _textDailyTasks.text = LibraryWords.dailyTasks.GetText();
+            _textDailyTasks.font = FontsModel.GetFont();
+        }
+        if (_textDailyRewards != null)
+        {
+            _textDailyRewards.text = LibraryWords.dailyRewards.GetText();
+            _textDailyRewards.font = FontsModel.GetFont();
+        }
+        if (_textWheelOfLuck != null)
+        {
+            _textWheelOfLuck.text = LibraryWords.wheelOfLuck.GetText();
+            _textWheelOfLuck.font = FontsModel.GetFont();
+        }
+        if (_textAttempt != null)
+        {
+            _textAttempt.text = LibraryWords.buyAttempt.GetText();
+            _textAttempt.font = FontsModel.GetFont();
+        }
+        if (_textSpin != null)
+        {
+            _textSpin.text = LibraryWords.spin.GetText();
+            _textSpin.font = FontsModel.GetFont();
+        }
+        if (_textGet != null)
+        {
+            _textGet.text = LibraryWords.get.GetText();
+            _textGet.font = FontsModel.GetFont();
+        }
+        if (_textLoginToGame != null)
+        {
+            _textLoginToGame.text = LibraryWords.loginToGame.GetText();
+            _textLoginToGame.font = FontsModel.GetFont();
+        }
+        if (_priceAttemptText != null)
+        {
+            _priceAttemptText.text = $"{LuckWheelView.instance._priceAttempt}";
+            _priceAttemptText.font = FontsModel.GetFont();
+        }
 
         if (_textCoins != null)
         {
             PlayerView.instance._coinsTextInWindow = _textCoins;
             PlayerView.instance.RenderCoin();
         }
-        if (_textTimeDifference != null) StartCoroutine(SaveTimeText());
+        if (_textTimeDifference != null)
+        {
+            _textTimeDifference.font = FontsModel.GetFont();
+            StartCoroutine(SaveTimeText());
+        }
+        if (_numbersText != null)
+        {
+            for (int i = 0; i < _numbersText.Length; i++)
+            {
+                _numbersText[i].font = FontsModel.GetFont();
+            }
+        }
     }
 
     private IEnumerator SaveTimeText()

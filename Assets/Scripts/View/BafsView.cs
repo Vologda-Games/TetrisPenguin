@@ -17,13 +17,23 @@ public class BafsView : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        LanguagePresenter.changeLanguageEvent += RenderCountBafs;
+    }
+
     public void RenderCountBafs()
     {
         _countTexts[0].text = BafsPresenter.GetMulticolorBafs().ToString();
+        _countTexts[0].font = FontsModel.GetFont();
         _countTexts[1].text = BafsPresenter.GetSpringBafs().ToString();
+        _countTexts[1].font = FontsModel.GetFont();
         _countTexts[2].text = BafsPresenter.GetBombBafs().ToString();
+        _countTexts[2].font = FontsModel.GetFont();
         _countTexts[3].text = BafsPresenter.GetTornadoBafs().ToString();
+        _countTexts[3].font = FontsModel.GetFont();
         _countTexts[4].text = BafsPresenter.GetMagnetBafs().ToString();
+        _countTexts[4].font = FontsModel.GetFont();
     }
 
     public void StartTriggerBtn()

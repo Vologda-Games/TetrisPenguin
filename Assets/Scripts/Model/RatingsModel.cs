@@ -16,6 +16,7 @@ public class RatingsModel : MonoBehaviour
 
     [Header("YourInformation")]
     [HideInInspector] public int yourScore;
+    [HideInInspector] public int yourId;
     [HideInInspector] public Sprite yourIcon;
 
     [Header("InformationFalseUsers")]
@@ -37,6 +38,8 @@ public class RatingsModel : MonoBehaviour
             else if (PlayerModel.instance.level == Levels.levels[i].level) yourScore += PlayerModel.instance.experience;
         }
         if (yourIcon == null) yourIcon = defaultIcon;
+        if (yourId <= 0) yourId = playersInformation.Count + 1;
+        DataPresenter.SaveRatingsModel();
     }
 }
 
@@ -47,11 +50,13 @@ public class PlayerInformation
     [JsonIgnore] public Sprite icon;
     public string name;
     public int score;
+    public int id;
     [HideInInspector] public int topPosition;
     [HideInInspector, JsonIgnore] public RatingItemView ratingItemView;
 }
 
 public class SaveRatingsModel
 {
+    public int yourId;
     public List<PlayerInformation> playersInformation;
 }

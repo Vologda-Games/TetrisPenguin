@@ -12,6 +12,7 @@ public class AnimationTextAdd : MonoBehaviour
 
     public void MoveDownAndLoad(int _valueCurrency)
     {
+        _thisText.font = FontsModel.GetFont();
         if (_valueCurrency > 0)
         {
             _thisText.color = _colorAddCoins;

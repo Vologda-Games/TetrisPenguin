@@ -17,6 +17,8 @@ public class ShopItemView : MonoBehaviour
     private ShopItemInformation _thisShopItemInformation;
     public void OutputInformationItemShop(ShopItemInformation _infoItem)
     {
+        _buy.font = FontsModel.GetFont();
+        _cost.font = FontsModel.GetFont();
         _buy.text = LibraryWords.buy.GetText();
         _cost.text = $"{_infoItem.costPurchase}";
         _linesBaffs[0].SetActive(true);
@@ -25,6 +27,7 @@ public class ShopItemView : MonoBehaviour
         {
             if (_infoItem.informationForBuyBaffs.Count < 4)
             {
+                if (_itemBaffToOneLine[i]._baffText != null) _itemBaffToOneLine[i]._baffText.font = FontsModel.GetFont();
                 if (_linesBaffs[1].activeSelf) _linesBaffs[1].SetActive(false);
                 _itemBaffToOneLine[i]._baffImage.gameObject.SetActive(true);
                 _itemBaffToOneLine[i]._baffText.text = $"x{_infoItem.informationForBuyBaffs[i].quantityAddBaff}";
@@ -33,11 +36,13 @@ public class ShopItemView : MonoBehaviour
             {
                 if(i <= 1)
                 {
+                    if (_itemBaffToOneLine[i]._baffText != null) _itemBaffToOneLine[i]._baffText.font = FontsModel.GetFont();
                     _itemBaffToOneLine[i]._baffImage.gameObject.SetActive(true);
                     _itemBaffToOneLine[i]._baffText.text = $"x{_infoItem.informationForBuyBaffs[i].quantityAddBaff}";
                     _itemBaffToOneLine[i]._baffImage.sprite = DailyTasksModel.spritesForRewardBaff[_infoItem.informationForBuyBaffs[i].numberAddBaff - 1];
                 }else if (i > 1)
                 {
+                    if (_itemBaffToOneLine[i - 2]._baffText != null) _itemBaffToOneLine[i - 2]._baffText.font = FontsModel.GetFont();
                     _itemBaffToSecondLine[i - 2]._baffImage.gameObject.SetActive(true);
                     _itemBaffToSecondLine[i - 2]._baffText.text = $"x{_infoItem.informationForBuyBaffs[i].quantityAddBaff}";
                     _itemBaffToSecondLine[i - 2]._baffImage.sprite = DailyTasksModel.spritesForRewardBaff[_infoItem.informationForBuyBaffs[i].numberAddBaff - 1];
@@ -46,12 +51,14 @@ public class ShopItemView : MonoBehaviour
             {
                 if (i < 3)
                 {
+                    if (_itemBaffToOneLine[i]._baffText != null) _itemBaffToOneLine[i]._baffText.font = FontsModel.GetFont();
                     _itemBaffToOneLine[i]._baffImage.gameObject.SetActive(true);
                     _itemBaffToOneLine[i]._baffText.text = $"x{_infoItem.informationForBuyBaffs[i].quantityAddBaff}";
                     _itemBaffToOneLine[i]._baffImage.sprite = DailyTasksModel.spritesForRewardBaff[_infoItem.informationForBuyBaffs[i].numberAddBaff - 1];
                 }
                 else
                 {
+                    if (_itemBaffToOneLine[i - _itemBaffToOneLine.Count]._baffText != null) _itemBaffToOneLine[i - _itemBaffToOneLine.Count]._baffText.font = FontsModel.GetFont();
                     _itemBaffToSecondLine[i - _itemBaffToOneLine.Count]._baffImage.gameObject.SetActive(true);
                     _itemBaffToSecondLine[i - _itemBaffToOneLine.Count]._baffText.text = $"x{_infoItem.informationForBuyBaffs[i].quantityAddBaff}";
                     _itemBaffToSecondLine[i - _itemBaffToOneLine.Count]._baffImage.sprite = DailyTasksModel.spritesForRewardBaff[_infoItem.informationForBuyBaffs[i].numberAddBaff - 1];

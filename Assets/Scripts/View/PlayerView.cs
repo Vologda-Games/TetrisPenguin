@@ -38,6 +38,8 @@ public class PlayerView : MonoBehaviour
         LanguagePresenter.changeLanguageEvent += RenderTypeControl;
         LanguagePresenter.changeLanguageEvent += RenderTextMenu;
         LanguagePresenter.changeLanguageEvent += RenderIconLanguage;
+        LanguagePresenter.changeLanguageEvent += RenderFonts;
+        RenderFonts();
         RenderCoin();
         RenderLevel();
         RenderExperience();
@@ -45,6 +47,25 @@ public class PlayerView : MonoBehaviour
         RenderTextMenu();
         RenderIconLanguage();
         PlayerPresenter.instance.AddValueExperienceBar(PlayerModel.instance.experience);
+    }
+
+    private void RenderFonts()
+    {
+        if (_levelText != null) _levelText.font = FontsModel.GetFont();
+        if (experienceText != null) experienceText.font = FontsModel.GetFont();
+        if (_coinsText != null) _coinsText.font = FontsModel.GetFont();
+        if (_coinsTextInWindow != null) _coinsTextInWindow.font = FontsModel.GetFont();
+        if (_textRatings != null) _textRatings.font = FontsModel.GetFont();
+        if (_textShop != null) _textShop.font = FontsModel.GetFont();
+        if (_textDailyTasks != null) _textDailyTasks.font = FontsModel.GetFont();
+        if (_textDailyRewards != null) _textDailyRewards.font = FontsModel.GetFont();
+        if (_textWheelOfLuck != null) _textWheelOfLuck.font = FontsModel.GetFont();
+        if (_textTablePenguin != null) _textTablePenguin.font = FontsModel.GetFont();
+        if (_textMusic != null) _textMusic.font = FontsModel.GetFont();
+        if (_textSounds != null) _textSounds.font = FontsModel.GetFont();
+        if (_textControl != null) _textControl.font = FontsModel.GetFont();
+        if (_textReplay != null) _textReplay.font = FontsModel.GetFont();
+        if (_textLanguage != null) _textLanguage.font = FontsModel.GetFont();
     }
 
     public void RenderLevel()
@@ -82,6 +103,7 @@ public class PlayerView : MonoBehaviour
 
     public void RenderCoin()
     {
+        _coinsText.font = FontsModel.GetFont();
         _coinsText.text = RenderingCurrencyText(PlayerModel.instance.coins);
         if (_coinsTextInWindow != null)
         {

@@ -29,6 +29,7 @@ public class RatingsPresenter : MonoBehaviour
             if (RatingsModel.instance.playersInformation[i].name == LibraryWords.you.GetText())
             {
                 RatingsModel.instance.playersInformation[i].score = RatingsModel.instance.yourScore;
+                RatingsModel.instance.playersInformation[i].id = RatingsModel.instance.yourId;
                 _haveYou = true;
                 break;
             }
@@ -40,6 +41,7 @@ public class RatingsPresenter : MonoBehaviour
             {
                 name = LibraryWords.you.GetText(),
                 score = RatingsModel.instance.yourScore,
+                id = RatingsModel.instance.yourId
             }
             );
         }

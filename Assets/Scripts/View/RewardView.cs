@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,8 +32,11 @@ public class RewardView : MonoBehaviour
     {
         RewardPresenter.instance.Initialization();
         textAll[0].text = LibraryWords.reward.GetText();
+        textAll[0].font = FontsModel.GetFont();
         textAll[1].text = LibraryWords.continueText.GetText();
+        textAll[1].font = FontsModel.GetFont();
         textAll[2].text = LibraryWords.doubleIt.GetText();
+        textAll[2].font = FontsModel.GetFont();
     }
 
     public void ClickContinue()

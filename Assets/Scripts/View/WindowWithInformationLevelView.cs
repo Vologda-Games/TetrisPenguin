@@ -13,5 +13,6 @@ public class WindowWithInformationLevelView : MonoBehaviour
     public void OutputInformationWithLevelEXP()
     {
         _textEXP.text = $"{PlayerModel.instance.experience} / {Levels.levels[PlayerModel.instance.level].experience}";
+        _textEXP.font = FontsModel.GetFont();
     }
 }

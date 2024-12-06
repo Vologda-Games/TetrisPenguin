@@ -10,6 +10,7 @@ public class PenguinCardView : MonoBehaviour
 
     public void OutputInformationPenguinCard(int levelPenguin)
     {
+        _textLevel.font = FontsModel.GetFont();
         _textLevel.text = $"{PenguinsModel.instance.penguinsCardsInformations[levelPenguin].levelPenguin + 1} {LibraryWords.level.GetText()}";
         if(PenguinsModel.instance.penguinsCardsInformations[levelPenguin].ready)
         {

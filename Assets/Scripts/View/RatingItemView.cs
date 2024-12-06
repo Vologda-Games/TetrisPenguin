@@ -14,6 +14,9 @@ public class RatingItemView : MonoBehaviour
         PlayerInformation _playerInformation = RatingsModel.instance.playersInformation[_topPosition];
         if (_playerInformation.icon != null) icon.sprite = _playerInformation.icon;
         else icon.sprite = RatingsModel.instance.defaultIcon;
+        textScore.font = FontsModel.GetFont();
+        textName.font = FontsModel.GetFont();
+        textTopPosition.font = FontsModel.GetFont();
         textName.text = _playerInformation.name;
         textScore.text = _playerInformation.score.ToString();
         textTopPosition.text = (_numberPlayer + 1).ToString();

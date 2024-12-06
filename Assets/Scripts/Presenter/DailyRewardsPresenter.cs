@@ -84,7 +84,8 @@ public class DailyRewardsPresenter : MonoBehaviour
     {
         int index = day - 1;
         int money = DailyRewardsModel.instance.rewards[index];
-
+        DailyRewardsView.instance.rewardPrice.font = FontsModel.GetFont();
+        DailyRewardsView.instance.textInButton.font = FontsModel.GetFont();
         DailyRewardsView.instance.rewardPrice.text = money.ToString();                    //$"Заберите награду за {day} день";
         DailyRewardsView.instance.textInButton.text = LibraryWords.get.GetText();
         DailyRewardsView.instance.claimButton.interactable = !DailyRewardsModel.instance.claimRewadsBool[index]; // если true = забрана, то отключает кнопку

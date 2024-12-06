@@ -553,6 +553,14 @@ MonoBehaviour:
   _textGet: {fileID: 0}
   _textLoginToGame: {fileID: 3613545971447475397}
   _priceAttemptText: {fileID: 0}
+  _numbersText:
+  - {fileID: 9102206559650628988}
+  - {fileID: 9102206559728926927}
+  - {fileID: 9102206559643946964}
+  - {fileID: 2740885289077092412}
+  - {fileID: 900722868753036651}
+  - {fileID: 7055776753632188612}
+  - {fileID: 6688917710642479388}
 --- !u!1 &1145652244713466490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,10 +1014,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
+  m_fontSize: 72
   m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2679,11 +2687,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1331296004638048952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.1, y: -25.16}
-  m_SizeDelta: {x: 0, y: 58.1505}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 60}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &6905398757137473240
 CanvasRenderer:
   m_ObjectHideFlags: 0

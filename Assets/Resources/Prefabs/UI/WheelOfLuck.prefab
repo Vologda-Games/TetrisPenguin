@@ -37647,6 +37647,15 @@ MonoBehaviour:
   _textGet: {fileID: 0}
   _textLoginToGame: {fileID: 0}
   _priceAttemptText: {fileID: 5275153555424068946}
+  _numbersText:
+  - {fileID: 2010544519235839503}
+  - {fileID: 8888507874148896746}
+  - {fileID: 2587264481754340990}
+  - {fileID: 6445613496372808658}
+  - {fileID: 841705386539983525}
+  - {fileID: 4460391058745619195}
+  - {fileID: 3788917231823992131}
+  - {fileID: 5506855517688683120}
 --- !u!1 &9150155040629095237
 GameObject:
   m_ObjectHideFlags: 0
