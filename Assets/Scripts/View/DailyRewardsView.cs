@@ -27,7 +27,6 @@ public class DailyRewardsView : MonoBehaviour
     void Start()
     {
         DailyRewardsPresenter.instance.Initialization();
-        BlackBackground.SetActive(false);
         DailyRewardsPresenter.instance.IsWindowDailtRewards(true);
     }
 

@@ -69,15 +69,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: +10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
-  m_sharedMaterial: {fileID: 3074828514974314926, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9c51370b1f8be2a45a70dae72c8d470d, type: 2}
+  m_sharedMaterial: {fileID: 3702725791867367229, guid: 9c51370b1f8be2a45a70dae72c8d470d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281196544
-  m_fontColor: {r: 0, g: 0.8773585, b: 0.17637622, a: 1}
+    rgba: 4281129728
+  m_fontColor: {r: 0, g: 0.85882354, b: 0.17254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisText: {fileID: 8616171071937893897}
-  _colorAddCoins: {r: 0, g: 0.8301887, b: 0.16689363, a: 1}
-  _colorReduceCoins: {r: 0.7735849, g: 0, b: 0, a: 1}
+  _colorAddCoins: {r: 0, g: 0.85882354, b: 0.17254902, a: 1}
+  _colorReduceCoins: {r: 0.84313726, g: 0, b: 0, a: 1}
 --- !u!114 &-5161848298531373771
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,14 +5,14 @@ using UnityEngine;
 public class DailyTasksModel : MonoBehaviour
 {
     [Header("Structure")]
-    public List<DailyTasksInfoValue> allTasks = new List<DailyTasksInfoValue>()
+    public static List<DailyTasksInfoValue> allTasks = new List<DailyTasksInfoValue>()
     {
         new DailyTasksInfoValue()
         {
             _typeTaskEnum = TypeTask.Create,
-            _objectLevel = 2,
+            _objectLevel = 5,
             _numberUseBaff = 0,
-            _maximumQuantity = 3,
+            _maximumQuantity = 1,
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
@@ -22,11 +22,11 @@ public class DailyTasksModel : MonoBehaviour
         new DailyTasksInfoValue()
         {
             _typeTaskEnum = TypeTask.Create,
-            _objectLevel = 5,
+            _objectLevel = 7,
             _numberUseBaff = 0,
             _maximumQuantity = 2,
             _typeRewardEnum = TypeReward.Baff,
-            _numberAddBaff = 4,
+            _numberAddBaff = 2,
             _quantityAddBaff = 5,
             _quantityAddCurrency = 0,
             ConditionTask = ""
@@ -34,13 +34,97 @@ public class DailyTasksModel : MonoBehaviour
         new DailyTasksInfoValue()
         {
             _typeTaskEnum = TypeTask.Create,
-            _objectLevel = 7,
+            _objectLevel = 8,
             _numberUseBaff = 0,
-            _maximumQuantity = 4,
+            _maximumQuantity = 1,
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
-            _quantityAddCurrency = 400,
+            _quantityAddCurrency = 300,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 4,
+            _numberUseBaff = 0,
+            _maximumQuantity = 4,
+            _typeRewardEnum = TypeReward.Baff,
+            _numberAddBaff = 1,
+            _quantityAddBaff = 4,
+            _quantityAddCurrency = 0,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 9,
+            _numberUseBaff = 0,
+            _maximumQuantity = 1,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 500,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 8,
+            _numberUseBaff = 0,
+            _maximumQuantity = 1,
+            _typeRewardEnum = TypeReward.Baff,
+            _numberAddBaff = 2,
+            _quantityAddBaff = 3,
+            _quantityAddCurrency = 0,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 11,
+            _numberUseBaff = 0,
+            _maximumQuantity = 1,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 1000,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 12,
+            _numberUseBaff = 0,
+            _maximumQuantity = 1,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 1100,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Create,
+            _objectLevel = 14,
+            _numberUseBaff = 0,
+            _maximumQuantity = 1,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 1500,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 1,
+            _maximumQuantity = 8,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 550,
             ConditionTask = ""
         },
         new DailyTasksInfoValue()
@@ -48,23 +132,11 @@ public class DailyTasksModel : MonoBehaviour
             _typeTaskEnum = TypeTask.UseBaff,
             _objectLevel = 0,
             _numberUseBaff = 2,
-            _maximumQuantity = 3,
+            _maximumQuantity = 6,
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
-            _quantityAddCurrency = 250,
-            ConditionTask = ""
-        },
-        new DailyTasksInfoValue()
-        {
-            _typeTaskEnum = TypeTask.UseBaff,
-            _objectLevel = 0,
-            _numberUseBaff = 5,
-            _maximumQuantity = 2,
-            _typeRewardEnum = TypeReward.SoftCurrency,
-            _numberAddBaff = 0,
-            _quantityAddBaff = 0,
-            _quantityAddCurrency = 100,
+            _quantityAddCurrency = 300,
             ConditionTask = ""
         },
         new DailyTasksInfoValue()
@@ -72,7 +144,31 @@ public class DailyTasksModel : MonoBehaviour
             _typeTaskEnum = TypeTask.UseBaff,
             _objectLevel = 0,
             _numberUseBaff = 3,
-            _maximumQuantity = 5,
+            _maximumQuantity = 8,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 600,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 4,
+            _maximumQuantity = 10,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 500,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.UseBaff,
+            _objectLevel = 0,
+            _numberUseBaff = 5,
+            _maximumQuantity = 8,
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
@@ -88,18 +184,6 @@ public class DailyTasksModel : MonoBehaviour
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
-            _quantityAddCurrency = 180,
-            ConditionTask = ""
-        },
-        new DailyTasksInfoValue()
-        {
-            _typeTaskEnum = TypeTask.Click,
-            _objectLevel = 0,
-            _numberUseBaff = 0,
-            _maximumQuantity = 380,
-            _typeRewardEnum = TypeReward.SoftCurrency,
-            _numberAddBaff = 0,
-            _quantityAddBaff = 0,
             _quantityAddCurrency = 300,
             ConditionTask = ""
         },
@@ -108,11 +192,35 @@ public class DailyTasksModel : MonoBehaviour
             _typeTaskEnum = TypeTask.Click,
             _objectLevel = 0,
             _numberUseBaff = 0,
-            _maximumQuantity = 500,
+            _maximumQuantity = 350,
             _typeRewardEnum = TypeReward.SoftCurrency,
             _numberAddBaff = 0,
             _quantityAddBaff = 0,
-            _quantityAddCurrency = 999,
+            _quantityAddCurrency = 750,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Click,
+            _objectLevel = 0,
+            _numberUseBaff = 0,
+            _maximumQuantity = 450,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 850,
+            ConditionTask = ""
+        },
+        new DailyTasksInfoValue()
+        {
+            _typeTaskEnum = TypeTask.Click,
+            _objectLevel = 0,
+            _numberUseBaff = 0,
+            _maximumQuantity = 550,
+            _typeRewardEnum = TypeReward.SoftCurrency,
+            _numberAddBaff = 0,
+            _quantityAddBaff = 0,
+            _quantityAddCurrency = 1000,
             ConditionTask = ""
         }
     };
