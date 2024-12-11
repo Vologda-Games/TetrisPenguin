@@ -127,11 +127,13 @@ public class PenguinsPresenter : MonoBehaviour
                 {
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceMulticolorBafs(1);
+                    BafsView.instance._blackBackgroundButtons[0].SetActive(false);
                 }
                 else if (penguinView.level == 16)
                 {
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceBombBafs(1);
+                    BafsView.instance._blackBackgroundButtons[2].SetActive(false);
                 }
                 if (BafsPresenter.GetSelectBaf() == 2)
                 {
@@ -140,6 +142,7 @@ public class PenguinsPresenter : MonoBehaviour
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceSpringBafs(1);
                     ProjectionView.instance.PointProjection();
+                    BafsView.instance._blackBackgroundButtons[1].SetActive(false);
                 }
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
@@ -149,7 +152,7 @@ public class PenguinsPresenter : MonoBehaviour
                     }
                     else
                     {
-                        SpawnPenguinsPresenter.SpawnByLevel(BafsPresenter.GetDestroyBaf());
+                        SpawnPenguinsPresenter.instance.SpawnByLevel(BafsPresenter.GetDestroyBaf());
                         BafsPresenter.SetDestroyBaf(0);
                     }
                 }
@@ -167,12 +170,12 @@ public class PenguinsPresenter : MonoBehaviour
             {
                 if (_randomChance <= PenguinsModel._levelToChances[i].chance)
                 {
-                    SpawnPenguinsPresenter.SpawnByLevel(i);
+                    SpawnPenguinsPresenter.instance.SpawnByLevel(i);
                     break;
                 }
                 else
                 {
-                    if (PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.SpawnByLevel(0);
+                    if (PenguinsModel._levelToChances[i] == PenguinsModel._levelToChances[1]) SpawnPenguinsPresenter.instance.SpawnByLevel(0);
                 }
             }
             if (BafsPresenter.GetSelectBaf() == 2)
@@ -182,7 +185,7 @@ public class PenguinsPresenter : MonoBehaviour
         }
         else if (PenguinsModel.instance.penguinInSpawnMagnet != null)
         {
-            SpawnPenguinsPresenter.SpawnByLevel(BafsPresenter.GetDestroyBaf());
+            SpawnPenguinsPresenter.instance.SpawnByLevel(BafsPresenter.GetDestroyBaf());
             BafsPresenter.SetDestroyBaf(0);
             PenguinsModel.instance.penguinInSpawnMagnet = null;
         }

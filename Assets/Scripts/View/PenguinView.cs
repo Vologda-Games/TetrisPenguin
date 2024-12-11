@@ -70,10 +70,13 @@ public class PenguinView : MonoBehaviour
                 }
                 else if (level == 16)
                 {
-                    List<PenguinView> indexes = new List<PenguinView>();
+                    List<PenguinView> indexes = new List<PenguinView>(){};
                     for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
                     {
                         if ((objTransform.position - PenguinsModel.instance.penguinViews[j].objTransform.position).magnitude < 1)
+                        {
+                            indexes.Add(PenguinsModel.instance.penguinViews[j]);
+                        }else if(PenguinsModel.instance.penguinViews[j].go == collision.gameObject)
                         {
                             indexes.Add(PenguinsModel.instance.penguinViews[j]);
                         }
@@ -90,6 +93,10 @@ public class PenguinView : MonoBehaviour
                         }
                     }
                     MusicAndSoundsManager._instance.PlaySound("Bomb", 4f);
+                    for (int e = 0; e < PenguinsModel.instance.penguinViews.Count; e++)
+                    {
+                        if (PenguinsModel.instance.penguinViews[e] != null) PenguinsModel.instance.penguinViews[e].objRigidbody.AddForce(new Vector3(0, 1, 0) * 130);
+                    }
                     // for (int l = 0; l < PenguinsModel.instance.penguinViews.Count; l++)
                     // {
                     //     if (PenguinsModel.instance.penguinViews[l].go == go)
@@ -185,7 +192,7 @@ public class PenguinView : MonoBehaviour
             BafsPresenter.SetDestroyBaf(PenguinsModel.instance.penguinInSpawn.level);
             Destroy(PenguinsModel.instance.penguinInSpawn.go);
             PenguinsModel.instance.penguinInSpawn = null;
-            SpawnPenguinsPresenter.SpawnByLevel(level);
+            SpawnPenguinsPresenter.instance.SpawnByLevel(level);
             PenguinsModel.instance.penguinInSpawnMagnet = PrefabsPresenter.GetPrefabByLevel(level).GetComponent<PenguinView>();
             Destroy(go);
             for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)

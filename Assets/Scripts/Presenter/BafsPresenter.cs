@@ -11,7 +11,7 @@ public class BafsPresenter : MonoBehaviour
             Destroy(PenguinsModel.instance.penguinInSpawn.go);
             PenguinsModel.instance.penguinInSpawn = null;
         }
-        SpawnPenguinsPresenter.SpawnByLevel(15);
+        SpawnPenguinsPresenter.instance.SpawnByLevel(15);
     }
 
     public static void Spring()
@@ -32,7 +32,7 @@ public class BafsPresenter : MonoBehaviour
             Destroy(PenguinsModel.instance.penguinInSpawn.go);
             PenguinsModel.instance.penguinInSpawn = null;
         }
-        SpawnPenguinsPresenter.SpawnByLevel(16);
+        SpawnPenguinsPresenter.instance.SpawnByLevel(16);
     }
 
     public static void Tornado()
@@ -64,9 +64,9 @@ public class BafsPresenter : MonoBehaviour
             {
                 Destroy(PenguinsModel.instance.penguinInSpawn.go);
                 PenguinsModel.instance.penguinInSpawn = null;
-                SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
+                SpawnPenguinsPresenter.instance.SpawnByLevel(GetDestroyBaf());
                 SetDestroyBaf(0);
-                if (BafsView.instance.isSpring == true) 
+                if (BafsView.instance.isSpring == true)
                 {
                     SetSelectBaf(2);
                 }
@@ -81,11 +81,11 @@ public class BafsPresenter : MonoBehaviour
         {
             PenguinView penguinView = PenguinsModel.instance.penguinInSpawn;
             if (penguinView._strongBlow) penguinView._strongBlow = false;
-            if (BafsView.instance.isBomb == true) 
+            if (BafsView.instance.isBomb == true)
             {
                 SetSelectBaf(3);
             }
-            if (BafsView.instance.isMulticolor == true) 
+            if (BafsView.instance.isMulticolor == true)
             {
                 SetSelectBaf(1);
             }
@@ -96,15 +96,15 @@ public class BafsPresenter : MonoBehaviour
     public static void CancelBomb()
     {
         SetSelectBaf(0);
-        if (PenguinsModel.instance.penguinInSpawn != null) 
+        if (PenguinsModel.instance.penguinInSpawn != null)
         {
-            if (PenguinsModel.instance.penguinInSpawn.level == 16) 
+            if (PenguinsModel.instance.penguinInSpawn.level == 16)
             {
                 Destroy(PenguinsModel.instance.penguinInSpawn.go);
                 PenguinsModel.instance.penguinInSpawn = null;
-                SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
+                SpawnPenguinsPresenter.instance.SpawnByLevel(GetDestroyBaf());
                 SetDestroyBaf(0);
-                if (BafsView.instance.isSpring == true) 
+                if (BafsView.instance.isSpring == true)
                 {
                     SetSelectBaf(2);
                 }
@@ -119,7 +119,7 @@ public class BafsPresenter : MonoBehaviour
         {
             Destroy(PenguinsModel.instance.penguinInSpawn.go);
             PenguinsModel.instance.penguinInSpawn = null;
-            SpawnPenguinsPresenter.SpawnByLevel(GetDestroyBaf());
+            SpawnPenguinsPresenter.instance.SpawnByLevel(GetDestroyBaf());
             SetDestroyBaf(0);
         }
     }

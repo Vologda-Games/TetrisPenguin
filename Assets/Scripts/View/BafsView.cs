@@ -68,7 +68,7 @@ public class BafsView : MonoBehaviour
                     _blackBackgroundButtons[0].SetActive(false);
                     isMulticolor = false;
                 }
-                else if (isSpring && isMulticolor) 
+                /*else if (isSpring && isMulticolor) 
                 {
                     Debug.Log("Мультияйцо: условие isSprig и isMulticolor");
                     BafsPresenter.CancelMulticolor();
@@ -89,7 +89,7 @@ public class BafsView : MonoBehaviour
                     _blackBackgroundButtons[0].SetActive(true);
                     _blackBackgroundButtons[1].SetActive(true);
                     isBlackBackground = true;
-                }
+                }*/
                 else if (BafsPresenter.GetSelectBaf() != 1 && BafsPresenter.GetSelectBaf() != 0) 
                 {
                     Debug.Log("Мультияйцо: отмена всех бафов");
@@ -119,7 +119,7 @@ public class BafsView : MonoBehaviour
                     //BafsPresenter.SetActiveBlackbackgroundBtn();
                     isSpring = false;
                 }
-                else if (BafsPresenter.GetSelectBaf() == 1 || BafsPresenter.GetSelectBaf() == 3) 
+                /*else if (BafsPresenter.GetSelectBaf() == 1 || BafsPresenter.GetSelectBaf() == 3) 
                 {
                     isSpring = true;
                     Debug.Log("Перчатка + (мультияйцо или бомба)");
@@ -149,7 +149,7 @@ public class BafsView : MonoBehaviour
                         isBlackBackground = true;
                         isBomb = true;
                     }
-                }
+                }*/
                 else if (BafsPresenter.GetSelectBaf() != 2 && BafsPresenter.GetSelectBaf() != 0) 
                 {
                     Debug.Log("Перчатка: отмена всех бафов");
@@ -179,7 +179,7 @@ public class BafsView : MonoBehaviour
                     //BafsPresenter.SetActiveBlackbackgroundBtn();
                     isBomb = false;
                 }
-                else if (isSpring && isBomb) 
+                /*else if (isSpring && isBomb) 
                 {
                     Debug.Log("Бомба: условие isSprig и isBomb");
                     BafsPresenter.CancelBomb();
@@ -201,7 +201,7 @@ public class BafsView : MonoBehaviour
                     _blackBackgroundButtons[2].SetActive(true);
                     isBlackBackground = true;
                     return;
-                }
+                }*/
                 else if (BafsPresenter.GetSelectBaf() != 3 && BafsPresenter.GetSelectBaf() != 0) 
                 {
                     CancelAllBaff();
