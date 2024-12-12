@@ -17,9 +17,6 @@ public class RewardView : MonoBehaviour
     [SerializeField] public Button continueButton;
     [SerializeField] public Button doubleItButton;
 
-    [Header("1. Reward, 2. Button(Continue), 3. Button(Double)")]
-    [SerializeField] private TextMeshProUGUI[] textAll;
-
     [Header("Transform")]
     [SerializeField] public Transform obj_ViewRewardexceptBlackBackground;
 
@@ -31,12 +28,6 @@ public class RewardView : MonoBehaviour
     void Start()
     {
         RewardPresenter.instance.Initialization();
-        textAll[0].text = LibraryWords.reward.GetText();
-        textAll[0].font = FontsModel.GetFont();
-        textAll[1].text = LibraryWords.continueText.GetText();
-        textAll[1].font = FontsModel.GetFont();
-        textAll[2].text = LibraryWords.doubleIt.GetText();
-        textAll[2].font = FontsModel.GetFont();
     }
 
     public void ClickContinue()

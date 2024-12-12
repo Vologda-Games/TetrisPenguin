@@ -18,6 +18,10 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private TMP_Text _textGet;
     [SerializeField] private TMP_Text _textLoginToGame;
     [SerializeField] private TMP_Text _priceAttemptText;
+    [SerializeField] private TMP_Text _textReward;
+    [SerializeField] private TMP_Text _textLevel;
+    [SerializeField] private TMP_Text _textContinue;
+    [SerializeField] private TMP_Text _textDoubleIt;
     [SerializeField] private TMP_Text[] _numbersText;
 
     private void Awake()
@@ -91,6 +95,26 @@ public class WindowManager : MonoBehaviour
         {
             _priceAttemptText.text = $"{LuckWheelView.instance._priceAttempt}";
             _priceAttemptText.font = FontsModel.GetFont();
+        }
+        if (_textReward != null)
+        {
+            _textReward.text = LibraryWords.reward.GetText();
+            _textReward.font = FontsModel.GetFont();
+        }
+        if (_textLevel != null)
+        {
+            _textLevel.text = LibraryWords.newLevel.GetText();
+            _textLevel.font = FontsModel.GetFont();
+        }
+        if (_textContinue != null)
+        {
+            _textContinue.text = LibraryWords.continueText.GetText();
+            _textContinue.font = FontsModel.GetFont();
+        }
+        if (_textDoubleIt != null)
+        {
+            _textDoubleIt.text = LibraryWords.doubleIt.GetText();
+            _textDoubleIt.font = FontsModel.GetFont();
         }
 
         if (_textCoins != null)

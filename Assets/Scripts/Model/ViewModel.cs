@@ -10,6 +10,7 @@ public class ViewModel : MonoBehaviour
     [SerializeField] public GameObject _ratings;
     [SerializeField] public GameObject _dailyRewards;
     [SerializeField] public GameObject _tablePenguins;
+    [SerializeField] public GameObject _newLevel;
 
     private void Awake()
     {

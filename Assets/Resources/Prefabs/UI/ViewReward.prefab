@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &94567495349548604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5821379771048170007}
+  - component: {fileID: 8434381332220773353}
+  m_Layer: 0
+  m_Name: WindowManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5821379771048170007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94567495349548604}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6787000647063744202}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8434381332220773353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94567495349548604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db20d8d3479c479428caccfddd0e9762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textTimeDifference: {fileID: 0}
+  _textCoins: {fileID: 0}
+  _textRatings: {fileID: 0}
+  _textShop: {fileID: 0}
+  _textDailyTasks: {fileID: 0}
+  _textDailyRewards: {fileID: 0}
+  _textWheelOfLuck: {fileID: 0}
+  _textSpin: {fileID: 0}
+  _textAttempt: {fileID: 0}
+  _textGet: {fileID: 0}
+  _textLoginToGame: {fileID: 0}
+  _priceAttemptText: {fileID: 0}
+  _textReward: {fileID: 2567874638825328455}
+  _textLevel: {fileID: 0}
+  _textContinue: {fileID: 1604915301022725321}
+  _textDoubleIt: {fileID: 24731785469992567}
+  _numbersText: []
 --- !u!1 &168722906088112942
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +73,7 @@ GameObject:
   - component: {fileID: 414641711867182482}
   - component: {fileID: 2567874638825328455}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Reward)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +489,7 @@ GameObject:
   - component: {fileID: 6152489874688185649}
   - component: {fileID: 24731785469992567}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (DoubleIt)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,7 +623,7 @@ GameObject:
   - component: {fileID: 2183312480800782088}
   - component: {fileID: 1604915301022725321}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (Continue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,6 +927,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5821379771048170007}
   - {fileID: 1754432912269057977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -895,14 +957,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9372549}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5551461a712fd427aa2b059aac398cd4, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -935,10 +997,6 @@ MonoBehaviour:
   SpriteCoin: {fileID: 21300000, guid: bb404beb38deb6a4a8ec5deacb0b2b5f, type: 3}
   continueButton: {fileID: 766531890273419861}
   doubleItButton: {fileID: 4490015646181423197}
-  textAll:
-  - {fileID: 2567874638825328455}
-  - {fileID: 1604915301022725321}
-  - {fileID: 24731785469992567}
   obj_ViewRewardexceptBlackBackground: {fileID: 1754432912269057977}
 --- !u!1 &8101757571711851821
 GameObject:
@@ -1083,7 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754432912269057977}
   m_Layer: 5
-  m_Name: obj_ViewRewardexceptBlackBackground
+  m_Name: ViewRewardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

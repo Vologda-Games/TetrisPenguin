@@ -69,7 +69,7 @@ public class GameInterface : MonoBehaviour
 
     public void OpenFirstLayout(string nameView)
     {
-        if (_parent.childCount == 0)
+        if (activeView == null)
         {
             activeViewString = nameView;
             GameObject prefab = GetViewByName(nameView);
@@ -80,7 +80,6 @@ public class GameInterface : MonoBehaviour
             isActiveInterface = true;
             if (activeView != null) StartCoroutine(ScaleShowAnimation(_activeViewTransform));
         }
-
     }
 
     public void CloseFirstLayout()
@@ -134,6 +133,12 @@ public class GameInterface : MonoBehaviour
         OpenFirstLayout(Views._tablePenguins);
     }
 
+    public void EventOpenNewLevel()
+    {
+        //Вешать только на Button
+        OpenFirstLayout(Views._newLevel);
+    }
+
     public void EventCloseFirstLayoutByBackground()
     {
         //Вешать только на Background
@@ -167,6 +172,10 @@ public class GameInterface : MonoBehaviour
         else if (name == Views._tablePenguins)
         {
             _object = ViewModel.instance._tablePenguins;
+        }
+        else if (name == Views._newLevel)
+        {
+            _object = ViewModel.instance._newLevel;
         }
         else _object = null;
 

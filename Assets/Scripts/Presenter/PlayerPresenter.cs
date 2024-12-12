@@ -22,6 +22,12 @@ public class PlayerPresenter : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        float a = 520;
+        for(int i = 0; i < 45; i++)
+        {
+            a *= 1.04975f;
+            Debug.Log(a);
+        }
     }
 
     // Читы
@@ -63,6 +69,8 @@ public class PlayerPresenter : MonoBehaviour
     {
         PlayerModel.instance.level++;
         RatingsPresenter.instance.AddRandomExperienceYoureOpponent();
+        GameInterface.instance.EventOpenNewLevel();
+        AddCoin(Levels.levels[Levels.CurrentLevel].coins);
     }
 
     public void ReduceCoin(int value)
