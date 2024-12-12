@@ -330,7 +330,6 @@ public class DataPresenter
     public static void DeleteDataPenguins()
     {
         SaveData(Models.PENGUINS_MODEL, "");
-        PlayerModel.instance.experience = 0;
         SavePlayerModel();
         Debug.LogWarning("DELETE experience, PENGUINS_MODEL");
         Time.timeScale = 0f;
