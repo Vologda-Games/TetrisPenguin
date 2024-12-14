@@ -62,7 +62,6 @@ public class DailyTasksView : MonoBehaviour
             _bar.gameObject.SetActive(false);
             _barCollected.enabled = true;
             _thisButton.interactable = false;
-            Debug.Log("COLLECTED");
         }
     }
 

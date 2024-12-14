@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -5,23 +7,55 @@ using UnityEngine.UI;
 public class ZonePresenter : MonoBehaviour
 {
     [SerializeField] private Image _zone;
-    private float _time = 0;
+    private int _time = 0;
+    private List<GameObject> _enterPenguinView = new List<GameObject>();
+    private bool _timerActive = false;
+    private bool _zoneActivation = false;
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _time += Time.fixedDeltaTime;
-        if (_zone.color.a < .7f && _time > 0.5f) _zone.color += new Color(0, 0, 0, Time.fixedDeltaTime / 3.8f);
-        if (_time > 3)
+        if (collision.gameObject.CompareTag("Penguin"))
         {
-            DataPresenter.DeleteDataPenguins();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Time.timeScale = 1f;
+            _enterPenguinView.Add(collision.gameObject);
+            if (!_timerActive) StartCoroutine(TimerOnZone());
+            if (!_zoneActivation) StartCoroutine(ActivationZone());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("Penguin")) _enterPenguinView.Remove(other.gameObject);
+    }
+
+    private IEnumerator TimerOnZone()
+    {
+        _timerActive = true;
         _time = 0;
+        yield return new WaitForSeconds(.5f);
+        while (_enterPenguinView.Count > 0)
+        {
+            _time += 1;
+            if (_time >= 4)
+            {
+                DataPresenter.DeleteDataPenguins();
+                Time.timeScale = 1f;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+        _timerActive = false;
+    }
+
+    private IEnumerator ActivationZone()
+    {
+        _zoneActivation = true;
+        yield return new WaitForSeconds(.5f);
+        while (_enterPenguinView.Count > 0)
+        {
+            if (_zone.color.a < .8f) _zone.color += new Color(0, 0, 0, 0.027f);
+            yield return new WaitForSeconds(0.1f);
+        }
         _zone.color = new Color(_zone.color.r, _zone.color.g, _zone.color.b, 0f);
+        _zoneActivation = false;
     }
 }

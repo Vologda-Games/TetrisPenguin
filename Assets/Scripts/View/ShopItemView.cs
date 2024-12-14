@@ -81,6 +81,11 @@ public class ShopItemView : MonoBehaviour
         }
         else return;
     }
+
+    public void ClickButton()
+    {
+        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+    }
 }
 
 [Serializable]

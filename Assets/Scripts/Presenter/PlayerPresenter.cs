@@ -22,12 +22,6 @@ public class PlayerPresenter : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        float a = 520;
-        for(int i = 0; i < 45; i++)
-        {
-            a *= 1.04975f;
-            Debug.Log(a);
-        }
     }
 
     // Читы

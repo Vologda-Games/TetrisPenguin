@@ -6,9 +6,9 @@ public class LeveManagerView : MonoBehaviour
 {
     [SerializeField] private WindowWithInformationLevelView _windowWithLevelEXPInformation;
     [SerializeField] private Transform _parentWondowLevel;
-    [HideInInspector] public WindowWithInformationLevelView _currentWindowLevel;
-    [HideInInspector] public bool _openedWindow;
-    [HideInInspector] public bool _statusOfIncrease;
+    [HideInInspector] public WindowWithInformationLevelView currentWindowLevel;
+    [HideInInspector] public bool openedWindow;
+    [HideInInspector] public bool statusOfIncrease;
     [HideInInspector] public static LeveManagerView instance;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class LeveManagerView : MonoBehaviour
     private void Start()
     {
         CheckLevelForOpenButton();
-        _statusOfIncrease = false;
+        statusOfIncrease = false;
     }
 
     public void CheckLevelForOpenButton()
@@ -33,23 +33,23 @@ public class LeveManagerView : MonoBehaviour
 
     public void SpawnWindowWithLevelEXPInformation()
     {
-        if (_currentWindowLevel == null)
+        if (currentWindowLevel == null)
         {
-            _currentWindowLevel = Instantiate(_windowWithLevelEXPInformation, _parentWondowLevel);
-            _currentWindowLevel.transform.localScale = Vector3.zero;
-            _currentWindowLevel.OutputInformationWithLevelEXP();
+            currentWindowLevel = Instantiate(_windowWithLevelEXPInformation, _parentWondowLevel);
+            currentWindowLevel.transform.localScale = Vector3.zero;
+            currentWindowLevel.OutputInformationWithLevelEXP();
         }
-        _statusOfIncrease = !_statusOfIncrease;
-        if (!_openedWindow) StartCoroutine(OpenWindow(_currentWindowLevel.transform, new Vector3(1.3f, 1.3f, 1.3f)));
+        statusOfIncrease = !statusOfIncrease;
+        if (!openedWindow) StartCoroutine(OpenWindow(currentWindowLevel.transform, new Vector3(1.3f, 1.3f, 1.3f)));
     }
 
     public IEnumerator OpenWindow(Transform window, Vector3 maxScale)
     {
-        _openedWindow = true;
+        openedWindow = true;
         bool maxScaleReady = false;
         while (true)
         {
-            if (_statusOfIncrease)
+            if (statusOfIncrease)
             {
                 if (window.localScale.x < maxScale.x && !maxScaleReady)
                 {
@@ -88,6 +88,6 @@ public class LeveManagerView : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
-        _openedWindow = false;
+        openedWindow = false;
     }
 }

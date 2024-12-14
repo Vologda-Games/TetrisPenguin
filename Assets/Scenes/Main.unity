@@ -2581,7 +2581,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -110}
+  m_Offset: {x: 0, y: -100}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4935,11 +4935,11 @@ MonoBehaviour:
   - level: 
     chance: 0
   - level: 
-    chance: 25
+    chance: 30
   - level: 
-    chance: 25
+    chance: 20
   - level: 
-    chance: 15
+    chance: 10
   penguinInSpawn: {fileID: 0}
   penguinInSpawnMagnet: {fileID: 0}
   _particleFog: {fileID: 6585396801516514891, guid: 31cea42f4a915fe4bbccebed09e3c37b, type: 3}
@@ -5412,9 +5412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowWithLevelEXPInformation: {fileID: 770651685398951945, guid: c564cff84140e5e4e93aa4f06c41575d, type: 3}
   _parentWondowLevel: {fileID: 1445319092}
-  _currentWindowLevel: {fileID: 0}
-  _openedWindow: 0
-  _statusOfIncrease: 0
+  currentWindowLevel: {fileID: 0}
+  openedWindow: 0
+  statusOfIncrease: 0
 --- !u!1 &1016299785
 GameObject:
   m_ObjectHideFlags: 0
@@ -8979,9 +8979,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1748715846}
-        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
-        m_MethodName: CloseSliders
+      - m_Target: {fileID: 998455001}
+        m_TargetAssemblyTypeName: LeveManagerView, Assembly-CSharp
+        m_MethodName: SpawnWindowWithLevelEXPInformation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8991,9 +8991,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 998455001}
-        m_TargetAssemblyTypeName: LeveManagerView, Assembly-CSharp
-        m_MethodName: SpawnWindowWithLevelEXPInformation
+      - m_Target: {fileID: 1748715846}
+        m_TargetAssemblyTypeName: ScreenView, Assembly-CSharp
+        m_MethodName: CloseSlidersForLevelInformation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

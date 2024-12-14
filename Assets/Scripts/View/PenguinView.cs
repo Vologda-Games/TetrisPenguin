@@ -128,7 +128,6 @@ public class PenguinView : MonoBehaviour
                             // Destroy(penguinView_1.objBoxCollider);
                             penguinView_1.objRigidbody.simulated = false;
                             PenguinsModel.instance.penguinViews.RemoveAt(i);
-                            Debug.Log($"Минус первый");
                             for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
                             {
                                 if (PenguinsModel.instance.penguinViews[j].go == go)
@@ -137,10 +136,8 @@ public class PenguinView : MonoBehaviour
                                     penguinView_2.objRigidbody.simulated = false;
                                     StartCoroutine(AnimationMerge(penguinView_1, penguinView_2, level, pos));
                                     // Destroy(penguinView_2.objBoxCollider);
-                                    Debug.Log($"Минус второй");
                                     // SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
                                     PenguinsPresenter.MergePenguins(level);
-                                    Debug.Log($"Замена подъехала");
                                     PenguinsModel.instance.penguinViews.RemoveAt(j);
                                     return;
                                 }
@@ -167,7 +164,6 @@ public class PenguinView : MonoBehaviour
         }
         // Где-то тут нужно будет сделать дымок
         SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
-        Debug.Log($"pos: {pos}");
 
         Instantiate(PenguinsModel.instance._particleFog, pos, Quaternion.identity, PenguinsModel.instance._particleParent);
         Destroy(penguinView_1.go);
