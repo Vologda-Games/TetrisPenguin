@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GamePush.Data;
 using UnityEngine;
 
 public class DailyRewardsPresenter : MonoBehaviour
@@ -97,7 +96,7 @@ public class DailyRewardsPresenter : MonoBehaviour
 
     public void ClaimRewardButton() 
     {
-        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+        MusicAndSoundsManager.instance.PlaySoundClickOnButton();
         StartCoroutine(ScaleButton());
         int day = (int)DailyRewardsView.instance.slider.value;
         int index = day - 1;
@@ -109,7 +108,7 @@ public class DailyRewardsPresenter : MonoBehaviour
 
         DailyRewardsModel.instance.claimRewadsBool[index] = true;
 
-        DailyRewardsView.instance.rewardPrice.text =   money.ToString();                                        //$"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
+        DailyRewardsView.instance.rewardPrice.text = money.ToString();                                        //$"Вы получили {DailyRewardsModel.instance.rewards[index]} монет за {day} день!";
         DailyRewardsView.instance.textInButton.text = LibraryWords.received.GetText();         // $"Получено";
         DailyRewardsView.instance.claimButton.interactable = false;
 

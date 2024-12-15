@@ -347,11 +347,11 @@ public class DailyTasksInfoValue
     {
         _currentQuantity += _supplementToProgress;
         DataPresenter.SaveNewDayEventModel();
-        DailyTasksInfoValue _taskValue = NewDayEventModel._instance.tasksOnToday[_numberTask];
+        DailyTasksInfoValue _taskValue = NewDayEventModel.instance.tasksOnToday[_numberTask];
         if (
             _taskValue._typeTaskEnum != TypeTask.Click && _taskValue._currentQuantity <= _taskValue._maximumQuantity ||
             _taskValue._typeTaskEnum == TypeTask.Click && _taskValue._currentQuantity == _taskValue._maximumQuantity
-        ) SpawnReadyTaskOnMenuPresenter._instance.SpawnReadyTask(_numberTask);
+        ) SpawnReadyTaskOnMenuPresenter.instance.SpawnReadyTask(_numberTask);
     }
 }
 

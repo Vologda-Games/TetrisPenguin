@@ -26,16 +26,13 @@ public class PenguinView : MonoBehaviour
     {
         StartCoroutine(UpdatePosition());
         objRigidbody = GetComponent<Rigidbody2D>();
+        objTransform = GetComponent<RectTransform>();
         go = gameObject;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_strongBlow)
-        {
-            MusicAndSoundsManager._instance.PlaySound("StrongBlow", 1f);
-            _strongBlow = false;
-        }
+        if (_strongBlow) _strongBlow = false;
         for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
         {
             if (collision.gameObject == PenguinsModel.instance.penguinViews[i].go)
@@ -47,17 +44,17 @@ public class PenguinView : MonoBehaviour
                     {
                         if (triggerMerge == false)
                         {
-                            MusicAndSoundsManager._instance.PlaySound("Multicolor", 1f);
+                            MusicAndSoundsManager.instance.PlaySound("Multicolor", 1f);
                             triggerMerge = true;
                             Vector3 pos = PenguinsModel.instance.penguinViews[i].objTransform.position;
                             int levelI = PenguinsModel.instance.penguinViews[i].level;
-                            Destroy(PenguinsModel.instance.penguinViews[i].go);
+                            StartCoroutine(PenguinsModel.instance.penguinViews[i].DeathPenguin(PenguinsModel.instance.penguinViews[i].go));
                             PenguinsModel.instance.penguinViews.RemoveAt(i);
                             for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
                             {
                                 if (PenguinsModel.instance.penguinViews[j].go == go)
                                 {
-                                    Destroy(go);
+                                    StartCoroutine(DeathPenguin(go));
                                     PenguinsModel.instance.penguinViews.RemoveAt(j);
                                     SpawnPenguinsPresenter.SpawnByLevel(levelI + 1, pos);
                                     PenguinsPresenter.MergePenguins(levelI);
@@ -70,10 +67,10 @@ public class PenguinView : MonoBehaviour
                 }
                 else if (level == 16)
                 {
-                    List<PenguinView> indexes = new List<PenguinView>(){};
+                    List<PenguinView> indexes = new List<PenguinView>();
                     for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
                     {
-                        if ((objTransform.position - PenguinsModel.instance.penguinViews[j].objTransform.position).magnitude < 1)
+                        if ((objTransform.position - PenguinsModel.instance.penguinViews[j].objTransform.position).magnitude < 1 && objTransform != PenguinsModel.instance.penguinViews[j].objTransform)
                         {
                             indexes.Add(PenguinsModel.instance.penguinViews[j]);
                         }else if(PenguinsModel.instance.penguinViews[j].go == collision.gameObject)
@@ -81,31 +78,29 @@ public class PenguinView : MonoBehaviour
                             indexes.Add(PenguinsModel.instance.penguinViews[j]);
                         }
                     }
+                    objRigidbody.simulated = false;
                     for (int y = 0; y < indexes.Count; y++)
                     {
-                        Destroy(indexes[y].go);
+                        Debug.Log(indexes[y].name);
                         for (int x = 0; x < PenguinsModel.instance.penguinViews.Count; x++)
                         {
                             if (PenguinsModel.instance.penguinViews[x] == indexes[y])
                             {
+                                StartCoroutine(PenguinsModel.instance.penguinViews[x].DeathPenguin(PenguinsModel.instance.penguinViews[x].go));
                                 PenguinsModel.instance.penguinViews.RemoveAt(x);
+                                break;
                             }
                         }
                     }
-                    MusicAndSoundsManager._instance.PlaySound("Bomb", 4f);
+                    MusicAndSoundsManager.instance.PlaySound("Bomb", 4f);
+                    AnimationCameraPresenter.instance.ShakingCamera();
+                    Instantiate(PenguinsModel.instance.particleBomb, new Vector2(transform.position.x, transform.position.y), Quaternion.identity, PenguinsModel.instance.particleParent);
                     for (int e = 0; e < PenguinsModel.instance.penguinViews.Count; e++)
                     {
-                        if (PenguinsModel.instance.penguinViews[e] != null) PenguinsModel.instance.penguinViews[e].objRigidbody.AddForce(new Vector3(0, 1, 0) * 130);
+                        if (PenguinsModel.instance.penguinViews[e] != null && PenguinsModel.instance.penguinViews[e] != this) PenguinsModel.instance.penguinViews[e].objRigidbody.AddForce(new Vector3(Random.Range(-.5f, .5f), 1, 0) * 80);
                     }
-                    // for (int l = 0; l < PenguinsModel.instance.penguinViews.Count; l++)
-                    // {
-                    //     if (PenguinsModel.instance.penguinViews[l].go == go)
-                    //     {
-                    //         Destroy(go);
-                    //         PenguinsModel.instance.penguinViews.RemoveAt(l);
-                    //         return;
-                    //     }
-                    // }
+                    StartCoroutine(DeathPenguin(gameObject));
+                    PenguinsModel.instance.penguinViews.Remove(this);
                 }
                 else
                 {
@@ -117,31 +112,19 @@ public class PenguinView : MonoBehaviour
                             PenguinView penguinView_1 = PenguinsModel.instance.penguinViews[i];
                             Vector3 pos = penguinView_1.objTransform.position;
                             penguinView_1.triggerMerge = true;
-                            MusicAndSoundsManager._instance.PlaySound("Merge", 1f);
+                            MusicAndSoundsManager.instance.PlaySound("Merge", 1f);
                             DailyTasksPresenter.CheckCreateForTask(level + 1);
                             if (!PenguinsModel.instance.penguinsCardsInformations[level + 1].ready)
                             {
                                 PenguinsModel.instance.penguinsCardsInformations[level + 1].ready = true;
                                 DataPresenter.SavePenguinsModel();
                             }
-
-                            // Destroy(penguinView_1.objBoxCollider);
                             penguinView_1.objRigidbody.simulated = false;
                             PenguinsModel.instance.penguinViews.RemoveAt(i);
-                            for (int j = 0; j < PenguinsModel.instance.penguinViews.Count; j++)
-                            {
-                                if (PenguinsModel.instance.penguinViews[j].go == go)
-                                {
-                                    PenguinView penguinView_2 = PenguinsModel.instance.penguinViews[j];
-                                    penguinView_2.objRigidbody.simulated = false;
-                                    StartCoroutine(AnimationMerge(penguinView_1, penguinView_2, level, pos));
-                                    // Destroy(penguinView_2.objBoxCollider);
-                                    // SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
-                                    PenguinsPresenter.MergePenguins(level);
-                                    PenguinsModel.instance.penguinViews.RemoveAt(j);
-                                    return;
-                                }
-                            }
+                            objRigidbody.simulated = false;
+                            StartCoroutine(AnimationMerge(penguinView_1, this, level, pos));
+                            PenguinsPresenter.MergePenguins(level);
+                            PenguinsModel.instance.penguinViews.Remove(this);
                         }
                         else { return; }
                     }
@@ -162,10 +145,10 @@ public class PenguinView : MonoBehaviour
             penguinView_2.transform.position += addPos;
             yield return new WaitForFixedUpdate();
         }
-        // Где-то тут нужно будет сделать дымок
+
         SpawnPenguinsPresenter.SpawnByLevel(level + 1, pos);
 
-        Instantiate(PenguinsModel.instance._particleFog, pos, Quaternion.identity, PenguinsModel.instance._particleParent);
+        Instantiate(PenguinsModel.instance.particleFog, pos, Quaternion.identity, PenguinsModel.instance.particleParent);
         Destroy(penguinView_1.go);
         Destroy(penguinView_2.go);
     }
@@ -179,6 +162,16 @@ public class PenguinView : MonoBehaviour
         }
     }
 
+    public IEnumerator DeathPenguin(GameObject penguin)
+    {
+        while (penguin.transform.localScale.x > 0f)
+        {
+            penguin.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(penguin);
+    }
+
     public void OnMouseDown()
     {
         if (BafsPresenter.GetSelectBaf() == 5 && level != 16 && level != 15 && PenguinsModel.instance.penguinInSpawn != null)
@@ -186,11 +179,11 @@ public class PenguinView : MonoBehaviour
             DailyTasksPresenter.CheckUsedBaffForTask(BafsPresenter.GetSelectBaf());
             BafsView.instance.StartTriggerBtn();
             BafsPresenter.SetDestroyBaf(PenguinsModel.instance.penguinInSpawn.level);
-            Destroy(PenguinsModel.instance.penguinInSpawn.go);
+            StartCoroutine(DeathPenguin(PenguinsModel.instance.penguinInSpawn.go));
             PenguinsModel.instance.penguinInSpawn = null;
             SpawnPenguinsPresenter.instance.SpawnByLevel(level);
             PenguinsModel.instance.penguinInSpawnMagnet = PrefabsPresenter.GetPrefabByLevel(level).GetComponent<PenguinView>();
-            Destroy(go);
+            StartCoroutine(DeathPenguin(go));
             for (int i = 0; i < PenguinsModel.instance.penguinViews.Count; i++)
             {
                 if (PenguinsModel.instance.penguinViews[i] == this)
@@ -199,7 +192,7 @@ public class PenguinView : MonoBehaviour
                 }
             }
             BafsPresenter.ReduceMagnetBafs(1);
-            MusicAndSoundsManager._instance.PlaySound("Magnet", 2.5f);
+            MusicAndSoundsManager.instance.PlaySound("Magnet", 2.5f);
             BafsPresenter.SetActiveBlackbackgroundBtn();
         }
     }

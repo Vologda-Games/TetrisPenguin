@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,10 +6,10 @@ using UnityEngine.UI;
 public class MusicAndSoundsManager : MonoBehaviour
 {
     [Header("Transform")]
-    [SerializeField] public Transform _parentMusic, _parentSounds;
+    [SerializeField] public Transform parentMusic, parentSounds;
 
     [Header("Scripts")]
-    [SerializeField] public static MusicAndSoundsManager _instance;
+    [SerializeField] public static MusicAndSoundsManager instance;
 
     [Header("Sprites")]
     [SerializeField] public Sprite _trueSpriteButtonMusic;
@@ -25,23 +26,27 @@ public class MusicAndSoundsManager : MonoBehaviour
 
     private List<AudioSource> _audioSourcesMusic = new List<AudioSource>();
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
-        _instance = this;
         PlaySound("BackgroundMusic");
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance._playSouds);
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance._playMusic);
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance.playSounds);
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance.playMusic);
     }
 
     public void PlaySound(string _nameSound, float _direction)
     {
-        if (SoundsModel.instance._playSouds)
+        if (SoundsModel.instance.playSounds)
         {
             foreach (GameObject i in SoundsModel.sounds)
             {
                 if (i.gameObject.name == _nameSound)
                 {
-                    GameObject _newClick = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, _parentSounds);
+                    GameObject _newClick = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, parentSounds);
                     Destroy(_newClick, _direction);
                 }
             }
@@ -54,10 +59,10 @@ public class MusicAndSoundsManager : MonoBehaviour
         {
             if (i.gameObject.name == _nameSound)
             {
-                GameObject _newMusic = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, _parentMusic);
+                GameObject _newMusic = Instantiate(i.gameObject, Vector2.zero, Quaternion.identity, parentMusic);
                 AudioSource _newSource = _newMusic.GetComponent<AudioSource>();
                 _audioSourcesMusic.Add(_newSource);
-                if (SoundsModel.instance._playMusic) _newSource.Play();
+                if (SoundsModel.instance.playMusic) _newSource.Play();
                 else _newSource.Pause();
             }
         }
@@ -70,16 +75,22 @@ public class MusicAndSoundsManager : MonoBehaviour
 
     public void SwitchSoundsPlayback()
     {
-        SoundsModel.instance._playSouds = !SoundsModel.instance._playSouds;
-        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance._playSouds);
+        SoundsModel.instance.playSounds = !SoundsModel.instance.playSounds;
+        _buttonSounds.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonSounds, _falseSpriteButtonSounds, SoundsModel.instance.playSounds);
         DataPresenter.SaveSoundsModel();
     }
 
     public void SwitchMusicPlayback()
     {
-        SoundsModel.instance._playMusic = !SoundsModel.instance._playMusic;
-        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance._playMusic);
-        if (SoundsModel.instance._playMusic)
+        ChangeMusicCondition();
+        _buttonMusic.sprite = ViewModel.GetSpriteButton(_trueSpriteButtonMusic, _falseSpriteButtonMusic, SoundsModel.instance.playMusic);
+        DataPresenter.SaveSoundsModel();
+    }
+
+    public void ChangeMusicCondition()
+    {
+        SoundsModel.instance.playMusic = !SoundsModel.instance.playMusic;
+        if (SoundsModel.instance.playMusic)
         {
             for (int i = 0; i < _audioSourcesMusic.Count; i++)
             {
@@ -93,6 +104,5 @@ public class MusicAndSoundsManager : MonoBehaviour
                 if (_audioSourcesMusic[i] != null) _audioSourcesMusic[i].Pause();
             }
         }
-        DataPresenter.SaveSoundsModel();
     }
 }

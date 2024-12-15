@@ -1,9 +1,6 @@
+using GamePush;
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RewardPresenter : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class RewardPresenter : MonoBehaviour
 
     [Header("GameObject")]
     [SerializeField] private GameObject _rewardView;
-    private int kol = 0;
+    [HideInInspector] public int kol = 0;
 
     void Awake()
     {
@@ -24,7 +21,7 @@ public class RewardPresenter : MonoBehaviour
     public void Initialization()
     {
         RewardView.instance.continueButton.onClick.AddListener(RewardView.instance.ClickContinue);
-        RewardView.instance.doubleItButton.interactable = false;
+        RewardView.instance.doubleItButton.interactable = GP_Ads.IsRewardedAvailable();
         RewardView.instance.obj_ViewRewardexceptBlackBackground.localScale = new Vector3(0f, 0f, 0f);
         StartCoroutine(UpScale());
     }

@@ -36,7 +36,7 @@ public class WindowManager : MonoBehaviour
 
     public void ClickButton()
     {
-        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+        MusicAndSoundsManager.instance.PlaySoundClickOnButton();
     }
 
     public void EventCloseWindow()

@@ -40,6 +40,7 @@ public class ScreenView : MonoBehaviour
     {
         CloseSliders();
         SetPos();
+        BafsView.instance.blackBackgroundButtons[4].SetActive(false);
     }
 
     public void Move()

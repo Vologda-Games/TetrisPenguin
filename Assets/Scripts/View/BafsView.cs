@@ -7,7 +7,7 @@ public class BafsView : MonoBehaviour
     public static BafsView instance;
     [SerializeField] private TMP_Text[] _countTexts;
     public bool triggerBtn;
-    [SerializeField] public GameObject[] _blackBackgroundButtons;
+    public GameObject[] blackBackgroundButtons;
     public bool isBlackBackground;
     public bool isMulticolor;
     public bool isSpring;
@@ -53,206 +53,72 @@ public class BafsView : MonoBehaviour
             case 0:
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
-                    Debug.Log("Появление мультияйца");
                     if (BafsPresenter.GetMulticolorBafs() > 0)
                     {
-                        BafsPresenter.Multicolor();
-                        _blackBackgroundButtons[0].SetActive(true);
-                        isBlackBackground = true;
+                        if (PenguinsModel.instance.penguinInSpawn != null) BafsPresenter.Multicolor();
                     }
                 }
-                else if (BafsPresenter.GetSelectBaf() == 1)
-                {
-                    Debug.Log("Отмена мультияйца");
-                    BafsPresenter.CancelMulticolor();
-                    _blackBackgroundButtons[0].SetActive(false);
-                    isMulticolor = false;
-                }
-                /*else if (isSpring && isMulticolor) 
-                {
-                    Debug.Log("Мультияйцо: условие isSprig и isMulticolor");
-                    BafsPresenter.CancelMulticolor();
-                    _blackBackgroundButtons[0].SetActive(false);
-                    isMulticolor = false;
-                }
-                else if (BafsPresenter.GetSelectBaf() == 2) 
-                {
-                    isMulticolor = true;
-                    isSpring = true;
-                    Debug.Log("Мультияйцо + перчатка");
-                    BafsPresenter.Multicolor();
-                    BafsPresenter.Spring();
-                    if (PenguinsModel.instance.penguinInSpawn != null)
-                    {
-                        ProjectionView.instance.RedProjection();
-                    }
-                    _blackBackgroundButtons[0].SetActive(true);
-                    _blackBackgroundButtons[1].SetActive(true);
-                    isBlackBackground = true;
-                }*/
+                else if (BafsPresenter.GetSelectBaf() == 1) BafsPresenter.CancelMulticolor();
                 else if (BafsPresenter.GetSelectBaf() != 1 && BafsPresenter.GetSelectBaf() != 0) 
                 {
-                    Debug.Log("Мультияйцо: отмена всех бафов");
                     CancelAllBaff();
                     BafsPresenter.SetActiveBlackbackgroundBtn();
-                    _blackBackgroundButtons[0].SetActive(true);
+                    blackBackgroundButtons[0].SetActive(true);
                     EventOnClickBaf(0);
                 }
                 break;
             case 1:
                 if (BafsPresenter.GetSelectBaf() == 0 )
                 {
-                    if (BafsPresenter.GetSpringBafs() > 0)
-                    {
-                        Debug.Log("Появление перчатки");
-                        BafsPresenter.Spring();
-                        _blackBackgroundButtons[1].SetActive(true);
-                        isBlackBackground = true;
-                        isSpring = true;
-                    }
+                    if (BafsPresenter.GetSpringBafs() > 0) BafsPresenter.Spring();
                 }
-                else if (BafsPresenter.GetSelectBaf() == 2)
-                {
-                    Debug.Log("Отмена перчатки");
-                    BafsPresenter.CancelSpring();
-                    _blackBackgroundButtons[1].SetActive(false);
-                    //BafsPresenter.SetActiveBlackbackgroundBtn();
-                    isSpring = false;
-                }
-                /*else if (BafsPresenter.GetSelectBaf() == 1 || BafsPresenter.GetSelectBaf() == 3) 
-                {
-                    isSpring = true;
-                    Debug.Log("Перчатка + (мультияйцо или бомба)");
-                    if (BafsPresenter.GetSelectBaf() == 1) 
-                    {
-                        BafsPresenter.Multicolor();
-                        BafsPresenter.Spring();
-                        if (PenguinsModel.instance.penguinInSpawn != null)
-                        {
-                            ProjectionView.instance.RedProjection();
-                        }
-                        _blackBackgroundButtons[0].SetActive(true);
-                        _blackBackgroundButtons[1].SetActive(true);
-                        isBlackBackground = true;
-                        isMulticolor = true;
-                    }
-                    else if (BafsPresenter.GetSelectBaf() == 3) 
-                    {
-                        BafsPresenter.Bomb();
-                        BafsPresenter.Spring();
-                        if (PenguinsModel.instance.penguinInSpawn != null)
-                        {
-                            ProjectionView.instance.RedProjection();
-                        }
-                        _blackBackgroundButtons[1].SetActive(true);
-                        _blackBackgroundButtons[2].SetActive(true);
-                        isBlackBackground = true;
-                        isBomb = true;
-                    }
-                }*/
+                else if (BafsPresenter.GetSelectBaf() == 2) BafsPresenter.CancelSpring();
                 else if (BafsPresenter.GetSelectBaf() != 2 && BafsPresenter.GetSelectBaf() != 0) 
                 {
-                    Debug.Log("Перчатка: отмена всех бафов");
                     CancelAllBaff();
                     BafsPresenter.SetActiveBlackbackgroundBtn();
                     EventOnClickBaf(1);
-                    _blackBackgroundButtons[1].SetActive(true);
+                    blackBackgroundButtons[1].SetActive(true);
                 }
                 break;
             case 2:
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
-                    if (BafsPresenter.GetBombBafs() > 0)
-                    {
-                        Debug.Log("Бомба: появление");
-                        isBomb = true;
-                        BafsPresenter.Bomb();
-                        _blackBackgroundButtons[2].SetActive(true);
-                        isBlackBackground = true;
-                    }
+                    if (BafsPresenter.GetBombBafs() > 0) BafsPresenter.Bomb();
                 }
-                else if (BafsPresenter.GetSelectBaf() == 3)
-                {
-                    Debug.Log("Бомба: уничтожение");
-                    BafsPresenter.CancelBomb();
-                    _blackBackgroundButtons[2].SetActive(false);
-                    //BafsPresenter.SetActiveBlackbackgroundBtn();
-                    isBomb = false;
-                }
-                /*else if (isSpring && isBomb) 
-                {
-                    Debug.Log("Бомба: условие isSprig и isBomb");
-                    BafsPresenter.CancelBomb();
-                    _blackBackgroundButtons[2].SetActive(false);
-                    isBomb = false;
-                }
-                else if (BafsPresenter.GetSelectBaf() == 2) 
-                {
-                    Debug.Log("Бомба: добавление бомбы и перчатки");
-                    isSpring = true;
-                    isBomb = true;
-                    BafsPresenter.Bomb();
-                    BafsPresenter.Spring();
-                    if (PenguinsModel.instance.penguinInSpawn != null)
-                    {
-                        ProjectionView.instance.RedProjection();
-                    }
-                    _blackBackgroundButtons[1].SetActive(true);
-                    _blackBackgroundButtons[2].SetActive(true);
-                    isBlackBackground = true;
-                    return;
-                }*/
+                else if (BafsPresenter.GetSelectBaf() == 3) BafsPresenter.CancelBomb(); 
                 else if (BafsPresenter.GetSelectBaf() != 3 && BafsPresenter.GetSelectBaf() != 0) 
                 {
                     CancelAllBaff();
                     BafsPresenter.SetActiveBlackbackgroundBtn();
-                    _blackBackgroundButtons[2].SetActive(true);
+                    blackBackgroundButtons[2].SetActive(true);
                     EventOnClickBaf(2);
                 }
                 break;
             case 3:
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
-                    if (BafsPresenter.GetTornadoBafs() > 0)
-                    {
-                        // можно дописать условие if пингвинов > 1
-                        BafsPresenter.Tornado();
-                        _blackBackgroundButtons[3].SetActive(true);
-                        isBlackBackground = true;
-                        BafsPresenter.ReduceTornadoBafs(1);
-                        DailyTasksPresenter.CheckUsedBaffForTask(4);
-                        MusicAndSoundsManager._instance.PlaySound("Tornado", 4f);
-                        BafsPresenter.SetActiveBlackbackgroundBtn();
-                    }
+                    if (BafsPresenter.GetTornadoBafs() > 0) BafsPresenter.Tornado();
                 }
                 else if (BafsPresenter.GetSelectBaf() != 0) 
                 {
                     CancelAllBaff();
                     BafsPresenter.SetActiveBlackbackgroundBtn();
-                    _blackBackgroundButtons[3].SetActive(true);
+                    blackBackgroundButtons[3].SetActive(true);
                     EventOnClickBaf(3);
                 }
                 break;
             case 4:
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
-                    if (BafsPresenter.GetMagnetBafs() > 0)
-                    {
-                        BafsPresenter.Magnet();
-                        _blackBackgroundButtons[4].SetActive(true);
-                        isBlackBackground = true;
-                    }
+                    if (BafsPresenter.GetMagnetBafs() > 0) BafsPresenter.Magnet();
                 }
-                else if (BafsPresenter.GetSelectBaf() == 5)
-                {
-                    BafsPresenter.CancelMagnet();
-                    _blackBackgroundButtons[4].SetActive(false);
-                }
+                else if (BafsPresenter.GetSelectBaf() == 5) BafsPresenter.CancelMagnet();
                 else if (BafsPresenter.GetSelectBaf() != 5 && BafsPresenter.GetSelectBaf() != 0) 
                 {
                     CancelAllBaff();
                     BafsPresenter.SetActiveBlackbackgroundBtn();
-                    _blackBackgroundButtons[4].SetActive(true);
+                    blackBackgroundButtons[4].SetActive(true);
                     EventOnClickBaf(4);
                 }
                 break;

@@ -12,6 +12,9 @@ public class BafsPresenter : MonoBehaviour
             PenguinsModel.instance.penguinInSpawn = null;
         }
         SpawnPenguinsPresenter.instance.SpawnByLevel(15);
+        BafsView.instance.blackBackgroundButtons[0].SetActive(true);
+        BafsView.instance.isBlackBackground = true;
+        BafsView.instance.isMulticolor = true;
     }
 
     public static void Spring()
@@ -21,6 +24,9 @@ public class BafsPresenter : MonoBehaviour
         {
             ProjectionView.instance.RedProjection();
         }
+        BafsView.instance.blackBackgroundButtons[1].SetActive(true);
+        BafsView.instance.isBlackBackground = true;
+        BafsView.instance.isSpring = true;
     }
 
     public static void Bomb()
@@ -33,6 +39,9 @@ public class BafsPresenter : MonoBehaviour
             PenguinsModel.instance.penguinInSpawn = null;
         }
         SpawnPenguinsPresenter.instance.SpawnByLevel(16);
+        BafsView.instance.blackBackgroundButtons[2].SetActive(true);
+        BafsView.instance.isBlackBackground = true;
+        BafsView.instance.isBomb = true;
     }
 
     public static void Tornado()
@@ -41,17 +50,27 @@ public class BafsPresenter : MonoBehaviour
         {
             if (PenguinsModel.instance.penguinViews[i] != null)
             {
+                int rand = Random.Range(-1, 2);
                 for (int j = 0; j < 5; j++)
                 {
-                    PenguinsModel.instance.penguinViews[i].objRigidbody.AddForce(new Vector3(-1, 1, 0) * 100);
+                    PenguinsModel.instance.penguinViews[i].objRigidbody.AddForce(new Vector3(rand, .5f, 0) * 100);
                 }
             }
         }
+        BafsView.instance.blackBackgroundButtons[3].SetActive(true);
+        BafsView.instance.isBlackBackground = true;
+        ReduceTornadoBafs(1);
+        DailyTasksPresenter.CheckUsedBaffForTask(4);
+        MusicAndSoundsManager.instance.PlaySound("Tornado", 4f);
+        SetActiveBlackbackgroundBtn();
+        AnimationCameraPresenter.instance.ShakingCamera();
     }
 
     public static void Magnet()
     {
         SetSelectBaf(5);
+        BafsView.instance.blackBackgroundButtons[4].SetActive(true);
+        BafsView.instance.isBlackBackground = true;
     }
 
     /// CANCEL
@@ -72,6 +91,8 @@ public class BafsPresenter : MonoBehaviour
                 }
             }
         }
+        BafsView.instance.blackBackgroundButtons[0].SetActive(false);
+        BafsView.instance.isMulticolor = false;
     }
 
     public static void CancelSpring()
@@ -91,6 +112,8 @@ public class BafsPresenter : MonoBehaviour
             }
         }
         ProjectionView.instance.PointProjection();
+        BafsView.instance.blackBackgroundButtons[1].SetActive(false);
+        BafsView.instance.isSpring = false;
     }
 
     public static void CancelBomb()
@@ -110,18 +133,24 @@ public class BafsPresenter : MonoBehaviour
                 }
             }
         }
+        BafsView.instance.blackBackgroundButtons[2].SetActive(false);
+        BafsView.instance.isBomb = false;
     }
 
     public static void CancelMagnet()
     {
         SetSelectBaf(0);
-        if (PenguinsModel.instance.penguinInSpawn.level != GetDestroyBaf())
+        if (PenguinsModel.instance.penguinInSpawn != null)
         {
-            Destroy(PenguinsModel.instance.penguinInSpawn.go);
-            PenguinsModel.instance.penguinInSpawn = null;
-            SpawnPenguinsPresenter.instance.SpawnByLevel(GetDestroyBaf());
-            SetDestroyBaf(0);
+            if (PenguinsModel.instance.penguinInSpawn.level != GetDestroyBaf())
+            {
+                Destroy(PenguinsModel.instance.penguinInSpawn.go);
+                PenguinsModel.instance.penguinInSpawn = null;
+                SpawnPenguinsPresenter.instance.SpawnByLevel(GetDestroyBaf());
+                SetDestroyBaf(0);
+            }
         }
+        BafsView.instance.blackBackgroundButtons[4].SetActive(false);
     }
 
     /// SET
@@ -291,9 +320,9 @@ public class BafsPresenter : MonoBehaviour
         Debug.Log("ВЫЗОВ УДАЛЕНИЯ ВСЕХ ЧЕРНЫХ ФОНОВ");
         if (BafsView.instance.isBlackBackground == true)
         {
-            for (int i = 0; i < BafsView.instance._blackBackgroundButtons.Length; i++)
+            for (int i = 0; i < BafsView.instance.blackBackgroundButtons.Length; i++)
             {
-                BafsView.instance._blackBackgroundButtons[i].SetActive(false);
+                BafsView.instance.blackBackgroundButtons[i].SetActive(false);
             }
         }
     }

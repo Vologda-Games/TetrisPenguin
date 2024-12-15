@@ -16,10 +16,11 @@ public class PenguinsModel : MonoBehaviour
     public List<PenguinCardInformation> penguinsCardsInformations;
 
     [Header("GameObjects")]
-    [SerializeField] public GameObject _particleFog;
+    public GameObject particleFog;
+    public GameObject particleBomb;
 
     [Header("Transforms")]
-    [SerializeField] public Transform _particleParent;
+    public Transform particleParent;
 
     [Header("Sprites")]
     public static Sprite[] spritesAllSoftPenguins;

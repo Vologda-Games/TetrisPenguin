@@ -14,7 +14,7 @@ public class SpawnPenguinsPresenter : MonoBehaviour
     public void SpawnByLevel(int level)
     {
         GameObject penguin = Instantiate(PrefabsPresenter.GetPrefabByLevel(level), ParentsView.instance.penguinsParent);
-        if (!isScale)  StartCoroutine(ScaleUpPenguin(penguin));
+        if (!isScale) StartCoroutine(ScaleUpPenguin(penguin));
         PenguinView penguinView = penguin.GetComponent<PenguinView>();
         penguinView.objTransform.localPosition = new Vector3(ScreenModel.instance.posTouch, 550, 0);
         penguinView.objTransform.localRotation = new Quaternion(0f, 0f, Random.Range(-45f, 45f), 180f);
@@ -46,12 +46,15 @@ public class SpawnPenguinsPresenter : MonoBehaviour
     {
         isScale = true;
         go.transform.localScale = Vector3.zero;
-        while(go.transform.localScale.x < Vector3.one.x)
+        while(go != null) 
         {
-            go.transform.localScale += new Vector3(0.12f, 0.12f, 0.12f);
-            yield return new WaitForFixedUpdate();
+            if (go.transform.localScale.x < Vector3.one.x)
+            {
+                go.transform.localScale += new Vector3(0.12f, 0.12f, 0.12f);
+                yield return new WaitForFixedUpdate();
+            }else break;
         }
-        go.transform.localScale = Vector3.one;
+        if (go != null) go.transform.localScale = Vector3.one;
         isScale = false;
     }
 }

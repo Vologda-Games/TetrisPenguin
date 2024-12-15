@@ -8,11 +8,11 @@ public class LevelManagerModel : MonoBehaviour
     [Header("Scripts")]
 
     [SerializeField] public List<OpenPerLevel> _listOpenPerLevel = new List<OpenPerLevel>();
-    public static LevelManagerModel _instance;
+    public static LevelManagerModel instance;
 
     private void Awake()
     {
-        _instance = this;
+        instance = this;
     }
 }
 

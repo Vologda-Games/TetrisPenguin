@@ -9,11 +9,11 @@ public class NewDayEventModel : MonoBehaviour
     [HideInInspector] public List<DailyTasksInfoValue> tasksOnToday;
 
     [Header("Scripts")]
-    public static NewDayEventModel _instance;
+    public static NewDayEventModel instance;
 
     private void Awake()
     {
-        _instance = this;
+        instance = this;
        //PlayerPrefs.DeleteAll();
     }
 

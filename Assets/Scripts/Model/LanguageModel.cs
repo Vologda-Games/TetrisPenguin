@@ -1,12 +1,12 @@
 using UnityEngine;
 public class LanguageModel : MonoBehaviour
 {
-    public static Sprite[] _langegesSprites;
+    public static Sprite[] langegesSprites;
     public static string currentLanguage;
 
     public static void LoadSpritesLanguage()
     {
-        _langegesSprites = Resources.LoadAll<Sprite>("Sprites/CountryFlags");
+        langegesSprites = Resources.LoadAll<Sprite>("Sprites/CountryFlags");
     }
 }
 

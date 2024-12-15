@@ -32,13 +32,14 @@ public class RewardView : MonoBehaviour
 
     public void ClickContinue()
     {
-        Debug.Log("click");
-        GameObject currentprefab = gameObject;
-        Destroy(currentprefab);
+        Destroy(gameObject);
     }
 
     public void ClickDoubleIt()
     {
-
+        AdsGPPresenter.instance.REARD_NOW = RewardPresenter.instance.kol;
+        if (GameInterface.instance.activeView == ViewModel.instance._wheelOfLuck) AdsGPPresenter.instance.ShowRewardedOfLuckWheel();
+        else AdsGPPresenter.instance.ShowRewarded();
+        Destroy(gameObject);
     }
 }

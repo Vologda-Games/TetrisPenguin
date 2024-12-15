@@ -134,11 +134,11 @@ public class PlayerView : MonoBehaviour
 
     public void RenderIconLanguage()
     {
-        for (int j = 0; j < LanguageModel._langegesSprites.Length; j++)
+        for (int j = 0; j < LanguageModel.langegesSprites.Length; j++)
         {
-            if (LanguageModel._langegesSprites[j].name.Contains(LanguageModel.currentLanguage))
+            if (LanguageModel.langegesSprites[j].name.Contains(LanguageModel.currentLanguage))
             {
-                if (_buttonLanguage != null) _buttonLanguage.sprite = LanguageModel._langegesSprites[j];
+                if (_buttonLanguage != null) _buttonLanguage.sprite = LanguageModel.langegesSprites[j];
                 break;
             }
         }

@@ -26,7 +26,7 @@ public class SpawnRatingsInWindowPresenter : MonoBehaviour
         {
             if (RatingsModel.instance.playersInformation[i].name == LibraryWords.you.GetText())
             {
-                _parentRatingItems.anchoredPosition = new Vector2(0f, (RatingsModel.instance.playersInformation[i].topPosition * 200) + (RatingsModel.instance.playersInformation[i].topPosition - 1) * 50);
+                _parentRatingItems.anchoredPosition += new Vector2(0f, _parentRatingItems.anchoredPosition.y + (((RatingsModel.instance.playersInformation[i].topPosition - 2) * 200) + (RatingsModel.instance.playersInformation[i].topPosition) * 50));
                 break;
             }
         }

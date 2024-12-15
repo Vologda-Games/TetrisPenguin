@@ -31,8 +31,8 @@ public class DailyTasksView : MonoBehaviour
 
     public void OutputInformationTask(DailyTasksInfoValue _infoTask, int _numberInfoTask)
     {
-        string Condition = NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask;
-        if (Condition == "" || Condition == null) NewDayEventModel._instance.tasksOnToday[_numberInfoTask].ConditionTask = "NotReady";
+        string Condition = NewDayEventModel.instance.tasksOnToday[_numberInfoTask].ConditionTask;
+        if (Condition == "" || Condition == null) NewDayEventModel.instance.tasksOnToday[_numberInfoTask].ConditionTask = "NotReady";
         _numberTask = _numberInfoTask;
         _infoTaskMenu = _infoTask;
         _imageReward.sprite = _infoTask.SpriteReward();
@@ -72,8 +72,8 @@ public class DailyTasksView : MonoBehaviour
 
     public void CollectReward()
     {
-        string Condition = NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask;
-        DailyTasksInfoValue _taskToday = NewDayEventModel._instance.tasksOnToday[_numberTask];
+        string Condition = NewDayEventModel.instance.tasksOnToday[_numberTask].ConditionTask;
+        DailyTasksInfoValue _taskToday = NewDayEventModel.instance.tasksOnToday[_numberTask];
         if (_taskToday._currentQuantity >= _taskToday._maximumQuantity && Condition != "Collected")
         {
             switch (_taskToday._typeRewardEnum)
@@ -94,7 +94,7 @@ public class DailyTasksView : MonoBehaviour
                     }
                     break;
             }
-            NewDayEventModel._instance.tasksOnToday[_numberTask].ConditionTask = "Collected";
+            NewDayEventModel.instance.tasksOnToday[_numberTask].ConditionTask = "Collected";
             DataPresenter.SaveNewDayEventModel();
             _quantityCompleted.text = LibraryWords.collected.GetText();
             _barReady.enabled = false;
@@ -105,7 +105,7 @@ public class DailyTasksView : MonoBehaviour
 
     public void ClickButton()
     {
-        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+        MusicAndSoundsManager.instance.PlaySoundClickOnButton();
     }
 
     private void FixedUpdate()

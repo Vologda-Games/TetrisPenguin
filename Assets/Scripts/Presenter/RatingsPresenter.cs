@@ -51,7 +51,11 @@ public class RatingsPresenter : MonoBehaviour
     {
         for (int i = 0; i < RatingsModel.instance.playersInformation.Count; i++)
         {
-            RatingsModel.instance.playersInformation[i].score += Random.Range(500 * Levels.CurrentLevel, 1000 * Levels.CurrentLevel);
+            if (RatingsModel.instance.playersInformation[i].id != RatingsModel.instance.yourId)
+            {
+                if (Levels.CurrentLevel <= 11) RatingsModel.instance.playersInformation[i].score += Random.Range(650 * Levels.CurrentLevel, 1000 * Levels.CurrentLevel);
+                else RatingsModel.instance.playersInformation[i].score += Random.Range(150 * Levels.CurrentLevel, 400 * Levels.CurrentLevel);
+            }
         }
         DataPresenter.SaveRatingsModel();
     }

@@ -112,7 +112,7 @@ public class DataPresenter
     {
         SaveNewDayEventModel newDayEventModel = new SaveNewDayEventModel()
         {
-            tasksOnToday = NewDayEventModel._instance.tasksOnToday,
+            tasksOnToday = NewDayEventModel.instance.tasksOnToday,
         };
         string json = JsonConvert.SerializeObject(newDayEventModel);
         SaveData(Models.NEW_DAY_EVENT_MODEL, json);
@@ -132,8 +132,8 @@ public class DataPresenter
     {
         SaveSoundsModel soundsModel = new SaveSoundsModel()
         {
-            _playMusic = SoundsModel.instance._playMusic,
-            _playSouds = SoundsModel.instance._playSouds,
+            playMusic = SoundsModel.instance.playMusic,
+            playSounds = SoundsModel.instance.playSounds,
         };
         string json = JsonConvert.SerializeObject(soundsModel);
         SaveData(Models.SOUNDS_MODEL, json);
@@ -242,7 +242,7 @@ public class DataPresenter
             return;
         }
         SaveNewDayEventModel saveResourcesModel = JsonConvert.DeserializeObject<SaveNewDayEventModel>(json);
-        NewDayEventModel._instance.tasksOnToday = saveResourcesModel.tasksOnToday;
+        NewDayEventModel.instance.tasksOnToday = saveResourcesModel.tasksOnToday;
     }
 
     public static void GetScreenModel()
@@ -261,13 +261,13 @@ public class DataPresenter
         string json = GetData(Models.SOUNDS_MODEL);
         if (json == "" || json == null)
         {
-            SoundsModel.instance._playMusic = true;
-            SoundsModel.instance._playSouds = true;
+            SoundsModel.instance.playMusic = true;
+            SoundsModel.instance.playSounds = true;
             return;
         }
         SaveSoundsModel saveResourcesModel = JsonConvert.DeserializeObject<SaveSoundsModel>(json);
-        SoundsModel.instance._playMusic = saveResourcesModel._playMusic;
-        SoundsModel.instance._playSouds = saveResourcesModel._playSouds;
+        SoundsModel.instance.playMusic = saveResourcesModel.playMusic;
+        SoundsModel.instance.playSounds = saveResourcesModel.playSounds;
     }
 
     public static void GetRatingsModel()

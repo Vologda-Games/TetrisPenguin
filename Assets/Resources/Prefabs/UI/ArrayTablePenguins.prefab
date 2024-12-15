@@ -309,6 +309,11 @@ MonoBehaviour:
   _textGet: {fileID: 0}
   _textLoginToGame: {fileID: 0}
   _priceAttemptText: {fileID: 0}
+  _textReward: {fileID: 0}
+  _textLevel: {fileID: 0}
+  _textContinue: {fileID: 0}
+  _textDoubleIt: {fileID: 0}
+  _numbersText: []
 --- !u!1 &7101758067177695862
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f112bf86ca05c44cc9611554ff2857b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd77367546bf4433dbbb2317a935df54, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

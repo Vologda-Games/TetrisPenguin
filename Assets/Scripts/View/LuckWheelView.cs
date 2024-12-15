@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LuckWheelView : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LuckWheelView : MonoBehaviour
     [SerializeField] public GameObject wheel;
     [SerializeField] public GameObject TextSpin;
     [SerializeField] public GameObject ImageCoinAndTextPrice;
+    [SerializeField] public Button closeButton;
 
     [Header("Transform")]
 

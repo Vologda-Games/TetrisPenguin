@@ -8,9 +8,9 @@ public class GameInterface : MonoBehaviour
     // [SerializeField] private CanvasScaler _secondInterface;
     [SerializeField] private Transform _parent;
     private Transform _activeViewTransform;
-    public string activeViewString;
-    public GameObject activeView;
-    public bool isActiveInterface;
+    [HideInInspector] public string activeViewString;
+    [HideInInspector] public GameObject activeView;
+    [HideInInspector] public bool isActiveInterface;
 
     private void Awake()
     {

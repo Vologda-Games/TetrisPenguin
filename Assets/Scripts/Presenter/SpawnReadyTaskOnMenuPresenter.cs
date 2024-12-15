@@ -13,20 +13,20 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
 
     [Header("Scripts")]
 
-    [SerializeField] public static SpawnReadyTaskOnMenuPresenter _instance;
+    [SerializeField] public static SpawnReadyTaskOnMenuPresenter instance;
 
     private void Awake()
     {
-        _instance = this;
+        instance = this;
     }
 
     public void SpawnTodayTask()
     {
-        for (int i = 0; i < NewDayEventModel._instance.tasksOnToday.Count; i++)
+        for (int i = 0; i < NewDayEventModel.instance.tasksOnToday.Count; i++)
         {
             GameObject _taskReady = Instantiate(_prefabRadyTask, _parentObject);
             _dailyTasksViewMenu.Add(_taskReady.GetComponent<DailyTasksView>());
-            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel._instance.tasksOnToday[i], i);
+            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel.instance.tasksOnToday[i], i);
             _dailyTasksViewMenu[i]._taskInMenu = true;
         }
     }
@@ -38,7 +38,7 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
             DailyTasksView _task = _dailyTasksViewMenu[i];
             if (_task._numberTask == _numberReadyTask && i == 0)
             {
-                _task.OutputInformationTask(NewDayEventModel._instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
+                _task.OutputInformationTask(NewDayEventModel.instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
                 if (!_task._right && _task._secondsDealayTask > 0f) _task._secondsDealayTask = 4f;
                 else if (!_task._right && _task._secondsDealayTask <= 0f) _task._right = true;
             }
@@ -52,8 +52,8 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
                         if (_objectTask._rectTransform.localPosition.x <= -_objectTask._rectTransform.sizeDelta.x)
                         {
                             int _infoOne = _objectTask._numberTask;
-                            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel._instance.tasksOnToday[_infoOne], _infoOne);
-                            _dailyTasksViewMenu[j].OutputInformationTask(NewDayEventModel._instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
+                            _dailyTasksViewMenu[i].OutputInformationTask(NewDayEventModel.instance.tasksOnToday[_infoOne], _infoOne);
+                            _dailyTasksViewMenu[j].OutputInformationTask(NewDayEventModel.instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
                             if (!_objectTask._right && _objectTask._secondsDealayTask > 0f) _objectTask._secondsDealayTask = 4f;
                             else if (!_objectTask._right && _objectTask._secondsDealayTask <= 0f) _objectTask._right = true;
                             break;
@@ -62,7 +62,7 @@ public class SpawnReadyTaskOnMenuPresenter : MonoBehaviour
                 }
                 else
                 {
-                    _task.OutputInformationTask(NewDayEventModel._instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
+                    _task.OutputInformationTask(NewDayEventModel.instance.tasksOnToday[_numberReadyTask], _numberReadyTask);
                     if (!_task._right && _task._secondsDealayTask > 0f) _task._secondsDealayTask = 4f;
                     else if (!_task._right && _task._secondsDealayTask <= 0f) _task._right = true;
                 }

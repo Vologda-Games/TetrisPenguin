@@ -4,7 +4,7 @@ public class GamePushPresenter : MonoBehaviour
 {
     public static GamePushPresenter instance;
 
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
@@ -16,10 +16,11 @@ public class GamePushPresenter : MonoBehaviour
 
     private void InitPlayer()
     {
+        AdsGPPresenter.instance.ShowFullscreen();
         DataPresenter.GetAllData();
         BafsView.instance.RenderCountBafs();
-        NewDayEventModel._instance.LoadResourcesNewDay();
-        SpawnReadyTaskOnMenuPresenter._instance.SpawnTodayTask();
+        NewDayEventModel.instance.LoadResourcesNewDay();
+        SpawnReadyTaskOnMenuPresenter.instance.SpawnTodayTask();
         RatingsPresenter.instance.LoadYourInformationInRatings();
         RatingsPresenter.instance.LoadFalseUsers();
         PenguinsPresenter.instance.LoadSpritesPenguins();

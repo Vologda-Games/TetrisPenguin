@@ -10,8 +10,8 @@ public class SoundsModel : MonoBehaviour
     [SerializeField] public static GameObject[] sounds;
 
     [Header("Boolian")]
-    public bool _playSouds;
-    public bool _playMusic;
+    [HideInInspector] public bool playSounds;
+    [HideInInspector] public bool playMusic;
 
     [Header("Scripts")]
     public static SoundsModel instance;
@@ -24,6 +24,6 @@ public class SoundsModel : MonoBehaviour
 
 public class SaveSoundsModel
 {
-    public bool _playSouds;
-    public bool _playMusic;
+    public bool playSounds;
+    public bool playMusic;
 }

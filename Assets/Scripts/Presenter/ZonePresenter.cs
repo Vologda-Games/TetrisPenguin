@@ -25,17 +25,18 @@ public class ZonePresenter : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Penguin")) _enterPenguinView.Remove(other.gameObject);
+        if (_enterPenguinView.Count == 0) _time = 0;
     }
 
     private IEnumerator TimerOnZone()
     {
         _timerActive = true;
         _time = 0;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         while (_enterPenguinView.Count > 0)
         {
             _time += 1;
-            if (_time >= 4)
+            if (_time >= 3)
             {
                 DataPresenter.DeleteDataPenguins();
                 Time.timeScale = 1f;
@@ -49,10 +50,9 @@ public class ZonePresenter : MonoBehaviour
     private IEnumerator ActivationZone()
     {
         _zoneActivation = true;
-        yield return new WaitForSeconds(.5f);
         while (_enterPenguinView.Count > 0)
         {
-            if (_zone.color.a < .8f) _zone.color += new Color(0, 0, 0, 0.027f);
+            if (_time >= 2f &&  _zone.color.a < .8f) _zone.color += new Color(0, 0, 0, 0.09f);
             yield return new WaitForSeconds(0.1f);
         }
         _zone.color = new Color(_zone.color.r, _zone.color.g, _zone.color.b, 0f);

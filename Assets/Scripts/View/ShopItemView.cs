@@ -82,9 +82,9 @@ public class ShopItemView : MonoBehaviour
         else return;
     }
 
-    public void ClickButton()
+    public void ClickBuyButton()
     {
-        MusicAndSoundsManager._instance.PlaySoundClickOnButton();
+        MusicAndSoundsManager.instance.PlaySound("Buy", 1f);
     }
 }
 

@@ -63,6 +63,7 @@ public class LuckWheelPresenter : MonoBehaviour
     {
         StartCoroutine(SpinWheel());
         StartCoroutine(ScaleButton());
+        LuckWheelView.instance.closeButton.interactable = false;
     }
 
     IEnumerator SpinWheel() 
@@ -74,7 +75,8 @@ public class LuckWheelPresenter : MonoBehaviour
 
         setWin();
         isSpin = true;
-        MusicAndSoundsManager._instance.PlaySound("WheelOfLuckSound", 4f);
+        MusicAndSoundsManager.instance.PlaySound("WheelOfLuckSound", 4f);
+        MusicAndSoundsManager.instance.PlaySound("Buy", 1f);
         LuckWheelView.instance.ShowSpinningStatus(isSpin);
         float elapsedTime = 0f; // отвечает за прошедшее время
         float rotSpeed; // текущая скорость вращения
@@ -135,7 +137,8 @@ public class LuckWheelPresenter : MonoBehaviour
         // PlayerPrefs.SetInt("WheelSpunToday", 1);
         LuckWheelModel.instance.isUpScale = 0;
         LuckWheelModel.instance.wheelSpunToday = 1;
-        MusicAndSoundsManager._instance.PlaySound("TheLossOfTheReward", 2f);
+        MusicAndSoundsManager.instance.PlaySound("TheLossOfTheReward", 2f);
+        LuckWheelView.instance.closeButton.interactable = true;
         ShowBtnMoney();
     }
 
@@ -152,9 +155,9 @@ public class LuckWheelPresenter : MonoBehaviour
     //     StopAllCoroutines(); // Останавливаем все корутины при уничтожении объекта
     // }
 
-    public void GetPrize() 
+    public void GetPrize()
     {
-        switch (randomSectors) 
+        switch (randomSectors)
         {
             case 0: // 100 монет
                 //AddToken(300);
@@ -164,7 +167,7 @@ public class LuckWheelPresenter : MonoBehaviour
             case 1: // боксерских перчатки
                 AddBoks(2);
                 RewardPresenter.instance.SpawnRewardView("spring", 2);
-                break; 
+                break;
             case 2: // торнадо
                 AddTornadoes(2);
                 RewardPresenter.instance.SpawnRewardView("tornado", 2);
@@ -190,6 +193,39 @@ public class LuckWheelPresenter : MonoBehaviour
             case 7: // бомба
                 AddBombs(2);
                 RewardPresenter.instance.SpawnRewardView("bomb", 2);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GetPrize(bool spawn)
+    {
+        switch (randomSectors)
+        {
+            case 0: // 100 монет
+                PlayerPresenter.instance.AddCoin(300);
+                break;
+            case 1: // боксерских перчатки
+                AddBoks(2);
+                break;
+            case 2: // торнадо
+                AddTornadoes(2);
+                break;
+            case 3: // 200 монет
+                PlayerPresenter.instance.AddCoin(550);
+                break;
+            case 4: // яйцо
+                AddEggs(2);
+                break;
+            case 5: // магнит
+                AddMagnet(2);
+                break;
+            case 6: // 300 монет
+                PlayerPresenter.instance.AddCoin(900);
+                break;
+            case 7: // бомба
+                AddBombs(2);
                 break;
             default:
                 break;
@@ -249,7 +285,7 @@ public class LuckWheelPresenter : MonoBehaviour
         else if (PlayerModel.instance.coins < 750 && !animdont750money)
         {
             Debug.Log("NoMoney");
-            MusicAndSoundsManager._instance.PlaySound("Error", 1f);
+            MusicAndSoundsManager.instance.PlaySound("Error", 1f);
             StartCoroutine(NoMoney750Button());
         }
     }

@@ -127,22 +127,23 @@ public class PenguinsPresenter : MonoBehaviour
                 {
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceMulticolorBafs(1);
-                    BafsView.instance._blackBackgroundButtons[0].SetActive(false);
+                    BafsView.instance.blackBackgroundButtons[0].SetActive(false);
                 }
                 else if (penguinView.level == 16)
                 {
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceBombBafs(1);
-                    BafsView.instance._blackBackgroundButtons[2].SetActive(false);
+                    BafsView.instance.blackBackgroundButtons[2].SetActive(false);
                 }
                 if (BafsPresenter.GetSelectBaf() == 2)
                 {
+                    MusicAndSoundsManager.instance.PlaySound("StrongBlow", 1f);
                     penguinView.objRigidbody.AddForce(Vector3.down * 800);
                     if (!penguinView._strongBlow) penguinView._strongBlow = true;
                     BafsPresenter.SetSelectBaf(0);
                     BafsPresenter.ReduceSpringBafs(1);
                     ProjectionView.instance.PointProjection();
-                    BafsView.instance._blackBackgroundButtons[1].SetActive(false);
+                    BafsView.instance.blackBackgroundButtons[1].SetActive(false);
                 }
                 if (BafsPresenter.GetSelectBaf() == 0)
                 {
