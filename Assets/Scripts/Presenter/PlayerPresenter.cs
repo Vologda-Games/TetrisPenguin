@@ -22,6 +22,7 @@ public class PlayerPresenter : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        //PlayerPrefs.DeleteAll();
     }
 
     // Читы
@@ -63,6 +64,7 @@ public class PlayerPresenter : MonoBehaviour
     {
         PlayerModel.instance.level++;
         RatingsPresenter.instance.AddRandomExperienceYoureOpponent();
+        LeveManagerView.instance.CheckLevelForOpenButton();
         GameInterface.instance.EventOpenNewLevel();
         AddCoin(Levels.levels[Levels.CurrentLevel].coins);
     }
