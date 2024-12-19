@@ -26,7 +26,7 @@ public class PlayerPresenter : MonoBehaviour
     }
 
     // Читы
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
@@ -46,7 +46,7 @@ public class PlayerPresenter : MonoBehaviour
                 _forChit = 0;
             }
         };
-    }
+    }*/
 
     public void AddCoin(int value)
     {
@@ -124,7 +124,7 @@ public class PlayerPresenter : MonoBehaviour
             _futureExperience++;
             CheckLevel();
             AddValueExperienceBar(_futureExperience);
-            yield return new WaitForSeconds(0.00001f);
+            yield return new WaitForSecondsRealtime(.0005f);
         }
         _addedExperience = false;
     }
