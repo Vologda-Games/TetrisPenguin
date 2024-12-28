@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameInterface : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class GameInterface : MonoBehaviour
             {
                 DailyRewardsView.instance.CloseWindow();
             }
-            StartCoroutine(openDailyRewardss());
+            StartCoroutine(OpenDailyRewards());
         }
         if (Input.GetKeyDown(KeyCode.C)) 
         {
@@ -60,7 +61,7 @@ public class GameInterface : MonoBehaviour
         }
     }
 
-    IEnumerator openDailyRewardss() 
+    IEnumerator OpenDailyRewards() 
     {
         yield return new WaitForSeconds(0.3f);
         EventOpenDailyRewards();
@@ -145,6 +146,13 @@ public class GameInterface : MonoBehaviour
         CloseFirstLayout();
     }
 
+    public void EventReplayGame()
+    {
+        DataPresenter.DeleteDataPenguins();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     private GameObject GetViewByName(string name)
     {
@@ -176,6 +184,10 @@ public class GameInterface : MonoBehaviour
         else if (name == Views._newLevel)
         {
             _object = ViewModel.instance._newLevel;
+        }
+        else if (name == Views._replay)
+        {
+            _object = ViewModel.instance._replay;
         }
         else _object = null;
 

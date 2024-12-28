@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WindowManager : MonoBehaviour
 {
@@ -42,6 +43,11 @@ public class WindowManager : MonoBehaviour
     public void EventCloseWindow()
     {
         GameInterface.instance.CloseFirstLayout();
+    }
+
+    public void Replay()
+    {
+        GameInterface.instance.EventReplayGame();
     }
 
     public void RenderTextWindow()

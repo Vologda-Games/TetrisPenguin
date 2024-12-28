@@ -38,9 +38,7 @@ public class ZonePresenter : MonoBehaviour
             _time += 1;
             if (_time >= 3)
             {
-                DataPresenter.DeleteDataPenguins();
-                Time.timeScale = 1f;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameInterface.instance.OpenFirstLayout(Views._replay);
             }
             yield return new WaitForSeconds(1f);
         }

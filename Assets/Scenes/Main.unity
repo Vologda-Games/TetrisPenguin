@@ -3705,6 +3705,7 @@ MonoBehaviour:
   _dailyRewards: {fileID: 2459318084491971722, guid: 27a76a11920115a45a7b4d4696f62edb, type: 3}
   _tablePenguins: {fileID: 7208416216063787440, guid: 2188ba62f452216438b94c8d2a5c26a3, type: 3}
   _newLevel: {fileID: 6565680270720178589, guid: 67b07d28e587ff5468c062b580358693, type: 3}
+  _replay: {fileID: 6660509452562649217, guid: 6acc048c205b7a74da43008bbbe3ceed, type: 3}
 --- !u!1 &686502353
 GameObject:
   m_ObjectHideFlags: 0

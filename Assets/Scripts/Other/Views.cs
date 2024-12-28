@@ -7,4 +7,5 @@ public static class Views
     public static string _dailyRewards = "DailyRewards";
     public static string _tablePenguins = "TablePenguins";
     public static string _newLevel = "NewLevel";
+    public static string _replay = "Replay";
 }
