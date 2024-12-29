@@ -24,10 +24,17 @@ public class LeveManagerView : MonoBehaviour
 
     public void CheckLevelForOpenButton()
     {
-        for (int i = 0; i < LevelManagerModel.instance._listOpenPerLevel.Count; i++)
+        for (int i = 0; i < LevelManagerModel.instance.listOpenPerLevel.Count; i++)
         {
-            LevelManagerModel.instance._listOpenPerLevel[i]._buttonForOpen.interactable = false;
-            if (Levels.CurrentLevel >= LevelManagerModel.instance._listOpenPerLevel[i]._level) LevelManagerModel.instance._listOpenPerLevel[i]._buttonForOpen.interactable = true;
+            LevelManagerModel.instance.listOpenPerLevel[i].buttonForOpen.interactable = false;
+            LevelManagerModel.instance.listOpenPerLevel[i].buttonBlock.SetActive(true);
+            if (LevelManagerModel.instance.listOpenPerLevel[i].textBaff != null) LevelManagerModel.instance.listOpenPerLevel[i].textBaff.SetActive(false);
+            if (Levels.CurrentLevel >= LevelManagerModel.instance.listOpenPerLevel[i].level)
+            {
+                LevelManagerModel.instance.listOpenPerLevel[i].buttonForOpen.interactable = true;
+                LevelManagerModel.instance.listOpenPerLevel[i].buttonBlock.SetActive(false);
+                if (LevelManagerModel.instance.listOpenPerLevel[i].textBaff != null) LevelManagerModel.instance.listOpenPerLevel[i].textBaff.SetActive(true);
+            }
         }
     }
 

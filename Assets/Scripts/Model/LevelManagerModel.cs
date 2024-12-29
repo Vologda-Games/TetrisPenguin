@@ -7,7 +7,7 @@ public class LevelManagerModel : MonoBehaviour
 {
     [Header("Scripts")]
 
-    [SerializeField] public List<OpenPerLevel> _listOpenPerLevel = new List<OpenPerLevel>();
+    [SerializeField] public List<OpenPerLevel> listOpenPerLevel = new List<OpenPerLevel>();
     public static LevelManagerModel instance;
 
     private void Awake()
@@ -19,6 +19,8 @@ public class LevelManagerModel : MonoBehaviour
 [Serializable]
 public class OpenPerLevel
 {
-    public Button _buttonForOpen;
-    public int _level;
+    public Button buttonForOpen;
+    public GameObject buttonBlock;
+    public GameObject textBaff;
+    public int level;
 }
